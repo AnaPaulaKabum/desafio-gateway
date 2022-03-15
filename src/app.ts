@@ -7,16 +7,15 @@ import { TranscionarServices } from "./domain/services/transicionarServices";
 import { RegistraLogPersistenciaMail } from "./domain/Util/registraLogPersistenciaMail";
 
 
-
-
 const log = new Log();
 const mail = new Mail();
 const persistencia = new Persistencia()
-const registra = new RegistraLogPersistenciaMail(log,mail,persistencia);
+const registroSucesso = new RegistraLogPersistenciaMail(log,mail,persistencia);
+const registroErro = new Log();
 
 
 const gateway = new AdapterGatewaysRede();
 
-const service = new TranscionarServices(gateway,registra);
+const service = new TranscionarServices(gateway,registroSucesso,registroErro);
 
 const app = new PagamentoController(service);

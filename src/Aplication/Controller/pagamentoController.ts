@@ -14,9 +14,9 @@ export class PagamentoController{
        this.transcionarServices.enviarTransicao(resultado);
     }
 
-    public consultarTransicao(){
+    public consultarTransicao(paramNumPedido :string){
 
-        this.transcionarServices.consultarTransicao();
+        this.transcionarServices.consultarTransicao(paramNumPedido);
 
         
     }
