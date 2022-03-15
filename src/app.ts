@@ -10,9 +10,8 @@ import { RegistraLogPersistenciaMail } from "./domain/Util/registraLogPersistenc
 const log = new Log();
 const mail = new Mail();
 const persistencia = new Persistencia()
-const registroSucesso = new RegistraLogPersistenciaMail(log,mail,persistencia);
-const registroErro = new Log();
-
+const registroSucesso = new Persistencia();
+const registroErro = new RegistraLogPersistenciaMail(log,mail,persistencia);
 
 const gateway = new AdapterGatewaysRede();
 
