@@ -10,10 +10,8 @@ export class PagamentoController{
 
     public enviarTransicao(createTransicaoRequest: CreateTransicaoRequest){
 
-       const result = MappearTransicao.toDTO(createTransicaoRequest);
-       this.transcionarServices.enviarTransicao(result);
-
-
+       const resultado = MappearTransicao.toDTO(createTransicaoRequest);
+       this.transcionarServices.enviarTransicao(resultado);
     }
 
     public consultarTransicao(){
