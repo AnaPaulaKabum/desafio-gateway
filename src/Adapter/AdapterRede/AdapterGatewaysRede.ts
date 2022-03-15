@@ -3,17 +3,20 @@ import { IGateways } from "../../domain/Core/Interfaces/IGateways";
 export class AdapterGatewaysRede implements IGateways{
 
 
-    enviartranscionar() {
+    enviarTranscionar(conteudo: any) {
         throw new Error("Method not implemented.");
     }
-    consultartranscionar() {
+    consultarTranscionar(numPedido: any) {
         throw new Error("Method not implemented.");
     }
-    capturar() {
+    capturarTransicao(numPedido: any) {
         throw new Error("Method not implemented.");
     }
-    extorno() {
+    cancelaExtornoTransicao() {
         throw new Error("Method not implemented.");
     }
+
+
+
     
 }

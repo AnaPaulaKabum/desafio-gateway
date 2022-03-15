@@ -1,9 +1,8 @@
 export interface IGateways {
 
-    enviartranscionar(conteudo:any);
-    consultartranscionar(numPedido:any);
-    capturar();
-    extorno();
-    
+    enviarTranscionar(conteudo:any);
+    consultarTranscionar(numPedido:any);
+    capturarTransicao(numPedido:any);
+    cancelaExtornoTransicao(numPedido:any);
 
 }

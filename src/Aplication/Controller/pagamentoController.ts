@@ -21,13 +21,14 @@ export class PagamentoController{
         
     }
 
-    public capturarTransicao(){
+    public capturarTransicao(paramNumPedido:string){
 
-        
+        this.transcionarServices.capturarTransicao(paramNumPedido); 
     }
 
-    public cancelarTransicao(){
+    public cancelaExtornoTransicao(paramNumPedido:string){
 
+        this.cancelaExtornoTransicao(paramNumPedido)
         
     }
 

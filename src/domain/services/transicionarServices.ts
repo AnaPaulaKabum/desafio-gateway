@@ -1,5 +1,6 @@
 import {  IGateways } from "../Core/Interfaces/IGateways";
 import { IRegistra } from "../Core/Interfaces/IRegistra";
+import { ValidaEstorno } from "../Validacoes/ValidaEstorno";
 
 
 export class TranscionarServices{
@@ -13,8 +14,8 @@ export class TranscionarServices{
 
         try {
                 // se encontrar, não devera enviar novamente.
-                if ( this.gateway.consultartranscionar(conteudo.numPedido)){
-                    this.gateway.enviartranscionar(conteudo);
+                if (! this.gateway.consultarTranscionar(conteudo.numPedido)){
+                    this.gateway.enviarTranscionar(conteudo);
                     this.registraSucesso.execute(conteudo); 
                     
                     return ;
@@ -31,11 +32,59 @@ export class TranscionarServices{
     public consultarTransicao(numPedido): any{
 
         try {
-            return this.gateway.consultartranscionar(numPedido)
+
+             const resultado = this.gateway.consultarTranscionar(numPedido);
+             this.registraSucesso.execute(numPedido); 
+             return resultado;
+
+        } catch (error) {
+            
+            this.registraErro.execute(error.message);
+        }
+    }
+
+    public capturarTransicao(numPedido){
+
+        try {
+
+            if (! this.gateway.consultarTranscionar(numPedido)){
+                    //controlar para enviar apenas uma vez, por status do objeto?
+                    this.gateway.capturarTransicao(numPedido);
+                    this.registraSucesso.execute(numPedido); 
+
+            }
+            
             
         } catch (error) {
             
             this.registraErro.execute(error.message);
         }
+
+        
+    }
+
+    public cancelaExtornoTransicao(numPedido){
+
+       
+        try {
+
+            const resultado = this.gateway.consultarTranscionar(numPedido);
+
+            if (! resultado ){
+
+                if (! ValidaEstorno.valida(resultado) ){
+                   
+                    this.gateway.cancelaExtornoTransicao(numPedido);
+                    this.registraSucesso.execute(numPedido); 
+                }
+
+            }
+            
+            
+        } catch (error) {
+            
+            this.registraErro.execute(error.message);
+        }
+
     }
 }
