@@ -1,5 +1,7 @@
 import {  IGateways } from "../Core/Interfaces/IGateways";
 import { IRegistra } from "../Core/Interfaces/IRegistra";
+import { TransacaoDTO } from "../DTO/TransacaoDTO";
+import { TransacaoResponseDTO } from "../DTO/TransacaoResponseDTO";
 import { ValidaEstorno } from "../Validacoes/ValidaEstorno";
 
 
@@ -10,13 +12,13 @@ export class TranscionarServices{
                 private readonly registraErro: IRegistra){}
 
 
-    public enviarTransicao(conteudo){
+    public enviarTransicao(transacao : TransacaoDTO){
 
         try {
                 // se encontrar, não devera enviar novamente.
-                if (! this.gateway.consultarTranscionar(conteudo.numPedido)){
-                    this.gateway.enviarTranscionar(conteudo);
-                    this.registraSucesso.execute(conteudo); 
+                if (! this.gateway.consultarTranscionar(transacao.numPedido)){
+                    this.gateway.enviarTranscionar(transacao);
+                    this.registraSucesso.execute("Sucesso ao enviar a Transicao"); 
                     
                     return ;
                 }
@@ -29,21 +31,22 @@ export class TranscionarServices{
         }
     }
 
-    public consultarTransicao(numPedido): any{
+    public consultarTransicao(numPedido:string): TransacaoResponseDTO{
 
         try {
 
-             const resultado = this.gateway.consultarTranscionar(numPedido);
+             const resultado = this.gateway.consultarTranscionar(numPedido)
              this.registraSucesso.execute(numPedido); 
-             return resultado;
+             return resultado 
 
         } catch (error) {
             
             this.registraErro.execute(error.message);
+            throw(error);
         }
     }
 
-    public capturarTransicao(numPedido){
+    public capturarTransicao(numPedido:string){
 
         try {
 
@@ -51,16 +54,14 @@ export class TranscionarServices{
                     //controlar para enviar apenas uma vez, por status do objeto?
                     this.gateway.capturarTransicao(numPedido);
                     this.registraSucesso.execute(numPedido); 
-            }
-            
-            
+            }     
         } catch (error) {
             
             this.registraErro.execute(error.message);
         }
     }
 
-    public cancelaExtornoTransicao(numPedido){
+    public cancelaExtornoTransicao(numPedido:string){
 
         try {
 

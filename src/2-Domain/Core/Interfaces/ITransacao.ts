@@ -1,5 +1,6 @@
 export interface ITransacao{
-    
+
+    numPedido:string;
     kind : TipoTransacao,
     reference: string,
     amount: number,

@@ -13,9 +13,9 @@ export class PagamentoGatewaysController{
        this.transcionarServices.enviarTransicao(resultado);
     }
 
-    public consultarTransicao(paramNumPedido :string){
+    public consultarTransicao(paramNumPedido :string):any{
 
-        this.transcionarServices.consultarTransicao(paramNumPedido);
+        return this.transcionarServices.consultarTransicao(paramNumPedido);
     }
 
     public capturarTransicao(paramNumPedido:string){
