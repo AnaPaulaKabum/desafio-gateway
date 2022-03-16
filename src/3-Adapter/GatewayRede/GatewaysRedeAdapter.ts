@@ -1,9 +1,7 @@
 import { IGateways } from "../../2-Domain/Core/Interfaces/IGateways";
-import { ITransacao } from "../../2-Domain/Core/Interfaces/ITransacao";
-import { TransacaoDTO } from "../../2-Domain/DTO/TransacaoDTO";
-import { TransacaoResponseDTO } from "../../2-Domain/DTO/TransacaoResponseDTO";
+import { TransacaoDTO } from "../../2-Domain/Core/DTO/TransacaoDTO";
+import { TransacaoResponseDTO } from "../../2-Domain/Core/DTO/TransacaoResponseDTO";
 import { AdapterObjeto } from "./AdapterObjeto";
-import { TranscaoResponseAPI } from "./Response/TrasacaoResponseAPI";
 
 export class GatewaysRedeAdapter implements IGateways{
 

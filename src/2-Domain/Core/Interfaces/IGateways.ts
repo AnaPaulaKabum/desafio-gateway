@@ -1,5 +1,5 @@
-import { TransacaoDTO } from "../../DTO/TransacaoDTO";
-import { TransacaoResponseDTO } from "../../DTO/TransacaoResponseDTO";
+import { TransacaoDTO } from "../DTO/TransacaoDTO";
+import { TransacaoResponseDTO } from "../DTO/TransacaoResponseDTO";
 
 export interface IGateways {
 

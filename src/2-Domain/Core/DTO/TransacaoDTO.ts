@@ -1,4 +1,4 @@
-import { ITransacao } from "../Core/Interfaces/ITransacao";
+import { ITransacao } from "../Interfaces/ITransacao";
 
 export class TransacaoDTO implements ITransacao{
 

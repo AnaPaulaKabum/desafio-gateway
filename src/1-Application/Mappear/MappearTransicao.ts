@@ -1,4 +1,4 @@
-import { TransacaoDTO } from "../../2-Domain/DTO/TransacaoDTO";
+import { TransacaoDTO } from "../../2-Domain/Core/DTO/TransacaoDTO";
 import { CreateTransicaoRequest } from "../Request/createTransicaoRequest";
 
 export abstract class MappearTransicao{

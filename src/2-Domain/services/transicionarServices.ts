@@ -1,7 +1,7 @@
 import {  IGateways } from "../Core/Interfaces/IGateways";
 import { IRegistra } from "../Core/Interfaces/IRegistra";
-import { TransacaoDTO } from "../DTO/TransacaoDTO";
-import { TransacaoResponseDTO } from "../DTO/TransacaoResponseDTO";
+import { TransacaoDTO } from "../Core/DTO/TransacaoDTO";
+import { TransacaoResponseDTO } from "../Core/DTO/TransacaoResponseDTO";
 import { ValidaEstorno } from "../Validacoes/ValidaEstorno";
 
 
