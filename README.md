@@ -1,5 +1,7 @@
 # desafio-gateway
 
+Escopo de uma arquitura limpa para implementar Gateway
+
 ## Organization 
 
 Nucleo : Domain
