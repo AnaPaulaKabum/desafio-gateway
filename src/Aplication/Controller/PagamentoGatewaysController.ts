@@ -3,7 +3,7 @@ import { MappearTransicao } from "../Mappear/MappearTransicao";
 import { CreateTransicaoRequest } from "../Request/createTransicaoRequest";
 
 
-export class PagamentoController{
+export class PagamentoGatewaysController{
 
     constructor (private readonly transcionarServices: TranscionarServices ){}
 
