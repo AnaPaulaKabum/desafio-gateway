@@ -1,5 +1,5 @@
-import { IGateways } from "../../domain/Core/Interfaces/IGateways";
-import { ITransacao } from "../../domain/Core/Interfaces/ITransacao";
+import { IGateways } from "../../2-Domain/Core/Interfaces/IGateways";
+import { ITransacao } from "../../2-Domain/Core/Interfaces/ITransacao";
 import { AdapterObjeto } from "./AdapterObjeto";
 
 export class AdapterGatewaysRede implements IGateways{
@@ -11,13 +11,16 @@ export class AdapterGatewaysRede implements IGateways{
 
 
     }
-    consultarTranscionar(numPedido: any) {
+    consultarTranscionar(numPedido: string) {
         throw new Error("Method not implemented.");
     }
-    capturarTransicao(numPedido: any) {
-        throw new Error("Method not implemented.");
+    capturarTransicao(numPedido: string) {
+       //enviar objeto:
+       // {
+       //  "amount": 2099   
+       // }
     }
-    cancelaExtornoTransicao() {
+    cancelaExtornoTransicao(numPedido:string) {
         throw new Error("Method not implemented.");
     }
 }

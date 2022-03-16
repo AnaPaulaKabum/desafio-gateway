@@ -1,4 +1,4 @@
-import { TranscionarServices } from "../../domain/services/transicionarServices";
+import { TranscionarServices } from "../../2-Domain/services/transicionarServices";
 import { MappearTransicao } from "../Mappear/MappearTransicao";
 import { CreateTransicaoRequest } from "../Request/createTransicaoRequest";
 

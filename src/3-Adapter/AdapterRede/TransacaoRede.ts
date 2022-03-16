@@ -1,6 +1,6 @@
-import { ITransacao } from "../../domain/Core/Interfaces/ITransacao";
+import { ITransacao } from "../../2-Domain/Core/Interfaces/ITransacao";
 
-export class Transacao implements ITransacao{
+export class TransacaoRede implements ITransacao{
 
 
     //Não envio desse campo será considerado crédito.

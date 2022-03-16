@@ -10,7 +10,7 @@ export class TranscionarServices{
                 private readonly registraErro: IRegistra){}
 
 
-    public enviarTransicao(conteudo: any){
+    public enviarTransicao(conteudo){
 
         try {
                 // se encontrar, não devera enviar novamente.

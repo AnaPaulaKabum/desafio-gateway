@@ -1,4 +1,4 @@
-import { IRegistra } from "../../domain/Core/Interfaces/IRegistra";
+import { IRegistra } from "../../2-Domain/Core/Interfaces/IRegistra";
 
 export class Log implements IRegistra{
     

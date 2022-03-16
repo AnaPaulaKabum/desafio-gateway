@@ -1,10 +1,10 @@
-import { AdapterGatewaysRede } from "./Adapter/AdapterRede/AdapterGatewaysRede";
-import { Log } from "./Adapter/Log/Log";
-import { Mail } from "./Adapter/Mail/Mail";
-import { Persistencia } from "./Adapter/Persistencia/Persistencia";
-import { PagamentoGatewaysController } from "./Aplication/Controller/PagamentoGatewaysController";
-import { TranscionarServices } from "./domain/services/transicionarServices";
-import { RegistraLogPersistenciaMail } from "./domain/Util/registraLogPersistenciaMail";
+import { AdapterGatewaysRede } from "./3-Adapter/AdapterRede/AdapterGatewaysRede";
+import { Log } from "./3-Adapter/Log/Log";
+import { Mail } from "./3-Adapter/Mail/Mail";
+import { Persistencia } from "./3-Adapter/Persistencia/Persistencia";
+import { PagamentoGatewaysController } from "./1-Application/Controller/PagamentoGatewaysController";
+import { TranscionarServices } from "./2-Domain/services/transicionarServices";
+import { RegistraLogPersistenciaMail } from "./2-Domain/Util/registraLogPersistenciaMail";
 
 const registroSucessoFactory = () =>{
 
