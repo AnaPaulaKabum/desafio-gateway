@@ -21,3 +21,5 @@ src
     - Log: Classe para registrar os Logs
     - Mail: Classes para o envio do E-mail
     - Persistencia: Classes para salvar informações no banco.
+
+Main.ts: Componente responsavel por instanciar e compor todo o projeto.
