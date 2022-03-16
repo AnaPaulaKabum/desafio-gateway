@@ -21,8 +21,8 @@ export class TranscionarServices{
                     return ;
                 }
 
-                //tratar quando já possuir uma mensagem.
-                
+                //tratar quando já possuir uma transicao.
+
             } catch (error) {
                 
                 this.registraErro.execute(error.message);
@@ -51,7 +51,6 @@ export class TranscionarServices{
                     //controlar para enviar apenas uma vez, por status do objeto?
                     this.gateway.capturarTransicao(numPedido);
                     this.registraSucesso.execute(numPedido); 
-
             }
             
             
@@ -59,13 +58,10 @@ export class TranscionarServices{
             
             this.registraErro.execute(error.message);
         }
-
-        
     }
 
     public cancelaExtornoTransicao(numPedido){
 
-       
         try {
 
             const resultado = this.gateway.consultarTranscionar(numPedido);
@@ -77,14 +73,10 @@ export class TranscionarServices{
                     this.gateway.cancelaExtornoTransicao(numPedido);
                     this.registraSucesso.execute(numPedido); 
                 }
-
             }
             
-            
         } catch (error) {
-            
             this.registraErro.execute(error.message);
         }
-
     }
 }

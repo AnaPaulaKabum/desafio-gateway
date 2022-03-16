@@ -7,7 +7,6 @@ export class PagamentoGatewaysController{
 
     constructor (private readonly transcionarServices: TranscionarServices ){}
 
-
     public enviarTransicao(createTransicaoRequest: CreateTransicaoRequest){
 
        const resultado = MappearTransicao.toDTO(createTransicaoRequest);
@@ -17,8 +16,6 @@ export class PagamentoGatewaysController{
     public consultarTransicao(paramNumPedido :string){
 
         this.transcionarServices.consultarTransicao(paramNumPedido);
-
-        
     }
 
     public capturarTransicao(paramNumPedido:string){
@@ -28,11 +25,6 @@ export class PagamentoGatewaysController{
 
     public cancelaExtornoTransicao(paramNumPedido:string){
 
-        this.cancelaExtornoTransicao(paramNumPedido)
-        
+        this.cancelaExtornoTransicao(paramNumPedido)   
     }
-
-
-
-
 }
