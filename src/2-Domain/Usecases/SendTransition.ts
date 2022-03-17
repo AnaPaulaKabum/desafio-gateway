@@ -1,6 +1,6 @@
 import {  IGateways } from "../Core/Interfaces/IGateways";
 import { IRegister } from "../Core/Interfaces/IRegister";
-import { TransacaoDTO } from "../Entity/Transition";
+import { Transition } from "../Entity/Transition";
 
 export class SendTransition{
 
@@ -8,11 +8,11 @@ export class SendTransition{
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
 
-    public execute (transition : TransacaoDTO){
+    public execute (transition : Transition){
 
         try {
             // se encontrar, não devera enviar novamente.
-            if (! this.gateway.consultarTranscionar(transition.numPedido)){
+            if (! this.gateway.consultarTranscionar(transition.numberRequest)){
                 this.gateway.enviarTranscionar(transition);
                 this.registraSucesso.save("Sucesso ao enviar a Transicao"); 
                 

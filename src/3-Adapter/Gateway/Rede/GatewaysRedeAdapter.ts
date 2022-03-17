@@ -1,23 +1,24 @@
-import { IGateways } from "../../2-Domain/Core/Interfaces/IGateways";
-import { TransacaoDTO } from "../../2-Domain/Core/DTO/TransacaoDTO";
-import { TransacaoResponseDTO } from "../../2-Domain/Core/DTO/TransacaoResponseDTO";
+
 import { AdapterObjeto } from "./AdapterObjeto";
+import { TransitionResponse } from "../../../2-Domain/Entity/TransitionResponse";
+import { Transition } from "../../../2-Domain/Entity/Transition";
+import { IGateways } from "../../../2-Domain/Core/Interfaces/IGateways";
 
 export class GatewaysRedeAdapter implements IGateways{
 
-    enviarTranscionar(transacao:TransacaoDTO) {
+    enviarTranscionar(transacao:Transition) {
 
         const resultado = AdapterObjeto.criaTransicao(transacao);
         //Chamada do metodo Enviar e este deverá retornar objeto CriarTransicionarResponse.
     }
 
-    consultarTranscionar(numPedido: string): TransacaoResponseDTO {
+    consultarTranscionar(numPedido: string): TransitionResponse {
 
         // ao buscar será retornado um objeto TranscaoResponseAPI()
         //construir um MAPPER para transformar o retorno em TransacaoResponseDTO;
         
         //consulta na api
-        return new TransacaoResponseDTO();
+        return new TransitionResponse();
     }
     
     capturarTransicao(numPedido: string) {

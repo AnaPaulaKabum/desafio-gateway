@@ -1,11 +1,8 @@
-import { ITransacao } from "../../2-Domain/Core/Interfaces/ITransacao";
+import { ITransition } from "../../../2-Domain/Core/Interfaces/ITransition";
 
-export class TransacaoRede implements ITransacao{
- 
-
-    //numero do pedido da empresa.
-    numPedido: string;
+export class TransacaoRede implements ITransition{
     
+    numberRequest: string;
     //Não envio desse campo será considerado crédito.
     kind: TipoTransacao;
 
