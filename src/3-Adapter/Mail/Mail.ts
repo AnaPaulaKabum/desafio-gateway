@@ -1,8 +1,8 @@
-import { IRegistra } from "../../2-Domain/Core/Interfaces/IRegistra";
+import { IRegister } from "../../2-Domain/Core/Interfaces/IRegister";
 
-export class Mail implements IRegistra{
+export class Mail implements IRegister{
 
-    execute(mensagem: string) {
+    save(mensagem: string) {
         throw new Error("Method not implemented.");
     }
 }

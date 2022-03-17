@@ -1,16 +1,16 @@
-import { IRegistra } from "../Core/Interfaces/IRegistra"
+import { IRegister } from "../Core/Interfaces/IRegister"
 
-export class RegistraLogPersistenciaMail implements IRegistra{
-
-
-    constructor( private readonly log : IRegistra,
-                 private readonly mail: IRegistra,
-                 private readonly persistencia: IRegistra ){}
+export class RegistraLogPersistenciaMail implements IRegister{
 
 
-    execute(mensagem: string) {
-        this.log.execute(mensagem);
-        this.mail.execute(mensagem);
-        this.persistencia.execute(mensagem);
+    constructor( private readonly log : IRegister,
+                 private readonly mail: IRegister,
+                 private readonly persistencia: IRegister ){}
+
+
+    save(mensagem: string) {
+        this.log.save(mensagem);
+        this.mail.save(mensagem);
+        this.persistencia.save(mensagem);
     }
 }

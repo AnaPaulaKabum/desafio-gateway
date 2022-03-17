@@ -1,8 +1,7 @@
-export interface ITransacao{
+export interface ITransition{
 
-    numPedido:string;
+    numberRequest: string;
     kind : TipoTransacao,
-    reference: string,
     amount: number,
     installments: number,
     cardholderName: string,

@@ -1,10 +1,9 @@
-import { ITransacao } from "../Interfaces/ITransacao";
+import { ITransition } from "../Core/Interfaces/ITransition";
 
-export class TransacaoDTO implements ITransacao{
+export class Transition implements ITransition{
 
-    numPedido: string;
+    numberRequest: string;
     kind: TipoTransacao;
-    reference: string;
     amount: number;
     installments: number;
     cardholderName: string;

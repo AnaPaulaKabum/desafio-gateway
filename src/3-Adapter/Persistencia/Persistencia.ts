@@ -1,8 +1,8 @@
-import { IRegistra } from "../../2-Domain/Core/Interfaces/IRegistra";
+import { IRegister } from "../../2-Domain/Core/Interfaces/IRegister";
 
-export class Persistencia implements IRegistra{
+export class Persistencia implements IRegister{
     
-    execute(mensagem: string) {
+    save(mensagem: string) {
         throw new Error("Method not implemented.");
     }
 
