@@ -11,15 +11,12 @@ export class SendTransition{
     public execute (transition : Transition){
 
         try {
-            // se encontrar, não devera enviar novamente.
-            if (! this.gateway.consultarTranscionar(transition.numberRequest)){
-                this.gateway.enviarTranscionar(transition);
-                this.registraSucesso.save("Sucesso ao enviar a Transicao"); 
-                
-                return ;
-            }
 
-            //tratar quando já possuir uma transicao.
+            if (this.gateway.consultarTranscionar(transition.numberRequest))
+                throw new Error('Transação já enviada');
+
+            this.gateway.enviarTranscionar(transition);
+            this.registraSucesso.save("Sucesso ao enviar a Transicao");         
 
         } catch (error) {
             

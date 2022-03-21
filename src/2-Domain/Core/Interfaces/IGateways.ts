@@ -1,11 +1,11 @@
 import { Transition } from "../../Entity/Transition";
-import { TransitionResponse } from "../../Entity/TransitionResponse";
+import { TransitionCreateResponse } from "../../Entity/TransitionCreateResponse";
 
 export interface IGateways {
 
     enviarTranscionar(conteudo: Transition):any;
     //TransacaoResponseDTO pois irá trazer mais informações do que o TransacaoDTO
-    consultarTranscionar(numPedido:string):TransitionResponse;
+    consultarTranscionar(numPedido:string):TransitionCreateResponse;
     capturarTransicao(numPedido:string):any;
     cancelaExtornoTransicao(numPedido:string):any;
 }

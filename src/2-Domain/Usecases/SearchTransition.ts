@@ -1,6 +1,6 @@
 import {  IGateways } from "../Core/Interfaces/IGateways";
 import { IRegister } from "../Core/Interfaces/IRegister";
-import { TransitionResponse } from "../Entity/TransitionResponse";
+import { TransitionCreateResponse } from "../Entity/TransitionCreateResponse";
 
 export class SearchTransition{
 
@@ -8,7 +8,7 @@ export class SearchTransition{
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
 
-    public execute(numberRequest:string): TransitionResponse{
+    public execute(numberRequest:string): TransitionCreateResponse{
 
         try {
              const resultado = this.gateway.consultarTranscionar(numberRequest)

@@ -2,7 +2,7 @@ import { CancelReversalTransition } from "../../2-Domain/Usecases/CancelReversal
 import { CaptureTransition } from "../../2-Domain/Usecases/CaptureTransition";
 import { SearchTransition } from "../../2-Domain/Usecases/SearchTransition";
 import { SendTransition } from "../../2-Domain/Usecases/SendTransition";
-import { MappearTransicao } from "../Mappear/MappearTransicao";
+import { ConverterRequestToTransition } from "../Converter/ConverterRequestToTransition";
 import { CreateTransitionRequest } from "../Request/createTransitionRequest";
 
 
@@ -15,22 +15,22 @@ export class PaymentGatewaysController{
 
     public sendTransitions (createTransicaoRequest: CreateTransitionRequest){
 
-       const resultado = MappearTransicao.toDTO(createTransicaoRequest);
+       const resultado = ConverterRequestToTransition.converte(createTransicaoRequest);
        this.sendTransition.execute(resultado);
     }
 
-    public searchTransitions(paramNumPedido :string):any{
+    public searchTransitions(paramNumberRequest :string):any{
 
-        return this.searchTransition.execute(paramNumPedido);
+        return this.searchTransition.execute(paramNumberRequest);
     }
 
-    public captureTransitions(paramNumPedido:string){
+    public captureTransitions(paramNumberRequest:string){
 
-        this.captureTransition.execute(paramNumPedido); 
+        this.captureTransition.execute(paramNumberRequest); 
     }
 
-    public cancelReversalTransitions (paramNumPedido:string){
+    public cancelReversalTransitions (paramNumberRequest:string){
 
-        this.cancelReversalTransition.execute(paramNumPedido)   
+        this.cancelReversalTransition.execute(paramNumberRequest)   
     }
 }

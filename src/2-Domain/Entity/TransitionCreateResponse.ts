@@ -1,6 +1,6 @@
 import { Transition } from "./Transition";
 
-export class TransitionResponse{
+export class TransitionCreateResponse{
 
     transcacao : Transition;
 
