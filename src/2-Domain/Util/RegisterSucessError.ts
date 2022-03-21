@@ -1,5 +1,5 @@
-import { IRegister } from "../Core/Interfaces/IRegister";
-import { IRegisterSuccessError } from "../Core/Interfaces/RegisterSucessError";
+import { IRegister } from "../Core/Interfaces/IRegister.js";
+import { IRegisterSuccessError } from "../Core/Interfaces/RegisterSucessError.js";
 
 export class RegisterSuccessError implements IRegisterSuccessError{
 

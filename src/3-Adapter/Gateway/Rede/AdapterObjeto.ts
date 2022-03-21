@@ -1,5 +1,5 @@
-import { ITransition } from "../../../2-Domain/Core/Interfaces/Transition/ITransition";
-import { TransitionRede } from "./TransitionRede";
+import { ITransition } from "../../../2-Domain/Core/Interfaces/Transition/ITransition.js";
+import { TransitionRede } from "./TransitionRede.js";
 
 export abstract class AdapterObjeto{
 

@@ -1,5 +1,5 @@
-import {  IGateways } from "../Core/Interfaces/IGateways";
-import { IRegister } from "../Core/Interfaces/IRegister";
+import {  IGateways } from "../Core/Interfaces/IGateways.js";
+import { IRegister } from "../Core/Interfaces/IRegister.js";
 
 export class CaptureTransition{
 

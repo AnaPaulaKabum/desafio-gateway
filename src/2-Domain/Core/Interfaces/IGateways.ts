@@ -1,5 +1,5 @@
-import { Transition } from "../../Entity/Transition";
-import { TransitionCreateResponse } from "../../Entity/TransitionCreateResponse";
+import { Transition } from "../../Entity/Transition.js";
+import { TransitionCreateResponse } from "../../Entity/TransitionCreateResponse.js";
 
 export interface IGateways {
 

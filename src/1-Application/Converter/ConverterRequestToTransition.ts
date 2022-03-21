@@ -1,5 +1,5 @@
-import { Transition } from "../../2-Domain/Entity/Transition";
-import { CreateTransitionRequest } from "../Request/createTransitionRequest";
+import { Transition } from "../../2-Domain/Entity/Transition.js";
+import { CreateTransitionRequest } from "../Request/createTransitionRequest.js";
 
 export abstract class ConverterRequestToTransition{
 

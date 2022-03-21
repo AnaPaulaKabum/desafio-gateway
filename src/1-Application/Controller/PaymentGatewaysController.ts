@@ -1,9 +1,9 @@
-import { CancelReversalTransition } from "../../2-Domain/Usecases/CancelReversalTransition";
-import { CaptureTransition } from "../../2-Domain/Usecases/CaptureTransition";
-import { SearchTransition } from "../../2-Domain/Usecases/SearchTransition";
-import { SendTransition } from "../../2-Domain/Usecases/SendTransition";
-import { ConverterRequestToTransition } from "../Converter/ConverterRequestToTransition";
-import { CreateTransitionRequest } from "../Request/createTransitionRequest";
+import { CancelReversalTransition } from "../../2-Domain/Usecases/CancelReversalTransition.js";
+import { CaptureTransition } from "../../2-Domain/Usecases/CaptureTransition.js";
+import { SearchTransition } from "../../2-Domain/Usecases/SearchTransition.js";
+import { SendTransition } from "../../2-Domain/Usecases/SendTransition.js";
+import { ConverterRequestToTransition } from "../Converter/ConverterRequestToTransition.js";
+import { CreateTransitionRequest } from "../Request/createTransitionRequest.js";
 
 
 export class PaymentGatewaysController{

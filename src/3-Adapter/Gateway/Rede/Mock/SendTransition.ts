@@ -1,4 +1,4 @@
-import { TransitionRede } from "../TransitionRede";
+import { TransitionRede } from "../TransitionRede.js";
 
 export abstract class MockSendTransition{
 

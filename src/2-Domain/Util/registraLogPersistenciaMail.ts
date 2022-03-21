@@ -1,4 +1,4 @@
-import { IRegister } from "../Core/Interfaces/IRegister"
+import { IRegister } from "../Core/Interfaces/IRegister.js"
 
 export class RegistraLogPersistenciaMail implements IRegister{
 

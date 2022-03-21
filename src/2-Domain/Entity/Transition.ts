@@ -1,6 +1,5 @@
-
-import { ITransition } from "../Core/Interfaces/Transition/ITransition";
-import { ITransitionRepository } from "../Core/Interfaces/Transition/ITransitionRepository";
+import { ITransition } from "../Core/Interfaces/Transition/ITransition.js";
+import { ITransitionRepository } from "../Core/Interfaces/Transition/ITransitionRepository.js";
 
 export class Transition implements ITransition{
 
@@ -22,6 +21,4 @@ export class Transition implements ITransition{
 
         return status === StatusTransition.READY
     }
-
-
 }

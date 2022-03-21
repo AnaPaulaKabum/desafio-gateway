@@ -1,8 +1,7 @@
-import {  IGateways } from "../Core/Interfaces/IGateways";
-import { IRegisterSuccessError } from "../Core/Interfaces/RegisterSucessError";
-import { ITransition } from "../Core/Interfaces/Transition/ITransition";
-import { ITransitionRepository } from "../Core/Interfaces/Transition/ITransitionRepository";
-import { Transition } from "../Entity/Transition";
+import {  IGateways } from "../Core/Interfaces/IGateways.js";
+import { IRegisterSuccessError } from "../Core/Interfaces/RegisterSucessError.js";
+import { ITransitionRepository } from "../Core/Interfaces/Transition/ITransitionRepository.js";
+import { Transition } from "../Entity/Transition.js";
 
 export class SendTransition{
 

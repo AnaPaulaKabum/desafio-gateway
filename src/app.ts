@@ -4,7 +4,7 @@ import { Mail } from "./3-Adapter/Mail/Mail.js";
 import { Persistencia } from "./3-Adapter/Persistencia/Persistencia.js";
 import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController.js";
 import { RegistraLogPersistenciaMail } from "./2-Domain/Util/registraLogPersistenciaMail.js";
-import { GatewaysRedeAdapter } from "./3-Adapter/Gateway/Rede/GatewaysRedeAdapter";
+import { GatewaysRedeAdapter } from "./3-Adapter/Gateway/Rede/GatewaysRedeAdapter.js";
 import { SendTransition } from "./2-Domain/Usecases/SendTransition.js";
 import { SearchTransition } from "./2-Domain/Usecases/SearchTransition.js";
 import { CaptureTransition } from "./2-Domain/Usecases/CaptureTransition.js";

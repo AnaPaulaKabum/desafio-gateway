@@ -1,6 +1,6 @@
-import {  IGateways } from "../Core/Interfaces/IGateways";
-import { IRegister } from "../Core/Interfaces/IRegister";
-import { TransitionCreateResponse } from "../Entity/TransitionCreateResponse";
+import {  IGateways } from "../Core/Interfaces/IGateways.js";
+import { IRegister } from "../Core/Interfaces/IRegister.js";
+import { TransitionCreateResponse } from "../Entity/TransitionCreateResponse.js";
 
 export class SearchTransition{
 
