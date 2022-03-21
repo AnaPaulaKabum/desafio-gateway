@@ -18,13 +18,7 @@ export abstract class AdapterObjeto{
         transitionRede.expirationYear  = transition.expirationYear;
         transitionRede.securityCode    = transition.securityCode;
         transitionRede.softDescriptor  = transition.softDescriptor;
-
-
-        transitionRede
-
-
-
-
+        
         return transitionRede
     }
 
