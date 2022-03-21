@@ -1,7 +1,7 @@
 
 import { Log } from "./3-Adapter/Log/Log.js";
 import { Mail } from "./3-Adapter/Mail/Mail.js";
-import { Persistencia } from "./3-Adapter/Persistencia/Persistencia.js";
+import { Persistence } from "./3-Adapter/Persistence/Persistence.js";
 import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController.js";
 import { RegistraLogPersistenciaMail } from "./2-Domain/Util/registraLogPersistenciaMail.js";
 import { GatewaysRedeAdapter } from "./3-Adapter/Gateway/Rede/GatewaysRedeAdapter.js";
@@ -9,7 +9,7 @@ import { SendTransition } from "./2-Domain/Usecases/SendTransition.js";
 import { SearchTransition } from "./2-Domain/Usecases/SearchTransition.js";
 import { CaptureTransition } from "./2-Domain/Usecases/CaptureTransition.js";
 import { CancelReversalTransition } from "./2-Domain/Usecases/CancelReversalTransition.js";
-import { TransitionRepository } from "./3-Adapter/Persistencia/TransitionRepository.js";
+import { TransitionRepository } from "./3-Adapter/Persistence/TransitionRepository.js";
 import { RegisterSuccessError } from "./2-Domain/Util/RegisterSucessError.js";
 import { CreateTransitionRequest } from "./1-Application/Request/createTransitionRequest.js";
 
@@ -20,14 +20,14 @@ const transitionRepositoryFactory = () => {
 
 const registerSuccessFactory = () =>{
 
-    return new Persistencia();
+    return new Persistence();
 }
 
 const registerErrorFactory = () => {
 
     const log = new Log();
     const mail = new Mail();
-    const persistencia = new Persistencia()
+    const persistencia = new Persistence()
 
     return new RegistraLogPersistenciaMail(log,mail,persistencia);
 }
