@@ -1,9 +1,9 @@
-import { ITransition } from "../../2-Domain/Core/Interfaces/ITransition";
+import { ITransition } from "../../2-Domain/Core/Interfaces/Transition/ITransition";
 
 export class CreateTransitionRequest implements ITransition{
 
     numberRequest: string;
-    kind: TipoTransacao;
+    kind: TypeTransition;
     amount: number;
     installments: number;
     cardholderName: string;

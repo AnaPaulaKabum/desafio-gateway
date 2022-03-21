@@ -1,21 +1,29 @@
 
-/*import { Log } from "./3-Adapter/Log/Log";
-import { Mail } from "./3-Adapter/Mail/Mail";
-import { Persistencia } from "./3-Adapter/Persistencia/Persistencia";
-import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController";
-import { RegistraLogPersistenciaMail } from "./2-Domain/Util/registraLogPersistenciaMail";
+import { Log } from "./3-Adapter/Log/Log.js";
+import { Mail } from "./3-Adapter/Mail/Mail.js";
+import { Persistencia } from "./3-Adapter/Persistencia/Persistencia.js";
+import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController.js";
+import { RegistraLogPersistenciaMail } from "./2-Domain/Util/registraLogPersistenciaMail.js";
 import { GatewaysRedeAdapter } from "./3-Adapter/Gateway/Rede/GatewaysRedeAdapter";
-import { SendTransition } from "./2-Domain/Usecases/SendTransition";
-import { SearchTransition } from "./2-Domain/Usecases/SearchTransition";
-import { CaptureTransition } from "./2-Domain/Usecases/CaptureTransition";
-import { CancelReversalTransition } from "./2-Domain/Usecases/CancelReversalTransition";
+import { SendTransition } from "./2-Domain/Usecases/SendTransition.js";
+import { SearchTransition } from "./2-Domain/Usecases/SearchTransition.js";
+import { CaptureTransition } from "./2-Domain/Usecases/CaptureTransition.js";
+import { CancelReversalTransition } from "./2-Domain/Usecases/CancelReversalTransition.js";
+import { TransitionRepository } from "./3-Adapter/Persistencia/TransitionRepository.js";
+import { RegisterSuccessError } from "./2-Domain/Util/RegisterSucessError.js";
+import { CreateTransitionRequest } from "./1-Application/Request/createTransitionRequest.js";
 
-const registroSucessoFactory = () =>{
+const transitionRepositoryFactory = () => {
+
+    return new TransitionRepository();
+}
+
+const registerSuccessFactory = () =>{
 
     return new Persistencia();
 }
 
-const registroErroFactory = () => {
+const registerErrorFactory = () => {
 
     const log = new Log();
     const mail = new Mail();
@@ -24,22 +32,24 @@ const registroErroFactory = () => {
     return new RegistraLogPersistenciaMail(log,mail,persistencia);
 }
 
-const transcionarServicesFactory = () =>{
+const transitionServicesFactory = () =>{
 
-    const registroSucesso  = registroSucessoFactory();
-    const registroErro = registroErroFactory();
     const gateway = new GatewaysRedeAdapter();
+    const repository = transitionRepositoryFactory();
+    const registerSuccess = registerSuccessFactory();
+    const registerError = registerErrorFactory();
+    const registerSuccessError = new RegisterSuccessError(registerSuccess,registerError); 
 
     return {
-        sendTransition: new SendTransition(gateway,registroSucesso,registroErro),
-        searchTransition: new SearchTransition(gateway,registroSucesso,registroErro),
-        captureTransition: new CaptureTransition(gateway,registroSucesso,registroErro),
-        cancelReversalTransition: new CancelReversalTransition(gateway,registroSucesso,registroErro)
+        sendTransition: new SendTransition(gateway,repository,registerSuccessError),
+        searchTransition: new SearchTransition(gateway,registerSuccess,registerError),
+        captureTransition: new CaptureTransition(gateway,registerSuccess,registerError),
+        cancelReversalTransition: new CancelReversalTransition(gateway,registerSuccess,registerError)
     }
 }
 
 //Design Patter composite root:
-const {sendTransition,searchTransition,captureTransition,cancelReversalTransition} = transcionarServicesFactory();
-const app = new PaymentGatewaysController(sendTransition,searchTransition,captureTransition,cancelReversalTransition);*/
+const {sendTransition,searchTransition,captureTransition,cancelReversalTransition} = transitionServicesFactory();
+const app = new PaymentGatewaysController(sendTransition,searchTransition,captureTransition,cancelReversalTransition);
 
-console.log('teste')
+console.log(app.sendTransitions(new CreateTransitionRequest()));

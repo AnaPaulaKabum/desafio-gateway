@@ -1,26 +1,30 @@
 import {  IGateways } from "../Core/Interfaces/IGateways";
-import { IRegister } from "../Core/Interfaces/IRegister";
+import { IRegisterSuccessError } from "../Core/Interfaces/RegisterSucessError";
+import { ITransition } from "../Core/Interfaces/Transition/ITransition";
+import { ITransitionRepository } from "../Core/Interfaces/Transition/ITransitionRepository";
 import { Transition } from "../Entity/Transition";
 
 export class SendTransition{
 
     constructor(private readonly gateway : IGateways,
-                private readonly registraSucesso: IRegister,
-                private readonly registraErro: IRegister){}
+                private readonly repository: ITransitionRepository,
+                private readonly register: IRegisterSuccessError){}
 
-    public execute (transition : Transition){
+    public execute (transition : Transition): Transition{
 
         try {
 
-            if (this.gateway.consultarTranscionar(transition.numberRequest))
-                throw new Error('Transação já enviada');
+            if (transition.isValidToSend(this.repository)){
+                const transitionResult =this.gateway.sendTransition(transition);
+                this.register.registerSuccess("Sucesso ao enviar a Transicao");  
+                return transitionResult;       
+            }
 
-            this.gateway.enviarTranscionar(transition);
-            this.registraSucesso.save("Sucesso ao enviar a Transicao");         
+            return new Transition();
 
-        } catch (error) {
-            
-            this.registraErro.save(error.message);
+        } catch (error) {           
+            this.register.registerError(error.message);
+            return new Transition();
         }
 
     }

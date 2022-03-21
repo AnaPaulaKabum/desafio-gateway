@@ -1,19 +1,12 @@
-import { ITransition } from "../../../2-Domain/Core/Interfaces/ITransition";
+import { ITransition } from "../../../2-Domain/Core/Interfaces/Transition/ITransition";
 
-export class TransacaoRede implements ITransition{
+export class TransitionRede implements ITransition{
     
     numberRequest: string;
     //Não envio desse campo será considerado crédito.
-    kind: TipoTransacao;
-
-    //Código do pedido gerado pelo estabelecimento.
-    reference: string;
-    
-    //Valor total da transação sem separador de milhar e decimal.
-    //Exemplos:
-    //R$10,00 = 1000
-    //R$0,50 = 50
+    kind: TypeTransition;
     amount: number;
+    amountString: string;
     installments: number;
     cardholderName: string;
     cardNumber: string;
@@ -36,4 +29,14 @@ export class TransacaoRede implements ITransition{
     //Click to Pay- 6
     //O não envio desse campo será considerado uma transação e.Rede (1).
     origin: OriginCard;
+
+    /*amount(){
+       
+
+            //Valor total da transação sem separador de milhar e decimal.
+            //Exemplos:
+            //R$10,00 = 1000
+            //R$0,50 = 50
+            this.amountString = "";
+    }*/
 }

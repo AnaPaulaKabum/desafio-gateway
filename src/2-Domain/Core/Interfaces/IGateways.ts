@@ -3,7 +3,7 @@ import { TransitionCreateResponse } from "../../Entity/TransitionCreateResponse"
 
 export interface IGateways {
 
-    enviarTranscionar(conteudo: Transition):any;
+    sendTransition(transition: Transition):any;
     //TransacaoResponseDTO pois irá trazer mais informações do que o TransacaoDTO
     consultarTranscionar(numPedido:string):TransitionCreateResponse;
     capturarTransicao(numPedido:string):any;

@@ -15,8 +15,8 @@ export class PaymentGatewaysController{
 
     public sendTransitions (createTransicaoRequest: CreateTransitionRequest){
 
-       const resultado = ConverterRequestToTransition.converte(createTransicaoRequest);
-       this.sendTransition.execute(resultado);
+       const transitionRequest = ConverterRequestToTransition.converte(createTransicaoRequest);
+       return this.sendTransition.execute(transitionRequest);
     }
 
     public searchTransitions(paramNumberRequest :string):any{

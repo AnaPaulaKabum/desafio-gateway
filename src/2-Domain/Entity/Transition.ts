@@ -1,9 +1,11 @@
-import { ITransition } from "../Core/Interfaces/ITransition";
+
+import { ITransition } from "../Core/Interfaces/Transition/ITransition";
+import { ITransitionRepository } from "../Core/Interfaces/Transition/ITransitionRepository";
 
 export class Transition implements ITransition{
 
     numberRequest: string;
-    kind: TipoTransacao;
+    kind: TypeTransition;
     amount: number;
     installments: number;
     cardholderName: string;
@@ -12,4 +14,14 @@ export class Transition implements ITransition{
     expirationYear: number;
     securityCode: string;
     softDescriptor: string;
+
+
+    isValidToSend(repository: ITransitionRepository){
+
+        const status = repository.searchStatus(this.numberRequest);
+
+        return status === StatusTransition.READY
+    }
+
+
 }
