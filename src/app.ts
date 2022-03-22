@@ -52,6 +52,7 @@ const transitionServicesFactory = () =>{
 const {sendTransition,searchTransition,captureTransition,cancelReversalTransition} = transitionServicesFactory();
 const app = new PaymentGatewaysController(sendTransition,searchTransition,captureTransition,cancelReversalTransition);
 
-const resultado = app.sendTransitions(new CreateTransitionRequest());
+//const resultado = app.sendTransitions(new CreateTransitionRequest());
+const resultado = app.searchTransitions('1');
 console.log("Resultado: ");
 console.log(resultado);

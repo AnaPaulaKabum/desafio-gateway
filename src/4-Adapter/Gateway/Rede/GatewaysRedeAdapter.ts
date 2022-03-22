@@ -4,7 +4,10 @@ import { TransitionCreatedResponse } from "../../../3-Domain/Entity/TransitionCr
 import { Transition } from "../../../3-Domain/Entity/Transition.js";
 import { IGateways } from "../../../3-Domain/Core/Interfaces/IGateways.js";
 import { MockSendTransition } from "./Mock/SendTransition.js";
-import { ConverterReturnAPIToTransitionCreatedResponse } from "./Converter/ConverterReturnAPIToTransitionCreatedResponse.js";
+import { ReturnAPIToTransitionCreatedResponse } from "./Converter/ReturnAPIToTransitionCreatedResponse.js";
+import { MockSearchTransition } from "./Mock/SearchTransition.js";
+import { ReturnAPIToSearchTransition } from "./Converter/ReturnAPIToSearchTransition.js";
+import { TransitionSearchResponse } from "../../../3-Domain/Entity/TransitionSearchResponse.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
@@ -14,25 +17,23 @@ export class GatewaysRedeAdapter implements IGateways{
        const transitionRedeRequest = AdapterObjeto.createTransitionRede(transition);
        const returnAPI = MockSendTransition.send(transitionRedeRequest);
 
-       return ConverterReturnAPIToTransitionCreatedResponse.converte(returnAPI);
+       return ReturnAPIToTransitionCreatedResponse.converte(returnAPI);
     }
 
-    consultarTranscionar(numberRequest: string)  {
+    searchTransition(numberRequest: string):TransitionSearchResponse {
 
-        // ao buscar será retornado um objeto TranscaoResponseAPI()
-        //construir um MAPPER para transformar o retorno em TransacaoResponseDTO;
-        
-        //consulta na api
-        //return new TransitionCreateResponse();
+        console.log('..searchTransition(Adapter)')
+        const returnAPI = MockSearchTransition.search(numberRequest);
+        return ReturnAPIToSearchTransition.converte(returnAPI);
     }
     
-    capturarTransicao(numberRequest: string) {
+    captureTransition(numberRequest: string) {
        //enviar objeto:
        // {
        //  "amount": 2099   
        // }
     }
-    cancelaExtornoTransicao(numberRequest:string) {
+    cancelReversalTransition(numberRequest: string) {
         throw new Error("Method not implemented.");
     }
 }

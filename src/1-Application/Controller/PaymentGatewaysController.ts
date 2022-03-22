@@ -5,6 +5,7 @@ import { SearchTransition } from "../../2-Usecases/Transition/SearchTransition.j
 import { SendTransition } from "../../2-Usecases/Transition/SendTransition.js";
 import { ConverterRequestToTransition } from "../Converter/ConverterRequestToTransition.js";
 import { CreateTransitionRequest } from "../Request/createTransitionRequest.js";
+import { TransitionSearchResponse } from "../../3-Domain/Entity/TransitionSearchResponse.js";
 
 export class PaymentGatewaysController{
 
@@ -20,8 +21,9 @@ export class PaymentGatewaysController{
        return this.sendTransition.execute(transitionRequest);
     }
 
-    public searchTransitions(paramNumberRequest :string):any{
+    public searchTransitions(paramNumberRequest :string): TransitionSearchResponse{
 
+        console.log('.Controller');
         return this.searchTransition.execute(paramNumberRequest);
     }
 

@@ -14,7 +14,7 @@ export class CancelReversalTransition{
 
         try {
 
-            const resultado = this.gateway.consultarTranscionar(numberRequest);
+            /*const resultado = this.gateway.consultarTranscionar(numberRequest);
 
             if (! resultado ){
 
@@ -23,7 +23,7 @@ export class CancelReversalTransition{
                     this.gateway.cancelaExtornoTransicao(numberRequest);
                     this.registraSucesso.save(numberRequest); 
                 }
-            }
+            }*/
             
         } catch (error) {
             this.registraErro.save(error.message);

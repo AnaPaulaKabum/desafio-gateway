@@ -3,7 +3,7 @@ import { TransitionCreatedResponse } from '../../../../3-Domain/Entity/Transitio
 import { SendTranstionReturn } from '../Response/SendTransitionReturn.js';
 
 
-export abstract class ConverterReturnAPIToTransitionCreatedResponse {
+export abstract class ReturnAPIToTransitionCreatedResponse {
 
 
     static converte(Json:any) : TransitionCreatedResponse{

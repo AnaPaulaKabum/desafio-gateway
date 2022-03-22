@@ -1,6 +1,6 @@
 import {  IGateways } from "../../3-Domain/Core/Interfaces/IGateways.js";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
-import { TransitionCreatedResponse } from "../../3-Domain/Entity/TransitionCreatedResponse.js";
+import { TransitionSearchResponse } from "../../3-Domain/Entity/TransitionSearchResponse.js";
 
 export class SearchTransition{
 
@@ -8,10 +8,10 @@ export class SearchTransition{
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
 
-    public execute(numberRequest:string): TransitionCreatedResponse{
+    public execute(numberRequest:string): TransitionSearchResponse{
 
         try {
-             const resultado = this.gateway.consultarTranscionar(numberRequest)
+             const resultado = this.gateway.searchTransition(numberRequest)
              this.registraSucesso.save(numberRequest); 
              return resultado 
 
