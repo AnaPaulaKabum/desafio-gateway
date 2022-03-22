@@ -1,16 +1,16 @@
 
-import { Log } from "./3-Adapter/Log/Log.js";
-import { Mail } from "./3-Adapter/Mail/Mail.js";
-import { Persistence } from "./3-Adapter/Persistence/Persistence.js";
+import { Log } from "./4-Adapter/Log/Log.js";
+import { Mail } from "./4-Adapter/Mail/Mail.js";
+import { Persistence } from "./4-Adapter/Persistence/Persistence.js";
 import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController.js";
-import { RegistraLogPersistenciaMail } from "./2-Domain/Util/registraLogPersistenciaMail.js";
-import { GatewaysRedeAdapter } from "./3-Adapter/Gateway/Rede/GatewaysRedeAdapter.js";
-import { SendTransition } from "./2-Domain/Usecases/SendTransition.js";
-import { SearchTransition } from "./2-Domain/Usecases/SearchTransition.js";
-import { CaptureTransition } from "./2-Domain/Usecases/CaptureTransition.js";
-import { CancelReversalTransition } from "./2-Domain/Usecases/CancelReversalTransition.js";
-import { TransitionRepository } from "./3-Adapter/Persistence/TransitionRepository.js";
-import { RegisterSuccessError } from "./2-Domain/Util/RegisterSucessError.js";
+import { RegistraLogPersistenciaMail } from "./3-Domain/Util/registraLogPersistenciaMail.js";
+import { GatewaysRedeAdapter } from "./4-Adapter/Gateway/Rede/GatewaysRedeAdapter.js";
+import { SendTransition } from "./2-Usecases/Transition/SendTransition.js";
+import { SearchTransition } from "./2-Usecases/Transition/SearchTransition.js";
+import { CaptureTransition } from "./2-Usecases/Transition/CaptureTransition.js";
+import { CancelReversalTransition } from "./2-Usecases/Transition/CancelReversalTransition.js";
+import { TransitionRepository } from "./4-Adapter/Persistence/TransitionRepository.js";
+import { RegisterSuccessError } from "./3-Domain/Util/RegisterSucessError.js";
 import { CreateTransitionRequest } from "./1-Application/Request/createTransitionRequest.js";
 
 const transitionRepositoryFactory = () => {
@@ -52,4 +52,6 @@ const transitionServicesFactory = () =>{
 const {sendTransition,searchTransition,captureTransition,cancelReversalTransition} = transitionServicesFactory();
 const app = new PaymentGatewaysController(sendTransition,searchTransition,captureTransition,cancelReversalTransition);
 
-console.log(app.sendTransitions(new CreateTransitionRequest()));
+const resultado = app.sendTransitions(new CreateTransitionRequest());
+console.log("Resultado: ");
+console.log(resultado);

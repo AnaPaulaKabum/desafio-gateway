@@ -1,10 +1,10 @@
-import { CancelReversalTransition } from "../../2-Domain/Usecases/CancelReversalTransition.js";
-import { CaptureTransition } from "../../2-Domain/Usecases/CaptureTransition.js";
-import { SearchTransition } from "../../2-Domain/Usecases/SearchTransition.js";
-import { SendTransition } from "../../2-Domain/Usecases/SendTransition.js";
+import { TransitionCreatedResponse } from "../../3-Domain/Entity/TransitionCreatedResponse.js";
+import { CancelReversalTransition } from "../../2-Usecases/Transition/CancelReversalTransition.js";
+import { CaptureTransition } from "../../2-Usecases/Transition/CaptureTransition.js";
+import { SearchTransition } from "../../2-Usecases/Transition/SearchTransition.js";
+import { SendTransition } from "../../2-Usecases/Transition/SendTransition.js";
 import { ConverterRequestToTransition } from "../Converter/ConverterRequestToTransition.js";
 import { CreateTransitionRequest } from "../Request/createTransitionRequest.js";
-
 
 export class PaymentGatewaysController{
 
@@ -13,7 +13,7 @@ export class PaymentGatewaysController{
                   private readonly captureTransition: CaptureTransition,
                   private readonly cancelReversalTransition: CancelReversalTransition) {}
 
-    public sendTransitions (createTransicaoRequest: CreateTransitionRequest){
+    public sendTransitions (createTransicaoRequest: CreateTransitionRequest) : TransitionCreatedResponse{
 
        console.log('.Controller');
        const transitionRequest = ConverterRequestToTransition.converte(createTransicaoRequest);

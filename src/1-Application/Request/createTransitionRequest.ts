@@ -1,4 +1,4 @@
-import { ITransition } from "../../2-Domain/Core/Interfaces/Transition/ITransition.js";
+import { ITransition } from "../../3-Domain/Core/Interfaces/Transition/ITransition.js";
 
 export class CreateTransitionRequest implements ITransition{
 
@@ -12,5 +12,4 @@ export class CreateTransitionRequest implements ITransition{
     expirationYear: number;
     securityCode: string;
     softDescriptor: string;
-    
 }

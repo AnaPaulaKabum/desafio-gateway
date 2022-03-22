@@ -1,4 +1,4 @@
-import { Transition } from "../../2-Domain/Entity/Transition.js";
+import { Transition } from "../../3-Domain/Entity/Transition.js";
 import { CreateTransitionRequest } from "../Request/createTransitionRequest.js";
 
 export abstract class ConverterRequestToTransition{
