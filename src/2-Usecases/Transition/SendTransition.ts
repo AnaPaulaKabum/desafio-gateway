@@ -13,10 +13,10 @@ export class SendTransition{
     public execute (transition : Transition): TransitionCreatedResponse{
 
         try {
-
             console.log('..SendTransition(UseCases)');
+
             if (transition.isValidToSend(this.repository)){
-                const transitionResult =this.gateway.sendTransition(transition);
+                const transitionResult = this.gateway.sendTransition(transition);
                 this.register.registerSuccess("Sucesso ao enviar a Transicao");  
                 return transitionResult;       
             }
@@ -28,6 +28,5 @@ export class SendTransition{
             this.register.registerError(error.message);
             return new TransitionCreatedResponse();
         }
-
     }
 }

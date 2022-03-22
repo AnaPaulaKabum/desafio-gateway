@@ -4,7 +4,7 @@ import { TransitionCreatedResponse } from "../../../3-Domain/Entity/TransitionCr
 import { Transition } from "../../../3-Domain/Entity/Transition.js";
 import { IGateways } from "../../../3-Domain/Core/Interfaces/IGateways.js";
 import { MockSendTransition } from "./Mock/SendTransition.js";
-import { ConverterReturnAPITo } from "./Converter/ConverterReturnAPITo.js";
+import { ConverterReturnAPIToTransitionCreatedResponse } from "./Converter/ConverterReturnAPIToTransitionCreatedResponse.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
@@ -14,11 +14,10 @@ export class GatewaysRedeAdapter implements IGateways{
        const transitionRedeRequest = AdapterObjeto.createTransitionRede(transition);
        const returnAPI = MockSendTransition.send(transitionRedeRequest);
 
-       return ConverterReturnAPITo.converte(returnAPI);
-
+       return ConverterReturnAPIToTransitionCreatedResponse.converte(returnAPI);
     }
 
-    consultarTranscionar(numPedido: string)  {
+    consultarTranscionar(numberRequest: string)  {
 
         // ao buscar será retornado um objeto TranscaoResponseAPI()
         //construir um MAPPER para transformar o retorno em TransacaoResponseDTO;
@@ -27,13 +26,13 @@ export class GatewaysRedeAdapter implements IGateways{
         //return new TransitionCreateResponse();
     }
     
-    capturarTransicao(numPedido: string) {
+    capturarTransicao(numberRequest: string) {
        //enviar objeto:
        // {
        //  "amount": 2099   
        // }
     }
-    cancelaExtornoTransicao(numPedido:string) {
+    cancelaExtornoTransicao(numberRequest:string) {
         throw new Error("Method not implemented.");
     }
 }
