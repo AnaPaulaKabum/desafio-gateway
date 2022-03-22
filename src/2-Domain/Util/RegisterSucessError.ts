@@ -8,12 +8,12 @@ export class RegisterSuccessError implements IRegisterSuccessError{
                  private readonly error: IRegister ){}
 
 
-    registerSuccess(){
-        this.success.save("Teste");
+    registerSuccess(mensagem: string){
+        this.success.save(mensagem);
     }
 
-    registerError(){
-        this.error.save("Teste");
+    registerError(mensagem: string){
+        this.error.save(mensagem);
     }
 
 

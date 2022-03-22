@@ -4,7 +4,8 @@ export class TransitionRepository implements ITransitionRepository{
 
 
     searchStatus(numberRequest: string): StatusTransition {
-        throw new Error("Method not implemented.");
+        
+        return StatusTransition.READY;
     }
 
 

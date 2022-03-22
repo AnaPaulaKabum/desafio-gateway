@@ -13,11 +13,13 @@ export class SendTransition{
 
         try {
 
-            if (transition.isValidToSend(this.repository)){
+            console.log('..SendTransition(UseCases)');
+           // if (transition.isValidToSend(this.repository)){
                 const transitionResult =this.gateway.sendTransition(transition);
                 this.register.registerSuccess("Sucesso ao enviar a Transicao");  
                 return transitionResult;       
-            }
+           // }
+           // console.log(';;;')
 
             return new Transition();
 
