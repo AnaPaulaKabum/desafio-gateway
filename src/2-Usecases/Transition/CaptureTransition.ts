@@ -1,6 +1,7 @@
 import {  IGateways } from "../..//3-Domain/Core/Interfaces/IGateways.js";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
 import { TransitionResponse } from "../../3-Domain/Entity/TransitionSearchResponse.js";
+import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 
 export class CaptureTransition{
 
@@ -13,7 +14,7 @@ export class CaptureTransition{
         try {
                 console.log('..SendTransition(UseCases)');
                 const captureTranstion = this.gateway.captureTransition(numberRequest,amount);
-                this.registraSucesso.save(numberRequest); 
+                this.registraSucesso.save(MessageSucess.generateMessage('Capturado Transição')); 
                 return captureTranstion;
             
         } catch (error) {

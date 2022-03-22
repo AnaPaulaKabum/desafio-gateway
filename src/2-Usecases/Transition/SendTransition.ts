@@ -3,6 +3,7 @@ import { IRegisterSuccessError } from "../../3-Domain/Core/Interfaces/IRegisterS
 import { ITransitionRepository } from "../../3-Domain/Core/Interfaces/Transition/ITransitionRepository.js";
 import { Transition } from "../../3-Domain/Entity/Transition.js";
 import { TransitionCreatedResponse } from "../../3-Domain/Entity/TransitionCreatedResponse.js";
+import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 
 export class SendTransition{
 
@@ -17,7 +18,7 @@ export class SendTransition{
 
             if (transition.isValidToSend(this.repository)){
                 const transitionResult = this.gateway.sendTransition(transition);
-                this.register.registerSuccess("Sucesso ao enviar a Transicao");  
+                this.register.registerSuccess(MessageSucess.generateMessage('Enviado Transição'));  
                 return transitionResult;       
             }
 
