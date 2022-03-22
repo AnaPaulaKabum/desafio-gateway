@@ -1,11 +1,11 @@
 import { Transition } from "../../Entity/Transition.js";
 import { TransitionCreatedResponse } from "../../Entity/TransitionCreatedResponse.js";
-import { TransitionSearchResponse } from "../../Entity/TransitionSearchResponse.js";
+import { TransitionResponse } from "../../Entity/TransitionSearchResponse.js";
 
 export interface IGateways {
 
     sendTransition(transition: Transition): TransitionCreatedResponse;
-    searchTransition(numberRequest:string): TransitionSearchResponse;
-    captureTransition(numberRequest:string):any;
+    searchTransition(numberRequest:string): TransitionResponse;
+    captureTransition(numberRequest:string,amount:number):TransitionResponse;
     cancelReversalTransition(numberRequest:string):any;
 }

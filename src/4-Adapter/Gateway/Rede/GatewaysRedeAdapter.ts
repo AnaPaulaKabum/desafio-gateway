@@ -7,7 +7,9 @@ import { MockSendTransition } from "./Mock/SendTransition.js";
 import { ReturnAPIToTransitionCreatedResponse } from "./Converter/ReturnAPIToTransitionCreatedResponse.js";
 import { MockSearchTransition } from "./Mock/SearchTransition.js";
 import { ReturnAPIToSearchTransition } from "./Converter/ReturnAPIToSearchTransition.js";
-import { TransitionSearchResponse } from "../../../3-Domain/Entity/TransitionSearchResponse.js";
+import { TransitionResponse } from "../../../3-Domain/Entity/TransitionSearchResponse.js";
+import { MockCaptureTransition } from "./Mock/CaptureTransition.js";
+import { ReturnAPIToCaptureTransition } from "./Converter/ReturnAPIToCaptureTransition.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
@@ -20,18 +22,20 @@ export class GatewaysRedeAdapter implements IGateways{
        return ReturnAPIToTransitionCreatedResponse.converte(returnAPI);
     }
 
-    searchTransition(numberRequest: string):TransitionSearchResponse {
+    searchTransition(numberRequest: string):TransitionResponse {
 
         console.log('..searchTransition(Adapter)')
         const returnAPI = MockSearchTransition.search(numberRequest);
+        
         return ReturnAPIToSearchTransition.converte(returnAPI);
     }
     
-    captureTransition(numberRequest: string) {
-       //enviar objeto:
-       // {
-       //  "amount": 2099   
-       // }
+    captureTransition(numberRequest: string,amount:number): TransitionResponse {
+
+        console.log('..searchTransition(Adapter)')
+        const returnAPI = MockCaptureTransition.capture(numberRequest,amount);
+
+        return ReturnAPIToCaptureTransition.converte(returnAPI);
     }
     cancelReversalTransition(numberRequest: string) {
         throw new Error("Method not implemented.");

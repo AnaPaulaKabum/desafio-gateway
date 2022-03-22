@@ -1,15 +1,15 @@
 import { plainToInstance } from "class-transformer";
-import { TransitionSearchResponse } from "../../../../3-Domain/Entity/TransitionSearchResponse.js";
+import { TransitionResponse } from "../../../../3-Domain/Entity/TransitionSearchResponse.js";
 import { SearchTransitionReturn } from "../Response/SearchTransitionReturn.js";
 
 
 export abstract class ReturnAPIToSearchTransition {
 
-    static converte(Json:any): TransitionSearchResponse{
+    static converte(Json:any): TransitionResponse{
 
         let object = plainToInstance(SearchTransitionReturn, Json); 
 
-        let transitionSearchResponse = new TransitionSearchResponse();
+        let transitionSearchResponse = new TransitionResponse();
 
         transitionSearchResponse.TID = object.authorization.tid;
         transitionSearchResponse.numberRequest = object.authorization.reference;

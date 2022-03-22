@@ -1,9 +1,9 @@
-export class TransitionSearchResponse{
+export class TransitionResponse{
 
     TID:string
     numberRequest:string
     nsu: string
     authorizationCode:string
     Status:string
-    date:Date
+    dateTime:Date
 }

@@ -53,6 +53,8 @@ const {sendTransition,searchTransition,captureTransition,cancelReversalTransitio
 const app = new PaymentGatewaysController(sendTransition,searchTransition,captureTransition,cancelReversalTransition);
 
 //const resultado = app.sendTransitions(new CreateTransitionRequest());
-const resultado = app.searchTransitions('1');
+//const resultado = app.searchTransitions('1');
+const resultado = app.captureTransitions('1',100);
+console.log("----------");
 console.log("Resultado: ");
 console.log(resultado);
