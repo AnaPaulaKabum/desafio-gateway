@@ -1,6 +1,6 @@
 import { plainToInstance } from "class-transformer";
-import { TransitionResponse } from "../../../../3-Domain/Entity/TransitionSearchResponse.js";
-import { SearchTransitionReturn } from "../Response/SearchTransitionReturn.js";
+import { TransitionResponse } from "../../../../../3-Domain/Entity/TransitionSearchResponse.js";
+import { SearchTransitionReturn } from "../../Response/SearchTransitionReturn.js";
 
 
 export abstract class ReturnAPIToSearchTransition {

@@ -1,12 +1,11 @@
 import { ITransition } from "../../../3-Domain/Core/Interfaces/Transition/ITransition.js";
-import { TransitionRede } from "./TransitionRede.js";
+import { TransitionRede } from "./Request/TransitionRede.js";
 
-export abstract class AdapterObjeto{
+export abstract class CreateTransitionRede{
 
-    static createTransitionRede(transition: ITransition):TransitionRede{
+    static generate(transition: ITransition):TransitionRede{
 
         let transitionRede =  new TransitionRede();
-
 
         transitionRede.numberRequest   = transition.numberRequest;
         transitionRede.kind            = transition.kind;
@@ -21,6 +20,4 @@ export abstract class AdapterObjeto{
         
         return transitionRede
     }
-
-
 }

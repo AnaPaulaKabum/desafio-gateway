@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { TransitionCreatedResponse } from '../../../../3-Domain/Entity/TransitionCreatedResponse.js';
-import { SendTranstionReturn } from '../Response/SendTransitionReturn.js';
+import { TransitionCreatedResponse } from '../../../../../3-Domain/Entity/TransitionCreatedResponse.js';
+import { SendTranstionReturn } from '../../Response/SendTransitionReturn.js';
 
 
 export abstract class ReturnAPIToTransitionCreatedResponse {

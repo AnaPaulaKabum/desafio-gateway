@@ -1,5 +1,3 @@
-import { TransitionRede } from "../TransitionRede.js";
-
 export abstract class MockSearchTransition{
 
     static search(paramNumberRequest: string){

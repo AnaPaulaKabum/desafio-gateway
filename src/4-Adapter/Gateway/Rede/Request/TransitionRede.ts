@@ -1,4 +1,4 @@
-import { ITransition } from "../../../3-Domain/Core/Interfaces/Transition/ITransition.js";
+import { ITransition } from "../../../../3-Domain/Core/Interfaces/Transition/ITransition.js";
 
 export class TransitionRede implements ITransition{
     
