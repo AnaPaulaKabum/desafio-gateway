@@ -1,4 +1,4 @@
-export class TransactionRede{
+export class TransactionRedeCreateRequest{
     
     numberRequest: string;
     //Não envio desse campo será considerado crédito.

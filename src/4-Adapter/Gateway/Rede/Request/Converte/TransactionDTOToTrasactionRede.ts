@@ -1,11 +1,11 @@
-import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
-import { TransactionRede } from "./Request/TransactionRede.js";
+import { TransactionDTO } from "../../../../../5-Shared/DTO/TransactionDTO.js";
+import { TransactionRedeCreateRequest } from "../TransactionRedeCreateRequest.js";
 
-export abstract class CreateTransactionRede{
+export abstract class TransactionDTOToTrasactionRede{
 
-    static generate(Transaction: TransactionDTO):TransactionRede{
+    static generate(Transaction: TransactionDTO):TransactionRedeCreateRequest{
 
-        let transactionRede =  new TransactionRede();
+        let transactionRede =  new TransactionRedeCreateRequest();
 
         transactionRede.numberRequest   = Transaction.numberRequest;
         transactionRede.kind            = Transaction.kind;
