@@ -25,17 +25,17 @@ export class GatewaysRedeAdapter implements IGateways{
     async searchTransaction(numberRequest: string): Promise<Transaction> {
 
         console.log('..searchTransaction(Adapter)')
-        const returnAPI = MockSearchTransaction.search(numberRequest);
+        const returnAPI = await MockSearchTransaction.search(numberRequest);
 
         return new Promise(function(resolve) {
             resolve(ReturnAPIToSearchTransaction.converte(returnAPI));
          });
     }
     
-    captureTransaction(numberRequest: string,amount:number): Promise<Transaction>  {
+    async captureTransaction(numberRequest: string,amount:number): Promise<Transaction>  {
 
         console.log('..searchTransaction(Adapter)')
-        const returnAPI = MockCaptureTransaction.capture(numberRequest,amount);
+        const returnAPI = await MockCaptureTransaction.capture(numberRequest,amount);
 
         return new Promise(function(resolve) {
             resolve(ReturnAPIToCaptureTransaction.converte(returnAPI));

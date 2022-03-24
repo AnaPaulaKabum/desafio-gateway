@@ -5,6 +5,6 @@ export class TransactionRepository implements ITransactionRepository{
 
     searchStatus(numberRequest: string): StatusTransaction {
        
-        return StatusTransaction.READY;
+        return StatusTransaction.NO_CAPTURE;
     }
 }

@@ -32,7 +32,7 @@ export class SendTransaction{
         } catch (error) {    
             console.log(error);       
             this.mail.send();
-            this.repositoryLog.save(new Log(MessageSucess.generateMessage('Erro enviado Transição'),'admin', new Date()));
+            this.repositoryLog.save(new Log(MessageSucess.generateMessage('Erro enviada Transação'),'admin', new Date()));
             throw new Error(MessageSucess.generateMessage('Erro enviado Transição'));
         }
     }
