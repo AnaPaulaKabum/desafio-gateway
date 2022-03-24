@@ -2,7 +2,6 @@ import { StatusTransaction } from "../Core/Interfaces/Transaction/Enum/StatusTra
 import { ITransaction } from "../Core/Interfaces/Transaction/ITransaction.js";
 import { ITransactionRepository } from "../Core/Interfaces/Transaction/ITransitionRepository.js";
 
-
 export class Transaction implements ITransaction{
 
     numberRequest: string;
@@ -15,7 +14,6 @@ export class Transaction implements ITransaction{
     expirationYear: number;
     securityCode: string;
     softDescriptor: string;
-
 
     isValidToSend(repository: ITransactionRepository){
 

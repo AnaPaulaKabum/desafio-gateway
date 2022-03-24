@@ -9,7 +9,6 @@ export class CancelReversalTransaction{
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
 
-
     public execute(numberRequest:string){
 
         try {

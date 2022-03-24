@@ -6,5 +6,4 @@ export abstract class ValidaEstorno{
 
         return true;
     }
-
 }

@@ -5,6 +5,4 @@ export class Persistence implements IRegister{
     save(message: string) {
         console.log('...Persistencia: '+message)
     }
-
-
 }
