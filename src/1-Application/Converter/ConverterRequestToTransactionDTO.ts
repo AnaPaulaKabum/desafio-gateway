@@ -1,11 +1,11 @@
-import { Transaction } from "../../3-Domain/Entity/Transaction.js";
+import { TransactionDTO } from "../../5-Shared/DTO/TransactionDTO.js";
 import { CreateTransactionRequest } from "../Request/createTransactionRequest.js";
 
 export abstract class ConverterRequestToTransaction{
 
-    static converte(request:CreateTransactionRequest): Transaction{
+    static converte(request:CreateTransactionRequest): TransactionDTO {
 
-        const transaction =  new Transaction();
+        const transaction =  new TransactionDTO();
 
         transaction.numberRequest   = request.numberRequest;
         transaction.kind            = request.kind;

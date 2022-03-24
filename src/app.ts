@@ -52,9 +52,9 @@ const TransactionServicesFactory = () =>{
 const {sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction} = TransactionServicesFactory();
 const app = new PaymentGatewaysController(sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction);
 
-//const resultado = app.sendTransactions(new CreateTransactionRequest());
+const resultado = app.sendTransactions(new CreateTransactionRequest());
 //const resultado = app.searchTransactions('1');
-const resultado = app.captureTransactions('1',100);
+//const resultado = app.captureTransactions('1',100);
 console.log("----------");
 console.log("Resultado: ");
 console.log(resultado);

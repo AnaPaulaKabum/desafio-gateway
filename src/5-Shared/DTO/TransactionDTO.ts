@@ -1,13 +1,7 @@
-import { ITransaction } from "../Core/Interfaces/Transaction/ITransaction.js";
-
-export class Transaction implements ITransaction{
+export class TransactionDTO{
 
     numberRequest: string;
-    tid:string;
     kind: TypeTransaction;
-    authorizationCode:string
-    nsu:string;
-    status:string;
     amount: number;
     installments: number;
     cardholderName: string;
