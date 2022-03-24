@@ -1,8 +1,8 @@
 export abstract class MockSearchTransaction{
 
-    static search(paramNumberRequest: string){
+    static search(paramNumberRequest: string): Promise<any>{
 
-        return {
+        const returnSearch =  {
             requestDateTime: "2017-03-12T08:54:00.000-03:00",
             authorization: {
               dateTime: "2017-03-11T08:54:00.000-03:00",
@@ -58,5 +58,9 @@ export abstract class MockSearchTransaction{
               }
             ]
           }
+
+        return  new Promise(function(resolve) {
+          resolve(returnSearch);
+      });
     }
 }

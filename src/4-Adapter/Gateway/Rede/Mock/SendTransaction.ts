@@ -2,8 +2,6 @@ import { TransactionRede } from "../Request/TransactionRede.js";
 
 export abstract class MockSendTransaction{
 
-
-
     static send(Transaction: TransactionRede): Promise<any>{
 
         return  new Promise(function(resolve, reject) {
@@ -41,4 +39,3 @@ export abstract class MockSendTransaction{
         });
   }
 }
-
