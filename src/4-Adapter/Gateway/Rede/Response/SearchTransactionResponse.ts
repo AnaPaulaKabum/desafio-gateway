@@ -1,4 +1,4 @@
-import { Link } from "./Link"
+import { Link } from "./Link.js";
 
 class Capture{
     dateTime: Date
@@ -29,7 +29,7 @@ class Authorization {
     distributorAffiliation
 }
 
-export class SearchTransactionReturn{
+export class SearchTransactionResponse{
 
     requestDateTime: Date
     authorization:  Authorization

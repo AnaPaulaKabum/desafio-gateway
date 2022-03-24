@@ -1,6 +1,6 @@
-import { Link } from "./Link"
+import { Link } from "./Link.js";
 
-export class SendTranstionReturn{
+export class SendTransitionResponse{
 
     reference: string
     tid: string

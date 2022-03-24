@@ -1,6 +1,6 @@
-import { Link } from "./Link";
+import { Link } from "./Link.js";
 
-export class CaptureTransactionReturn{
+export class CaptureTransactionResponse{
 
         reference: string ; 
         tid: string ;  

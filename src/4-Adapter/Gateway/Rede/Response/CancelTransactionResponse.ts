@@ -1,6 +1,6 @@
-import { Link } from "./Link";
+import { Link } from "./Link.js";
 
-export class CancelTransectionReturn{
+export class CancelTransactionResponse{
 
     returnCode: string; 
     returnMessage: string; 

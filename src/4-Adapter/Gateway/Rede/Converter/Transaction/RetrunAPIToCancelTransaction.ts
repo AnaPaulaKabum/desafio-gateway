@@ -1,12 +1,12 @@
 import { plainToInstance } from "class-transformer";
 import { CancelTransaction } from "../../../../../3-Domain/Entity/CancelTransaction.js";
-import { CancelTransectionReturn } from "../../Response/CancelTransactionReturn.js";
+import { CancelTransactionResponse } from "../../Response/CancelTransactionResponse.js";
 
 export abstract class RetrunAPIToCancelTransaction {
 
     static converte(Json:any): CancelTransaction{
 
-        let object = plainToInstance(CancelTransectionReturn, Json); 
+        let object = plainToInstance(CancelTransactionResponse, Json); 
 
         let transactionCancelResponse = new CancelTransaction();
 
@@ -18,3 +18,4 @@ export abstract class RetrunAPIToCancelTransaction {
         return transactionCancelResponse;
     }
 }
+
