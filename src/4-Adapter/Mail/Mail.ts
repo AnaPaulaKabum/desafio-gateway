@@ -1,8 +1,9 @@
+import { IMail } from "../../3-Domain/Core/Interfaces/IMail";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister";
 
-export class Mail implements IRegister{
+export class Mail implements IMail{
 
-    save(message: string) {
-        console.log('...MAIL: '+message)
+    send() {
+        console.log('...MAIL: Enviado email')
     }
 }

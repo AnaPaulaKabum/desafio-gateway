@@ -1,50 +1,27 @@
 
-import { Log } from "./4-Adapter/Log/Log.js";
+import { LogRepository } from "./4-Adapter/Persistence/Log/LogRepository.js";
 import { Mail } from "./4-Adapter/Mail/Mail.js";
-import { Persistence } from "./4-Adapter/Persistence/Persistence.js";
 import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController.js";
-import { RegistraLogPersistenciaMail } from "./3-Domain/Util/registraLogPersistenciaMail.js";
 import { GatewaysRedeAdapter } from "./4-Adapter/Gateway/Rede/GatewaysRedeAdapter.js";
 import { SendTransaction } from "./2-Usecases/Transaction/SendTransaction.js";
 import { SearchTransaction } from "./2-Usecases/Transaction/SearchTransaction.js";
 import { CaptureTransaction } from "./2-Usecases/Transaction/CaptureTransaction.js";
 import { CancelReversalTransaction } from "./2-Usecases/Transaction/CancelReversalTransaction.js";
-import { TransactionRepository } from "./4-Adapter/Persistence/TransactionRepository.js";
-import { RegisterSuccessError } from "./3-Domain/Util/RegisterSucessError.js";
+import { TransactionRepository } from "./4-Adapter/Persistence/Transaction/TransactionRepository.js";
 import { CreateTransactionRequest } from "./1-Application/Request/createTransactionRequest.js";
-
-const TransactionRepositoryFactory = () => {
-
-    return new TransactionRepository();
-}
-
-const registerSuccessFactory = () =>{
-
-    return new Persistence();
-}
-
-const registerErrorFactory = () => {
-
-    const log = new Log();
-    const mail = new Mail();
-    const persistencia = new Persistence()
-
-    return new RegistraLogPersistenciaMail(log,mail,persistencia);
-}
 
 const TransactionServicesFactory = () =>{
 
     const gateway = new GatewaysRedeAdapter();
-    const repository = TransactionRepositoryFactory();
-    const registerSuccess = registerSuccessFactory();
-    const registerError = registerErrorFactory();
-    const registerSuccessError = new RegisterSuccessError(registerSuccess,registerError); 
+    const repositoryTransaction = new TransactionRepository()
+    const repositoryLog = new LogRepository();
+    const mail = new Mail();
 
     return {
-        sendTransaction: new SendTransaction(gateway,repository,registerSuccessError),
-        searchTransaction: new SearchTransaction(gateway,registerSuccess,registerError),
-        captureTransaction: new CaptureTransaction(gateway,registerSuccess,registerError),
-        cancelReversalTransaction: new CancelReversalTransaction(gateway,registerSuccess,registerError)
+        sendTransaction: new SendTransaction(gateway,repositoryTransaction,repositoryLog,mail),
+        searchTransaction: new SearchTransaction(gateway,repositoryTransaction,repositoryLog,mail),
+        captureTransaction: new CaptureTransaction(gateway,repositoryTransaction,repositoryLog,mail),
+        cancelReversalTransaction: new CancelReversalTransaction(gateway,repositoryTransaction,repositoryLog,mail)
     }
 }
 

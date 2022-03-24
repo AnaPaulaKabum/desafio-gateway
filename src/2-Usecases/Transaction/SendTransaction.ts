@@ -1,7 +1,10 @@
 import {  IGateways } from "../../3-Domain/Core/Interfaces/IGateways.js";
+import { IMail } from "../../3-Domain/Core/Interfaces/IMail.js";
 import { IRegisterSuccessError } from "../../3-Domain/Core/Interfaces/IRegisterSucessError.js";
 import { StatusTransaction } from "../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js";
-import { ITransactionRepository } from "../../3-Domain/Core/Interfaces/Transaction/ITransitionRepository.js";
+import { ILogRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js";
+import { ITransactionRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js";
+import { Log } from "../../3-Domain/Entity/Log.js";
 import { Transaction } from "../../3-Domain/Entity/Transaction.js";
 import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 import { TransactionDTO } from "../../5-Shared/DTO/TransactionDTO.js";
@@ -9,8 +12,9 @@ import { TransactionDTO } from "../../5-Shared/DTO/TransactionDTO.js";
 export class SendTransaction{
 
     constructor(private readonly gateway : IGateways,
-                private readonly repository: ITransactionRepository,
-                private readonly register: IRegisterSuccessError){}
+                private readonly repositoryTransaction: ITransactionRepository,
+                private readonly repositoryLog: ILogRepository,
+                private readonly mail: IMail){}
 
     public execute (transaction : TransactionDTO): Transaction{
 
@@ -19,7 +23,8 @@ export class SendTransaction{
 
             if (this.isValidToSend(transaction.numberRequest)){
                 const transactionResult = this.gateway.sendTransaction(transaction);
-                this.register.registerSuccess(MessageSucess.generateMessage('Enviado Transição'));  
+
+                this.repositoryLog.save(new Log(MessageSucess.generateMessage('Enviado Transição')))
                 return transactionResult;       
             }
 
@@ -27,14 +32,16 @@ export class SendTransaction{
 
         } catch (error) {    
             console.log(error);       
-            this.register.registerError(error.message);
+            this.mail.send();
+            this.repositoryLog.save(new Log(MessageSucess.generateMessage('Erro enviado Transição')));
+
             return new Transaction();
         }
     }
 
     private isValidToSend(numberRequest:string){
 
-        const status = this.repository.searchStatus(numberRequest);
+        const status = this.repositoryTransaction.searchStatus(numberRequest);
         return status === StatusTransaction.READY
     }
 }
