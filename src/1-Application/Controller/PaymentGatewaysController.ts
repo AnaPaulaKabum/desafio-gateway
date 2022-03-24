@@ -13,20 +13,20 @@ export class PaymentGatewaysController{
                   private readonly captureTransaction: CaptureTransaction,
                   private readonly cancelReversalTransaction: CancelReversalTransaction) {}
 
-    public sendTransactions (createTransicaoRequest: CreateTransactionRequest) : Promise<Transaction>{
+    public async sendTransactions (createTransicaoRequest: CreateTransactionRequest) :Promise<Transaction>{
 
-       console.log('.Controller');
-       const TransactionRequest = ConverterRequestToTransactionDTO.converte(createTransicaoRequest);
-       return this.sendTransaction.execute(TransactionRequest);
+        console.log('.Controller');
+        const TransactionRequest = ConverterRequestToTransactionDTO.converte(createTransicaoRequest);
+        return await this.sendTransaction.execute(TransactionRequest);
     }
 
-    public searchTransactions(paramNumberRequest :string): Transaction{
+    public searchTransactions(paramNumberRequest :string): Promise<Transaction>{
 
         console.log('.Controller');
         return this.searchTransaction.execute(paramNumberRequest);
     }
 
-    public captureTransactions(paramNumberRequest:string,amount:number):Transaction{
+    public captureTransactions(paramNumberRequest:string,amount:number): Promise<Transaction>{
 
         console.log('.Controller');
         return this.captureTransaction.execute(paramNumberRequest,amount); 
@@ -34,6 +34,7 @@ export class PaymentGatewaysController{
 
     public cancelReversalTransactions (paramNumberRequest:string){
 
+        console.log('.Controller');
         this.cancelReversalTransaction.execute(paramNumberRequest)   
     }
 }

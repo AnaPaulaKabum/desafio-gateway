@@ -11,7 +11,7 @@ import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
-    async sendTransaction(transaction: TransactionDTO):Promise<Transaction> {
+    async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
 
        console.log('..sendTransaction(Adapter)');
        const transactionRedeRequest = CreateTransactionRede.generate(transaction);
@@ -22,20 +22,24 @@ export class GatewaysRedeAdapter implements IGateways{
         });
     }
 
-    searchTransaction(numberRequest: string):Transaction {
+    async searchTransaction(numberRequest: string): Promise<Transaction> {
 
         console.log('..searchTransaction(Adapter)')
         const returnAPI = MockSearchTransaction.search(numberRequest);
-        
-        return ReturnAPIToSearchTransaction.converte(returnAPI);
+
+        return new Promise(function(resolve) {
+            resolve(ReturnAPIToSearchTransaction.converte(returnAPI));
+         });
     }
     
-    captureTransaction(numberRequest: string,amount:number): Transaction {
+    captureTransaction(numberRequest: string,amount:number): Promise<Transaction>  {
 
         console.log('..searchTransaction(Adapter)')
         const returnAPI = MockCaptureTransaction.capture(numberRequest,amount);
 
-        return ReturnAPIToCaptureTransaction.converte(returnAPI);
+        return new Promise(function(resolve) {
+            resolve(ReturnAPIToCaptureTransaction.converte(returnAPI));
+         });
     }
     cancelReversalTransaction(numberRequest: string) {
         throw new Error("Method not implemented.");

@@ -17,5 +17,4 @@ export abstract class ReturnAPIToCaptureTransaction {
 
         return transactionSearchResponse;
     }
-
 }

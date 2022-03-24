@@ -1,6 +1,5 @@
 import {  IGateways } from "../../3-Domain/Core/Interfaces/IGateways.js";
 import { IMail } from "../../3-Domain/Core/Interfaces/IMail.js";
-import { IRegisterSuccessError } from "../../3-Domain/Core/Interfaces/IRegisterSucessError.js";
 import { StatusTransaction } from "../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js";
 import { ILogRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js";
 import { ITransactionRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js";
@@ -22,21 +21,19 @@ export class SendTransaction{
             console.log('..SendTransaction(UseCases)');
 
             if (this.isValidToSend(transaction.numberRequest)){
+
                 const transactionResult = this.gateway.sendTransaction(transaction);
-
-                this.repositoryLog.save(new Log(MessageSucess.generateMessage('Enviado Transição')))
+                this.repositoryLog.save(new Log(MessageSucess.generateMessage('Enviada Transação'),'admin', new Date()))
                 return transactionResult;       
-
             }
 
-            return new Transaction();
+            throw new Error('Transação já cadastrada');
 
         } catch (error) {    
             console.log(error);       
             this.mail.send();
-            this.repositoryLog.save(new Log(MessageSucess.generateMessage('Erro enviado Transição')));
-
-            return new Transaction();
+            this.repositoryLog.save(new Log(MessageSucess.generateMessage('Erro enviado Transição'),'admin', new Date()));
+            throw new Error(MessageSucess.generateMessage('Erro enviado Transição'));
         }
     }
 

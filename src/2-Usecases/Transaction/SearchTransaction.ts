@@ -13,7 +13,7 @@ export class SearchTransaction{
                 private readonly repositoryLog: ILogRepository,
                 private readonly mail: IMail){}
 
-    public execute(numberRequest:string): Transaction{
+    public execute(numberRequest:string): Promise<Transaction>{
 
         try {
              const resultado = this.gateway.searchTransaction(numberRequest)

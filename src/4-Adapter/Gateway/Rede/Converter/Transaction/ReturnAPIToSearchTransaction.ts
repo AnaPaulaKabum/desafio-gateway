@@ -17,5 +17,4 @@ export abstract class ReturnAPIToSearchTransaction {
 
         return transactionSearchResponse;
     }
-
 }

@@ -13,18 +13,12 @@ export class CaptureTransaction{
                 private readonly repositoryLog: ILogRepository,
                 private readonly mail: IMail){}
                 
-    public execute(numberRequest:string,amount:number): Transaction {
+    public execute(numberRequest:string,amount:number): Promise<Transaction> {
 
-        try {
-                console.log('..SendTransaction(UseCases)');
-                const captureTranstion = this.gateway.captureTransaction(numberRequest,amount);
-               // this.registraSucesso.save(MessageSucess.generateMessage('Capturado Transição')); 
-                return captureTranstion;
-            
-        } catch (error) {
-            
-           // this.registraErro.save(error.message);
-            return new Transaction();
-        }
+        console.log('..SendTransaction(UseCases)');
+        const captureTranstion = this.gateway.captureTransaction(numberRequest,amount);
+       // this.registraSucesso.save(MessageSucess.generateMessage('Capturado Transição')); 
+        return captureTranstion;
+
     }
 }

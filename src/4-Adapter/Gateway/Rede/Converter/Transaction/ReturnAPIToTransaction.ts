@@ -4,7 +4,6 @@ import { SendTranstionReturn } from '../../Response/SendTransitionReturn.js';
 
 export abstract class ReturnAPIToTransaction {
 
-
     static converte(Json:any) : Transaction{
         
         let object = plainToInstance(SendTranstionReturn, Json); 

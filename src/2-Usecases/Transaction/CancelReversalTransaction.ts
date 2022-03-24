@@ -3,8 +3,6 @@ import { IMail } from "../../3-Domain/Core/Interfaces/IMail.js";
 import { ILogRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js";
 import { ITransactionRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js";
 
-
-
 export class CancelReversalTransaction{
 
     constructor(private readonly gateway : IGateways,
