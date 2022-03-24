@@ -8,6 +8,9 @@ import { ReturnAPIToSearchTransaction } from "./Converter/Transaction/ReturnAPIT
 import { MockCaptureTransaction } from "./Mock/CaptureTransaction.js";
 import { ReturnAPIToCaptureTransaction } from "./Converter/Transaction/ReturnAPIToCaptureTransaction.js";
 import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
+import { MockCancelTransafction } from "./Mock/CancelTransaction.js";
+import { CancelTransaction } from "../../../3-Domain/Entity/CancelTransaction.js";
+import { RetrunAPIToCancelTransaction } from "./Converter/Transaction/RetrunAPIToCancelTransaction.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
@@ -34,14 +37,21 @@ export class GatewaysRedeAdapter implements IGateways{
     
     async captureTransaction(numberRequest: string,amount:number): Promise<Transaction>  {
 
-        console.log('..searchTransaction(Adapter)')
+        console.log('..captureTransaction(Adapter)')
         const returnAPI = await MockCaptureTransaction.capture(numberRequest,amount);
 
         return new Promise(function(resolve) {
             resolve(ReturnAPIToCaptureTransaction.converte(returnAPI));
          });
     }
-    cancelReversalTransaction(numberRequest: string) {
-        throw new Error("Method not implemented.");
+
+    async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
+
+        console.log('..cancelReversalTransaction(Adapter)')
+        const returnAPI = await MockCancelTransafction.cancel(numberRequest);
+
+        return new Promise(function(resolve) {
+            resolve(RetrunAPIToCancelTransaction.converte(returnAPI));
+         });
     }
 }

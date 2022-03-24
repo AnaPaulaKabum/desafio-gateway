@@ -5,6 +5,7 @@ import { SendTransaction } from "../../2-Usecases/Transaction/SendTransaction.js
 import { ConverterRequestToTransactionDTO } from "../Converter/ConverterRequestToTransactionDTO.js";
 import { CreateTransactionRequest } from "../Request/createTransactionRequest.js";
 import { Transaction } from "../../3-Domain/Entity/Transaction.js";
+import { CancelTransaction } from "../../3-Domain/Entity/CancelTransaction.js";
 
 export class PaymentGatewaysController{
 
@@ -32,9 +33,9 @@ export class PaymentGatewaysController{
         return this.captureTransaction.execute(paramNumberRequest,amount); 
     }
 
-    public cancelReversalTransactions (paramNumberRequest:string){
+    public cancelReversalTransactions (paramNumberRequest:string): Promise<CancelTransaction>{
 
         console.log('.Controller');
-        this.cancelReversalTransaction.execute(paramNumberRequest)   
+        return this.cancelReversalTransaction.execute(paramNumberRequest)   
     }
 }
