@@ -3,6 +3,7 @@ import { IMail } from "../../3-Domain/Core/Interfaces/IMail.js";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
 import { ILogRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js";
 import { ITransactionRepository } from "../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js";
+import { Log } from "../../3-Domain/Entity/Log.js";
 import { Transaction } from "../../3-Domain/Entity/Transaction.js";
 import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 
@@ -17,13 +18,13 @@ export class SearchTransaction{
 
         try {
              const resultado = this.gateway.searchTransaction(numberRequest)
-             //this.registraSucesso.save(MessageSucess.generateMessage('Consultado Transição')); 
+             this.repositoryLog.save(new Log(MessageSucess.generateMessage('Consultado Transação'),'admin', new Date()))
              return resultado 
 
         } catch (error) {
             
-          //  this.registraErro.save(error.message);
-            throw(error);
+            this.repositoryLog.save(new Log(MessageSucess.generateMessage('Erro ao consultar Transação'),'admin', new Date()));
+            throw new Error(MessageSucess.generateMessage('Erro ao consultar Transação'));
         }
     }
 }
