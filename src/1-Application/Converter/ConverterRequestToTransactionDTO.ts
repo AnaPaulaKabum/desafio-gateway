@@ -1,7 +1,7 @@
 import { TransactionDTO } from "../../5-Shared/DTO/TransactionDTO.js";
 import { CreateTransactionRequest } from "../Request/createTransactionRequest.js";
 
-export abstract class ConverterRequestToTransaction{
+export abstract class ConverterRequestToTransactionDTO{
 
     static converte(request:CreateTransactionRequest): TransactionDTO {
 

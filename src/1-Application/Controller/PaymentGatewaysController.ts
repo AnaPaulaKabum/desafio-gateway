@@ -2,7 +2,7 @@ import { CancelReversalTransaction } from "../../2-Usecases/Transaction/CancelRe
 import { CaptureTransaction } from "../../2-Usecases/Transaction/CaptureTransaction.js";
 import { SearchTransaction } from "../../2-Usecases/Transaction/SearchTransaction.js";
 import { SendTransaction } from "../../2-Usecases/Transaction/SendTransaction.js";
-import { ConverterRequestToTransaction } from "../Converter/ConverterRequestToTransactionDTO.js";
+import { ConverterRequestToTransactionDTO } from "../Converter/ConverterRequestToTransactionDTO.js";
 import { CreateTransactionRequest } from "../Request/createTransactionRequest.js";
 import { Transaction } from "../../3-Domain/Entity/Transaction.js";
 
@@ -16,7 +16,7 @@ export class PaymentGatewaysController{
     public sendTransactions (createTransicaoRequest: CreateTransactionRequest) : Transaction{
 
        console.log('.Controller');
-       const TransactionRequest = ConverterRequestToTransaction.converte(createTransicaoRequest);
+       const TransactionRequest = ConverterRequestToTransactionDTO.converte(createTransicaoRequest);
        return this.sendTransaction.execute(TransactionRequest);
     }
 
