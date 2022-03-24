@@ -1,9 +1,9 @@
-import { ITransaction } from "../../../3-Domain/Core/Interfaces/Transaction/ITransaction.js";
+import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
 import { TransactionRede } from "./Request/TransactionRede.js";
 
 export abstract class CreateTransactionRede{
 
-    static generate(Transaction: ITransaction):TransactionRede{
+    static generate(Transaction: TransactionDTO):TransactionRede{
 
         let transactionRede =  new TransactionRede();
 

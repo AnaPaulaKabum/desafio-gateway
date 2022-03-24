@@ -1,6 +1,6 @@
-import { ITransaction } from "../Core/Interfaces/Transaction/ITransaction.js";
 
-export class Transaction implements ITransaction{
+
+export class Transaction {
 
     numberRequest: string;
     tid:string;

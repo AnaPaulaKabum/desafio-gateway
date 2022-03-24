@@ -1,6 +1,5 @@
-import { ITransaction } from "../../3-Domain/Core/Interfaces/Transaction/ITransaction.js";
 
-export class CreateTransactionRequest implements ITransaction{
+export class CreateTransactionRequest{
 
     numberRequest: string;
     kind: TypeTransaction;

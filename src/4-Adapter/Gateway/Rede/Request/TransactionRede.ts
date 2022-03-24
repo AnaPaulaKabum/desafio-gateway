@@ -1,6 +1,4 @@
-import { ITransaction } from "../../../../3-Domain/Core/Interfaces/Transaction/ITransaction.js";
-
-export class TransactionRede implements ITransaction{
+export class TransactionRede{
     
     numberRequest: string;
     //Não envio desse campo será considerado crédito.
