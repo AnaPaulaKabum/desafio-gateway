@@ -1,6 +1,6 @@
 import {  IGateways } from "../../3-Domain/Core/Interfaces/IGateways.js";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
-import { TransactionResponse } from "../../3-Domain/Entity/TransactionSearchResponse.js";
+import { Transaction } from "../../3-Domain/Entity/Transaction.js";
 import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 
 export class CaptureTransaction{
@@ -9,7 +9,7 @@ export class CaptureTransaction{
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
                 
-    public execute(numberRequest:string,amount:number): TransactionResponse {
+    public execute(numberRequest:string,amount:number): Transaction {
 
         try {
                 console.log('..SendTransaction(UseCases)');
@@ -20,7 +20,7 @@ export class CaptureTransaction{
         } catch (error) {
             
             this.registraErro.save(error.message);
-            return new TransactionResponse();
+            return new Transaction();
         }
     }
 }

@@ -4,7 +4,6 @@ import { SearchTransaction } from "../../2-Usecases/Transaction/SearchTransactio
 import { SendTransaction } from "../../2-Usecases/Transaction/SendTransaction.js";
 import { ConverterRequestToTransaction } from "../Converter/ConverterRequestToTransactionDTO.js";
 import { CreateTransactionRequest } from "../Request/createTransactionRequest.js";
-import { TransactionResponse } from "../../3-Domain/Entity/TransactionSearchResponse.js";
 import { Transaction } from "../../3-Domain/Entity/Transaction.js";
 
 export class PaymentGatewaysController{
@@ -21,13 +20,13 @@ export class PaymentGatewaysController{
        return this.sendTransaction.execute(TransactionRequest);
     }
 
-    public searchTransactions(paramNumberRequest :string): TransactionResponse{
+    public searchTransactions(paramNumberRequest :string): Transaction{
 
         console.log('.Controller');
         return this.searchTransaction.execute(paramNumberRequest);
     }
 
-    public captureTransactions(paramNumberRequest:string,amount:number):TransactionResponse{
+    public captureTransactions(paramNumberRequest:string,amount:number):Transaction{
 
         console.log('.Controller');
         return this.captureTransaction.execute(paramNumberRequest,amount); 

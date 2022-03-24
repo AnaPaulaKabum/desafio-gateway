@@ -1,16 +1,16 @@
 import { plainToInstance } from "class-transformer";
-import { TransactionResponse } from "../../../../../3-Domain/Entity/TransactionSearchResponse.js";
+import { Transaction } from "../../../../../3-Domain/Entity/Transaction.js";
 import { CaptureTransactionReturn } from "../../Response/CaptureTransactionReturn.js";
 
 export abstract class ReturnAPIToCaptureTransaction {
 
-    static converte(Json:any): TransactionResponse{
+    static converte(Json:any): Transaction{
 
         let object = plainToInstance(CaptureTransactionReturn, Json); 
 
-        let transactionSearchResponse = new TransactionResponse();
+        let transactionSearchResponse = new Transaction();
 
-        transactionSearchResponse.TID = object.tid;
+        transactionSearchResponse.tid = object.tid;
         transactionSearchResponse.numberRequest = object.reference;
         transactionSearchResponse.authorizationCode = object.authorizationCode;
         transactionSearchResponse.nsu = object.nsu;

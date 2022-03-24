@@ -1,6 +1,6 @@
 import {  IGateways } from "../../3-Domain/Core/Interfaces/IGateways.js";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
-import { TransactionResponse } from "../../3-Domain/Entity/TransactionSearchResponse.js";
+import { Transaction } from "../../3-Domain/Entity/Transaction.js";
 import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 
 export class SearchTransaction{
@@ -9,7 +9,7 @@ export class SearchTransaction{
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
 
-    public execute(numberRequest:string): TransactionResponse{
+    public execute(numberRequest:string): Transaction{
 
         try {
              const resultado = this.gateway.searchTransaction(numberRequest)

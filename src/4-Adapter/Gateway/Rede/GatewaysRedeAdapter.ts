@@ -5,7 +5,6 @@ import { MockSendTransaction } from "./Mock/SendTransaction.js";
 import { ReturnAPIToTransaction } from "./Converter/Transaction/ReturnAPIToTransaction.js";
 import { MockSearchTransaction } from "./Mock/SearchTransaction.js";
 import { ReturnAPIToSearchTransaction } from "./Converter/Transaction/ReturnAPIToSearchTransaction.js";
-import { TransactionResponse } from "../../../3-Domain/Entity/TransactionSearchResponse.js";
 import { MockCaptureTransaction } from "./Mock/CaptureTransaction.js";
 import { ReturnAPIToCaptureTransaction } from "./Converter/Transaction/ReturnAPIToCaptureTransaction.js";
 import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
@@ -21,7 +20,7 @@ export class GatewaysRedeAdapter implements IGateways{
        return ReturnAPIToTransaction.converte(returnAPI);
     }
 
-    searchTransaction(numberRequest: string):TransactionResponse {
+    searchTransaction(numberRequest: string):Transaction {
 
         console.log('..searchTransaction(Adapter)')
         const returnAPI = MockSearchTransaction.search(numberRequest);
@@ -29,7 +28,7 @@ export class GatewaysRedeAdapter implements IGateways{
         return ReturnAPIToSearchTransaction.converte(returnAPI);
     }
     
-    captureTransaction(numberRequest: string,amount:number): TransactionResponse {
+    captureTransaction(numberRequest: string,amount:number): Transaction {
 
         console.log('..searchTransaction(Adapter)')
         const returnAPI = MockCaptureTransaction.capture(numberRequest,amount);
