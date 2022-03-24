@@ -13,7 +13,7 @@ export class PaymentGatewaysController{
                   private readonly captureTransaction: CaptureTransaction,
                   private readonly cancelReversalTransaction: CancelReversalTransaction) {}
 
-    public sendTransactions (createTransicaoRequest: CreateTransactionRequest) : Transaction{
+    public sendTransactions (createTransicaoRequest: CreateTransactionRequest) : Promise<Transaction>{
 
        console.log('.Controller');
        const TransactionRequest = ConverterRequestToTransactionDTO.converte(createTransicaoRequest);

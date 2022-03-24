@@ -3,7 +3,7 @@ import { Transaction } from "../../Entity/Transaction.js";
 
 export interface IGateways {
 
-    sendTransaction(Transaction: TransactionDTO): Transaction;
+    sendTransaction(transaction: TransactionDTO): Promise<Transaction>
     searchTransaction(numberRequest:string): Transaction;
     captureTransaction(numberRequest:string,amount:number):Transaction;
     cancelReversalTransaction(numberRequest:string):any;

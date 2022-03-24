@@ -16,7 +16,7 @@ export class SendTransaction{
                 private readonly repositoryLog: ILogRepository,
                 private readonly mail: IMail){}
 
-    public execute (transaction : TransactionDTO): Transaction{
+    async execute (transaction : TransactionDTO): Promise<Transaction>{
 
         try {
             console.log('..SendTransaction(UseCases)');
@@ -26,6 +26,7 @@ export class SendTransaction{
 
                 this.repositoryLog.save(new Log(MessageSucess.generateMessage('Enviado Transição')))
                 return transactionResult;       
+
             }
 
             return new Transaction();

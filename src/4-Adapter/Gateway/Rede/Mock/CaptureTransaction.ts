@@ -1,8 +1,10 @@
 export abstract class MockCaptureTransaction{
 
-    static capture(paramNumberRequest: string,amount:number){
+    static capture(paramNumberRequest: string,amount:number) : Promise<any>{
 
-        return {
+        return  new Promise(function(resolve, reject) {
+            resolve(
+            {
                 reference: "pedido123",
                 tid: "8345000363484052380",
                 nsu: "7648531",
@@ -22,6 +24,7 @@ export abstract class MockCaptureTransaction{
                     href: "https://sandbox-erede.useredecloud.com.br/v1/transactions/9274256037511432483/refunds"
                 }
                 ]
-            }
+            });
+        });
     }
 }

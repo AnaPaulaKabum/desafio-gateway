@@ -11,13 +11,15 @@ import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
-    sendTransaction(transaction: TransactionDTO): Transaction {
+    async sendTransaction(transaction: TransactionDTO):Promise<Transaction> {
 
        console.log('..sendTransaction(Adapter)');
        const transactionRedeRequest = CreateTransactionRede.generate(transaction);
-       const returnAPI = MockSendTransaction.send(transactionRedeRequest);
+       const returnAPI = await MockSendTransaction.send(transactionRedeRequest);
 
-       return ReturnAPIToTransaction.converte(returnAPI);
+        return new Promise(function(resolve) {
+           resolve(ReturnAPIToTransaction.converte(returnAPI));
+        });
     }
 
     searchTransaction(numberRequest: string):Transaction {

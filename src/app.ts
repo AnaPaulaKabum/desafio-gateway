@@ -10,28 +10,36 @@ import { CancelReversalTransaction } from "./2-Usecases/Transaction/CancelRevers
 import { TransactionRepository } from "./4-Adapter/Persistence/Transaction/TransactionRepository.js";
 import { CreateTransactionRequest } from "./1-Application/Request/createTransactionRequest.js";
 
-const TransactionServicesFactory = () =>{
+export abstract class APP {
 
-    const gateway = new GatewaysRedeAdapter();
-    const repositoryTransaction = new TransactionRepository()
-    const repositoryLog = new LogRepository();
-    const mail = new Mail();
-
-    return {
-        sendTransaction: new SendTransaction(gateway,repositoryTransaction,repositoryLog,mail),
-        searchTransaction: new SearchTransaction(gateway,repositoryTransaction,repositoryLog,mail),
-        captureTransaction: new CaptureTransaction(gateway,repositoryTransaction,repositoryLog,mail),
-        cancelReversalTransaction: new CancelReversalTransaction(gateway,repositoryTransaction,repositoryLog,mail)
+    static async start(){
+        
+        const TransactionServicesFactory = () =>{
+            
+            const gateway = new GatewaysRedeAdapter();
+            const repositoryTransaction = new TransactionRepository()
+            const repositoryLog = new LogRepository();
+            const mail = new Mail();
+            
+            return {
+                sendTransaction: new SendTransaction(gateway,repositoryTransaction,repositoryLog,mail),
+                searchTransaction: new SearchTransaction(gateway,repositoryTransaction,repositoryLog,mail),
+                captureTransaction: new CaptureTransaction(gateway,repositoryTransaction,repositoryLog,mail),
+                cancelReversalTransaction: new CancelReversalTransaction(gateway,repositoryTransaction,repositoryLog,mail)
+            }
+        }
+        
+        //Design Patter composite root:
+        const {sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction} = TransactionServicesFactory();
+        const paymentGatewaysController = new PaymentGatewaysController(sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction);
+        
+        const resultado = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
+        //const resultado = app.searchTransactions('1');
+        //const resultado = app.captureTransactions('1',100);
+        console.log("----------");
+        console.log("Resultado: ");
+        console.log(resultado);
     }
 }
 
-//Design Patter composite root:
-const {sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction} = TransactionServicesFactory();
-const app = new PaymentGatewaysController(sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction);
-
-const resultado = app.sendTransactions(new CreateTransactionRequest());
-//const resultado = app.searchTransactions('1');
-//const resultado = app.captureTransactions('1',100);
-console.log("----------");
-console.log("Resultado: ");
-console.log(resultado);
+APP.start();
