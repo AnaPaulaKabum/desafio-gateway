@@ -1,10 +1,10 @@
-import { ITransition } from "../../../../3-Domain/Core/Interfaces/Transition/ITransition.js";
+import { ITransaction } from "../../../../3-Domain/Core/Interfaces/Transaction/ITransaction.js";
 
-export class TransitionRede implements ITransition{
+export class TransactionRede implements ITransaction{
     
     numberRequest: string;
     //Não envio desse campo será considerado crédito.
-    kind: TypeTransition;
+    kind: TypeTransaction;
     amount: number;
     amountString: string;
     installments: number;

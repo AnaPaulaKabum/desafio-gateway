@@ -1,7 +1,7 @@
-export interface ITransition{
+export interface ITransaction{
 
     numberRequest: string;
-    kind : TypeTransition,
+    kind : TypeTransaction,
     amount: number,
     installments: number,
     cardholderName: string,

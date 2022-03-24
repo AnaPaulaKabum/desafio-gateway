@@ -5,17 +5,17 @@ import { Persistence } from "./4-Adapter/Persistence/Persistence.js";
 import { PaymentGatewaysController } from "./1-Application/Controller/PaymentGatewaysController.js";
 import { RegistraLogPersistenciaMail } from "./3-Domain/Util/registraLogPersistenciaMail.js";
 import { GatewaysRedeAdapter } from "./4-Adapter/Gateway/Rede/GatewaysRedeAdapter.js";
-import { SendTransition } from "./2-Usecases/Transition/SendTransition.js";
-import { SearchTransition } from "./2-Usecases/Transition/SearchTransition.js";
-import { CaptureTransition } from "./2-Usecases/Transition/CaptureTransition.js";
-import { CancelReversalTransition } from "./2-Usecases/Transition/CancelReversalTransition.js";
-import { TransitionRepository } from "./4-Adapter/Persistence/TransitionRepository.js";
+import { SendTransaction } from "./2-Usecases/Transaction/SendTransaction.js";
+import { SearchTransaction } from "./2-Usecases/Transaction/SearchTransaction.js";
+import { CaptureTransaction } from "./2-Usecases/Transaction/CaptureTransaction.js";
+import { CancelReversalTransaction } from "./2-Usecases/Transaction/CancelReversalTransaction.js";
+import { TransactionRepository } from "./4-Adapter/Persistence/TransactionRepository.js";
 import { RegisterSuccessError } from "./3-Domain/Util/RegisterSucessError.js";
-import { CreateTransitionRequest } from "./1-Application/Request/createTransitionRequest.js";
+import { CreateTransactionRequest } from "./1-Application/Request/createTransactionRequest.js";
 
-const transitionRepositoryFactory = () => {
+const TransactionRepositoryFactory = () => {
 
-    return new TransitionRepository();
+    return new TransactionRepository();
 }
 
 const registerSuccessFactory = () =>{
@@ -32,29 +32,29 @@ const registerErrorFactory = () => {
     return new RegistraLogPersistenciaMail(log,mail,persistencia);
 }
 
-const transitionServicesFactory = () =>{
+const TransactionServicesFactory = () =>{
 
     const gateway = new GatewaysRedeAdapter();
-    const repository = transitionRepositoryFactory();
+    const repository = TransactionRepositoryFactory();
     const registerSuccess = registerSuccessFactory();
     const registerError = registerErrorFactory();
     const registerSuccessError = new RegisterSuccessError(registerSuccess,registerError); 
 
     return {
-        sendTransition: new SendTransition(gateway,repository,registerSuccessError),
-        searchTransition: new SearchTransition(gateway,registerSuccess,registerError),
-        captureTransition: new CaptureTransition(gateway,registerSuccess,registerError),
-        cancelReversalTransition: new CancelReversalTransition(gateway,registerSuccess,registerError)
+        sendTransaction: new SendTransaction(gateway,repository,registerSuccessError),
+        searchTransaction: new SearchTransaction(gateway,registerSuccess,registerError),
+        captureTransaction: new CaptureTransaction(gateway,registerSuccess,registerError),
+        cancelReversalTransaction: new CancelReversalTransaction(gateway,registerSuccess,registerError)
     }
 }
 
 //Design Patter composite root:
-const {sendTransition,searchTransition,captureTransition,cancelReversalTransition} = transitionServicesFactory();
-const app = new PaymentGatewaysController(sendTransition,searchTransition,captureTransition,cancelReversalTransition);
+const {sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction} = TransactionServicesFactory();
+const app = new PaymentGatewaysController(sendTransaction,searchTransaction,captureTransaction,cancelReversalTransaction);
 
-//const resultado = app.sendTransitions(new CreateTransitionRequest());
-//const resultado = app.searchTransitions('1');
-const resultado = app.captureTransitions('1',100);
+//const resultado = app.sendTransactions(new CreateTransactionRequest());
+//const resultado = app.searchTransactions('1');
+const resultado = app.captureTransactions('1',100);
 console.log("----------");
 console.log("Resultado: ");
 console.log(resultado);

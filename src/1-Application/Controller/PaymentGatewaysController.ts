@@ -1,40 +1,40 @@
-import { TransitionCreatedResponse } from "../../3-Domain/Entity/TransitionCreatedResponse.js";
-import { CancelReversalTransition } from "../../2-Usecases/Transition/CancelReversalTransition.js";
-import { CaptureTransition } from "../../2-Usecases/Transition/CaptureTransition.js";
-import { SearchTransition } from "../../2-Usecases/Transition/SearchTransition.js";
-import { SendTransition } from "../../2-Usecases/Transition/SendTransition.js";
-import { ConverterRequestToTransition } from "../Converter/ConverterRequestToTransition.js";
-import { CreateTransitionRequest } from "../Request/createTransitionRequest.js";
-import { TransitionResponse } from "../../3-Domain/Entity/TransitionSearchResponse.js";
+import { TransactionCreatedResponse } from "../../3-Domain/Entity/TransactionCreatedResponse.js";
+import { CancelReversalTransaction } from "../../2-Usecases/Transaction/CancelReversalTransaction.js";
+import { CaptureTransaction } from "../../2-Usecases/Transaction/CaptureTransaction.js";
+import { SearchTransaction } from "../../2-Usecases/Transaction/SearchTransaction.js";
+import { SendTransaction } from "../../2-Usecases/Transaction/SendTransaction.js";
+import { ConverterRequestToTransaction } from "../Converter/ConverterRequestToTransaction.js";
+import { CreateTransactionRequest } from "../Request/createTransactionRequest.js";
+import { TransactionResponse } from "../../3-Domain/Entity/TransactionSearchResponse.js";
 
 export class PaymentGatewaysController{
 
-    constructor ( private readonly sendTransition: SendTransition,
-                  private readonly searchTransition: SearchTransition,
-                  private readonly captureTransition: CaptureTransition,
-                  private readonly cancelReversalTransition: CancelReversalTransition) {}
+    constructor ( private readonly sendTransaction: SendTransaction,
+                  private readonly searchTransaction: SearchTransaction,
+                  private readonly captureTransaction: CaptureTransaction,
+                  private readonly cancelReversalTransaction: CancelReversalTransaction) {}
 
-    public sendTransitions (createTransicaoRequest: CreateTransitionRequest) : TransitionCreatedResponse{
+    public sendTransactions (createTransicaoRequest: CreateTransactionRequest) : TransactionCreatedResponse{
 
        console.log('.Controller');
-       const transitionRequest = ConverterRequestToTransition.converte(createTransicaoRequest);
-       return this.sendTransition.execute(transitionRequest);
+       const TransactionRequest = ConverterRequestToTransaction.converte(createTransicaoRequest);
+       return this.sendTransaction.execute(TransactionRequest);
     }
 
-    public searchTransitions(paramNumberRequest :string): TransitionResponse{
+    public searchTransactions(paramNumberRequest :string): TransactionResponse{
 
         console.log('.Controller');
-        return this.searchTransition.execute(paramNumberRequest);
+        return this.searchTransaction.execute(paramNumberRequest);
     }
 
-    public captureTransitions(paramNumberRequest:string,amount:number):TransitionResponse{
+    public captureTransactions(paramNumberRequest:string,amount:number):TransactionResponse{
 
         console.log('.Controller');
-        return this.captureTransition.execute(paramNumberRequest,amount); 
+        return this.captureTransaction.execute(paramNumberRequest,amount); 
     }
 
-    public cancelReversalTransitions (paramNumberRequest:string){
+    public cancelReversalTransactions (paramNumberRequest:string){
 
-        this.cancelReversalTransition.execute(paramNumberRequest)   
+        this.cancelReversalTransaction.execute(paramNumberRequest)   
     }
 }

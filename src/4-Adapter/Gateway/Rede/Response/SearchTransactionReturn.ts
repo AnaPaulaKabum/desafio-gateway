@@ -34,7 +34,7 @@ class Authorization {
     distributorAffiliation
 }
 
-export class SearchTransitionReturn{
+export class SearchTransactionReturn{
 
     requestDateTime: Date
     authorization:  Authorization

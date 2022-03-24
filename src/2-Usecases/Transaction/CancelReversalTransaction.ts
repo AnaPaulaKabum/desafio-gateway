@@ -3,7 +3,7 @@ import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
 import { ValidaEstorno } from "../../3-Domain/Validacoes/ValidaEstorno.js";
 
 
-export class CancelReversalTransition{
+export class CancelReversalTransaction{
 
     constructor(private readonly gateway : IGateways,
                 private readonly registraSucesso: IRegister,

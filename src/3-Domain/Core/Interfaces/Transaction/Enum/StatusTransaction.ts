@@ -1,4 +1,4 @@
-export enum StatusTransition{
+export enum StatusTransaction{
 
     READY = 0,
     SEND = 1,

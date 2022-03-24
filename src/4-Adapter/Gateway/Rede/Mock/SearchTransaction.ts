@@ -1,4 +1,4 @@
-export abstract class MockSearchTransition{
+export abstract class MockSearchTransaction{
 
     static search(paramNumberRequest: string){
 

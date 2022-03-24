@@ -1,18 +1,18 @@
 import {  IGateways } from "../../3-Domain/Core/Interfaces/IGateways.js";
 import { IRegister } from "../../3-Domain/Core/Interfaces/IRegister.js";
-import { TransitionResponse } from "../../3-Domain/Entity/TransitionSearchResponse.js";
+import { TransactionResponse } from "../../3-Domain/Entity/TransactionSearchResponse.js";
 import { MessageSucess } from "../../3-Domain/Util/MessageSuccess.js";
 
-export class SearchTransition{
+export class SearchTransaction{
 
     constructor(private readonly gateway : IGateways,
                 private readonly registraSucesso: IRegister,
                 private readonly registraErro: IRegister){}
 
-    public execute(numberRequest:string): TransitionResponse{
+    public execute(numberRequest:string): TransactionResponse{
 
         try {
-             const resultado = this.gateway.searchTransition(numberRequest)
+             const resultado = this.gateway.searchTransaction(numberRequest)
              this.registraSucesso.save(MessageSucess.generateMessage('Consultado Transição')); 
              return resultado 
 

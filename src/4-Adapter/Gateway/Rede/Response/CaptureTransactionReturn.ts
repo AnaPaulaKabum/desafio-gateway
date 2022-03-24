@@ -6,7 +6,7 @@ class Link{
 }
 
 
-export class CaptureTransitionReturn{
+export class CaptureTransactionReturn{
 
         reference: string ; 
         tid: string ;  

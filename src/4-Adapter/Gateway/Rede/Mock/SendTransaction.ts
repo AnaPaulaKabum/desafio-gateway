@@ -1,8 +1,8 @@
-import { TransitionRede } from "../Request/TransitionRede.js";
+import { TransactionRede } from "../Request/TransactionRede.js";
 
-export abstract class MockSendTransition{
+export abstract class MockSendTransaction{
 
-    static send(transition: TransitionRede){
+    static send(Transaction: TransactionRede){
         
         return {
         reference: "pedido123",

@@ -1,4 +1,4 @@
-export abstract class MockCaptureTransition{
+export abstract class MockCaptureTransaction{
 
     static capture(paramNumberRequest: string,amount:number){
 

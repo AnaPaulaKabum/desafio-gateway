@@ -1,43 +1,43 @@
 
-import { CreateTransitionRede } from "./CreateTransitionRede.js";
-import { TransitionCreatedResponse } from "../../../3-Domain/Entity/TransitionCreatedResponse.js";
-import { Transition } from "../../../3-Domain/Entity/Transition.js";
+import { CreateTransactionRede } from "./CreateTransactionRede.js";
+import { TransactionCreatedResponse } from "../../../3-Domain/Entity/TransactionCreatedResponse.js";
+import { Transaction } from "../../../3-Domain/Entity/Transaction.js";
 import { IGateways } from "../../../3-Domain/Core/Interfaces/IGateways.js";
-import { MockSendTransition } from "./Mock/SendTransition.js";
-import { ReturnAPIToTransitionCreatedResponse } from "./Converter/Transition/ReturnAPIToTransitionCreatedResponse.js";
-import { MockSearchTransition } from "./Mock/SearchTransition.js";
-import { ReturnAPIToSearchTransition } from "./Converter/Transition/ReturnAPIToSearchTransition.js";
-import { TransitionResponse } from "../../../3-Domain/Entity/TransitionSearchResponse.js";
-import { MockCaptureTransition } from "./Mock/CaptureTransition.js";
-import { ReturnAPIToCaptureTransition } from "./Converter/Transition/ReturnAPIToCaptureTransition.js";
+import { MockSendTransaction } from "./Mock/SendTransaction.js";
+import { ReturnAPIToTransactionCreatedResponse } from "./Converter/Transaction/ReturnAPIToTransactionCreatedResponse.js";
+import { MockSearchTransaction } from "./Mock/SearchTransaction.js";
+import { ReturnAPIToSearchTransaction } from "./Converter/Transaction/ReturnAPIToSearchTransaction.js";
+import { TransactionResponse } from "../../../3-Domain/Entity/TransactionSearchResponse.js";
+import { MockCaptureTransaction } from "./Mock/CaptureTransaction.js";
+import { ReturnAPIToCaptureTransaction } from "./Converter/Transaction/ReturnAPIToCaptureTransaction.js";
 
 export class GatewaysRedeAdapter implements IGateways{
 
-    sendTransition(transition: Transition): TransitionCreatedResponse {
+    sendTransaction(Transaction: Transaction): TransactionCreatedResponse {
 
-       console.log('..sendTransition(Adapter)');
-       const transitionRedeRequest = CreateTransitionRede.generate(transition);
-       const returnAPI = MockSendTransition.send(transitionRedeRequest);
+       console.log('..sendTransaction(Adapter)');
+       const TransactionRedeRequest = CreateTransactionRede.generate(Transaction);
+       const returnAPI = MockSendTransaction.send(TransactionRedeRequest);
 
-       return ReturnAPIToTransitionCreatedResponse.converte(returnAPI);
+       return ReturnAPIToTransactionCreatedResponse.converte(returnAPI);
     }
 
-    searchTransition(numberRequest: string):TransitionResponse {
+    searchTransaction(numberRequest: string):TransactionResponse {
 
-        console.log('..searchTransition(Adapter)')
-        const returnAPI = MockSearchTransition.search(numberRequest);
+        console.log('..searchTransaction(Adapter)')
+        const returnAPI = MockSearchTransaction.search(numberRequest);
         
-        return ReturnAPIToSearchTransition.converte(returnAPI);
+        return ReturnAPIToSearchTransaction.converte(returnAPI);
     }
     
-    captureTransition(numberRequest: string,amount:number): TransitionResponse {
+    captureTransaction(numberRequest: string,amount:number): TransactionResponse {
 
-        console.log('..searchTransition(Adapter)')
-        const returnAPI = MockCaptureTransition.capture(numberRequest,amount);
+        console.log('..searchTransaction(Adapter)')
+        const returnAPI = MockCaptureTransaction.capture(numberRequest,amount);
 
-        return ReturnAPIToCaptureTransition.converte(returnAPI);
+        return ReturnAPIToCaptureTransaction.converte(returnAPI);
     }
-    cancelReversalTransition(numberRequest: string) {
+    cancelReversalTransaction(numberRequest: string) {
         throw new Error("Method not implemented.");
     }
 }

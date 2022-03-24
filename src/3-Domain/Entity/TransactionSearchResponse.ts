@@ -1,8 +1,9 @@
-export class TransitionCreatedResponse{
+export class TransactionResponse{
 
     TID:string
     numberRequest:string
     nsu: string
     authorizationCode:string
-    Status:string;
+    Status:string
+    dateTime:Date
 }
