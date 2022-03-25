@@ -7,6 +7,14 @@ export class CreateTransactionRequest {
     cardNumber: string;
     expirationMonth: number;
     expirationYear: number;
-    securityCode: string;
+    private _securityCode: string;
     softDescriptor: string;
+
+    public set securityCode(securityCode: string) {
+        if (securityCode.length! > 3) {
+            throw new Error('The securityCode is invalid');
+        }
+
+        this._securityCode = securityCode;
+    }
 }
