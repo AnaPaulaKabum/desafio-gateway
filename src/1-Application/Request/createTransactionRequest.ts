@@ -1,6 +1,4 @@
-
-export class CreateTransactionRequest{
-
+export class CreateTransactionRequest {
     numberRequest: string;
     kind: TypeTransaction;
     amount: number;
