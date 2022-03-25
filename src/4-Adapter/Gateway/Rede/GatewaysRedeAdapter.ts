@@ -1,57 +1,52 @@
-import { TransactionDTOToTrasactionRede } from "./Request/Converte/TransactionDTOToTrasactionRede.js";
-import { Transaction } from "../../../3-Domain/Entity/Transaction.js";
-import { IGateways } from "../../../3-Domain/Core/Interfaces/IGateways.js";
-import { MockSendTransaction } from "./Mock/SendTransaction.js";
-import { ReturnAPIToTransaction } from "./Converter/Transaction/ReturnAPIToTransaction.js";
-import { MockSearchTransaction } from "./Mock/SearchTransaction.js";
-import { ReturnAPIToSearchTransaction } from "./Converter/Transaction/ReturnAPIToSearchTransaction.js";
-import { MockCaptureTransaction } from "./Mock/CaptureTransaction.js";
-import { ReturnAPIToCaptureTransaction } from "./Converter/Transaction/ReturnAPIToCaptureTransaction.js";
-import { TransactionDTO } from "../../../5-Shared/DTO/TransactionDTO.js";
-import { MockCancelTransafction } from "./Mock/CancelTransaction.js";
-import { CancelTransaction } from "../../../3-Domain/Entity/CancelTransaction.js";
-import { RetrunAPIToCancelTransaction } from "./Converter/Transaction/RetrunAPIToCancelTransaction.js";
+import { TransactionDTOToTrasactionRede } from './Request/Converte/TransactionDTOToTrasactionRede.js';
+import { Transaction } from '../../../3-Domain/Entity/Transaction.js';
+import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways.js';
+import { MockSendTransaction } from './Mock/SendTransaction.js';
+import { ReturnAPIToTransaction } from './Converter/Transaction/ReturnAPIToTransaction.js';
+import { MockSearchTransaction } from './Mock/SearchTransaction.js';
+import { ReturnAPIToSearchTransaction } from './Converter/Transaction/ReturnAPIToSearchTransaction.js';
+import { MockCaptureTransaction } from './Mock/CaptureTransaction.js';
+import { ReturnAPIToCaptureTransaction } from './Converter/Transaction/ReturnAPIToCaptureTransaction.js';
+import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
+import { MockCancelTransafction } from './Mock/CancelTransaction.js';
+import { CancelTransaction } from '../../../3-Domain/Entity/CancelTransaction.js';
+import { RetrunAPIToCancelTransaction } from './Converter/Transaction/RetrunAPIToCancelTransaction.js';
 
-export class GatewaysRedeAdapter implements IGateways{
-
+export class GatewaysRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
+        console.log('..sendTransaction(Adapter)');
+        const transactionRedeRequest = TransactionDTOToTrasactionRede.generate(transaction);
+        const returnAPI = await MockSendTransaction.send(transactionRedeRequest);
 
-       console.log('..sendTransaction(Adapter)');
-       const transactionRedeRequest = TransactionDTOToTrasactionRede.generate(transaction);
-       const returnAPI = await MockSendTransaction.send(transactionRedeRequest);
-
-        return new Promise(function(resolve) {
-           resolve(ReturnAPIToTransaction.converte(returnAPI));
+        return new Promise(function (resolve) {
+            resolve(ReturnAPIToTransaction.converte(returnAPI));
         });
     }
 
     async searchTransaction(numberRequest: string): Promise<Transaction> {
-
-        console.log('..searchTransaction(Adapter)')
+        console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockSearchTransaction.search(numberRequest);
 
-        return new Promise(function(resolve) {
+        return new Promise(function (resolve) {
             resolve(ReturnAPIToSearchTransaction.converte(returnAPI));
-         });
+        });
     }
-    
-    async captureTransaction(numberRequest: string,amount:number): Promise<Transaction>  {
 
-        console.log('..captureTransaction(Adapter)')
-        const returnAPI = await MockCaptureTransaction.capture(numberRequest,amount);
+    async captureTransaction(numberRequest: string, amount: number): Promise<Transaction> {
+        console.log('..captureTransaction(Adapter)');
+        const returnAPI = await MockCaptureTransaction.capture(numberRequest, amount);
 
-        return new Promise(function(resolve) {
+        return new Promise(function (resolve) {
             resolve(ReturnAPIToCaptureTransaction.converte(returnAPI));
-         });
+        });
     }
 
     async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
-
-        console.log('..cancelReversalTransaction(Adapter)')
+        console.log('..cancelReversalTransaction(Adapter)');
         const returnAPI = await MockCancelTransafction.cancel(numberRequest);
 
-        return new Promise(function(resolve) {
+        return new Promise(function (resolve) {
             resolve(RetrunAPIToCancelTransaction.converte(returnAPI));
-         });
+        });
     }
 }

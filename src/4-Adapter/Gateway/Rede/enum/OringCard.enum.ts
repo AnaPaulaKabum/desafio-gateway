@@ -1,6 +1,5 @@
-enum OriginCard{
-
-    EREDE= 1,
+enum OriginCard {
+    EREDE = 1,
     MASTERPASS = 4,
-    CLICKTOPLAY = 6
+    CLICKTOPLAY = 6,
 }

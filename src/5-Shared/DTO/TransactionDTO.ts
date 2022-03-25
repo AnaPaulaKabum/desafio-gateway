@@ -1,5 +1,4 @@
-export class TransactionDTO{
-
+export class TransactionDTO {
     numberRequest: string;
     kind: TypeTransaction;
     amount: number;

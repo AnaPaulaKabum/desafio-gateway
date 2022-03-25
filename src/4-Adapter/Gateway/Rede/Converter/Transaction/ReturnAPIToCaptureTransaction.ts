@@ -1,12 +1,10 @@
-import { plainToInstance } from "class-transformer";
-import { Transaction } from "../../../../../3-Domain/Entity/Transaction.js";
-import { CaptureTransactionResponse } from "../../Response/CaptureTransactionResponse.js";
+import { plainToInstance } from 'class-transformer';
+import { Transaction } from '../../../../../3-Domain/Entity/Transaction.js';
+import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse.js';
 
 export abstract class ReturnAPIToCaptureTransaction {
-
-    static converte(Json:any): Transaction{
-
-        let object = plainToInstance(CaptureTransactionResponse, Json); 
+    static converte(Json: any): Transaction {
+        let object = plainToInstance(CaptureTransactionResponse, Json);
 
         let transactionSearchResponse = new Transaction();
 
@@ -17,5 +15,4 @@ export abstract class ReturnAPIToCaptureTransaction {
 
         return transactionSearchResponse;
     }
-
 }

@@ -1,5 +1,4 @@
-export class TransactionRedeCreateRequest{
-    
+export class TransactionRedeCreateRequest {
     numberRequest: string;
     //Não envio desse campo será considerado crédito.
     kind: TypeTransaction;
@@ -12,7 +11,7 @@ export class TransactionRedeCreateRequest{
     expirationYear: number;
     securityCode: string;
     softDescriptor: string;
-    
+
     //Defina se uma transação terá captura automática ou posterior.
     // O não envio desse campo será considerado uma captura automática(true)
     captureAutomatica?: boolean;
