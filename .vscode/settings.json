@@ -1,0 +1,12 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.iconTheme": "vscode-icons",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.fontLigatures": false,  
+    "window.zoomLevel": 1,
+    "editor.fontSize": 14,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "editor.formatOnSave": true,
+    
+}
