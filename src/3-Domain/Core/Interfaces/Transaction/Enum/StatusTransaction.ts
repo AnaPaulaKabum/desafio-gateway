@@ -1,7 +1,6 @@
-export enum StatusTransaction{
-
+export enum StatusTransaction {
     READY = 0,
     NO_CAPTURE = 1,
     SEND = 1,
-   // CANCELADA  = 2
+    // CANCELADA  = 2
 }

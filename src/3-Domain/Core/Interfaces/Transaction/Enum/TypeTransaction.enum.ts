@@ -1,5 +1,4 @@
-enum TypeTransaction{
-
+enum TypeTransaction {
     CREDIT = 0,
-    DEBIT  = 1
+    DEBIT = 1,
 }

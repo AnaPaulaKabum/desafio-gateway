@@ -1,5 +1,3 @@
-export interface IMail{
-
+export interface IMail {
     send();
-
 }

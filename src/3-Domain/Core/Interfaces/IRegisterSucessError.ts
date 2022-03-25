@@ -1,5 +1,4 @@
-export interface IRegisterSuccessError{
-
-    registerSuccess(message:String);
-    registerError(message:String);
+export interface IRegisterSuccessError {
+    registerSuccess(message: String);
+    registerError(message: String);
 }

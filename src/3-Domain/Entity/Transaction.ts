@@ -1,13 +1,10 @@
-
-
 export class Transaction {
-
     numberRequest: string;
-    tid:string;
+    tid: string;
     kind: TypeTransaction;
-    authorizationCode:string
-    nsu:string;
-    status:string;
+    authorizationCode: string;
+    nsu: string;
+    status: string;
     amount: number;
     installments: number;
     cardholderName: string;

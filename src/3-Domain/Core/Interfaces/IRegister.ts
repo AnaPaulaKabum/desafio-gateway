@@ -1,4 +1,3 @@
-export interface IRegister{
-
-    save(message:string);
+export interface IRegister {
+    save(message: string);
 }
