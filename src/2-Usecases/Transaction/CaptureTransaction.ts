@@ -1,6 +1,5 @@
 import { IGateways } from '../../3-Domain/Core/Interfaces/IGateways.js';
 import { IMail } from '../../3-Domain/Core/Interfaces/IMail.js';
-import { IRegister } from '../../3-Domain/Core/Interfaces/IRegister.js';
 import { StatusTransaction } from '../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';

@@ -28,7 +28,7 @@ export abstract class MockCancelTransafction {
         };
 
         return new Promise(function (resolve) {
-            resolve({ returnCancel });
+            resolve(returnCancel);
         });
     }
 }

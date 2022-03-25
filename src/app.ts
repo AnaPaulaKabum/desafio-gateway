@@ -42,7 +42,8 @@ export abstract class APP {
 
         //const resultado = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
         //const resultado = await paymentGatewaysController.searchTransactions('1');
-        const resultado = await paymentGatewaysController.captureTransactions('1', 100);
+        //const resultado = await paymentGatewaysController.captureTransactions('1', 100);
+        const resultado = await paymentGatewaysController.cancelReversalTransactions('1');
         console.log('----------');
         console.log('Resultado: ');
         console.log(resultado);

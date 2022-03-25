@@ -12,7 +12,7 @@ export abstract class ReturnAPIToTransaction {
         transaction.numberRequest = object.reference;
         transaction.authorizationCode = object.authorizationCode;
         transaction.nsu = object.nsu;
-        transaction.status = object.returnMessage;
+        //transaction.status = object.returnMessage;
 
         return transaction;
     }
