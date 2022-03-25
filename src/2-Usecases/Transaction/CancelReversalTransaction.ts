@@ -5,7 +5,8 @@ import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repos
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
 import { CancelTransaction } from '../../3-Domain/Entity/CancelTransaction.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction.js';
-import { MessageSucess } from '../../3-Domain/Util/MessageSuccess.js';
+import { Action } from '../../3-Domain/Util/Action.js';
+import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 
 export class CancelReversalTransaction {
     constructor(
@@ -20,12 +21,17 @@ export class CancelReversalTransaction {
             const transaction = this.repositoryTransaction.findOne(numberRequest);
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
-                return this.gateway.cancelReversalTransaction(numberRequest);
+                const cancelTransaction = this.gateway.cancelReversalTransaction(numberRequest);
+                this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
+                return cancelTransaction;
             }
 
             throw new Error('Não é possivel cancelar');
         } catch (error) {
-            throw new Error(MessageSucess.generateMessage('Erro enviado Transição'));
+            console.log(error);
+            this.mail.send();
+            this.repositoryLog.save(LogFactory.error(Action.CANCEL.toString()));
+            throw new Error(error);
         }
     }
 

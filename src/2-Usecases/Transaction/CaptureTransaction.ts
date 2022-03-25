@@ -5,7 +5,8 @@ import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repos
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
 import { Log } from '../../3-Domain/Entity/Log.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction.js';
-import { MessageSucess } from '../../3-Domain/Util/MessageSuccess.js';
+import { Action } from '../../3-Domain/Util/Action.js';
+import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 
 export class CaptureTransaction {
     constructor(
@@ -21,9 +22,7 @@ export class CaptureTransaction {
 
             if (this.isValidToCapture(numberRequest)) {
                 const captureTranstion = this.gateway.captureTransaction(numberRequest, amount);
-                this.repositoryLog.save(
-                    new Log(MessageSucess.generateMessage('Erro enviada Transação'), 'admin', new Date()),
-                );
+                this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTranstion;
             }
 
@@ -31,10 +30,8 @@ export class CaptureTransaction {
         } catch (error) {
             console.log(error);
             this.mail.send();
-            this.repositoryLog.save(
-                new Log(MessageSucess.generateMessage('Erro enviada Transação'), 'admin', new Date()),
-            );
-            throw new Error(MessageSucess.generateMessage('Erro enviado Transição'));
+            this.repositoryLog.save(LogFactory.error(Action.CAPTURE.toString()));
+            throw new Error(error);
         }
     }
 

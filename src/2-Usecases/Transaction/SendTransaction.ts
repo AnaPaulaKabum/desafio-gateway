@@ -3,12 +3,13 @@ import { IMail } from '../../3-Domain/Core/Interfaces/IMail.js';
 import { StatusTransaction } from '../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
-import { Log } from '../../3-Domain/Entity/Log.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction.js';
-import { MessageSucess } from '../../3-Domain/Util/MessageSuccess.js';
+import { Action } from '../../3-Domain/Util/Action.js';
+import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
 
 export class SendTransaction {
+    private actionSend = Action.SEND;
     constructor(
         private readonly gateway: IGateways,
         private readonly repositoryTransaction: ITransactionRepository,
@@ -22,9 +23,8 @@ export class SendTransaction {
 
             if (this.isValidToSend(transaction.numberRequest)) {
                 const transactionResult = this.gateway.sendTransaction(transaction);
-                this.repositoryLog.save(
-                    new Log(MessageSucess.generateMessage('Enviada Transação'), 'admin', new Date()),
-                );
+                this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
+
                 return transactionResult;
             }
 
@@ -32,10 +32,8 @@ export class SendTransaction {
         } catch (error) {
             console.log(error);
             this.mail.send();
-            this.repositoryLog.save(
-                new Log(MessageSucess.generateMessage('Erro enviada Transação'), 'admin', new Date()),
-            );
-            throw new Error(MessageSucess.generateMessage('Erro enviado Transição'));
+            this.repositoryLog.save(LogFactory.error(Action.SEND.toString() + error));
+            throw new Error(error);
         }
     }
 

@@ -4,28 +4,19 @@ import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repos
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
 import { Log } from '../../3-Domain/Entity/Log.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction.js';
-import { MessageSucess } from '../../3-Domain/Util/MessageSuccess.js';
+import { Action } from '../../3-Domain/Util/Action.js';
+import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 
 export class SearchTransaction {
-    constructor(
-        private readonly gateway: IGateways,
-        private readonly repositoryTransaction: ITransactionRepository,
-        private readonly repositoryLog: ILogRepository,
-        private readonly mail: IMail,
-    ) {}
+    constructor(private readonly gateway: IGateways, private readonly repositoryLog: ILogRepository) {}
 
     public execute(numberRequest: string): Promise<Transaction> {
         try {
             const resultado = this.gateway.searchTransaction(numberRequest);
-            this.repositoryLog.save(
-                new Log(MessageSucess.generateMessage('Consultado Transação'), 'admin', new Date()),
-            );
+            this.repositoryLog.save(LogFactory.success(Action.SEARCH.toString()));
             return resultado;
         } catch (error) {
-            this.repositoryLog.save(
-                new Log(MessageSucess.generateMessage('Erro ao consultar Transação'), 'admin', new Date()),
-            );
-            throw new Error(MessageSucess.generateMessage('Erro ao consultar Transação'));
+            throw new Error(error);
         }
     }
 }
