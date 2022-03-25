@@ -19,7 +19,7 @@ export abstract class APP {
 
             return {
                 sendTransaction: new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail),
-                searchTransaction: new SearchTransaction(gateway, repositoryTransaction, repositoryLog, mail),
+                searchTransaction: new SearchTransaction(gateway, repositoryLog),
                 captureTransaction: new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
                 cancelReversalTransaction: new CancelReversalTransaction(
                     gateway,
