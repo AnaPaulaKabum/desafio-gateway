@@ -1,6 +1,7 @@
 import { StatusTransaction } from '../../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
 import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 
 export class TransactionRepository implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
@@ -9,6 +10,12 @@ export class TransactionRepository implements ITransactionRepository {
         });
     }
     findOne(numberRequest: string): Promise<Transaction> {
+        return new Promise(function (resolve) {
+            resolve(new Transaction());
+        });
+    }
+
+    save(transaction: Transaction): Promise<any> {
         return new Promise(function (resolve) {
             resolve(new Transaction());
         });
