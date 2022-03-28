@@ -3,11 +3,14 @@ import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transa
 import { Transaction } from '../../../3-Domain/Entity/Transaction.js';
 
 export class TransactionRepository implements ITransactionRepository {
-    searchStatus(numberRequest: string): StatusTransaction {
-        return StatusTransaction.NO_CAPTURE;
+    searchStatus(numberRequest: string): Promise<StatusTransaction> {
+        return new Promise(function (resolve) {
+            resolve(StatusTransaction.NO_CAPTURE);
+        });
     }
-
-    findOne(numberRequest: string): Transaction {
-        return new Transaction();
+    findOne(numberRequest: string): Promise<Transaction> {
+        return new Promise(function (resolve) {
+            resolve(new Transaction());
+        });
     }
 }

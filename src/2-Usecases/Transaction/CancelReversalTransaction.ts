@@ -18,7 +18,7 @@ export class CancelReversalTransaction {
 
     async execute(numberRequest: string): Promise<CancelTransaction> {
         try {
-            const transaction = this.repositoryTransaction.findOne(numberRequest);
+            const transaction = await this.repositoryTransaction.findOne(numberRequest);
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 const cancelTransaction = this.gateway.cancelReversalTransaction(numberRequest);

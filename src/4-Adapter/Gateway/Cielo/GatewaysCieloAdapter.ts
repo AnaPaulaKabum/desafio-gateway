@@ -55,7 +55,7 @@ export class GatewaysCieloAdapter implements IGateways {
         transactionCaptureRequest.paymentId = numberRequest;
 
         let returnAPI;
-        if (this.isCaptureTotal(numberRequest, amount)) {
+        if (await this.isCaptureTotal(numberRequest, amount)) {
             returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
         } else {
             returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
@@ -84,8 +84,8 @@ export class GatewaysCieloAdapter implements IGateways {
         });
     }
 
-    private isCaptureTotal(numberRequest: string, amount: number): boolean {
-        const transaction = this.transactionRepository.findOne(numberRequest);
+    private async isCaptureTotal(numberRequest: string, amount: number): Promise<boolean> {
+        const transaction = await this.transactionRepository.findOne(numberRequest);
 
         if (transaction.amount === amount) return true;
 

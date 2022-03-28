@@ -16,11 +16,11 @@ export class CaptureTransaction {
         private readonly mail: IMail,
     ) {}
 
-    public execute(numberRequest: string, amount: number): Promise<Transaction> {
+    public async execute(numberRequest: string, amount: number): Promise<Transaction> {
         try {
             console.log('..SendTransaction(UseCases)');
 
-            if (this.isValidToCapture(numberRequest)) {
+            if (await this.isValidToCapture(numberRequest)) {
                 const captureTranstion = this.gateway.captureTransaction(numberRequest, amount);
                 this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTranstion;
@@ -35,8 +35,8 @@ export class CaptureTransaction {
         }
     }
 
-    private isValidToCapture(numberRequest: string) {
-        const status = this.repositoryTransaction.searchStatus(numberRequest);
+    private async isValidToCapture(numberRequest: string): Promise<boolean> {
+        const status = await this.repositoryTransaction.searchStatus(numberRequest);
         return status === StatusTransaction.NO_CAPTURE;
     }
 }

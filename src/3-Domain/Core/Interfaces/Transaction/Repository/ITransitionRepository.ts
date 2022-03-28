@@ -2,6 +2,6 @@ import { Transaction } from '../../../../Entity/Transaction.js';
 import { StatusTransaction } from '../Enum/StatusTransaction.js';
 
 export interface ITransactionRepository {
-    searchStatus(numberRequest: string): StatusTransaction;
-    findOne(numberRequest: string): Transaction;
+    searchStatus(numberRequest: string): Promise<StatusTransaction>;
+    findOne(numberRequest: string): Promise<Transaction>;
 }

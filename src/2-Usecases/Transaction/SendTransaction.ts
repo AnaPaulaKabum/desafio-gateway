@@ -21,7 +21,7 @@ export class SendTransaction {
         try {
             console.log('..SendTransaction(UseCases)');
 
-            if (this.isValidToSend(transaction.numberRequest)) {
+            if (await this.isValidToSend(transaction.numberRequest)) {
                 const transactionResult = this.gateway.sendTransaction(transaction);
                 this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
 
@@ -37,8 +37,8 @@ export class SendTransaction {
         }
     }
 
-    private isValidToSend(numberRequest: string) {
-        const status = this.repositoryTransaction.searchStatus(numberRequest);
+    private async isValidToSend(numberRequest: string) {
+        const status = await this.repositoryTransaction.searchStatus(numberRequest);
         return status === StatusTransaction.READY;
     }
 }
