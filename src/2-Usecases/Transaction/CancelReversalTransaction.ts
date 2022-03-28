@@ -22,7 +22,7 @@ export class CancelReversalTransaction {
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 const cancelTransaction = this.gateway.cancelReversalTransaction(numberRequest);
-                this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
+                await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
                 return cancelTransaction;
             }
 
@@ -30,7 +30,7 @@ export class CancelReversalTransaction {
         } catch (error) {
             console.log(error);
             this.mail.send();
-            this.repositoryLog.save(LogFactory.error(Action.CANCEL.toString()));
+            await this.repositoryLog.save(LogFactory.error(Action.CANCEL.toString()));
             throw new Error(error);
         }
     }

@@ -7,10 +7,10 @@ import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 export class SearchTransaction {
     constructor(private readonly gateway: IGateways, private readonly repositoryLog: ILogRepository) {}
 
-    public execute(numberRequest: string): Promise<Transaction> {
+    public async execute(numberRequest: string): Promise<Transaction> {
         try {
             const resultado = this.gateway.searchTransaction(numberRequest);
-            this.repositoryLog.save(LogFactory.success(Action.SEARCH.toString()));
+            await this.repositoryLog.save(LogFactory.success(Action.SEARCH.toString()));
             return resultado;
         } catch (error) {
             throw new Error(error);

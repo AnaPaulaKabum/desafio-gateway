@@ -22,7 +22,7 @@ export class CaptureTransaction {
 
             if (await this.isValidToCapture(numberRequest)) {
                 const captureTranstion = this.gateway.captureTransaction(numberRequest, amount);
-                this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
+                await this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTranstion;
             }
 
@@ -30,7 +30,7 @@ export class CaptureTransaction {
         } catch (error) {
             console.log(error);
             this.mail.send();
-            this.repositoryLog.save(LogFactory.error(Action.CAPTURE.toString()));
+            await this.repositoryLog.save(LogFactory.error(Action.CAPTURE.toString()));
             throw new Error(error);
         }
     }

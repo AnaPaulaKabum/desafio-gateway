@@ -23,7 +23,7 @@ export class SendTransaction {
 
             if (await this.isValidToSend(transaction.numberRequest)) {
                 const transactionResult = this.gateway.sendTransaction(transaction);
-                this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
+                await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
 
                 return transactionResult;
             }
