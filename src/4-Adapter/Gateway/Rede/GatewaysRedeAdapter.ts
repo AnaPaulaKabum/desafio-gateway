@@ -32,6 +32,9 @@ export class GatewaysRedeAdapter implements IGateways {
         });
     }
 
+    //A operação de cancelamento da captura e da autorização com captura automática pode ser efetuada de
+    //forma parcial ou total.
+    //Cancelamento parcial disponível somente em D+1 e para transações com captura.
     async captureTransaction(numberRequest: string, amount: number): Promise<Transaction> {
         console.log('..captureTransaction(Adapter)');
         const returnAPI = await MockCaptureTransaction.capture(numberRequest, amount);

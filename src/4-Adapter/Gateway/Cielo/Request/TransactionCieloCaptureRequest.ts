@@ -3,4 +3,9 @@ export class TransactionCieloCaptureRequest {
     merchantKey: string;
     paymentId: string;
     amount: number;
+
+    constructor() {
+        this.merchantId = 'akjshdjfhajksdf';
+        this.merchantId = 'merchantKey';
+    }
 }

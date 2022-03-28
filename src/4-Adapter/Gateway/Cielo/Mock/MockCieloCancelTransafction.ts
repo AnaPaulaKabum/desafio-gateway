@@ -1,4 +1,4 @@
-export abstract class MockCancelTransafction {
+export abstract class MockCieloCancelTransafction {
     static cancelTotal(numberRequest: string): Promise<any> {
         const returnCancel = {
             Status: 10,

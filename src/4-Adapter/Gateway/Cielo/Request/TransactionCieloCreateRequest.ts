@@ -48,7 +48,7 @@ class Payment {
     };
 }
 
-export class TransactionCieloCreatedRequest {
+export class TransactionCieloCreateRequest {
     MerchantOrderId: string;
     Customer: Customer;
     Payment: Payment;

@@ -1,4 +1,4 @@
-export abstract class MockSearchTransaction {
+export abstract class MockCieloSearchTransaction {
     static search(paramNumberRequest: string): Promise<any> {
         const returnSearch = {
             MerchantOrderId: '2014111706',

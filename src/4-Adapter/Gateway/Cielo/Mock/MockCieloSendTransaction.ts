@@ -1,4 +1,4 @@
-export abstract class MockSendTransaction {
+export abstract class MockCieloSendTransaction {
     static sendCredit(transaction: any): Promise<any> {
         return new Promise(function (resolve) {
             resolve({
