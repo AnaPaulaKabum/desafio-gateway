@@ -3,6 +3,7 @@ import { IMail } from '../../3-Domain/Core/Interfaces/IMail.js';
 import { StatusTransaction } from '../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
+import { FieldMail } from '../../3-Domain/Entity/FieldMail.js';
 import { Log } from '../../3-Domain/Entity/Log.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction.js';
 import { Action } from '../../3-Domain/Util/Action.js';
@@ -29,7 +30,7 @@ export class CaptureTransaction {
             throw new Error('Trasação não pode ser capturada.');
         } catch (error) {
             console.log(error);
-            this.mail.send();
+            this.mail.send(new FieldMail());
             await this.repositoryLog.save(LogFactory.error(Action.CAPTURE.toString()));
             throw new Error(error);
         }

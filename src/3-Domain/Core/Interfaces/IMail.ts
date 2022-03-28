@@ -1,3 +1,5 @@
+import { FieldMail } from '../../Entity/FieldMail';
+
 export interface IMail {
-    send();
+    send(fieldMail: FieldMail): Promise<any>;
 }

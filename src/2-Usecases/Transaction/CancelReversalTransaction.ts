@@ -4,6 +4,7 @@ import { StatusTransaction } from '../../3-Domain/Core/Interfaces/Transaction/En
 import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
 import { CancelTransaction } from '../../3-Domain/Entity/CancelTransaction.js';
+import { FieldMail } from '../../3-Domain/Entity/FieldMail.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction.js';
 import { Action } from '../../3-Domain/Util/Action.js';
 import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
@@ -29,7 +30,7 @@ export class CancelReversalTransaction {
             throw new Error('Não é possivel cancelar');
         } catch (error) {
             console.log(error);
-            this.mail.send();
+            await this.mail.send(new FieldMail());
             await this.repositoryLog.save(LogFactory.error(Action.CANCEL.toString()));
             throw new Error(error);
         }
