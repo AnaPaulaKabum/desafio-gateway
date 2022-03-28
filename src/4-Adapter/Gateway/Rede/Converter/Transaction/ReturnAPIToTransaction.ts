@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { Transaction } from '../../../../../3-Domain/Entity/Transaction.js';
+import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse.js';
 
 export abstract class ReturnAPIToTransaction {

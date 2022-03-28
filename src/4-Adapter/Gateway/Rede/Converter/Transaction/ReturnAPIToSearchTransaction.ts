@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { Transaction } from '../../../../../3-Domain/Entity/Transaction.js';
+import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse.js';
 
 export abstract class ReturnAPIToSearchTransaction {

@@ -1,6 +1,6 @@
 import { IGateways } from '../../3-Domain/Core/Interfaces/IGateways.js';
 import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction.js';
+import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { Action } from '../../3-Domain/Util/Action.js';
 import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 

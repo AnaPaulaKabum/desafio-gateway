@@ -1,5 +1,5 @@
 import { TransactionDTOToTrasactionRede } from './Request/Converte/TransactionDTOToTrasactionRede.js';
-import { Transaction } from '../../../3-Domain/Entity/Transaction.js';
+import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways.js';
 import { MockSendTransaction } from './Mock/SendTransaction.js';
 import { ReturnAPIToTransaction } from './Converter/Transaction/ReturnAPIToTransaction.js';
@@ -9,7 +9,7 @@ import { MockCaptureTransaction } from './Mock/CaptureTransaction.js';
 import { ReturnAPIToCaptureTransaction } from './Converter/Transaction/ReturnAPIToCaptureTransaction.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MockCancelTransafction } from './Mock/CancelTransaction.js';
-import { CancelTransaction } from '../../../3-Domain/Entity/CancelTransaction.js';
+import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { RetrunAPIToCancelTransaction } from './Converter/Transaction/RetrunAPIToCancelTransaction.js';
 
 export class GatewaysRedeAdapter implements IGateways {

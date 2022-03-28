@@ -1,4 +1,4 @@
-import { Transaction } from '../../../../Entity/Transaction.js';
+import { Transaction } from '../../../../Entity/Transaction/Transaction.js';
 import { StatusTransaction } from '../Enum/StatusTransaction.js';
 
 export interface ITransactionRepository {

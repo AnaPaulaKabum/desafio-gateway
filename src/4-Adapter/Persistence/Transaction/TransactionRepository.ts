@@ -1,6 +1,6 @@
 import { StatusTransaction } from '../../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
 import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
-import { Transaction } from '../../../3-Domain/Entity/Transaction.js';
+import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 
 export class TransactionRepository implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {

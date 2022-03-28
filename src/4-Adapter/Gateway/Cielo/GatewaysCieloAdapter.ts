@@ -1,7 +1,7 @@
 import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways';
 import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository';
-import { CancelTransaction } from '../../../3-Domain/Entity/CancelTransaction';
-import { Transaction } from '../../../3-Domain/Entity/Transaction';
+import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction';
+import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO';
 import { TransactionDTOToTrasactionCielo } from './Converter/Transaction/TransactionDTOToTrasactionCielo';
 import { MockCaptureCieloTransaction } from './Mock/MockCaptureCieloTransaction';

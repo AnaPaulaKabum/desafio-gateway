@@ -1,5 +1,5 @@
 import { IMail } from '../../3-Domain/Core/Interfaces/IMail';
-import { FieldMail } from '../../3-Domain/Entity/FieldMail';
+import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail';
 
 export class Mail implements IMail {
     send(fieldMail: FieldMail): Promise<any> {

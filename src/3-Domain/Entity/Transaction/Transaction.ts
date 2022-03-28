@@ -1,4 +1,4 @@
-import { StatusTransaction } from '../Core/Interfaces/Transaction/Enum/StatusTransaction';
+import { StatusTransaction } from '../../Core/Interfaces/Transaction/Enum/StatusTransaction';
 
 export class Transaction {
     numberRequest: string;

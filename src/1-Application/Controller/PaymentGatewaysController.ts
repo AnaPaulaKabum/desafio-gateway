@@ -4,8 +4,8 @@ import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransactio
 import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
 import { ConverterRequestToTransactionDTO } from '../Converter/ConverterRequestToTransactionDTO.js';
 import { CreateTransactionRequest } from '../Request/createTransactionRequest.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction.js';
-import { CancelTransaction } from '../../3-Domain/Entity/CancelTransaction.js';
+import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
+import { CancelTransaction } from '../../3-Domain/Entity/Transaction/CancelTransaction.js';
 
 export class PaymentGatewaysController {
     constructor(

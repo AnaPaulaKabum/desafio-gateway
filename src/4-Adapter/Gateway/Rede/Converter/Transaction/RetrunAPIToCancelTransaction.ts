@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { CancelTransaction } from '../../../../../3-Domain/Entity/CancelTransaction.js';
+import { CancelTransaction } from '../../../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse.js';
 
 export abstract class RetrunAPIToCancelTransaction {

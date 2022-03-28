@@ -3,9 +3,9 @@ import { IMail } from '../../3-Domain/Core/Interfaces/IMail.js';
 import { StatusTransaction } from '../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
-import { FieldMail } from '../../3-Domain/Entity/FieldMail.js';
-import { Log } from '../../3-Domain/Entity/Log.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction.js';
+import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
+import { Log } from '../../3-Domain/Entity/Log/Log.js';
+import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { Action } from '../../3-Domain/Util/Action.js';
 import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
 

@@ -1,4 +1,4 @@
-import { Log } from '../Entity/Log.js';
+import { Log } from '../Entity/Log/Log.js';
 import { StatusLog } from '../Core/Interfaces/Transaction/Enum/StatusLog.js';
 
 export abstract class LogFactory {
