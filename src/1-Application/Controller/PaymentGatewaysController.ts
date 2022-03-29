@@ -2,10 +2,9 @@ import { CancelReversalTransaction } from '../../2-Usecases/Transaction/CancelRe
 import { CaptureTransaction } from '../../2-Usecases/Transaction/CaptureTransaction.js';
 import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransaction.js';
 import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
-import { ConverterRequestToTransactionDTO } from '../Converter/ConverterRequestToTransactionDTO.js';
-import { CreateTransactionRequest } from '../Request/createTransactionRequest.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { CancelTransaction } from '../../3-Domain/Entity/Transaction/CancelTransaction.js';
+import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
 
 export class PaymentGatewaysController {
     constructor(
@@ -15,10 +14,9 @@ export class PaymentGatewaysController {
         private readonly cancelReversalTransaction: CancelReversalTransaction,
     ) {}
 
-    public async sendTransactions(createTransicaoRequest: CreateTransactionRequest): Promise<Transaction> {
+    public async sendTransactions(createTransicaoRequest: TransactionDTO): Promise<Transaction> {
         console.log('.Controller');
-        const TransactionRequest = ConverterRequestToTransactionDTO.converte(createTransicaoRequest);
-        return await this.sendTransaction.execute(TransactionRequest);
+        return await this.sendTransaction.execute(createTransicaoRequest);
     }
 
     public searchTransactions(paramNumberRequest: string): Promise<Transaction> {

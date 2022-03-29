@@ -7,11 +7,29 @@ import { SearchTransaction } from './2-Usecases/Transaction/SearchTransaction.js
 import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.js';
 import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction.js';
 import { TransactionRepository } from './4-Adapter/Persistence/Transaction/TransactionRepository.js';
-import { CreateTransactionRequest } from './1-Application/Request/createTransactionRequest.js';
 import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
+import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
+import { TypeTransaction } from './3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
+import { Transaction } from './3-Domain/Entity/Transaction/Transaction.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {
+        const createTransaction = () => {
+            let transactionDTO = new TransactionDTO();
+            transactionDTO.amount = 2099;
+            transactionDTO.cardNumber = '5448280000000007';
+            transactionDTO.securityCode = '123';
+            transactionDTO.expirationMonth = 12;
+            transactionDTO.softDescriptor = 'string';
+            transactionDTO.cardholderName = 'John Snow';
+            transactionDTO.expirationYear = 2028;
+            transactionDTO.kind = TypeTransaction.CREDIT;
+            transactionDTO.numberRequest = 'pedido123';
+            transactionDTO.installments = 12;
+
+            return transactionDTO;
+        };
+
         const TransactionServicesFactory = () => {
             const repositoryTransaction = new TransactionRepository();
             const repositoryLog = new LogRepository();
@@ -48,10 +66,9 @@ export abstract class APP {
         );
 
         let result;
-
         switch (methodUses) {
             case 1:
-                result = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
+                result = await paymentGatewaysController.sendTransactions(createTransaction());
                 break;
             case 2:
                 result = await paymentGatewaysController.searchTransactions('1');
