@@ -11,20 +11,25 @@ import { CreateTransactionRequest } from './1-Application/Request/createTransact
 import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
 
 export abstract class APP {
-    static async start() {
+    static async start(gatewayUses: number, methodUses: number) {
         const TransactionServicesFactory = () => {
             const repositoryTransaction = new TransactionRepository();
-            const gatewayRede = new GatewaysRedeAdapter();
-            const gatewayCielo = new GatewaysCieloAdapter(repositoryTransaction);
             const repositoryLog = new LogRepository();
             const mail = new Mail();
 
+            let gateway;
+            if (gatewayUses === 0) {
+                gateway = new GatewaysRedeAdapter();
+            } else {
+                gateway = new GatewaysCieloAdapter(repositoryTransaction);
+            }
+
             return {
-                sendTransaction: new SendTransaction(gatewayCielo, repositoryTransaction, repositoryLog, mail),
-                searchTransaction: new SearchTransaction(gatewayCielo, repositoryLog),
-                captureTransaction: new CaptureTransaction(gatewayCielo, repositoryTransaction, repositoryLog, mail),
+                sendTransaction: new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail),
+                searchTransaction: new SearchTransaction(gateway, repositoryLog),
+                captureTransaction: new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
                 cancelReversalTransaction: new CancelReversalTransaction(
-                    gatewayCielo,
+                    gateway,
                     repositoryTransaction,
                     repositoryLog,
                     mail,
@@ -42,14 +47,29 @@ export abstract class APP {
             cancelReversalTransaction,
         );
 
-        const resultado = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
-        //const resultado = await paymentGatewaysController.searchTransactions('1');
-        //const resultado = await paymentGatewaysController.captureTransactions('1', 100);
-        //const resultado = await paymentGatewaysController.cancelReversalTransactions('1');
+        let result;
+
+        switch (methodUses) {
+            case 1:
+                result = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
+                break;
+            case 2:
+                result = await paymentGatewaysController.searchTransactions('1');
+                break;
+            case 3:
+                result = await paymentGatewaysController.captureTransactions('1', 100);
+                break;
+            case 4:
+                result = await paymentGatewaysController.cancelReversalTransactions('1');
+                break;
+        }
+
         console.log('----------');
         console.log('Resultado: ');
-        console.log(resultado);
+        console.log(result);
     }
 }
 
-APP.start();
+const gatewayUses = 1; //1-Rede 2- Cielo
+const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
+APP.start(gatewayUses, methodUses);
