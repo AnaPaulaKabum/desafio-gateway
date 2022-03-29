@@ -1,3 +1,3 @@
 export class FieldMail {
-    message: any;
+    constructor(private message: any) {}
 }
