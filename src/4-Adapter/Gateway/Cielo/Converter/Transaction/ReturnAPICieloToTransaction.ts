@@ -14,6 +14,8 @@ export abstract class ReturnAPICieloToTransaction {
         transaction.amount = object.Payment.Amount;
         transaction.softDescriptor = object.Payment.SoftDescriptor;
 
+        transaction.isValid();
+
         return transaction;
     }
 }

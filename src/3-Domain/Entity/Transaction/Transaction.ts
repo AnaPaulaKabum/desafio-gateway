@@ -10,11 +10,39 @@ export class Transaction {
     status: StatusTransaction;
     amount: number;
     installments: number;
-    cardholderName: string;
-    cardNumber: string;
-    expirationMonth: number;
-    expirationYear: number;
-    securityCode: string;
     softDescriptor: string;
     message: string;
+
+    isValid() {
+        if (!this.numberRequest) {
+            throw new Error('Campo numberRequest é obrigatório');
+        }
+        if (!this.tid) {
+            throw new Error('Campo tid é obrigatório');
+        }
+        if (!this.kind) {
+            throw new Error('Campo kind é obrigatório');
+        }
+        if (!this.authorizationCode) {
+            throw new Error('Campo authorizationCode é obrigatório');
+        }
+        if (!this.nsu) {
+            throw new Error('Campo nsu é obrigatório');
+        }
+        if (!this.status) {
+            throw new Error('Campo status é obrigatório');
+        }
+        if (!this.amount) {
+            throw new Error('Campo amount é obrigatório');
+        }
+        if (!this.installments) {
+            throw new Error('Campo installments é obrigatório');
+        }
+        if (!this.softDescriptor) {
+            throw new Error('Campo softDescriptor é obrigatório');
+        }
+        if (!this.message) {
+            throw new Error('Campo message é obrigatório');
+        }
+    }
 }
