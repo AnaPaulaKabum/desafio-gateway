@@ -8,18 +8,19 @@ Nucleo : Domain
 
 src
   - Application
-      - Controller: Recebem as requisições.
-      - Mappear: Converte Request em DTO.
-      - Request: Objetos recebidos de requisições
+    - Controller: Recebem as requisições.
+  - UseCases
+    - Transaction: Regras da aplicação.
   - Domain
-    - Core: Classe de abstração e interface.
-    - Services: Regras de negocios
-    - Util : Classes uteis
-    - Validações: Classes de validações 
+    - Entity: Entidades com regras gerais.
   - Adapter:
-    - GatewayRede : Classes para conectar o com a Rede
-    - Log: Classe para registrar os Logs
-    - Mail: Classes para o envio do E-mail
-    - Persistencia: Classes para salvar informações no banco.
+    - Gateway : Adapters para os Gateways de Rede e Cielo.
+    - Mail: Adapters para o envio de e-mail.
+    - Repository: Classes para registrar as informações
+    
+  - Shared: Podem ser vistas por todas as camadas.
+    - DTO
+    - Enum
+    - Interfaces
 
-Main.ts: Componente responsavel por instanciar e compor todo o projeto.
+app.ts: Componente responsavel por instanciar e compor todo o projeto.
