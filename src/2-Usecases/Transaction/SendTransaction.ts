@@ -31,7 +31,7 @@ export class SendTransaction {
 
             throw new Error('Transação já cadastrada');
         } catch (error) {
-            await this.mail.send(new FieldMail());
+            await this.mail.send(new FieldMail(error));
             this.repositoryLog.save(LogFactory.error(Action.SEND.toString() + error));
             throw new Error(error);
         }
@@ -39,7 +39,7 @@ export class SendTransaction {
 
     private async isValidToSend(numberRequest: string) {
         const status = await this.repositoryTransaction.searchStatus(numberRequest);
-        //return status === StatusTransaction.READY;
-        return true;
+        //return status === StatusTransaction.NO_REGISTER;
+        return false;
     }
 }

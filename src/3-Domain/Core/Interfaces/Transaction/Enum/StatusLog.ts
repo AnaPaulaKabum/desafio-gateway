@@ -1,5 +1,5 @@
 export enum StatusLog {
-    REGITER,
-    SUCCESS,
-    ERROR,
+    REGISTER = 'register',
+    SUCCESS = 'success',
+    ERROR = 'error',
 }

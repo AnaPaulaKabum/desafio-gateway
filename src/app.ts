@@ -10,7 +10,6 @@ import { TransactionRepository } from './4-Adapter/Persistence/Transaction/Trans
 import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
 import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
 import { TypeTransaction } from './3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
-import { Transaction } from './3-Domain/Entity/Transaction/Transaction.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {

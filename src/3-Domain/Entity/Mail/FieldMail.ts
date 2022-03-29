@@ -1,1 +1,3 @@
-export class FieldMail {}
+export class FieldMail {
+    message: any;
+}
