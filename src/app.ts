@@ -1,4 +1,4 @@
-import { LogRepository } from './4-Adapter/Persistence/Log/LogRepository.js';
+import { LogRepository } from './4-Adapter/Repository/Log/LogRepository.js';
 import { Mail } from './4-Adapter/Mail/Mail.js';
 import { PaymentGatewaysController } from './1-Application/Controller/PaymentGatewaysController.js';
 import { GatewaysRedeAdapter } from './4-Adapter/Gateway/Rede/GatewaysRedeAdapter.js';
@@ -6,7 +6,7 @@ import { SendTransaction } from './2-Usecases/Transaction/SendTransaction.js';
 import { SearchTransaction } from './2-Usecases/Transaction/SearchTransaction.js';
 import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.js';
 import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction.js';
-import { TransactionRepository } from './4-Adapter/Persistence/Transaction/TransactionRepository.js';
+import { TransactionRepository } from './4-Adapter/Repository/Transaction/TransactionRepository.js';
 import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
 import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
 import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
