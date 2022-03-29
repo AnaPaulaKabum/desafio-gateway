@@ -16,4 +16,5 @@ export class Transaction {
     expirationYear: number;
     securityCode: string;
     softDescriptor: string;
+    message: string;
 }

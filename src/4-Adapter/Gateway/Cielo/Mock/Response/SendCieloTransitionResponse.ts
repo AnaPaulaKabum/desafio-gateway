@@ -43,16 +43,16 @@ class Payment {
     capture: true;
     authenticate: boolean;
     recurrent: boolean; // Payment.Recurrent:
-    softDescriptor: string;
+    SoftDescriptor: string;
     creditCard: CreditCard;
     isCryptoCurrencyNegotiation: boolean;
     type: string;
     tryAutomaticCancellation: boolean;
-    amount: number;
-    proofOfSale: string;
+    Amount: number;
+    ProofOfSale: string;
     Tid: string;
     AuthorizationCode: string;
-    paymentId: string;
+    PaymentId: string;
     capturedAmount: number;
     country: string;
     airlineData: {
@@ -61,7 +61,7 @@ class Payment {
     extraDataCollection: Array<any>;
     status: number;
     returnCode: string;
-    returnMessage: string;
+    ReturnMessage: string;
     Link: Array<Link>;
 }
 
