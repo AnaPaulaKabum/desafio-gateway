@@ -10,7 +10,6 @@ export class Transaction {
     status: StatusTransaction;
     amount: number;
     installments: number;
-    softDescriptor: string;
     message: string;
 
     isValid() {
@@ -21,8 +20,7 @@ export class Transaction {
             throw new Error('Campo tid é obrigatório');
         }
         if (!this.kind) {
-            console.log(this.kind);
-            throw new Error('xCampo kind é obrigatório');
+            throw new Error('Campo kind é obrigatório');
         }
         if (!this.authorizationCode) {
             throw new Error('Campo authorizationCode é obrigatório');
@@ -38,9 +36,6 @@ export class Transaction {
         }
         if (!this.installments) {
             throw new Error('Campo installments é obrigatório');
-        }
-        if (!this.softDescriptor) {
-            throw new Error('Campo softDescriptor é obrigatório');
         }
         if (!this.message) {
             throw new Error('Campo message é obrigatório');

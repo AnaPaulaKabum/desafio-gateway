@@ -19,7 +19,7 @@ export class GatewaysRedeAdapter implements IGateways {
         const returnAPI = await MockSendTransaction.send(transactionRedeRequest);
 
         return new Promise(function (resolve) {
-            resolve(ReturnAPIToTransaction.converte(returnAPI));
+            resolve(ReturnAPIToTransaction.converte(returnAPI, transaction.kind));
         });
     }
 

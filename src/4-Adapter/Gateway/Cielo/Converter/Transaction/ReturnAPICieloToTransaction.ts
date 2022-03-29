@@ -17,9 +17,8 @@ export abstract class ReturnAPICieloToTransaction {
             transaction.nsu = object.Payment.ProofOfSale;
             transaction.message = object.Payment.ReturnMessage;
             transaction.amount = object.Payment.Amount;
-            transaction.softDescriptor = object.Payment.SoftDescriptor;
             transaction.installments = object.Payment.Installments;
-            transaction.status = StatusTransaction.FINNALY;
+            transaction.status = StatusTransaction.NO_CAPTURE;
         } else {
             //create method to debit
         }
