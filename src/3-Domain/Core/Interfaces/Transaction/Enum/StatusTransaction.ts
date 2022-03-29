@@ -1,5 +1,5 @@
 export enum StatusTransaction {
-    READY = 'ready',
+    NO_REGISTER = 'no_register',
     NO_CAPTURE = 'no_capture',
     FINNALY = 'finnaly',
     CANCEL = 'cancel',
