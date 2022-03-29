@@ -9,7 +9,7 @@ import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelRevers
 import { TransactionRepository } from './4-Adapter/Persistence/Transaction/TransactionRepository.js';
 import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
 import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
-import { TypeTransaction } from './3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
+import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {

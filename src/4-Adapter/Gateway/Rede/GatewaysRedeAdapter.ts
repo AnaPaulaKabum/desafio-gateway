@@ -1,6 +1,6 @@
 import { TransactionDTOToTrasactionRede } from './Request/Converte/TransactionDTOToTrasactionRede.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
-import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways.js';
+import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
 import { MockSendTransaction } from './Mock/SendTransaction.js';
 import { ReturnAPIToTransaction } from './Converter/Transaction/ReturnAPIToTransaction.js';
 import { MockSearchTransaction } from './Mock/SearchTransaction.js';

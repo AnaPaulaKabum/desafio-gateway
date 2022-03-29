@@ -1,5 +1,5 @@
-import { StatusTransaction } from '../../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
-import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
+import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction.js';
+import { ITransactionRepository } from '../../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 

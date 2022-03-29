@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { StatusTransaction } from '../../../../../3-Domain/Core/Interfaces/Transaction/Enum/StatusTransaction.js';
-import { TypeTransaction } from '../../../../../3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
+import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
+import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse.js';
 

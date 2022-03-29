@@ -1,5 +1,5 @@
-import { Log } from '../Entity/Log/Log.js';
-import { StatusLog } from '../Core/Interfaces/Transaction/Enum/StatusLog.js';
+import { Log } from './Log.js';
+import { StatusLog } from '../../../5-Shared/Enum/StatusLog.js';
 
 export abstract class LogFactory {
     static success(message: string): Log {

@@ -1,8 +1,8 @@
-import { IGateways } from '../../3-Domain/Core/Interfaces/IGateways.js';
-import { ILogRepository } from '../../3-Domain/Core/Interfaces/Transaction/Repository/ILogRepository.js';
+import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways.js';
+import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
-import { Action } from '../../3-Domain/Util/Action.js';
-import { LogFactory } from '../../3-Domain/Util/LogFactory.js';
+import { Action } from '../../3-Domain/Entity/Transaction/Action.js';
+import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 
 export class SearchTransaction {
     constructor(private readonly gateway: IGateways, private readonly repositoryLog: ILogRepository) {}

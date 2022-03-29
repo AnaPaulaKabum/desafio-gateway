@@ -1,6 +1,6 @@
-import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways.js';
-import { TypeTransaction } from '../../../3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
-import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
+import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
+import { TypeTransaction } from '../../../5-Shared/Enum/TypeTransaction.enum.js';
+import { ITransactionRepository } from '../../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
