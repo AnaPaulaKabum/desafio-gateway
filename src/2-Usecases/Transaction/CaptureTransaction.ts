@@ -29,7 +29,6 @@ export class CaptureTransaction {
 
             throw new Error('Trasação não pode ser capturada.');
         } catch (error) {
-            console.log(error);
             this.mail.send(new FieldMail());
             await this.repositoryLog.save(LogFactory.error(Action.CAPTURE.toString()));
             throw new Error(error);

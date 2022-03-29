@@ -31,7 +31,6 @@ export class SendTransaction {
 
             throw new Error('Transação já cadastrada');
         } catch (error) {
-            console.log(error);
             await this.mail.send(new FieldMail());
             this.repositoryLog.save(LogFactory.error(Action.SEND.toString() + error));
             throw new Error(error);

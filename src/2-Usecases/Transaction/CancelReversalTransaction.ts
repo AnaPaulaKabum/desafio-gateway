@@ -29,7 +29,6 @@ export class CancelReversalTransaction {
 
             throw new Error('Não é possivel cancelar');
         } catch (error) {
-            console.log(error);
             await this.mail.send(new FieldMail());
             await this.repositoryLog.save(LogFactory.error(Action.CANCEL.toString()));
             throw new Error(error);
