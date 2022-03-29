@@ -1,4 +1,5 @@
-import { StatusTransaction } from '../../Core/Interfaces/Transaction/Enum/StatusTransaction';
+import { StatusTransaction } from '../../Core/Interfaces/Transaction/Enum/StatusTransaction.js';
+import { TypeTransaction } from '../../Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
 
 export class Transaction {
     numberRequest: string;

@@ -1,3 +1,4 @@
+import { TypeTransaction } from '../../3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
 import { CreateTransactionRequest } from '../Request/createTransactionRequest.js';
 
@@ -6,7 +7,7 @@ export abstract class ConverterRequestToTransactionDTO {
         const transaction = new TransactionDTO();
 
         transaction.numberRequest = request.numberRequest;
-        transaction.kind = request.kind;
+        transaction.kind = request.kind === undefined ? TypeTransaction.CREDIT : request.kind;
         transaction.amount = request.amount;
         transaction.installments = request.installments;
         transaction.cardholderName = request.cardholderName;

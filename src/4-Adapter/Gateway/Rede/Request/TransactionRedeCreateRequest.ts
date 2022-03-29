@@ -1,3 +1,5 @@
+import { TypeTransaction } from '../../../../3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
+
 export class TransactionRedeCreateRequest {
     numberRequest: string;
     //Não envio desse campo será considerado crédito.

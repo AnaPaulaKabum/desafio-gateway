@@ -1,13 +1,15 @@
-import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways';
-import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository';
-import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction';
-import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction';
-import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO';
-import { TransactionDTOToTrasactionCielo } from './Converter/Transaction/TransactionDTOToTrasactionCielo';
-import { MockCaptureCieloTransaction } from './Mock/MockCaptureCieloTransaction';
-import { MockCieloSearchTransaction } from './Mock/MockCieloSearchTransaction';
-import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction';
-import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest';
+import { IGateways } from '../../../3-Domain/Core/Interfaces/IGateways.js';
+import { TypeTransaction } from '../../../3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum.js';
+import { ITransactionRepository } from '../../../3-Domain/Core/Interfaces/Transaction/Repository/ITransitionRepository.js';
+import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
+import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
+import { ReturnAPICieloToTransaction } from './Converter/Transaction/ReturnAPICieloToTransaction.js';
+import { TransactionDTOToTrasactionCielo } from './Converter/Transaction/TransactionDTOToTrasactionCielo.js';
+import { MockCaptureCieloTransaction } from './Mock/MockCaptureCieloTransaction.js';
+import { MockCieloSearchTransaction } from './Mock/MockCieloSearchTransaction.js';
+import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction.js';
+import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
 
 export class GatewaysCieloAdapter implements IGateways {
     constructor(private readonly transactionRepository: ITransactionRepository) {}
@@ -15,16 +17,13 @@ export class GatewaysCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
         console.log('..sendTransaction(Adapter)');
 
-        if (transaction.kind == TypeTransaction.CREDIT) {
+        if (transaction.kind === TypeTransaction.CREDIT) {
+            console.log('...Credito');
             const transactionRedeRequest = TransactionDTOToTrasactionCielo.generate(transaction);
             const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
 
-            /*return new Promise(function (resolve) {
-                resolve(ReturnAPIToTransaction.converte(returnAPI));
-            });*/
-
             return new Promise(function (resolve) {
-                resolve(new Transaction());
+                resolve(ReturnAPICieloToTransaction.converte(returnAPI));
             });
         }
 

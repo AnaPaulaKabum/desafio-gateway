@@ -40,6 +40,7 @@ export class SendTransaction {
 
     private async isValidToSend(numberRequest: string) {
         const status = await this.repositoryTransaction.searchStatus(numberRequest);
-        return status === StatusTransaction.READY;
+        //return status === StatusTransaction.READY;
+        return true;
     }
 }

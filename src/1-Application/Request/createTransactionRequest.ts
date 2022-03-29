@@ -1,3 +1,5 @@
+import { TypeTransaction } from '../../3-Domain/Core/Interfaces/Transaction/Enum/TypeTransaction.enum';
+
 export class CreateTransactionRequest {
     numberRequest: string;
     kind: TypeTransaction;

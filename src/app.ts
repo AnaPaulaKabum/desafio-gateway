@@ -8,21 +8,23 @@ import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.
 import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction.js';
 import { TransactionRepository } from './4-Adapter/Persistence/Transaction/TransactionRepository.js';
 import { CreateTransactionRequest } from './1-Application/Request/createTransactionRequest.js';
+import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
 
 export abstract class APP {
     static async start() {
         const TransactionServicesFactory = () => {
-            const gateway = new GatewaysRedeAdapter();
             const repositoryTransaction = new TransactionRepository();
+            const gatewayRede = new GatewaysRedeAdapter();
+            const gatewayCielo = new GatewaysCieloAdapter(repositoryTransaction);
             const repositoryLog = new LogRepository();
             const mail = new Mail();
 
             return {
-                sendTransaction: new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail),
-                searchTransaction: new SearchTransaction(gateway, repositoryLog),
-                captureTransaction: new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
+                sendTransaction: new SendTransaction(gatewayCielo, repositoryTransaction, repositoryLog, mail),
+                searchTransaction: new SearchTransaction(gatewayCielo, repositoryLog),
+                captureTransaction: new CaptureTransaction(gatewayCielo, repositoryTransaction, repositoryLog, mail),
                 cancelReversalTransaction: new CancelReversalTransaction(
-                    gateway,
+                    gatewayCielo,
                     repositoryTransaction,
                     repositoryLog,
                     mail,
@@ -40,10 +42,10 @@ export abstract class APP {
             cancelReversalTransaction,
         );
 
-        //const resultado = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
+        const resultado = await paymentGatewaysController.sendTransactions(new CreateTransactionRequest());
         //const resultado = await paymentGatewaysController.searchTransactions('1');
         //const resultado = await paymentGatewaysController.captureTransactions('1', 100);
-        const resultado = await paymentGatewaysController.cancelReversalTransactions('1');
+        //const resultado = await paymentGatewaysController.cancelReversalTransactions('1');
         console.log('----------');
         console.log('Resultado: ');
         console.log(resultado);
