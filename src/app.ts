@@ -18,7 +18,7 @@ export abstract class APP {
             const mail = new Mail();
 
             let gateway;
-            if (gatewayUses === 0) {
+            if (gatewayUses === 1) {
                 gateway = new GatewaysRedeAdapter();
             } else {
                 gateway = new GatewaysCieloAdapter(repositoryTransaction);
