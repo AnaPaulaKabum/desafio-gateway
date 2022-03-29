@@ -21,7 +21,8 @@ export class Transaction {
             throw new Error('Campo tid é obrigatório');
         }
         if (!this.kind) {
-            throw new Error('Campo kind é obrigatório');
+            console.log(this.kind);
+            throw new Error('xCampo kind é obrigatório');
         }
         if (!this.authorizationCode) {
             throw new Error('Campo authorizationCode é obrigatório');

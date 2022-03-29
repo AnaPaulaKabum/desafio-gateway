@@ -38,7 +38,7 @@ class CreditCard {
 
 class Payment {
     serviceTaxAmount: number;
-    installments: number;
+    Installments: number;
     interest: string;
     capture: true;
     authenticate: boolean;

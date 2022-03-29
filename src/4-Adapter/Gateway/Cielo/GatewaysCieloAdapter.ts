@@ -23,7 +23,7 @@ export class GatewaysCieloAdapter implements IGateways {
             const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
 
             return new Promise(function (resolve) {
-                resolve(ReturnAPICieloToTransaction.converte(returnAPI));
+                resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.CREDIT));
             });
         }
 
