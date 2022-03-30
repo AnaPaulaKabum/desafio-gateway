@@ -2,10 +2,10 @@ import { plainToInstance } from 'class-transformer';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
-import { SendCreditCieloTransitionResponse } from '../../Mock/Response/SendCreditCieloTransitionResponse.js';
-import { SendDebitTransitionResponse } from '../../Mock/Response/SendDebitTransitionResponse.js';
+import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse.js';
+import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse.js';
 
-export abstract class ReturnAPICieloToTransaction {
+export abstract class ResponseAPICieloToTransaction {
     static converte(Json: any, typeTransaction: TypeTransaction): Transaction {
         let transaction = new Transaction();
         if (typeTransaction === TypeTransaction.CREDIT) {

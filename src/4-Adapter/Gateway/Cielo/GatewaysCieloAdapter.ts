@@ -4,12 +4,13 @@ import { ITransactionRepository } from '../../../5-Shared/Interfaces/Repository/
 import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
-import { ReturnAPICieloToTransaction } from './Converter/Transaction/ReturnAPICieloToTransaction.js';
+import { ResponseAPICieloToTransaction } from './Converter/Transaction/ResponseAPICieloToTransaction.js';
 import { TransactionDTOToTrasactionCielo } from './Converter/Transaction/TransactionDTOToTrasactionCielo.js';
 import { MockCaptureCieloTransaction } from './Mock/MockCaptureCieloTransaction.js';
 import { MockCieloSearchTransaction } from './Mock/MockCieloSearchTransaction.js';
 import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction.js';
 import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
+import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 
 export class GatewaysCieloAdapter implements IGateways {
     constructor(private readonly transactionRepository: ITransactionRepository) {}
@@ -23,7 +24,7 @@ export class GatewaysCieloAdapter implements IGateways {
         return this.sendDebitTransaction(transaction);
     }
 
-    async searchTransaction(numberRequest: string): Promise<Transaction> {
+    async searchTransaction(numberRequest: string): Promise<TransactionComplete> {
         console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockCieloSearchTransaction.search(numberRequest);
 
@@ -33,7 +34,7 @@ export class GatewaysCieloAdapter implements IGateways {
         });*/
 
         return new Promise(function (resolve) {
-            resolve(new Transaction());
+            resolve(new TransactionComplete());
         });
     }
 
@@ -87,7 +88,7 @@ export class GatewaysCieloAdapter implements IGateways {
         const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
 
         return new Promise(function (resolve) {
-            resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.CREDIT));
+            resolve(ResponseAPICieloToTransaction.converte(returnAPI, TypeTransaction.CREDIT));
         });
     }
 
@@ -97,7 +98,7 @@ export class GatewaysCieloAdapter implements IGateways {
         const returnAPI = await MockCieloSendTransaction.sendDebit(transactionRedeRequest);
 
         return new Promise(function (resolve) {
-            resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.DEBIT));
+            resolve(ResponseAPICieloToTransaction.converte(returnAPI, TypeTransaction.DEBIT));
         });
     }
 }
