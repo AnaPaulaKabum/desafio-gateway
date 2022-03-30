@@ -65,7 +65,7 @@ class Payment {
     Link: Array<Link>;
 }
 
-export class SendCieloTransitionResponse {
+export class SendCreditCieloTransitionResponse {
     MerchantOrderId: string;
     Customer: Customer;
     Payment: Payment;

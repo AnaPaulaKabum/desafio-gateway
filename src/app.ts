@@ -22,7 +22,7 @@ export abstract class APP {
             transactionDTO.softDescriptor = 'string';
             transactionDTO.cardholderName = 'John Snow';
             transactionDTO.expirationYear = 2028;
-            transactionDTO.kind = TypeTransaction.CREDIT;
+            transactionDTO.kind = TypeTransaction.DEBIT;
             transactionDTO.numberRequest = 'pedido123';
             transactionDTO.installments = 12;
 
@@ -86,6 +86,6 @@ export abstract class APP {
     }
 }
 
-const gatewayUses = 1; //1-Rede 2- Cielo
+const gatewayUses = 2; //1-Rede 2- Cielo
 const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
 APP.start(gatewayUses, methodUses);

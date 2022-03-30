@@ -19,13 +19,21 @@ export class GatewaysCieloAdapter implements IGateways {
 
         if (transaction.kind === TypeTransaction.CREDIT) {
             console.log('...Credito');
-            const transactionRedeRequest = TransactionDTOToTrasactionCielo.generate(transaction);
+            const transactionRedeRequest = TransactionDTOToTrasactionCielo.generateCredit(transaction);
             const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
 
             return new Promise(function (resolve) {
                 resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.CREDIT));
             });
         }
+
+        console.log('...Debito');
+        const transactionRedeRequest = TransactionDTOToTrasactionCielo.generateDebit(transaction);
+        const returnAPI = await MockCieloSendTransaction.sendDebit(transactionRedeRequest);
+
+        return new Promise(function (resolve) {
+            resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.DEBIT));
+        });
 
         //TYPETransaction.DEBIT
         return new Promise(function (resolve) {
