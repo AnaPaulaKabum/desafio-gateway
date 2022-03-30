@@ -18,27 +18,9 @@ export class GatewaysCieloAdapter implements IGateways {
         console.log('..sendTransaction(Adapter)');
 
         if (transaction.kind === TypeTransaction.CREDIT) {
-            console.log('...Credito');
-            const transactionRedeRequest = TransactionDTOToTrasactionCielo.generateCredit(transaction);
-            const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
-
-            return new Promise(function (resolve) {
-                resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.CREDIT));
-            });
+            return this.sendCreditTransaction(transaction);
         }
-
-        console.log('...Debito');
-        const transactionRedeRequest = TransactionDTOToTrasactionCielo.generateDebit(transaction);
-        const returnAPI = await MockCieloSendTransaction.sendDebit(transactionRedeRequest);
-
-        return new Promise(function (resolve) {
-            resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.DEBIT));
-        });
-
-        //TYPETransaction.DEBIT
-        return new Promise(function (resolve) {
-            resolve(new Transaction());
-        });
+        return this.sendDebitTransaction(transaction);
     }
 
     async searchTransaction(numberRequest: string): Promise<Transaction> {
@@ -97,5 +79,25 @@ export class GatewaysCieloAdapter implements IGateways {
         if (transaction.amount === amount) return true;
 
         return false;
+    }
+
+    private async sendCreditTransaction(transaction: TransactionDTO): Promise<Transaction> {
+        console.log('...Credito');
+        const transactionRedeRequest = TransactionDTOToTrasactionCielo.generateCredit(transaction);
+        const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
+
+        return new Promise(function (resolve) {
+            resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.CREDIT));
+        });
+    }
+
+    private async sendDebitTransaction(transaction: TransactionDTO): Promise<Transaction> {
+        console.log('...Debito');
+        const transactionRedeRequest = TransactionDTOToTrasactionCielo.generateDebit(transaction);
+        const returnAPI = await MockCieloSendTransaction.sendDebit(transactionRedeRequest);
+
+        return new Promise(function (resolve) {
+            resolve(ReturnAPICieloToTransaction.converte(returnAPI, TypeTransaction.DEBIT));
+        });
     }
 }
