@@ -11,6 +11,7 @@ import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MockCancelTransafction } from './Mock/CancelTransaction.js';
 import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { RetrunAPIToCancelTransaction } from './Converter/Transaction/RetrunAPIToCancelTransaction.js';
+import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 
 export class GatewaysRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -23,7 +24,7 @@ export class GatewaysRedeAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(numberRequest: string): Promise<Transaction> {
+    async searchTransaction(numberRequest: string): Promise<TransactionComplete> {
         console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockSearchTransaction.search(numberRequest);
 

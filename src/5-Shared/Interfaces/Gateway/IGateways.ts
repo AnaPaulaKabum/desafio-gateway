@@ -5,7 +5,7 @@ import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/Transa
 
 export interface IGateways {
     sendTransaction(transaction: TransactionDTO): Promise<Transaction>;
-    searchTransaction(numberRequest: string): Promise<Transaction>;
-    captureTransaction(numberRequest: string, amount: number): Promise<TransactionComplete>;
+    searchTransaction(numberRequest: string): Promise<TransactionComplete>;
+    captureTransaction(numberRequest: string, amount: number): Promise<Transaction>;
     cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction>;
 }
