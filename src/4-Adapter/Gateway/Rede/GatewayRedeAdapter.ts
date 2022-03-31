@@ -1,14 +1,14 @@
 import { TransactionDTOToTrasactionRede } from './Request/Converte/TransactionDTOToTrasactionRede.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
-import { MockSendTransaction } from './Mock/SendTransaction.js';
+import { MockAPISendRede } from './Mock/API/MockAPISendRede.js';
 import { MapperSend } from './Mapper/Transaction/MapperSend.js';
-import { MockSearchTransaction } from './Mock/SearchTransaction.js';
+import { MockAPISearchRede } from './Mock/API/MockAPISearchRede.js';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch.js';
-import { MockCaptureTransaction } from './Mock/CaptureTransaction.js';
+import { MockAPICaptureRede } from './Mock/API/MockAPICaptureRede.js';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
-import { MockCancelTransafction } from './Mock/CancelTransaction.js';
+import { MockAPICancelRede } from './Mock/API/MockAPICancelRede.js';
 import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
@@ -18,7 +18,7 @@ export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
         console.log('..sendTransaction(Adapter)');
         const transactionRedeRequest = TransactionDTOToTrasactionRede.generate(transaction);
-        const returnAPI = await MockSendTransaction.send(transactionRedeRequest);
+        const returnAPI = await MockAPISendRede.send(transactionRedeRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperSend.toTransaction(returnAPI, transaction.kind));
@@ -27,7 +27,7 @@ export class GatewayRedeAdapter implements IGateways {
 
     async searchTransaction(numberRequest: string): Promise<TransactionComplete> {
         console.log('..searchTransaction(Adapter)');
-        const returnAPI = await MockSearchTransaction.search(numberRequest);
+        const returnAPI = await MockAPISearchRede.search(numberRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperSearch.toTransactionComplete(returnAPI));
@@ -36,7 +36,7 @@ export class GatewayRedeAdapter implements IGateways {
 
     async captureTransaction(numberRequest: string, amount: number): Promise<Capture> {
         console.log('..captureTransaction(Adapter)');
-        const returnAPI = await MockCaptureTransaction.capture(numberRequest, amount);
+        const returnAPI = await MockAPICaptureRede.capture(numberRequest, amount);
 
         return new Promise(function (resolve) {
             resolve(MapperCapture.toCapture(returnAPI, amount));
@@ -45,7 +45,7 @@ export class GatewayRedeAdapter implements IGateways {
 
     async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
         console.log('..cancelReversalTransaction(Adapter)');
-        const returnAPI = await MockCancelTransafction.cancel(numberRequest);
+        const returnAPI = await MockAPICancelRede.cancel(numberRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperCancel.toCancelTransaction(returnAPI, numberRequest));

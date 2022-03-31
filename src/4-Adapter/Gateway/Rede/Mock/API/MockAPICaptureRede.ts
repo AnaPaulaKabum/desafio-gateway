@@ -1,4 +1,4 @@
-export abstract class MockCaptureTransaction {
+export abstract class MockAPICaptureRede {
     static capture(paramNumberRequest: string, amount: number): Promise<any> {
         return new Promise(function (resolve, reject) {
             resolve({

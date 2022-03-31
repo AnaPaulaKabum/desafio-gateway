@@ -1,4 +1,4 @@
-export abstract class MockCancelTransafction {
+export abstract class MockAPICancelRede {
     static cancel(numberRequest: string): Promise<any> {
         const returnCancel = {
             returnCode: '360',
