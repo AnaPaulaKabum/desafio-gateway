@@ -38,7 +38,7 @@ export abstract class APP {
             if (gatewayUses === 1) {
                 gateway = new GatewaysRedeAdapter();
             } else {
-                gateway = new GatewaysCieloAdapter(repositoryTransaction);
+                gateway = new GatewaysCieloAdapter();
             }
 
             return {

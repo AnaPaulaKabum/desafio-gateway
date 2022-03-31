@@ -5,8 +5,8 @@ import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transact
 import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse.js';
 import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse.js';
 
-export abstract class ResponseAPICieloToTransaction {
-    static converte(Json: any, typeTransaction: TypeTransaction): Transaction {
+export abstract class MapperSend {
+    static toTransaction(Json: any, typeTransaction: TypeTransaction): Transaction {
         let transaction = new Transaction();
         if (typeTransaction === TypeTransaction.CREDIT) {
             let object = plainToInstance(SendCreditCieloTransitionResponse, Json);

@@ -4,8 +4,8 @@ import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransa
 import { Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
 
-export abstract class ResponseAPIToSearchTransaction {
-    static converte(Json: any): TransactionComplete {
+export abstract class MapperSearch {
+    static toTransactionComplete(Json: any): TransactionComplete {
         let object = plainToInstance(SearchCieloTransactionResponse, Json);
 
         let transactionSearchResponse = new TransactionComplete();

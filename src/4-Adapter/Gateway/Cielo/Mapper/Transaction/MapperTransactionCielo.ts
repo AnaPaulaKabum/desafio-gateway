@@ -1,7 +1,7 @@
 import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO.js';
 import { TransactionCieloCreateRequest } from '../../Request/TransactionCieloCreateRequest.js';
 
-export abstract class TransactionDTOToTrasactionCielo {
+export abstract class MapperTransactionCielo {
     static generateCredit(Transaction: TransactionDTO): TransactionCieloCreateRequest {
         let transactionCielo = new TransactionCieloCreateRequest();
 
