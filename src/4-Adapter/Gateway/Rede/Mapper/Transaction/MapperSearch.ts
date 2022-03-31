@@ -6,8 +6,8 @@ import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransactio
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse.js';
 
-export abstract class ReturnAPIToSearchTransaction {
-    static converte(Json: any): TransactionComplete {
+export abstract class MapperSearch {
+    static toTransactionComplete(Json: any): TransactionComplete {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
         let transactionSearchResponse = new TransactionComplete();

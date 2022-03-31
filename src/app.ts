@@ -1,7 +1,7 @@
 import { LogRepository } from './4-Adapter/Repository/Log/LogRepository.js';
 import { Mail } from './4-Adapter/Mail/Mail.js';
 import { PaymentGatewaysController } from './1-Application/Controller/PaymentGatewaysController.js';
-import { GatewaysRedeAdapter } from './4-Adapter/Gateway/Rede/GatewaysRedeAdapter.js';
+import { GatewayRedeAdapter } from './4-Adapter/Gateway/Rede/GatewayRedeAdapter.js';
 import { SendTransaction } from './2-Usecases/Transaction/SendTransaction.js';
 import { SearchTransaction } from './2-Usecases/Transaction/SearchTransaction.js';
 import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.js';
@@ -36,7 +36,7 @@ export abstract class APP {
 
             let gateway;
             if (gatewayUses === 1) {
-                gateway = new GatewaysRedeAdapter();
+                gateway = new GatewayRedeAdapter();
             } else {
                 gateway = new GatewayCieloAdapter();
             }

@@ -4,8 +4,8 @@ import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.en
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse.js';
 
-export abstract class ReturnAPIToTransaction {
-    static converte(Json: any, typeTransaction: TypeTransaction): Transaction {
+export abstract class MapperSend {
+    static toTransaction(Json: any, typeTransaction: TypeTransaction): Transaction {
         let object = plainToInstance(SendTransitionResponse, Json);
 
         let transaction = new Transaction();
