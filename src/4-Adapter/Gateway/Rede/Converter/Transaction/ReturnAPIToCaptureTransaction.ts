@@ -1,6 +1,5 @@
 import { plainToInstance } from 'class-transformer';
 import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
-import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse.js';
 
 export abstract class ReturnAPIToCaptureTransaction {

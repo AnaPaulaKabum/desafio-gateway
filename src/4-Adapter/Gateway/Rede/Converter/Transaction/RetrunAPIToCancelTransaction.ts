@@ -8,10 +8,10 @@ export abstract class RetrunAPIToCancelTransaction {
 
         let transactionCancelResponse = new CancelTransaction();
 
-        transactionCancelResponse.tid = object.tid;
+        /*transactionCancelResponse.tid = object.tid;
         transactionCancelResponse.nsu = object.nsu;
         transactionCancelResponse.cancelId = object.cancelId;
-        transactionCancelResponse.cancelDateTime = object.refundDateTime;
+        transactionCancelResponse.cancelDateTime = object.refundDateTime;*/
 
         return transactionCancelResponse;
     }

@@ -8,9 +8,9 @@ export abstract class ResponseAPICancelToTransaction {
 
         let cancelTransaction = new CancelTransaction();
         cancelTransaction.nsu = object.ProofOfSale;
-        cancelTransaction.tid = object.Tid;
+        /*cancelTransaction.tid = object.Tid;
         cancelTransaction.cancelId = object.AuthorizationCode;
-        cancelTransaction.cancelDateTime = new Date();
+        cancelTransaction.cancelDateTime = new Date();*/
 
         return cancelTransaction;
     }
