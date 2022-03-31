@@ -14,6 +14,8 @@ import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/Transa
 import { ResponseAPIToSearchTransaction } from './Converter/Transaction/ResponseAPIToSearchTransaction.js';
 import { ResponseAPICieloToCaptureTransaction } from './Converter/Transaction/ResponseAPICieloToCaptureTransaction.js';
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
+import { MockReversalCieloTransaction } from './Mock/MockReversalCieloTransaction.js';
+import { ResponseAPICancelToTransaction } from './Converter/Transaction/ResponseAPICancelToTransaction.js';
 
 export class GatewaysCieloAdapter implements IGateways {
     constructor(private readonly transactionRepository: ITransactionRepository) {}
@@ -56,14 +58,10 @@ export class GatewaysCieloAdapter implements IGateways {
 
     async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
         console.log('..cancelReversalTransaction(Adapter)');
-        /*const returnAPI = await MockCancelTransafction.cancel(numberRequest);
+        const returnAPI = await MockReversalCieloTransaction.cancel(numberRequest);
 
         return new Promise(function (resolve) {
-            resolve(RetrunAPIToCancelTransaction.converte(returnAPI));
-        });*/
-
-        return new Promise(function (resolve) {
-            resolve(new CancelTransaction());
+            resolve(ResponseAPICancelToTransaction.converte(returnAPI));
         });
     }
 
