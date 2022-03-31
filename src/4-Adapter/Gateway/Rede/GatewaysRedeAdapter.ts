@@ -51,7 +51,7 @@ export class GatewaysRedeAdapter implements IGateways {
         const returnAPI = await MockCancelTransafction.cancel(numberRequest);
 
         return new Promise(function (resolve) {
-            resolve(RetrunAPIToCancelTransaction.converte(returnAPI));
+            resolve(RetrunAPIToCancelTransaction.converte(returnAPI, numberRequest));
         });
     }
 }

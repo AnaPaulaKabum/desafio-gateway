@@ -12,6 +12,7 @@ export abstract class ResponseAPICancelToTransaction {
         cancelTransaction.cancelId = object.AuthorizationCode;
         cancelTransaction.cancelDateTime = new Date();*/
 
+        cancelTransaction.isvalid();
         return cancelTransaction;
     }
 }

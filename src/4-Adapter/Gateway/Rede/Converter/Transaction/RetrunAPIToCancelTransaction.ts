@@ -3,16 +3,17 @@ import { CancelTransaction } from '../../../../../3-Domain/Entity/Transaction/Ca
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse.js';
 
 export abstract class RetrunAPIToCancelTransaction {
-    static converte(Json: any): CancelTransaction {
+    static converte(Json: any, numberRequest: string): CancelTransaction {
         let object = plainToInstance(CancelTransactionResponse, Json);
 
-        let transactionCancelResponse = new CancelTransaction();
+        let transactionCancel = new CancelTransaction();
+        transactionCancel.numberRequest = numberRequest;
+        transactionCancel.tid = object.tid;
+        transactionCancel.nsu = object.nsu;
+        transactionCancel.date = object.refundDateTime;
+        transactionCancel.authorizationCode = object.refundId;
 
-        /*transactionCancelResponse.tid = object.tid;
-        transactionCancelResponse.nsu = object.nsu;
-        transactionCancelResponse.cancelId = object.cancelId;
-        transactionCancelResponse.cancelDateTime = object.refundDateTime;*/
-
-        return transactionCancelResponse;
+        transactionCancel.isvalid();
+        return transactionCancel;
     }
 }
