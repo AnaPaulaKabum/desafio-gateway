@@ -5,15 +5,15 @@ import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MapperSend } from './Mapper/Transaction/MapperSend.js';
 import { MapperTransactionCielo } from './Mapper/Transaction/MapperTransactionCielo.js';
-import { MockCaptureCieloTransaction } from './Mock/MockCaptureCieloTransaction.js';
-import { MockCieloSearchTransaction } from './Mock/MockCieloSearchTransaction.js';
-import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction.js';
+import { MockAPICaptureCielo } from './Mock/API/MockAPICaptureCielo.js';
+import { MockAPISearchCielo } from './Mock/API/MockAPISearchCielo.js';
+import { MockAPISendCielo } from './Mock/API/MockAPISendCielo.js';
 import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch.js';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
-import { MockReversalCieloTransaction } from './Mock/MockReversalCieloTransaction.js';
+import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 
 export class GatewaysCieloAdapter implements IGateways {
@@ -27,7 +27,7 @@ export class GatewaysCieloAdapter implements IGateways {
 
     async searchTransaction(numberRequest: string): Promise<TransactionComplete> {
         console.log('..searchTransaction(Adapter)');
-        const returnAPI = await MockCieloSearchTransaction.search(numberRequest);
+        const returnAPI = await MockAPISearchCielo.search(numberRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperSearch.toTransactionComplete(returnAPI));
@@ -40,7 +40,7 @@ export class GatewaysCieloAdapter implements IGateways {
         transactionCaptureRequest.amount = amount;
         transactionCaptureRequest.paymentId = numberRequest;
 
-        let returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
+        let returnAPI = await MockAPICaptureCielo.captureTotal(transactionCaptureRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperCapture.toCapture(returnAPI, transactionCaptureRequest));
@@ -49,7 +49,7 @@ export class GatewaysCieloAdapter implements IGateways {
 
     async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
         console.log('..cancelReversalTransaction(Adapter)');
-        const returnAPI = await MockReversalCieloTransaction.cancel(numberRequest);
+        const returnAPI = await MockAPIReversalCielo.cancel(numberRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperCancel.toCancelTransaction(returnAPI, numberRequest));
@@ -59,7 +59,7 @@ export class GatewaysCieloAdapter implements IGateways {
     private async sendCreditTransaction(transaction: TransactionDTO): Promise<Transaction> {
         console.log('...Credito');
         const transactionRedeRequest = MapperTransactionCielo.generateCredit(transaction);
-        const returnAPI = await MockCieloSendTransaction.sendCredit(transactionRedeRequest);
+        const returnAPI = await MockAPISendCielo.sendCredit(transactionRedeRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperSend.toTransaction(returnAPI, TypeTransaction.CREDIT));
@@ -69,7 +69,7 @@ export class GatewaysCieloAdapter implements IGateways {
     private async sendDebitTransaction(transaction: TransactionDTO): Promise<Transaction> {
         console.log('...Debito');
         const transactionRedeRequest = MapperTransactionCielo.generateDebit(transaction);
-        const returnAPI = await MockCieloSendTransaction.sendDebit(transactionRedeRequest);
+        const returnAPI = await MockAPISendCielo.sendDebit(transactionRedeRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperSend.toTransaction(returnAPI, TypeTransaction.DEBIT));
