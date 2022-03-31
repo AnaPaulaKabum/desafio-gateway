@@ -2,8 +2,8 @@ import { plainToInstance } from 'class-transformer';
 import { CancelTransaction } from '../../../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { ResponseAPICieloToReversal } from '../../Response/ReversalCieloTransactionResponse.js';
 
-export abstract class ResponseAPICancelToTransaction {
-    static converte(Json: any, numberRequest: string): CancelTransaction {
+export abstract class MapperCancel {
+    static toCancelTransaction(Json: any, numberRequest: string): CancelTransaction {
         let object = plainToInstance(ResponseAPICieloToReversal, Json);
 
         let cancelTransaction = new CancelTransaction();
