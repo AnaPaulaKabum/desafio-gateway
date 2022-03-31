@@ -51,7 +51,7 @@ class Payment {
     Type: string;
     Amount: number;
     ReceivedDate: Date;
-    CapturedAmount: string;
+    CapturedAmount: number;
     CapturedDate: Date;
     VoidedAmount: number;
     VoidedDate: Date;

@@ -21,10 +21,8 @@ export abstract class ResponseAPIToSearchTransaction {
         transactionSearchResponse.card = new Card();
         transactionSearchResponse.card.cardNumber = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.card.brand = object.Payment.CreditCard.Brand;
-        transactionSearchResponse.card.expirationDate = object.Payment.CreditCard.ExpirationDate;
         //transactionSearchResponse.card.expirationDate = object.Payment.CreditCard;
         transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;
-        transactionSearchResponse.card.securityCode = object.Payment.CreditCard.SecurityCode;
 
         return transactionSearchResponse;
     }
