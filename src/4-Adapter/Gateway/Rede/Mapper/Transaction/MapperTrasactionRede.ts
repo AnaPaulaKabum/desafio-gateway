@@ -1,8 +1,8 @@
 import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO.js';
-import { TransactionRedeCreateRequest } from '../TransactionRedeCreateRequest.js';
+import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest.js';
 
-export abstract class TransactionDTOToTrasactionRede {
-    static generate(transaction: TransactionDTO): TransactionRedeCreateRequest {
+export abstract class MapperTrasactionRede {
+    static toTransactionRede(transaction: TransactionDTO): TransactionRedeCreateRequest {
         let transactionRede = new TransactionRedeCreateRequest();
 
         transactionRede.numberRequest = transaction.numberRequest;

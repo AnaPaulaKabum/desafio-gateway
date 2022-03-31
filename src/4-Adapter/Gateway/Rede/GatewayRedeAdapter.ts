@@ -1,4 +1,4 @@
-import { TransactionDTOToTrasactionRede } from './Request/Converte/TransactionDTOToTrasactionRede.js';
+import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
 import { MockAPISendRede } from './Mock/API/MockAPISendRede.js';
@@ -17,7 +17,7 @@ import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
         console.log('..sendTransaction(Adapter)');
-        const transactionRedeRequest = TransactionDTOToTrasactionRede.generate(transaction);
+        const transactionRedeRequest = MapperTrasactionRede.toTransactionRede(transaction);
         const returnAPI = await MockAPISendRede.send(transactionRedeRequest);
 
         return new Promise(function (resolve) {
