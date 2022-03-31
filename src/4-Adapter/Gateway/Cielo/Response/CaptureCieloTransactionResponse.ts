@@ -1,8 +1,4 @@
-class Link {
-    Method: string;
-    Rel: string;
-    Href: string;
-}
+import { Link } from './Link.js';
 
 export class CaptureCieloTransaction {
     Status: number;

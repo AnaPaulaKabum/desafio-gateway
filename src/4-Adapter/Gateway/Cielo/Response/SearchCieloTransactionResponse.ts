@@ -1,3 +1,5 @@
+import { Link } from './Link.js';
+
 class Customer {
     Name: string;
     Address: {};
@@ -27,12 +29,6 @@ class FraudAlert {
     Date: Date;
     ReasonMessage: string;
     IncomingChargeback: boolean;
-}
-
-class Link {
-    Method: string;
-    Rel: string;
-    Href: string;
 }
 
 class Payment {

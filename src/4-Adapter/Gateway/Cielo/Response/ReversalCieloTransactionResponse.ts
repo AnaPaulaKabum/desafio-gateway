@@ -1,8 +1,4 @@
-class Link {
-    method: string;
-    rel: string;
-    href: string;
-}
+import { Link } from './Link.js';
 
 export class ResponseAPICieloToReversal {
     Status: number;
