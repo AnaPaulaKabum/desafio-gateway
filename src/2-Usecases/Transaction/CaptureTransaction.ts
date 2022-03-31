@@ -4,10 +4,9 @@ import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { Log } from '../../3-Domain/Entity/Log/Log.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { Action } from '../../3-Domain/Entity/Transaction/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
+import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
 
 export class CaptureTransaction {
     constructor(
@@ -17,7 +16,7 @@ export class CaptureTransaction {
         private readonly mail: IMail,
     ) {}
 
-    public async execute(numberRequest: string, amount: number): Promise<Transaction> {
+    public async execute(numberRequest: string, amount: number): Promise<Capture> {
         try {
             console.log('..SendTransaction(UseCases)');
 

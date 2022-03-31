@@ -6,6 +6,7 @@ import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { CancelTransaction } from '../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
 import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
 
 export class PaymentGatewaysController {
     constructor(
@@ -25,7 +26,7 @@ export class PaymentGatewaysController {
         return this.searchTransaction.execute(paramNumberRequest);
     }
 
-    public captureTransactions(paramNumberRequest: string, amount: number): Promise<Transaction> {
+    public captureTransactions(paramNumberRequest: string, amount: number): Promise<Capture> {
         console.log('.Controller');
         return this.captureTransaction.execute(paramNumberRequest, amount);
     }

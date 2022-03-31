@@ -12,6 +12,8 @@ import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction.js';
 import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { ResponseAPIToSearchTransaction } from './Converter/Transaction/ResponseAPIToSearchTransaction.js';
+import { ResponseAPICieloToCaptureTransaction } from './Converter/Transaction/ResponseAPICieloToCaptureTransaction.js';
+import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 
 export class GatewaysCieloAdapter implements IGateways {
     constructor(private readonly transactionRepository: ITransactionRepository) {}
@@ -34,7 +36,7 @@ export class GatewaysCieloAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(numberRequest: string, amount: number): Promise<Transaction> {
+    async captureTransaction(numberRequest: string, amount: number): Promise<Capture> {
         console.log('..captureTransaction(Adapter)');
         let transactionCaptureRequest = new TransactionCieloCaptureRequest();
         transactionCaptureRequest.amount = amount;
@@ -44,16 +46,11 @@ export class GatewaysCieloAdapter implements IGateways {
         if (await this.isCaptureTotal(numberRequest, amount)) {
             returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
         } else {
-            returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
+            returnAPI = await MockCaptureCieloTransaction.captureParcial(transactionCaptureRequest);
         }
 
-        /*
         return new Promise(function (resolve) {
-            resolve(ReturnAPIToCaptureTransaction.converte(returnAPI));
-        });*/
-
-        return new Promise(function (resolve) {
-            resolve(new Transaction());
+            resolve(ResponseAPICieloToCaptureTransaction.converte(returnAPI, transactionCaptureRequest));
         });
     }
 

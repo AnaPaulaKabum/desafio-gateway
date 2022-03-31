@@ -1,6 +1,7 @@
 import { plainToInstance } from 'class-transformer';
+import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
-import { Capture, Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse.js';

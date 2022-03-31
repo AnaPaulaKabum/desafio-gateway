@@ -12,6 +12,7 @@ import { MockCancelTransafction } from './Mock/CancelTransaction.js';
 import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { RetrunAPIToCancelTransaction } from './Converter/Transaction/RetrunAPIToCancelTransaction.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 
 export class GatewaysRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -36,7 +37,7 @@ export class GatewaysRedeAdapter implements IGateways {
     //A operação de cancelamento da captura e da autorização com captura automática pode ser efetuada de
     //forma parcial ou total.
     //Cancelamento parcial disponível somente em D+1 e para transações com captura.
-    async captureTransaction(numberRequest: string, amount: number): Promise<Transaction> {
+    async captureTransaction(numberRequest: string, amount: number): Promise<Capture> {
         console.log('..captureTransaction(Adapter)');
         const returnAPI = await MockCaptureTransaction.capture(numberRequest, amount);
 

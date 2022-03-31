@@ -1,7 +1,8 @@
 import { plainToInstance } from 'class-transformer';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse.js';
-import { Capture, Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
 
 export abstract class ResponseAPIToSearchTransaction {
     static converte(Json: any): TransactionComplete {
