@@ -12,7 +12,7 @@ import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction.js';
 import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { ResponseAPIToSearchTransaction } from './Converter/Transaction/ResponseAPIToSearchTransaction.js';
-import { ResponseAPICieloToCaptureTransaction } from './Converter/Transaction/ResponseAPICieloToCaptureTransaction.js';
+import { MapperCapture } from './Converter/Transaction/MapperCapture.js';
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 import { MockReversalCieloTransaction } from './Mock/MockReversalCieloTransaction.js';
 import { MapperCancel } from './Converter/Transaction/MapperCancel.js';
@@ -52,7 +52,7 @@ export class GatewaysCieloAdapter implements IGateways {
         }*/
 
         return new Promise(function (resolve) {
-            resolve(ResponseAPICieloToCaptureTransaction.converte(returnAPI, transactionCaptureRequest));
+            resolve(MapperCapture.toCapture(returnAPI, transactionCaptureRequest));
         });
     }
 
