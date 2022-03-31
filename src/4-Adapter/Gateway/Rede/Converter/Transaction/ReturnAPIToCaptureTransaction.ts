@@ -4,16 +4,17 @@ import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transact
 import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse.js';
 
 export abstract class ReturnAPIToCaptureTransaction {
-    static converte(Json: any): Capture {
+    static converte(Json: any, amount: number): Capture {
         let object = plainToInstance(CaptureTransactionResponse, Json);
 
         let capture = new Capture();
 
-        /*capture.tid = object.tid;
         capture.numberRequest = object.reference;
-        capture.authorizationCode = object.authorizationCode;*/
         capture.nsu = object.nsu;
+        capture.date = object.dateTime;
+        capture.amount = amount;
 
+        capture.isValid();
         return capture;
     }
 }

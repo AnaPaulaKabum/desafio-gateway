@@ -42,7 +42,7 @@ export class GatewaysRedeAdapter implements IGateways {
         const returnAPI = await MockCaptureTransaction.capture(numberRequest, amount);
 
         return new Promise(function (resolve) {
-            resolve(ReturnAPIToCaptureTransaction.converte(returnAPI));
+            resolve(ReturnAPIToCaptureTransaction.converte(returnAPI, amount));
         });
     }
 

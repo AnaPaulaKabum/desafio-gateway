@@ -5,7 +5,7 @@ export class CaptureTransactionResponse {
     tid: string;
     nsu: string;
     authorizationCode: string;
-    dateTime: string;
+    dateTime: Date;
     returnCode: string;
     returnMessage: string;
     links: Array<Link>;
