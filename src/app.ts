@@ -7,7 +7,7 @@ import { SearchTransaction } from './2-Usecases/Transaction/SearchTransaction.js
 import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.js';
 import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction.js';
 import { TransactionRepository } from './4-Adapter/Repository/Transaction/TransactionRepository.js';
-import { GatewaysCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewaysCieloAdapter.js';
+import { GatewayCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewayCieloAdapter.js';
 import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
 import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
 
@@ -38,7 +38,7 @@ export abstract class APP {
             if (gatewayUses === 1) {
                 gateway = new GatewaysRedeAdapter();
             } else {
-                gateway = new GatewaysCieloAdapter();
+                gateway = new GatewayCieloAdapter();
             }
 
             return {
