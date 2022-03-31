@@ -43,11 +43,11 @@ export class GatewaysCieloAdapter implements IGateways {
         transactionCaptureRequest.paymentId = numberRequest;
 
         let returnAPI;
-        if (await this.isCaptureTotal(numberRequest, amount)) {
-            returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
-        } else {
+        //if (await this.isCaptureTotal(numberRequest, amount)) {
+        returnAPI = await MockCaptureCieloTransaction.captureTotal(transactionCaptureRequest);
+        /* } else {
             returnAPI = await MockCaptureCieloTransaction.captureParcial(transactionCaptureRequest);
-        }
+        }*/
 
         return new Promise(function (resolve) {
             resolve(ResponseAPICieloToCaptureTransaction.converte(returnAPI, transactionCaptureRequest));
