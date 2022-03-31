@@ -16,7 +16,7 @@ import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 
-export class GatewaysCieloAdapter implements IGateways {
+export class GatewayCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
         console.log('..sendTransaction(Adapter)');
         if (transaction.kind === TypeTransaction.CREDIT) {
