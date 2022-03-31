@@ -1,13 +1,12 @@
 import { Transaction } from './Transaction.js';
 
 export class Capture {
-    captured: boolean;
     amount: number;
     date: Date;
 }
 
 export class Card {
-    cardNumber: string;
+    number: string;
     brand: string;
     name: string;
 }
@@ -20,7 +19,7 @@ export class TransactionComplete {
     isValid() {
         this.transaction.isValid();
 
-        if (this.card.cardNumber === undefined) throw new Error('Campo cardNumber é obrigatório');
+        if (this.card.number === undefined) throw new Error('Campo cardNumber é obrigatório');
 
         if (this.card.name === undefined) throw new Error('Campo cardName é obrigatório');
 

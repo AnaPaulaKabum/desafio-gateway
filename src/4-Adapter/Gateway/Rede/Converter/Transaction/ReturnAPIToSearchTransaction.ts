@@ -34,7 +34,7 @@ export abstract class ReturnAPIToSearchTransaction {
         }
 
         transactionSearchResponse.card = new Card();
-        transactionSearchResponse.card.cardNumber = object.authorization.cardBin + object.authorization.last4;
+        transactionSearchResponse.card.number = object.authorization.cardBin + object.authorization.last4;
         transactionSearchResponse.card.name = '';
 
         transactionSearchResponse.isValid();

@@ -17,11 +17,9 @@ export abstract class ResponseAPIToSearchTransaction {
         transactionSearchResponse.capture = new Capture();
         transactionSearchResponse.capture.amount = object.Payment.CapturedAmount;
         transactionSearchResponse.capture.date = object.Payment.CapturedDate;
-        transactionSearchResponse.capture.captured = object.Payment.Capture;
         transactionSearchResponse.card = new Card();
-        transactionSearchResponse.card.cardNumber = object.Payment.CreditCard.CardNumber;
+        transactionSearchResponse.card.number = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.card.brand = object.Payment.CreditCard.Brand;
-        //transactionSearchResponse.card.expirationDate = object.Payment.CreditCard;
         transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;
 
         return transactionSearchResponse;
