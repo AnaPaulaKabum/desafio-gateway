@@ -20,6 +20,7 @@ export abstract class MockCieloSearchTransaction {
                     SaveCard: false,
                     Brand: 'Visa',
                     PaymentAccountReference: '92745135160550440006111072222',
+                    SecurityCode: '123',
                 },
                 ProofOfSale: '674532',
                 Tid: '0223103744208',

@@ -86,6 +86,6 @@ export abstract class APP {
     }
 }
 
-const gatewayUses = 1; //1-Rede 2- Cielo
+const gatewayUses = 2; //1-Rede 2- Cielo
 const methodUses = 2; //1-Send 2-Search 3-Capture 4-Cancel
 APP.start(gatewayUses, methodUses);

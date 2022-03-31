@@ -11,6 +11,7 @@ import { MockCieloSearchTransaction } from './Mock/MockCieloSearchTransaction.js
 import { MockCieloSendTransaction } from './Mock/MockCieloSendTransaction.js';
 import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { ResponseAPIToSearchTransaction } from './Converter/Transaction/ResponseAPIToSearchTransaction.js';
 
 export class GatewaysCieloAdapter implements IGateways {
     constructor(private readonly transactionRepository: ITransactionRepository) {}
@@ -28,13 +29,8 @@ export class GatewaysCieloAdapter implements IGateways {
         console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockCieloSearchTransaction.search(numberRequest);
 
-        /*
         return new Promise(function (resolve) {
-            resolve(ReturnAPIToSearchTransaction.converte(returnAPI));
-        });*/
-
-        return new Promise(function (resolve) {
-            resolve(new TransactionComplete());
+            resolve(ResponseAPIToSearchTransaction.converte(returnAPI));
         });
     }
 

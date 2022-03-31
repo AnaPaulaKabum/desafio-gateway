@@ -10,6 +10,7 @@ class CreditCard {
     SaveCard: boolean;
     Brand: string;
     PaymentAccountReference: string;
+    SecurityCode: string;
 }
 
 class Chargebacks {
@@ -48,7 +49,7 @@ class Payment {
     FraudAlert: FraudAlert;
     PaymentId: string;
     Type: string;
-    Amount: string;
+    Amount: number;
     ReceivedDate: Date;
     CapturedAmount: string;
     CapturedDate: Date;
