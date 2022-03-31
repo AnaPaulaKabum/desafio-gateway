@@ -61,7 +61,7 @@ export class GatewaysCieloAdapter implements IGateways {
         const returnAPI = await MockReversalCieloTransaction.cancel(numberRequest);
 
         return new Promise(function (resolve) {
-            resolve(ResponseAPICancelToTransaction.converte(returnAPI));
+            resolve(ResponseAPICancelToTransaction.converte(returnAPI, numberRequest));
         });
     }
 
