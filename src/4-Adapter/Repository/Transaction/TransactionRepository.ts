@@ -15,10 +15,14 @@ export class TransactionRepository implements ITransactionRepository {
     }
 
     save(transaction: Transaction): Promise<any> {
-        return new Promise(function () {});
+        return new Promise(function (resolve) {
+            resolve(console.log('...salvando transaction'));
+        });
     }
 
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
-        return new Promise(function () {});
+        return new Promise(function (resolve) {
+            resolve(console.log('...update no status da transaction'));
+        });
     }
 }
