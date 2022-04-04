@@ -11,6 +11,7 @@ import { GatewayCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewayCieloAdapt
 import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
 import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
 import { CaptureRepository } from './4-Adapter/Repository/Transaction/CaptureRepository.js';
+import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepository.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {
@@ -34,6 +35,7 @@ export abstract class APP {
             const repositoryTransaction = new TransactionRepository();
             const repositoryLog = new LogRepository();
             const repositoryCapture = new CaptureRepository();
+            const repositoryCancel = new CancelRepository();
             const mail = new Mail();
 
             let gateway;
@@ -56,6 +58,7 @@ export abstract class APP {
                 cancelReversalTransaction: new CancelReversalTransaction(
                     gateway,
                     repositoryTransaction,
+                    repositoryCancel,
                     repositoryLog,
                     mail,
                 ),

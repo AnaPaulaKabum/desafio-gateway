@@ -8,11 +8,13 @@ import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { Action } from '../../3-Domain/Entity/Transaction/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
+import { ICancelRepository } from '../../5-Shared/Interfaces/Repository/ICancelRepository.js';
 
 export class CancelReversalTransaction {
     constructor(
         private readonly gateway: IGateways,
         private readonly repositoryTransaction: ITransactionRepository,
+        private readonly repositoryCancel: ICancelRepository,
         private readonly repositoryLog: ILogRepository,
         private readonly mail: IMail,
     ) {}
@@ -23,6 +25,8 @@ export class CancelReversalTransaction {
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 const cancelTransaction = this.gateway.cancelReversalTransaction(numberRequest);
+                await this.repositoryTransaction.updateStatus(numberRequest, StatusTransaction.CANCEL);
+                await this.repositoryCancel.save(await cancelTransaction);
                 await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
                 return cancelTransaction;
             }
