@@ -1,4 +1,6 @@
 import { plainToInstance } from 'class-transformer';
+import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
+import { Refund } from '../../../../../3-Domain/Entity/Transaction/Refund.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
@@ -24,17 +26,27 @@ export abstract class MapperSearch {
         transactionSearchResponse.transaction.numberRequest = object.authorization.reference;
         transactionSearchResponse.transaction.authorizationCode = object.authorization.authorizationCode;
         transactionSearchResponse.transaction.nsu = object.authorization.nsu;
-
-        transactionSearchResponse.capture.amount = object.capture.amount;
-        transactionSearchResponse.capture.date = object.capture.dateTime;
-
         transactionSearchResponse.transaction.status = StatusTransaction.NO_CAPTURE;
-        if (!object.capture.dateTime) {
-            transactionSearchResponse.transaction.status = StatusTransaction.FINNALY;
-        }
 
         transactionSearchResponse.card.number = object.authorization.cardBin + object.authorization.last4;
         transactionSearchResponse.card.name = '';
+
+        if (object.capture.amount > 0) {
+            transactionSearchResponse.capture = new Capture();
+            transactionSearchResponse.capture.amount = object.capture.amount;
+            transactionSearchResponse.capture.date = object.capture.dateTime;
+            transactionSearchResponse.capture.nsu = object.capture.nsu;
+            transactionSearchResponse.capture.numberRequest = object.authorization.reference;
+            transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
+        }
+
+        if (object.refunds.amount > 0) {
+            transactionSearchResponse.refund = new Refund();
+            transactionSearchResponse.refund.amount = object.refunds.amount;
+            transactionSearchResponse.refund.date = object.refunds.dateTime;
+            transactionSearchResponse.refund.id = object.refunds.refundId;
+            transactionSearchResponse.transaction.status = StatusTransaction.CANCEL;
+        }
 
         transactionSearchResponse.isValid();
         return transactionSearchResponse;

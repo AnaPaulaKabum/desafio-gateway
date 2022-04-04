@@ -25,7 +25,7 @@ export abstract class MockAPISearchRede {
                 distributorAffiliation: 0,
             },
             capture: {
-                dateTime: 'stringstringstringstringstrin',
+                dateTime: '2017-03-12T08:54:00.000-03:00',
                 nsu: 'string',
                 amount: 0,
             },
@@ -38,7 +38,7 @@ export abstract class MockAPISearchRede {
                 returnMessage: 'string',
             },
             refunds: {
-                dateTime: 'stringstringstringstringstrin',
+                dateTime: '2017-03-12T08:54:00.000-03:00',
                 refundId: 'stringstringstringstringstringstring',
                 status: 'Processing',
                 amount: 0,

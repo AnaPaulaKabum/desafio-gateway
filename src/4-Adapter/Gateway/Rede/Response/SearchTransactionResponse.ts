@@ -29,23 +29,17 @@ class Authorization {
     distributorAffiliation;
 }
 
+class Refund {
+    dateTime: Date;
+    refundId: string;
+    status: string;
+    amount: number;
+}
+
 export class SearchTransactionResponse {
     requestDateTime: Date;
     authorization: Authorization;
     capture: Capture;
-    /* threeDSecure: {
-      embedded: true,
-      eci: "st",
-      cavv: "BwABBylVaQAAAAFwllVpAAAAAAA=",
-      xid: "stringstringstringstringstri",
-      returnCode: "str",
-      returnMessage: "string"
-    },
-    refunds: {
-      dateTime: "stringstringstringstringstrin",
-      refundId: "stringstringstringstringstringstring",
-      status: "Processing",
-      amount: 0
-    },*/
+    refunds: Refund;
     links: Array<Link>;
 }
