@@ -22,7 +22,7 @@ export abstract class APP {
             transactionDTO.softDescriptor = 'string';
             transactionDTO.cardholderName = 'John Snow';
             transactionDTO.expirationYear = 2028;
-            transactionDTO.kind = TypeTransaction.DEBIT;
+            transactionDTO.kind = TypeTransaction.CREDIT;
             transactionDTO.numberRequest = 'pedido123';
             transactionDTO.installments = 12;
 
@@ -81,11 +81,17 @@ export abstract class APP {
         }
 
         console.log('----------');
-        console.log('Resultado: ');
+
+        if (gatewayUses === 1) console.log('Resultado Rede: ');
+        else console.log('Resultado Cielo: ');
+
         console.log(result);
     }
 }
 
-const methodUses = 4; //1-Send 2-Search 3-Capture 4-Cancel
-const gatewayUses = 2; //1-Rede 2- Cielo
+const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
+let gatewayUses = 1; //1-Rede 2- Cielo
+//APP.start(gatewayUses, methodUses);
+
+gatewayUses = 1 + 1;
 APP.start(gatewayUses, methodUses);

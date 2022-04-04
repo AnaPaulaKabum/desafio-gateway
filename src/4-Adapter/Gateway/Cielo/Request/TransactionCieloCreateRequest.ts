@@ -1,55 +1,61 @@
-class Address {
-    street: string;
-    number: number;
-    complement: string;
-    zipCode: string;
-    city: string;
-    state: string;
-    country: string;
-}
+import { BrandCard } from '../Enum/BrandCard.js';
 
-class Customer {
-    name: string;
-    email: string;
-    birthdate: string;
-    address: Address;
-    deliveryAddress: Address;
+class Payment {
+    type: string;
+    amount: number;
+    installments: number;
+    softDescriptor?: string;
+
+    isValid() {
+        if (!this.type) throw new Error('Campo type é obrigatório');
+        if (!this.amount) throw new Error('Campo amount é obrigatório');
+        if (!this.installments) throw new Error('Campo installments é obrigatório');
+    }
 }
 
 class CreditCard {
-    CardNumber: string;
-    Holder: string;
-    ExpirationDate: string;
-    SecurityCode: string;
-    SaveCard: string;
-    Brand: string;
-    CardOnFile: {
-        Usage: string;
-        Reason: string;
-    };
-}
+    private _cardNumber: string;
+    expirationDate: string;
+    brand: BrandCard;
+    holder: string;
+    securityCode: string;
 
-class Payment {
-    currency: string;
-    country: string;
-    serviceTaxAmount: number;
-    installments: number;
-    interest: string;
-    capture: true;
-    Authenticate: boolean;
-    Recurrent: boolean; // Payment.Recurrent:
-    SoftDescriptor: string;
-    CreditCard: CreditCard;
-    IsCryptoCurrencyNegotiation: true;
-    Type: string;
-    Amount: number;
-    AirlineData: {
-        TicketNumber: string;
-    };
+    get cardNumber(): string {
+        return this._cardNumber;
+    }
+
+    set cardNumber(value: string) {
+        this._cardNumber = value;
+        this.discoverBrand();
+    }
+
+    isValid() {
+        if (!this.cardNumber) throw new Error('Campo cardNumber é obrigatório');
+        if (!this.expirationDate) throw new Error('Campo expirationDate é obrigatório');
+        if (!this.brand) throw new Error('Campo brand é obrigatório');
+    }
+
+    private discoverBrand() {
+        this.brand = BrandCard.MASTER;
+    }
 }
 
 export class TransactionCieloCreateRequest {
-    MerchantOrderId: string;
-    Customer: Customer;
-    Payment: Payment;
+    //merchantId: string;
+    //merchantKey: string;
+    merchantOrderId: string;
+    payment: Payment;
+    creditCard: CreditCard;
+    constructor() {
+        this.payment = new Payment();
+        this.payment.type = 'CreditCard';
+        this.creditCard = new CreditCard();
+    }
+
+    isValid() {
+        if (!this.merchantOrderId) throw new Error('Campo merchantOrderId é obrigatório');
+
+        this.payment.isValid();
+        this.creditCard.isValid();
+    }
 }
