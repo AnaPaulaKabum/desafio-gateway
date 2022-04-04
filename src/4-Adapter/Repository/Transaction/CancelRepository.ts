@@ -3,6 +3,8 @@ import { ICancelRepository } from '../../../5-Shared/Interfaces/Repository/ICanc
 
 export class CancelRepository implements ICancelRepository {
     save(capture: CancelTransaction): Promise<any> {
-        return new Promise(function () {});
+        return new Promise(function (resolve) {
+            resolve(console.log('...salvando cancel transaction'));
+        });
     }
 }

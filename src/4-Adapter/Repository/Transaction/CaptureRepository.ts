@@ -3,6 +3,8 @@ import { ICaptureRepository } from '../../../5-Shared/Interfaces/Repository/ICap
 
 export class CaptureRepository implements ICaptureRepository {
     save(capture: Capture): Promise<any> {
-        return new Promise(function () {});
+        return new Promise(function (resolve) {
+            resolve(console.log('...salvando caputure'));
+        });
     }
 }
