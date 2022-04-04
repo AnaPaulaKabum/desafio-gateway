@@ -9,16 +9,16 @@ class Payment {
     returnUrl: string;
 
     isValidCredit() {
-        this.isValid();
+        this.isValidBasic();
         if (!this.installments) throw new Error('Campo installments é obrigatório');
     }
 
     isValidDebit() {
-        this.isValid();
+        this.isValidBasic();
         if (!this.returnUrl) throw new Error('Campo returnUrl é obrigatório');
     }
 
-    private isValid() {
+    private isValidBasic() {
         if (!this.type) throw new Error('Campo type é obrigatório');
         if (!this.amount) throw new Error('Campo amount é obrigatório');
     }
@@ -52,8 +52,6 @@ class CreditCard {
 }
 
 export class SendTransactionCielo {
-    //merchantId: string;
-    //merchantKey: string;
     merchantOrderId: string;
     payment: Payment;
     creditCard: CreditCard;
@@ -86,6 +84,5 @@ export class SendTransactionCielo {
 
     private isValidDebit() {
         this.payment.isValidDebit();
-        //this.creditCard.isValid();
     }
 }
