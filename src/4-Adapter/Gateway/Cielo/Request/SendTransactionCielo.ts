@@ -1,3 +1,4 @@
+import { TypeTransaction } from '../../../../5-Shared/Enum/TypeTransaction.enum.js';
 import { BrandCard } from '../Enum/BrandCard.js';
 
 class Payment {
@@ -5,11 +6,21 @@ class Payment {
     amount: number;
     installments: number;
     softDescriptor?: string;
+    returnUrl: string;
 
-    isValid() {
+    isValidCredit() {
+        this.isValid();
+        if (!this.installments) throw new Error('Campo installments é obrigatório');
+    }
+
+    isValidDebit() {
+        this.isValid();
+        if (!this.returnUrl) throw new Error('Campo returnUrl é obrigatório');
+    }
+
+    private isValid() {
         if (!this.type) throw new Error('Campo type é obrigatório');
         if (!this.amount) throw new Error('Campo amount é obrigatório');
-        if (!this.installments) throw new Error('Campo installments é obrigatório');
     }
 }
 
@@ -40,22 +51,41 @@ class CreditCard {
     }
 }
 
-export class SendTransactionCredit {
+export class SendTransactionCielo {
     //merchantId: string;
     //merchantKey: string;
     merchantOrderId: string;
     payment: Payment;
     creditCard: CreditCard;
-    constructor() {
+    kind: TypeTransaction;
+    constructor(type: TypeTransaction) {
         this.payment = new Payment();
-        this.payment.type = 'CreditCard';
+
+        this.kind = type;
+        if (this.kind === TypeTransaction.CREDIT) this.payment.type = 'CreditCard';
+        if (this.kind === TypeTransaction.DEBIT) this.payment.type = 'DebitCard';
         this.creditCard = new CreditCard();
     }
 
     isValid() {
         if (!this.merchantOrderId) throw new Error('Campo merchantOrderId é obrigatório');
 
-        this.payment.isValid();
         this.creditCard.isValid();
+
+        if (this.kind === TypeTransaction.CREDIT) {
+            this.isValidCredit();
+            return;
+        }
+
+        this.isValidDebit();
+    }
+
+    private isValidCredit() {
+        this.payment.isValidCredit();
+    }
+
+    private isValidDebit() {
+        this.payment.isValidDebit();
+        //this.creditCard.isValid();
     }
 }

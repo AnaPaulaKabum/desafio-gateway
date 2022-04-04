@@ -1,38 +1,38 @@
 import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO.js';
-import { SendTransactionCredit } from '../../Request/SendTransactionCredit.js';
-import { SendTransactionDebit } from '../../Request/SendTransactionDebit.js';
+import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
+import { SendTransactionCielo } from '../../Request/SendTransactionCielo.js';
 
 export abstract class MapperTransactionCielo {
-    static generateCredit(transaction: TransactionDTO): SendTransactionCredit {
+    static generateCredit(transaction: TransactionDTO): SendTransactionCielo {
         console.log('...gerenateCredit');
 
-        let transactionCielo = new SendTransactionCredit();
-        transactionCielo.merchantOrderId = transaction.numberRequest;
-        transactionCielo.payment.amount = transaction.amount;
-        transactionCielo.payment.installments = transaction.installments;
-        transactionCielo.payment.softDescriptor = transaction.softDescriptor;
-        transactionCielo.creditCard.cardNumber = transaction.cardNumber;
-        transactionCielo.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
-        transactionCielo.creditCard.holder = transaction.cardholderName;
-        transactionCielo.creditCard.securityCode = transaction.securityCode;
+        let transactionCredit = new SendTransactionCielo(TypeTransaction.CREDIT);
+        transactionCredit.merchantOrderId = transaction.numberRequest;
+        transactionCredit.payment.amount = transaction.amount;
+        transactionCredit.payment.installments = transaction.installments;
+        transactionCredit.payment.softDescriptor = transaction.softDescriptor;
+        transactionCredit.creditCard.cardNumber = transaction.cardNumber;
+        transactionCredit.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
+        transactionCredit.creditCard.holder = transaction.cardholderName;
+        transactionCredit.creditCard.securityCode = transaction.securityCode;
 
-        transactionCielo.isValid();
-        return transactionCielo;
+        transactionCredit.isValid();
+        return transactionCredit;
     }
-    static generateDebit(Transaction: TransactionDTO): SendTransactionDebit {
-        let transactionCielo = new SendTransactionDebit();
+    static generateDebit(transaction: TransactionDTO): SendTransactionCielo {
+        console.log('...gerenateDebit');
 
-        /*transactionCielo.numberRequest = Transaction.numberRequest;
-        transactionCielo.kind = Transaction.kind;
-        transactionCielo.amount = Transaction.amount;
-        transactionCielo.installments = Transaction.installments;
-        transactionCielo.cardholderName = Transaction.cardholderName;
-        transactionCielo.cardNumber = Transaction.cardNumber;
-        transactionCielo.expirationMonth = Transaction.expirationMonth;
-        transactionCielo.expirationYear = Transaction.expirationYear;
-        transactionCielo.securityCode = Transaction.securityCode;
-        transactionCielo.softDescriptor = Transaction.softDescriptor;*/
+        let transactionDebit = new SendTransactionCielo(TypeTransaction.DEBIT);
+        transactionDebit.merchantOrderId = transaction.numberRequest;
+        transactionDebit.payment.amount = transaction.amount;
+        transactionDebit.payment.returnUrl = 'www.teste.com.br';
 
-        return transactionCielo;
+        transactionDebit.creditCard.cardNumber = transaction.cardNumber;
+        transactionDebit.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
+        transactionDebit.creditCard.holder = transaction.cardholderName;
+        transactionDebit.creditCard.securityCode = transaction.securityCode;
+
+        transactionDebit.isValid();
+        return transactionDebit;
     }
 }
