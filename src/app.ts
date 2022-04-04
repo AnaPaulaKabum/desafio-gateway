@@ -22,7 +22,7 @@ export abstract class APP {
             transactionDTO.softDescriptor = 'string';
             transactionDTO.cardholderName = 'John Snow';
             transactionDTO.expirationYear = 2028;
-            transactionDTO.kind = TypeTransaction.DEBIT;
+            transactionDTO.kind = TypeTransaction.CREDIT;
             transactionDTO.numberRequest = 'pedido123';
             transactionDTO.installments = 12;
 

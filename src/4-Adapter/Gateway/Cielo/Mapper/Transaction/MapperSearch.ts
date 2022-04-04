@@ -1,8 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse.js';
-import { Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
-import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
+import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 
 export abstract class MapperSearch {
     static toTransactionComplete(Json: any): TransactionComplete {
@@ -15,10 +14,10 @@ export abstract class MapperSearch {
         transactionSearchResponse.transaction.authorizationCode = object.Payment.AuthorizationCode;
         transactionSearchResponse.transaction.nsu = object.Payment.ProofOfSale;
         transactionSearchResponse.transaction.amount = object.Payment.Amount;
-        transactionSearchResponse.capture = new Capture();
+
         transactionSearchResponse.capture.amount = object.Payment.CapturedAmount;
         transactionSearchResponse.capture.date = object.Payment.CapturedDate;
-        transactionSearchResponse.card = new Card();
+
         transactionSearchResponse.card.number = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.card.brand = object.Payment.CreditCard.Brand;
         transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;

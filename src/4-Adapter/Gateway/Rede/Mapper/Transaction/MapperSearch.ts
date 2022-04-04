@@ -1,7 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
-import { Card, TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse.js';
@@ -25,7 +24,7 @@ export abstract class MapperSearch {
         transactionSearchResponse.transaction.numberRequest = object.authorization.reference;
         transactionSearchResponse.transaction.authorizationCode = object.authorization.authorizationCode;
         transactionSearchResponse.transaction.nsu = object.authorization.nsu;
-        transactionSearchResponse.capture = new Capture();
+
         transactionSearchResponse.capture.amount = object.capture.amount;
         transactionSearchResponse.capture.date = object.capture.dateTime;
 
@@ -34,7 +33,6 @@ export abstract class MapperSearch {
             transactionSearchResponse.transaction.status = StatusTransaction.FINNALY;
         }
 
-        transactionSearchResponse.card = new Card();
         transactionSearchResponse.card.number = object.authorization.cardBin + object.authorization.last4;
         transactionSearchResponse.card.name = '';
 

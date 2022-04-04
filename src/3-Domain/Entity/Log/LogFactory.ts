@@ -21,4 +21,14 @@ export abstract class LogFactory {
 
         return log;
     }
+
+    static register(message: string): Log {
+        let log = new Log();
+        log.message = message;
+        log.statusLog = StatusLog.REGISTER;
+        log.user = 'root';
+        log.date = new Date();
+
+        return log;
+    }
 }
