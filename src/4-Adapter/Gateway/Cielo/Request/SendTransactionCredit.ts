@@ -40,7 +40,7 @@ class CreditCard {
     }
 }
 
-export class TransactionCieloCreateRequest {
+export class SendTransactionCredit {
     //merchantId: string;
     //merchantKey: string;
     merchantOrderId: string;

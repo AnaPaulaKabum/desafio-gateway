@@ -1,11 +1,12 @@
 import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO.js';
-import { TransactionCieloCreateRequest } from '../../Request/TransactionCieloCreateRequest.js';
+import { SendTransactionCredit } from '../../Request/SendTransactionCredit.js';
+import { SendTransactionDebit } from '../../Request/SendTransactionDebit.js';
 
 export abstract class MapperTransactionCielo {
-    static generateCredit(transaction: TransactionDTO): TransactionCieloCreateRequest {
+    static generateCredit(transaction: TransactionDTO): SendTransactionCredit {
         console.log('...gerenateCredit');
-        let transactionCielo = new TransactionCieloCreateRequest();
 
+        let transactionCielo = new SendTransactionCredit();
         transactionCielo.merchantOrderId = transaction.numberRequest;
         transactionCielo.payment.amount = transaction.amount;
         transactionCielo.payment.installments = transaction.installments;
@@ -18,8 +19,8 @@ export abstract class MapperTransactionCielo {
         transactionCielo.isValid();
         return transactionCielo;
     }
-    static generateDebit(Transaction: TransactionDTO): TransactionCieloCreateRequest {
-        let transactionCielo = new TransactionCieloCreateRequest();
+    static generateDebit(Transaction: TransactionDTO): SendTransactionDebit {
+        let transactionCielo = new SendTransactionDebit();
 
         /*transactionCielo.numberRequest = Transaction.numberRequest;
         transactionCielo.kind = Transaction.kind;
