@@ -10,6 +10,7 @@ import { TransactionRequest } from '../Request/TransactionRequest.js';
 import { MapperTransactionRequest } from '../Mapper/MapperTransactionRequest.js';
 import { SearchRequest } from '../Request/SearchRequest.js';
 import { CaptureRequest } from '../Request/CaptureRequest.js';
+import { IValidateParamGateways } from '../../5-Shared/Interfaces/Gateway/IValidateParamGateways.js';
 
 export class PaymentGatewaysController {
     constructor(
@@ -17,6 +18,7 @@ export class PaymentGatewaysController {
         private readonly searchTransaction: SearchTransaction,
         private readonly captureTransaction: CaptureTransaction,
         private readonly cancelReversalTransaction: CancelReversalTransaction,
+        private readonly validateParamGateways: IValidateParamGateways,
     ) {}
 
     public async sendTransactions(createTransaction: TransactionRequest): Promise<Transaction> {

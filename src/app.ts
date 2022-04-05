@@ -8,27 +8,46 @@ import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.
 import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction.js';
 import { TransactionRepository } from './4-Adapter/Repository/Transaction/TransactionRepository.js';
 import { GatewayCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewayCieloAdapter.js';
-import { TransactionDTO } from './5-Shared/DTO/TransactionDTO.js';
 import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
 import { CaptureRepository } from './4-Adapter/Repository/Transaction/CaptureRepository.js';
 import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepository.js';
+import { ValidateParamRede } from './4-Adapter/Gateway/Rede/ValidateParamRede.js';
+import { SearchRequest } from './1-Application/Request/SearchRequest.js';
+import { CaptureRequest } from './1-Application/Request/CaptureRequest.js';
+import { TransactionRequest } from './1-Application/Request/TransactionRequest.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {
-        const createTransaction = () => {
-            let transactionDTO = new TransactionDTO();
-            transactionDTO.amount = 2099;
-            transactionDTO.cardNumber = '5448280000000007';
-            transactionDTO.securityCode = '123';
-            transactionDTO.expirationMonth = 12;
-            transactionDTO.softDescriptor = 'string';
-            transactionDTO.cardholderName = 'John Snow';
-            transactionDTO.expirationYear = 2028;
-            transactionDTO.kind = TypeTransaction.CREDIT;
-            transactionDTO.numberRequest = 'pedido123';
-            transactionDTO.installments = 12;
+        const createTransactionRequest = () => {
+            let transactionDTO = new TransactionRequest(
+                'pedido123',
+                TypeTransaction.CREDIT,
+                2099,
+                2,
+                'John Snow',
+                '5448280000000007',
+                1,
+                2021,
+                '123',
+                'Compra na loja XXX',
+            );
 
             return transactionDTO;
+        };
+
+        const searchTransactionRequest = () => {
+            let searchTrasaction = new SearchRequest();
+            searchTrasaction.numberRequest = 'pedido123';
+
+            return searchTrasaction;
+        };
+
+        const captureTransactionRequest = () => {
+            let captureTrasactionRequest = new CaptureRequest();
+            captureTrasactionRequest.numberRequest = 'pedido123';
+            captureTrasactionRequest.amount = 100;
+
+            return captureTrasactionRequest;
         };
 
         const TransactionServicesFactory = () => {
@@ -65,6 +84,8 @@ export abstract class APP {
             };
         };
 
+        let validateGateway = new ValidateParamRede();
+
         //Design Patter composite root:
         const { sendTransaction, searchTransaction, captureTransaction, cancelReversalTransaction } =
             TransactionServicesFactory();
@@ -73,18 +94,19 @@ export abstract class APP {
             searchTransaction,
             captureTransaction,
             cancelReversalTransaction,
+            validateGateway,
         );
 
         let result;
         switch (methodUses) {
             case 1:
-                result = await paymentGatewaysController.sendTransactions(createTransaction());
+                result = await paymentGatewaysController.sendTransactions(createTransactionRequest());
                 break;
             case 2:
-                result = await paymentGatewaysController.searchTransactions('1');
+                result = await paymentGatewaysController.searchTransactions(searchTransactionRequest());
                 break;
             case 3:
-                result = await paymentGatewaysController.captureTransactions('1', 100);
+                result = await paymentGatewaysController.captureTransactions(captureTransactionRequest());
                 break;
             case 4:
                 result = await paymentGatewaysController.cancelReversalTransactions('1');
