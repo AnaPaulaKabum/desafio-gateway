@@ -23,6 +23,7 @@ export class PaymentGatewaysController {
 
     public async sendTransactions(createTransaction: TransactionRequest): Promise<Transaction> {
         console.log('.Controller');
+        this.validateParamGateways.isValidSend(createTransaction);
         return await this.sendTransaction.execute(MapperTransactionRequest.toTrasactionDTO(createTransaction));
     }
 

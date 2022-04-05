@@ -6,7 +6,7 @@ export class TransactionRequest {
         readonly kind: TypeTransaction,
         readonly amount: number,
         readonly installments: number,
-        readonly cardholderName: string,
+        readonly cardHolderName: string,
         readonly cardNumber: string,
         readonly expirationMonth: number,
         readonly expirationYear: number,

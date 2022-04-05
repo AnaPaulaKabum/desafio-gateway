@@ -13,7 +13,7 @@ export abstract class MapperTransactionCielo {
         transactionCredit.payment.softDescriptor = transaction.softDescriptor;
         transactionCredit.creditCard.cardNumber = transaction.cardNumber;
         transactionCredit.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
-        transactionCredit.creditCard.holder = transaction.cardholderName;
+        transactionCredit.creditCard.holder = transaction.cardHolderName;
         transactionCredit.creditCard.securityCode = transaction.securityCode;
 
         transactionCredit.isValid();
@@ -29,7 +29,7 @@ export abstract class MapperTransactionCielo {
 
         transactionDebit.creditCard.cardNumber = transaction.cardNumber;
         transactionDebit.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
-        transactionDebit.creditCard.holder = transaction.cardholderName;
+        transactionDebit.creditCard.holder = transaction.cardHolderName;
         transactionDebit.creditCard.securityCode = transaction.securityCode;
 
         transactionDebit.isValid();

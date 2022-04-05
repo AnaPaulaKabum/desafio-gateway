@@ -5,7 +5,7 @@ export class TransactionDTO {
     kind: TypeTransaction;
     amount: number;
     installments: number;
-    cardholderName: string;
+    cardHolderName: string;
     cardNumber: string;
     expirationMonth: number;
     expirationYear: number;

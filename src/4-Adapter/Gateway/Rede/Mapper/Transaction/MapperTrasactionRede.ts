@@ -9,7 +9,7 @@ export abstract class MapperTrasactionRede {
         transactionRede.kind = transaction.kind;
         transactionRede.amount = transaction.amount;
         transactionRede.installments = transaction.installments;
-        transactionRede.cardholderName = transaction.cardholderName;
+        transactionRede.cardholderName = transaction.cardHolderName;
         transactionRede.cardNumber = transaction.cardNumber;
         transactionRede.expirationMonth = transaction.expirationMonth;
         transactionRede.expirationYear = transaction.expirationYear;

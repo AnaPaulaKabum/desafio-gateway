@@ -9,7 +9,7 @@ export abstract class MapperTransactionRequest {
         transaction.kind = transactionRequest.kind;
         transaction.amount = transactionRequest.amount;
         transaction.installments = transactionRequest.installments;
-        transaction.cardholderName = transactionRequest.cardholderName;
+        transaction.cardHolderName = transactionRequest.cardHolderName;
         transaction.cardNumber = transactionRequest.cardNumber;
         transaction.expirationMonth = transactionRequest.expirationMonth;
         transaction.expirationYear = transactionRequest.expirationYear;
