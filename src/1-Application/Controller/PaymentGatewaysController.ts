@@ -3,10 +3,10 @@ import { CaptureTransaction } from '../../2-Usecases/Transaction/CaptureTransact
 import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransaction.js';
 import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
-import { CancelTransaction } from '../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
 import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
+import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';
 
 export class PaymentGatewaysController {
     constructor(
@@ -31,7 +31,7 @@ export class PaymentGatewaysController {
         return this.captureTransaction.execute(paramNumberRequest, amount);
     }
 
-    public cancelReversalTransactions(paramNumberRequest: string): Promise<CancelTransaction> {
+    public cancelReversalTransactions(paramNumberRequest: string): Promise<Refund> {
         console.log('.Controller');
         return this.cancelReversalTransaction.execute(paramNumberRequest);
     }

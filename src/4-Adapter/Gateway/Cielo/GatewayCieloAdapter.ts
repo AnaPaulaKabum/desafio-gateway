@@ -1,6 +1,5 @@
 import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
 import { TypeTransaction } from '../../../5-Shared/Enum/TypeTransaction.enum.js';
-import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MapperSend } from './Mapper/Transaction/MapperSend.js';
@@ -15,6 +14,7 @@ import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
+import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
 
 export class GatewayCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -47,7 +47,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
+    async cancelReversalTransaction(numberRequest: string): Promise<Refund> {
         console.log('..cancelReversalTransaction(Adapter)');
         const returnAPI = await MockAPIReversalCielo.cancel(numberRequest);
 

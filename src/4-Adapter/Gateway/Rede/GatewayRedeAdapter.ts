@@ -9,10 +9,10 @@ import { MockAPICaptureRede } from './Mock/API/MockAPICaptureRede.js';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MockAPICancelRede } from './Mock/API/MockAPICancelRede.js';
-import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
+import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
 
 export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -43,7 +43,7 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async cancelReversalTransaction(numberRequest: string): Promise<CancelTransaction> {
+    async cancelReversalTransaction(numberRequest: string): Promise<Refund> {
         console.log('..cancelReversalTransaction(Adapter)');
         const returnAPI = await MockAPICancelRede.cancel(numberRequest);
 

@@ -1,5 +1,5 @@
-import { CancelTransaction } from '../../../3-Domain/Entity/Transaction/CancelTransaction.js';
+import { Refund } from '../../../3-Domain/Entity/Transaction/Refund';
 
 export interface ICancelRepository {
-    save(capture: CancelTransaction): Promise<any>;
+    save(capture: Refund): Promise<any>;
 }
