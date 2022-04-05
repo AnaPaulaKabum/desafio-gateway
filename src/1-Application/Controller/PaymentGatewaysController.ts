@@ -9,6 +9,7 @@ import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
 import { MapperTransactionRequest } from '../Mapper/MapperTransactionRequest.js';
 import { SearchRequest } from '../Request/SearchRequest.js';
+import { CaptureRequest } from '../Request/CaptureRequest.js';
 
 export class PaymentGatewaysController {
     constructor(
@@ -28,9 +29,9 @@ export class PaymentGatewaysController {
         return this.searchTransaction.execute(searchRequest.numberRequest);
     }
 
-    public captureTransactions(paramNumberRequest: string, amount: number): Promise<Capture> {
+    public captureTransactions(captureRequest: CaptureRequest): Promise<Capture> {
         console.log('.Controller');
-        return this.captureTransaction.execute(paramNumberRequest, amount);
+        return this.captureTransaction.execute(captureRequest.numberRequest, captureRequest.amount);
     }
 
     public cancelReversalTransactions(paramNumberRequest: string): Promise<Refund> {
