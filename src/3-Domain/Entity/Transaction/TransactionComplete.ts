@@ -1,7 +1,17 @@
 import { Capture } from './Capture.js';
-import { Card } from './Card.js';
 import { Refund } from './Refund.js';
 import { Transaction } from './Transaction.js';
+
+class Card {
+    number: string;
+    brand: string;
+    name: string;
+
+    isValid() {
+        if (this.number === undefined) throw new Error('Campo cardNumber é obrigatório');
+        if (this.name === undefined) throw new Error('Campo cardName é obrigatório');
+    }
+}
 
 export class TransactionComplete {
     transaction: Transaction;
