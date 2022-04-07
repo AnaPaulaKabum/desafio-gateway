@@ -1,12 +1,13 @@
-import { TransactionRequest } from '../../../1-Application/Request/TransactionRequest.js';
-import { IValidateParamGateways } from '../../../5-Shared/Interfaces/Gateway/IValidateParamGateways.js';
+import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValidateType';
+import { TransactionRequest } from '../Request/TransactionRequest';
 
-export class ValidateParamRede implements IValidateParamGateways {
-    isValidSend(transactionRequest: TransactionRequest): boolean {
-        /* if (transactionRequest.numberRequest.length >= 16) {
-            throw new Error();
+export abstract class ValidateParam {
+    static isValidSend(param: ParamValidateType, transactionRequest: TransactionRequest) {
+        if (transactionRequest.numberRequest.length > param.numberRequest_MAX) {
+            throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
         }
 
+        /*
         if (transactionRequest.amount) {
             throw new Error();
         }
@@ -41,8 +42,6 @@ export class ValidateParamRede implements IValidateParamGateways {
         if (transactionRequest.softDescriptor) {
             throw new Error();
         }*/
-
-        return true;
     }
     isValidCapture(): boolean {
         throw new Error('Method not implemented.');

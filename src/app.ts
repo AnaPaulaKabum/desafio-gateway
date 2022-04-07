@@ -11,10 +11,10 @@ import { GatewayCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewayCieloAdapt
 import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
 import { CaptureRepository } from './4-Adapter/Repository/Transaction/CaptureRepository.js';
 import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepository.js';
-import { ValidateParamRede } from './4-Adapter/Gateway/Rede/ValidateParamRede.js';
 import { SearchRequest } from './1-Application/Request/SearchRequest.js';
 import { CaptureRequest } from './1-Application/Request/CaptureRequest.js';
 import { TransactionRequest } from './1-Application/Request/TransactionRequest.js';
+import { configRede } from './1-Application/Validate/Rede.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {
@@ -84,7 +84,7 @@ export abstract class APP {
             };
         };
 
-        let validateGateway = new ValidateParamRede();
+        let validateGateway = configRede();
 
         //Design Patter composite root:
         const { sendTransaction, searchTransaction, captureTransaction, cancelReversalTransaction } =

@@ -2,16 +2,16 @@ import { TypeTransaction } from '../../5-Shared/Enum/TypeTransaction.enum';
 
 export class TransactionRequest {
     constructor(
-        readonly numberRequest: string,
-        readonly kind: TypeTransaction,
-        readonly amount: number,
-        readonly installments: number,
-        readonly cardHolderName: string,
-        readonly cardNumber: string,
-        readonly expirationMonth: number,
-        readonly expirationYear: number,
-        readonly securityCode: string,
-        readonly softDescriptor: string,
+        public numberRequest: string,
+        public kind: TypeTransaction,
+        public amount: number,
+        public installments: number,
+        public cardHolderName: string,
+        public cardNumber: string,
+        public expirationMonth: number,
+        public expirationYear: number,
+        public securityCode: string,
+        public softDescriptor: string,
     ) {
         if (amount <= 0) {
             throw new Error('Valor ' + amount + ' deverá ser positivo');
