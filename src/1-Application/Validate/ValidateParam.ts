@@ -2,9 +2,15 @@ import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValida
 import { TransactionRequest } from '../Request/TransactionRequest';
 
 export abstract class ValidateParam {
-    static isValidSend(param: ParamValidateType, transactionRequest: TransactionRequest) {
-        if (transactionRequest.numberRequest.length > param.numberRequest_MAX) {
+    static isValidSend(param: ParamValidateType, request: TransactionRequest) {
+        if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
+        }
+
+        if (request.installments < 0 || request.installments > param.installments_MAX) {
+            throw new Error(
+                'Installments deverá possuir um número de ' + param.installments_MIN + ' até ' + param.installments_MAX,
+            );
         }
 
         /*
@@ -27,9 +33,6 @@ export abstract class ValidateParam {
             throw new Error();
         }
 
-        if (transactionRequest.installments) {
-            throw new Error();
-        }
 
         if (transactionRequest.kind) {
             throw new Error();

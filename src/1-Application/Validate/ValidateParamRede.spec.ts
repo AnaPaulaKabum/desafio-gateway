@@ -9,6 +9,8 @@ type SutTypes = { validateGateway: ParamValidateType; transactionSend: Transacti
 const makeSut = (): SutTypes => {
     let validateGateway: ParamValidateType = {
         numberRequest_MAX: 16,
+        installments_MIN: 2,
+        installments_MAX: 12,
     };
 
     let transactionSend = new TransactionRequest(
@@ -30,6 +32,34 @@ describe('isValidSend', () => {
     test('Should return error if numberRequest max_length', () => {
         let { validateGateway, transactionSend } = makeSut();
         transactionSend.numberRequest = '123456789123456789';
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+    test('Should return not error if numberRequest max_length', () => {
+        const { validateGateway, transactionSend } = makeSut();
+        expect(ValidateParam.isValidSend(validateGateway, transactionSend)).toBeFalsy();
+    });
+
+    test('Should return error if installments in < 0', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.installments = -5;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return error if installments installments_max +1', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.installments = validateGateway.numberRequest_MAX + 1;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return not error if installments correct', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.installments = validateGateway.numberRequest_MAX + 1;
         expect(() => {
             ValidateParam.isValidSend(validateGateway, transactionSend);
         }).toThrow();
