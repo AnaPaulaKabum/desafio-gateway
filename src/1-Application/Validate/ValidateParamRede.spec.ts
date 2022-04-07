@@ -11,6 +11,7 @@ const makeSut = (): SutTypes => {
         numberRequest_MAX: 16,
         installments_MIN: 2,
         installments_MAX: 12,
+        cardholderName_MAX: 5,
     };
 
     let transactionSend = new TransactionRequest(
@@ -18,7 +19,7 @@ const makeSut = (): SutTypes => {
         TypeTransaction.CREDIT,
         2099,
         2,
-        'John Snow',
+        'John',
         '5448280000000007',
         1,
         2021,
@@ -37,21 +38,12 @@ describe('isValidSend', () => {
         }).toThrow();
     });
 
-    test('Should return not error if expirationMonth correct ', () => {
-        const { validateGateway, transactionSend } = makeSut();
-        transactionSend.expirationMonth = 2;
-        expect(ValidateParam.isValidSend(validateGateway, transactionSend)).toBeFalsy();
-    });
-    test('Should return error if numberRequest max_length', () => {
+    test('Should return error if numberRequest > max_length', () => {
         let { validateGateway, transactionSend } = makeSut();
         transactionSend.numberRequest = '123456789123456789';
         expect(() => {
             ValidateParam.isValidSend(validateGateway, transactionSend);
         }).toThrow();
-    });
-    test('Should return not error if numberRequest max_length', () => {
-        const { validateGateway, transactionSend } = makeSut();
-        expect(ValidateParam.isValidSend(validateGateway, transactionSend)).toBeFalsy();
     });
 
     test('Should return error if installments in < 0', () => {
@@ -62,7 +54,7 @@ describe('isValidSend', () => {
         }).toThrow();
     });
 
-    test('Should return error if installments installments_max +1', () => {
+    test('Should return error if installments invalid (installments_max +1)', () => {
         let { validateGateway, transactionSend } = makeSut();
         transactionSend.installments = validateGateway.numberRequest_MAX + 1;
         expect(() => {
@@ -70,11 +62,16 @@ describe('isValidSend', () => {
         }).toThrow();
     });
 
-    test('Should return not error if installments correct', () => {
+    test('Should return error if cardHolderName invalid', () => {
         let { validateGateway, transactionSend } = makeSut();
-        transactionSend.installments = validateGateway.numberRequest_MAX + 1;
+        transactionSend.cardHolderName = 'card_holder_invalid';
         expect(() => {
             ValidateParam.isValidSend(validateGateway, transactionSend);
         }).toThrow();
+    });
+
+    test('Should return not error if correct param ', () => {
+        const { validateGateway, transactionSend } = makeSut();
+        expect(ValidateParam.isValidSend(validateGateway, transactionSend)).toBeFalsy();
     });
 });

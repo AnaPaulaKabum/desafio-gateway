@@ -16,14 +16,14 @@ export abstract class ValidateParam {
             );
         }
 
+        if (request.cardHolderName.length > param.cardholderName_MAX) {
+            throw new Error('CardHolderName deverá ter menos ' + param.cardholderName_MAX + ' caracter');
+        }
         /*
         if (transactionRequest.amount) {
             throw new Error();
         }
 
-        if (transactionRequest.cardHolderName) {
-            throw new Error();
-        }
 
         if (transactionRequest.cardNumber) {
             throw new Error();
