@@ -3,6 +3,9 @@ import { TransactionRequest } from '../Request/TransactionRequest';
 
 export abstract class ValidateParam {
     static isValidSend(param: ParamValidateType, request: TransactionRequest) {
+        if (request.expirationMonth < 1 || request.expirationMonth > 12) {
+            throw new Error('Mes deverá ser representando por 1 a 12');
+        }
         if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
         }
@@ -23,9 +26,6 @@ export abstract class ValidateParam {
         }
 
         if (transactionRequest.cardNumber) {
-            throw new Error();
-        }
-        if (transactionRequest.expirationMonth) {
             throw new Error();
         }
 

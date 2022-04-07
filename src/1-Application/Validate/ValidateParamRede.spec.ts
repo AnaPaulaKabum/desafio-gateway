@@ -29,6 +29,19 @@ const makeSut = (): SutTypes => {
 };
 
 describe('isValidSend', () => {
+    test('Should return error if expirationMonth invalid', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.expirationMonth = -1;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return not error if expirationMonth correct ', () => {
+        const { validateGateway, transactionSend } = makeSut();
+        transactionSend.expirationMonth = 2;
+        expect(ValidateParam.isValidSend(validateGateway, transactionSend)).toBeFalsy();
+    });
     test('Should return error if numberRequest max_length', () => {
         let { validateGateway, transactionSend } = makeSut();
         transactionSend.numberRequest = '123456789123456789';
