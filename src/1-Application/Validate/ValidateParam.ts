@@ -23,6 +23,10 @@ export abstract class ValidateParam {
             throw new Error('CardSecurityCode deverá ter menos 4 caracter');
         }
 
+        if (request.cardNumber.length > 19) {
+            throw new Error('CardNumber deverá ter menos 19 caracteres');
+        }
+
         if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
         }
@@ -37,8 +41,8 @@ export abstract class ValidateParam {
             throw new Error('CardHolderName deverá ter menos ' + param.cardholderName_MAX + ' caracter');
         }
 
-        if (request.cardNumber.length > 19) {
-            throw new Error('CardNumber deverá ter menos 19 caracteres');
+        if (request.softDescriptor.length > param.softDescriptor_MAX) {
+            throw new Error('SoftDescriptor deverá ter menos ' + param.softDescriptor_MAX + ' caracter');
         }
 
         /*
@@ -53,12 +57,7 @@ export abstract class ValidateParam {
         if (transactionRequest.kind) {
             throw new Error();
         }
-
-
-
-        if (transactionRequest.softDescriptor) {
-            throw new Error();
-        }*/
+        */
     }
     /*isValidCapture(): boolean {
         throw new Error('Method not implemented.');

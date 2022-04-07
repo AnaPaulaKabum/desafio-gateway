@@ -11,6 +11,7 @@ const makeSut = (): SutTypes => {
         installments_MIN: 2,
         installments_MAX: 12,
         cardholderName_MAX: 5,
+        softDescriptor_MAX: 10,
     };
 
     let transactionSend = new TransactionRequest(
@@ -23,7 +24,7 @@ const makeSut = (): SutTypes => {
         1,
         2025,
         '123',
-        'Compra na loja XXX',
+        'LOJA XXX',
     );
     return { validateGateway, transactionSend };
 };
@@ -76,6 +77,14 @@ describe('isValidSend', () => {
         }).toThrow();
     });
 
+    test('Should return error if cardNumber invalid', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.cardNumber = '012345678901234567890';
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
     test('Should return error if numberRequest > max_length', () => {
         let { validateGateway, transactionSend } = makeSut();
         transactionSend.numberRequest = '123456789123456789';
@@ -108,9 +117,9 @@ describe('isValidSend', () => {
         }).toThrow();
     });
 
-    test('Should return error if cardNumber invalid', () => {
+    test('Should return error if softDescriptor invalid', () => {
         let { validateGateway, transactionSend } = makeSut();
-        transactionSend.cardNumber = '012345678901234567890';
+        transactionSend.softDescriptor = 'soft_descriptr_invalid';
         expect(() => {
             ValidateParam.isValidSend(validateGateway, transactionSend);
         }).toThrow();
