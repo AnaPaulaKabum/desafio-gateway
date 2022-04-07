@@ -10,7 +10,7 @@ export class TransactionRequest {
         public cardNumber: string,
         public expirationMonth: number,
         public expirationYear: number,
-        public securityCode: string,
+        public cardSecurityCode: string,
         public softDescriptor: string,
     ) {
         if (amount <= 0) {

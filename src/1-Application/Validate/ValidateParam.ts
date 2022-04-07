@@ -18,6 +18,11 @@ export abstract class ValidateParam {
         if (request.expirationYear < new Date().getFullYear() - 1) {
             throw new Error('Não poderá ser inferior ao ano atual');
         }
+
+        if (request.cardSecurityCode.length > 4) {
+            throw new Error('CardSecurityCode deverá ter menos 4 caracter');
+        }
+
         if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
         }
@@ -48,9 +53,7 @@ export abstract class ValidateParam {
             throw new Error();
         }
 
-        if (transactionRequest.securityCode) {
-            throw new Error();
-        }
+
 
         if (transactionRequest.softDescriptor) {
             throw new Error();
