@@ -37,15 +37,16 @@ export abstract class ValidateParam {
             throw new Error('CardHolderName deverá ter menos ' + param.cardholderName_MAX + ' caracter');
         }
 
+        if (request.cardNumber.length > 19) {
+            throw new Error('CardNumber deverá ter menos 19 caracteres');
+        }
+
         /*
         if (transactionRequest.amount) {
             throw new Error();
         }
 
 
-        if (transactionRequest.cardNumber) {
-            throw new Error();
-        }
 
 
 

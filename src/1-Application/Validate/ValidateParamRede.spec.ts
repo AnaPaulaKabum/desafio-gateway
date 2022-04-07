@@ -108,6 +108,14 @@ describe('isValidSend', () => {
         }).toThrow();
     });
 
+    test('Should return error if cardNumber invalid', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.cardNumber = '012345678901234567890';
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
     test('Should return not error if correct param ', () => {
         const { validateGateway, transactionSend } = makeSut();
         expect(ValidateParam.isValidSend(validateGateway, transactionSend)).toBeFalsy();
