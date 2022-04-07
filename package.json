@@ -6,6 +6,7 @@
     "type": "module",
     "scripts": {
         "test": "jest",
+        "test:cov": "jest --coverage",
         "start": "tsc && node app/dist/js/app.js"
     },
     "author": "",
