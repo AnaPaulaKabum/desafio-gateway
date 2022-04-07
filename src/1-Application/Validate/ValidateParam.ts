@@ -6,6 +6,18 @@ export abstract class ValidateParam {
         if (request.expirationMonth < 1 || request.expirationMonth > 12) {
             throw new Error('Mes deverá ser representando por 1 a 12');
         }
+
+        if (request.expirationYear < 1) {
+            throw new Error('Deverá ser representado por números positivos');
+        }
+
+        if (request.expirationYear.toFixed().length != 4) {
+            throw new Error('ExpirationYear deverá ser escrito com 4 digitos.');
+        }
+
+        if (request.expirationYear < new Date().getFullYear() - 1) {
+            throw new Error('Não poderá ser inferior ao ano atual');
+        }
         if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
         }
@@ -19,6 +31,7 @@ export abstract class ValidateParam {
         if (request.cardHolderName.length > param.cardholderName_MAX) {
             throw new Error('CardHolderName deverá ter menos ' + param.cardholderName_MAX + ' caracter');
         }
+
         /*
         if (transactionRequest.amount) {
             throw new Error();
@@ -29,9 +42,6 @@ export abstract class ValidateParam {
             throw new Error();
         }
 
-        if (transactionRequest.expirationYear) {
-            throw new Error();
-        }
 
 
         if (transactionRequest.kind) {
@@ -46,7 +56,7 @@ export abstract class ValidateParam {
             throw new Error();
         }*/
     }
-    isValidCapture(): boolean {
+    /*isValidCapture(): boolean {
         throw new Error('Method not implemented.');
     }
     isValidSearch(): boolean {
@@ -54,5 +64,5 @@ export abstract class ValidateParam {
     }
     isValidCancel(): boolean {
         throw new Error('Method not implemented.');
-    }
+    }*/
 }

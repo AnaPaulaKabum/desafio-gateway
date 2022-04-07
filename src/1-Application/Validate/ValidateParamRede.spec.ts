@@ -1,7 +1,6 @@
 import { TypeTransaction } from '../../5-Shared/Enum/TypeTransaction.enum';
 import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValidateType';
 import { TransactionRequest } from '../Request/TransactionRequest';
-import { configRede } from './Rede';
 import { ValidateParam } from './ValidateParam';
 
 type SutTypes = { validateGateway: ParamValidateType; transactionSend: TransactionRequest };
@@ -22,7 +21,7 @@ const makeSut = (): SutTypes => {
         'John',
         '5448280000000007',
         1,
-        2021,
+        2025,
         '123',
         'Compra na loja XXX',
     );
@@ -30,9 +29,40 @@ const makeSut = (): SutTypes => {
 };
 
 describe('isValidSend', () => {
+    test('Should return error if expirationMonth negative', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.expirationMonth = -2;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
     test('Should return error if expirationMonth invalid', () => {
         let { validateGateway, transactionSend } = makeSut();
-        transactionSend.expirationMonth = -1;
+        transactionSend.expirationMonth = 13;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return error if expirationYear negative', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.expirationYear = -2022;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return error if expirationYear invalid', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.expirationYear = 155;
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return error if expirationYear invalid', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.expirationYear = 2020;
         expect(() => {
             ValidateParam.isValidSend(validateGateway, transactionSend);
         }).toThrow();
