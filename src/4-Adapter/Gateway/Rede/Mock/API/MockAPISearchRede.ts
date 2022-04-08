@@ -1,5 +1,5 @@
 export abstract class MockAPISearchRede {
-    static search(paramNumberRequest: string): Promise<any> {
+    static searchNumberRequest(paramNumberRequest: string): Promise<any> {
         const returnSearch = {
             requestDateTime: '2017-03-12T08:54:00.000-03:00',
             authorization: {
@@ -57,6 +57,13 @@ export abstract class MockAPISearchRede {
             ],
         };
 
+        return new Promise(function (resolve) {
+            resolve(returnSearch);
+        });
+    }
+
+    static searchTid(paramNumberRequest: string): Promise<any> {
+        const returnSearch = {};
         return new Promise(function (resolve) {
             resolve(returnSearch);
         });

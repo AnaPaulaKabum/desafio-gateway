@@ -26,6 +26,10 @@ export class PaymentGatewaysController {
 
     public searchTransactions(searchRequest: SearchRequest): Promise<TransactionComplete> {
         console.log('.Controller');
+
+        if (!searchRequest.numberRequest && !searchRequest.tid) {
+            throw new Error('Parametros invalidos');
+        }
         return this.searchTransaction.execute(MapperTransactionRequest.toSearchDTO(searchRequest));
     }
 

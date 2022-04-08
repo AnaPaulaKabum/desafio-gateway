@@ -13,8 +13,8 @@ import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
-import { SearchRequest } from '../../../1-Application/Request/SearchRequest.js';
 import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
+import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO.js';
 
 export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -27,10 +27,15 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(searchRequest: SearchRequest): Promise<TransactionComplete> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<TransactionComplete> {
         console.log('..searchTransaction(Adapter)');
-        const returnAPI = await MockAPISearchRede.search(searchRequest.numberRequest);
 
+        let returnAPI;
+        if (!searchRequest.numberRequest) {
+            returnAPI = await MockAPISearchRede.searchNumberRequest(searchRequest.numberRequest);
+        } else {
+            returnAPI = await MockAPISearchRede.searchTid(searchRequest.tid);
+        }
         return new Promise(function (resolve) {
             resolve(MapperSearch.toTransactionComplete(returnAPI));
         });

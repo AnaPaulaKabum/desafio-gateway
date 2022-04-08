@@ -3,12 +3,12 @@ import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogReposit
 import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
-import { SearchRequest } from '../../1-Application/Request/SearchRequest.js';
+import { SearchTransactionDTO } from '../../5-Shared/DTO/SearchTransactionDTO.js';
 
 export class SearchTransaction {
     constructor(private readonly gateway: IGateways, private readonly repositoryLog: ILogRepository) {}
 
-    public async execute(searchRequest: SearchRequest): Promise<TransactionComplete> {
+    public async execute(searchRequest: SearchTransactionDTO): Promise<TransactionComplete> {
         try {
             console.log('..SearchTransaction(usescases)');
             const resultado = this.gateway.searchTransaction(searchRequest);
