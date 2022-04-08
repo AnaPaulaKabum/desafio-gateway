@@ -1,12 +1,12 @@
 import { plainToInstance } from 'class-transformer';
-import { Refund } from '../../../../../3-Domain/Entity/Transaction/Refund.js';
+import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse.js';
 
 export abstract class MapperCancel {
-    static toCancelTransaction(Json: any, numberRequest: string): Refund {
+    static toCancelTransaction(Json: any, numberRequest: string): RefundOrder {
         let object = plainToInstance(CancelTransactionResponse, Json);
 
-        let transactionCancel = new Refund();
+        let transactionCancel = new RefundOrder();
         transactionCancel.numberRequest = numberRequest;
         transactionCancel.tid = object.tid;
         transactionCancel.nsu = object.nsu;

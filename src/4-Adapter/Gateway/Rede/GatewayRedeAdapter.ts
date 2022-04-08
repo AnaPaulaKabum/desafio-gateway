@@ -12,7 +12,7 @@ import { MockAPICancelRede } from './Mock/API/MockAPICancelRede.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
+import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
 import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO.js';
 
@@ -53,7 +53,7 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async cancelReversalTransaction(numberRequest: string): Promise<Refund> {
+    async cancelReversalTransaction(numberRequest: string): Promise<RefundOrder> {
         console.log('..cancelReversalTransaction(Adapter)');
         const returnAPI = await MockAPICancelRede.cancel(numberRequest);
 

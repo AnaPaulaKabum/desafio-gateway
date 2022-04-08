@@ -5,7 +5,7 @@ import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';
+import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
 import { FactoryDTO } from '../Factory/FactoryDTO.js';
 import { SearchRequest } from '../Request/SearchRequest.js';
@@ -38,7 +38,7 @@ export class PaymentGatewaysController {
         return this.captureTransaction.execute(FactoryDTO.toCaptureDTO(captureRequest));
     }
 
-    public cancelReversalTransactions(paramNumberRequest: string): Promise<Refund> {
+    public cancelReversalTransactions(paramNumberRequest: string): Promise<RefundOrder> {
         console.log('.Controller');
         return this.cancelReversalTransaction.execute(paramNumberRequest);
     }

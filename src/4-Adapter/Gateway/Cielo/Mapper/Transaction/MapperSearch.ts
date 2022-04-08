@@ -4,7 +4,7 @@ import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransa
 import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
-import { Refund } from '../../../../../3-Domain/Entity/Transaction/Refund.js';
+import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
 
 export abstract class MapperSearch {
@@ -43,7 +43,7 @@ export abstract class MapperSearch {
         }
 
         if (object.Payment.VoidedAmount > 0) {
-            transactionSearchResponse.refund = new Refund();
+            transactionSearchResponse.refund = new RefundOrder();
             transactionSearchResponse.refund.id = '';
             transactionSearchResponse.refund.amount = object.Payment.VoidedAmount;
             transactionSearchResponse.refund.date = object.Payment.VoidedDate;

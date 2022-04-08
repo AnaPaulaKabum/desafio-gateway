@@ -1,4 +1,4 @@
-export class Refund {
+export class RefundOrder {
     numberRequest: string;
     date: Date;
     id: string;

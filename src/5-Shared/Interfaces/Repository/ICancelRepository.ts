@@ -1,5 +1,5 @@
-import { Refund } from '../../../3-Domain/Entity/Transaction/Refund';
+import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder';
 
 export interface ICancelRepository {
-    save(capture: Refund): Promise<any>;
+    save(capture: RefundOrder): Promise<any>;
 }

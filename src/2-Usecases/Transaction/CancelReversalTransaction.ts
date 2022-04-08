@@ -8,7 +8,7 @@ import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { ICancelRepository } from '../../5-Shared/Interfaces/Repository/ICancelRepository.js';
-import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';
+import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder.js';
 
 export class CancelReversalTransaction {
     constructor(
@@ -19,7 +19,7 @@ export class CancelReversalTransaction {
         private readonly mail: IMail,
     ) {}
 
-    async execute(numberRequest: string): Promise<Refund> {
+    async execute(numberRequest: string): Promise<RefundOrder> {
         try {
             const transaction = await this.repositoryTransaction.findOne(numberRequest);
 

@@ -1,5 +1,5 @@
 import { CaptureOrder } from './CaptureOrder.js';
-import { Refund } from './Refund.js';
+import { RefundOrder } from './RefundOrder.js';
 import { Transaction } from './Transaction.js';
 
 class Card {
@@ -17,7 +17,7 @@ export class TransactionComplete {
     transaction: Transaction;
     capture: CaptureOrder;
     card: Card;
-    refund: Refund;
+    refund: RefundOrder;
 
     constructor() {
         this.transaction = new Transaction();

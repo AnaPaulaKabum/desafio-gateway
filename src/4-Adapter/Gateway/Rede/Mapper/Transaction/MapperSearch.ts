@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { Refund } from '../../../../../3-Domain/Entity/Transaction/Refund.js';
+import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
@@ -41,7 +41,7 @@ export abstract class MapperSearch {
         }
 
         if (object.refunds.amount > 0) {
-            transactionSearchResponse.refund = new Refund();
+            transactionSearchResponse.refund = new RefundOrder();
             transactionSearchResponse.refund.amount = object.refunds.amount;
             transactionSearchResponse.refund.date = object.refunds.dateTime;
             transactionSearchResponse.refund.id = object.refunds.refundId;
