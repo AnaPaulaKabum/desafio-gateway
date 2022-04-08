@@ -25,6 +25,7 @@ export abstract class MapperTransactionRequest {
 
     static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTO {
         const searchTransaction = new SearchTransactionDTO();
+
         searchTransaction.numberRequest = searchTransaction.numberRequest;
 
         return searchTransaction;
