@@ -1,4 +1,4 @@
-import { Capture } from './Capture.js';
+import { CaptureOrder } from './CaptureOrder.js';
 import { Refund } from './Refund.js';
 import { Transaction } from './Transaction.js';
 
@@ -15,7 +15,7 @@ class Card {
 
 export class TransactionComplete {
     transaction: Transaction;
-    capture: Capture;
+    capture: CaptureOrder;
     card: Card;
     refund: Refund;
 

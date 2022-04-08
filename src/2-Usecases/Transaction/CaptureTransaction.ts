@@ -6,7 +6,7 @@ import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITr
 import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
 import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
-import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { ICaptureRepository } from '../../5-Shared/Interfaces/Repository/ICaptureRepository.js';
 import { CaptureRequest } from '../../1-Application/Request/CaptureRequest.js';
 import { CaptureTransactionDTO } from '../../5-Shared/DTO/CaptureTransactionDTO.js';
@@ -20,7 +20,7 @@ export class CaptureTransaction {
         private readonly mail: IMail,
     ) {}
 
-    public async execute(captureDTO: CaptureTransactionDTO): Promise<Capture> {
+    public async execute(captureDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
         try {
             console.log('..SendTransaction(UseCases)');
 

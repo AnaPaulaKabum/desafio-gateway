@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { Refund } from '../../../../../3-Domain/Entity/Transaction/Refund.js';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
@@ -32,7 +32,7 @@ export abstract class MapperSearch {
         transactionSearchResponse.card.name = '';
 
         if (object.capture.amount > 0) {
-            transactionSearchResponse.capture = new Capture();
+            transactionSearchResponse.capture = new CaptureOrder();
             transactionSearchResponse.capture.amount = object.capture.amount;
             transactionSearchResponse.capture.date = object.capture.dateTime;
             transactionSearchResponse.capture.nsu = object.capture.nsu;

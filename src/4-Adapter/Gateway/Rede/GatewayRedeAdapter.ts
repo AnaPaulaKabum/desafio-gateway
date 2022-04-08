@@ -11,7 +11,7 @@ import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MockAPICancelRede } from './Mock/API/MockAPICancelRede.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
-import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
 import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
 import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO.js';
@@ -41,7 +41,7 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<Capture> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
         console.log('..captureTransaction(Adapter)');
         const returnAPI = await MockAPICaptureRede.capture(
             captureTransactionDTO.numberRequest,

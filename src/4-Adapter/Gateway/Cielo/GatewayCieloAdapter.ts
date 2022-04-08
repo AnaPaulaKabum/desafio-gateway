@@ -11,12 +11,12 @@ import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptur
 import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch.js';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
-import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
-import { SearchRequest } from '../../../1-Application/Request/SearchRequest.js';
 import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
+import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO.js';
 
 export class GatewayCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -27,7 +27,7 @@ export class GatewayCieloAdapter implements IGateways {
         return this.sendDebitTransaction(transaction);
     }
 
-    async searchTransaction(searchRequest: SearchRequest): Promise<TransactionComplete> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<TransactionComplete> {
         console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockAPISearchCielo.search(searchRequest.numberRequest);
 
@@ -36,7 +36,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<Capture> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
         console.log('..captureTransaction(Adapter)');
         let transactionCaptureRequest = new TransactionCieloCaptureRequest();
         transactionCaptureRequest.amount = captureTransactionDTO.amount;

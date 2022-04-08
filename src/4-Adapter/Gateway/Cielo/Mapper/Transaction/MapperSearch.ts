@@ -2,7 +2,7 @@ import { plainToInstance } from 'class-transformer';
 import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse.js';
 import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
-import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { Refund } from '../../../../../3-Domain/Entity/Transaction/Refund.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
@@ -34,7 +34,7 @@ export abstract class MapperSearch {
         transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;
 
         if (object.Payment.CapturedAmount > 0) {
-            transactionSearchResponse.capture = new Capture();
+            transactionSearchResponse.capture = new CaptureOrder();
             transactionSearchResponse.capture.amount = object.Payment.CapturedAmount;
             transactionSearchResponse.capture.date = object.Payment.CapturedDate;
             transactionSearchResponse.capture.numberRequest = object.MerchantOrderId;

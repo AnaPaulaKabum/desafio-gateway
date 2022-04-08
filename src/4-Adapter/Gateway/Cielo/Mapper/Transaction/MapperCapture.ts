@@ -1,12 +1,12 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureCieloTransaction } from '../../Response/CaptureCieloTransactionResponse.js';
 import { TransactionCieloCaptureRequest } from '../../Request/TransactionCieloCaptureRequest.js';
-import { Capture } from '../../../../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 
 export abstract class MapperCapture {
-    static toCapture(Json: any, requestCapture: TransactionCieloCaptureRequest): Capture {
+    static toCapture(Json: any, requestCapture: TransactionCieloCaptureRequest): CaptureOrder {
         let object = plainToInstance(CaptureCieloTransaction, Json);
-        let capture = new Capture();
+        let capture = new CaptureOrder();
 
         capture.amount = requestCapture.amount;
         capture.numberRequest = requestCapture.paymentId;

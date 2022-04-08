@@ -4,7 +4,7 @@ import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransactio
 import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
 import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
-import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
 import { FactoryDTO } from '../Factory/FactoryDTO.js';
@@ -33,7 +33,7 @@ export class PaymentGatewaysController {
         return this.searchTransaction.execute(FactoryDTO.toSearchDTO(searchRequest));
     }
 
-    public captureTransactions(captureRequest: CaptureRequest): Promise<Capture> {
+    public captureTransactions(captureRequest: CaptureRequest): Promise<CaptureOrder> {
         console.log('.Controller');
         return this.captureTransaction.execute(FactoryDTO.toCaptureDTO(captureRequest));
     }

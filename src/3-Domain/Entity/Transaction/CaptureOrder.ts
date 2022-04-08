@@ -1,4 +1,4 @@
-export class Capture {
+export class CaptureOrder {
     numberRequest: string;
     amount: number;
     date: Date;

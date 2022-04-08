@@ -1,5 +1,5 @@
-import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
+import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 
 export interface ICaptureRepository {
-    save(capture: Capture): Promise<any>;
+    save(capture: CaptureOrder): Promise<any>;
 }
