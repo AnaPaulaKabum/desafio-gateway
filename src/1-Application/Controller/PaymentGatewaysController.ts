@@ -3,7 +3,7 @@ import { CaptureTransaction } from '../../2-Usecases/Transaction/CaptureTransact
 import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransaction.js';
 import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
 import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { SearchTransactionOrder } from '../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
 import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
@@ -24,7 +24,7 @@ export class PaymentGatewaysController {
         return await this.sendTransaction.execute(FactoryDTO.toTrasactionDTO(createTransaction));
     }
 
-    public searchTransactions(searchRequest: SearchRequest): Promise<TransactionComplete> {
+    public searchTransactions(searchRequest: SearchRequest): Promise<SearchTransactionOrder> {
         console.log('.Controller');
 
         if (!searchRequest.numberRequest && !searchRequest.tid) {

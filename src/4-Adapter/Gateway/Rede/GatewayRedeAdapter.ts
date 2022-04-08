@@ -10,7 +10,7 @@ import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
 import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
 import { MockAPICancelRede } from './Mock/API/MockAPICancelRede.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
-import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { SearchTransactionOrder } from '../../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
 import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder.js';
 import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
@@ -27,7 +27,7 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<TransactionComplete> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
         console.log('..searchTransaction(Adapter)');
 
         let returnAPI;

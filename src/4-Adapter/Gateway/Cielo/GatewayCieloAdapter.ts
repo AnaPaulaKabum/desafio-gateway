@@ -8,7 +8,7 @@ import { MockAPICaptureCielo } from './Mock/API/MockAPICaptureCielo.js';
 import { MockAPISearchCielo } from './Mock/API/MockAPISearchCielo.js';
 import { MockAPISendCielo } from './Mock/API/MockAPISendCielo.js';
 import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest.js';
-import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/TransactionComplete.js';
+import { SearchTransactionOrder } from '../../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch.js';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
 import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
@@ -27,7 +27,7 @@ export class GatewayCieloAdapter implements IGateways {
         return this.sendDebitTransaction(transaction);
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<TransactionComplete> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
         console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockAPISearchCielo.search(searchRequest.numberRequest);
 

@@ -13,7 +13,7 @@ class Card {
     }
 }
 
-export class TransactionComplete {
+export class SearchTransactionOrder {
     transaction: TransactionOrder;
     capture: CaptureOrder;
     card: Card;
