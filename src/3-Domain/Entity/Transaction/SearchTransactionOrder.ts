@@ -1,5 +1,5 @@
 import { CaptureOrder } from './CaptureOrder.js';
-import { Card } from './ObjectValue/Card.js';
+import { Card } from './ValueObject/Card.js';
 import { RefundOrder } from './RefundOrder.js';
 import { TransactionOrder } from './TransactionOrder.js';
 
