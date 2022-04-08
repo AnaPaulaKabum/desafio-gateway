@@ -3,7 +3,7 @@ import { IMail } from '../../5-Shared/Interfaces/Mail/IMail.js';
 import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
@@ -20,7 +20,7 @@ export class SendTransaction {
         private readonly mail: IMail,
     ) {}
 
-    async execute(transaction: TransactionDTO): Promise<Transaction> {
+    async execute(transaction: TransactionDTO): Promise<TransactionOrder> {
         try {
             console.log('..SendTransaction(UseCases)');
 

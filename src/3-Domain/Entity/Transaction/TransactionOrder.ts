@@ -1,7 +1,7 @@
 import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../5-Shared/Enum/TypeTransaction.enum.js';
 
-export class Transaction {
+export class TransactionOrder {
     numberRequest: string;
     tid: string;
     kind: TypeTransaction;

@@ -1,13 +1,13 @@
 import { plainToInstance } from 'class-transformer';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
-import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse.js';
 import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse.js';
 
 export abstract class MapperSend {
-    static toTransaction(Json: any, typeTransaction: TypeTransaction): Transaction {
-        let transaction = new Transaction();
+    static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {
+        let transaction = new TransactionOrder();
         if (typeTransaction === TypeTransaction.CREDIT) {
             let object = plainToInstance(SendCreditCieloTransitionResponse, Json);
 

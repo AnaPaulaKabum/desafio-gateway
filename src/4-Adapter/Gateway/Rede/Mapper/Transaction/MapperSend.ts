@@ -1,14 +1,14 @@
 import { plainToInstance } from 'class-transformer';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
-import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse.js';
 
 export abstract class MapperSend {
-    static toTransaction(Json: any, typeTransaction: TypeTransaction): Transaction {
+    static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {
         let object = plainToInstance(SendTransitionResponse, Json);
 
-        let transaction = new Transaction();
+        let transaction = new TransactionOrder();
 
         transaction.tid = object.brandTid;
         transaction.numberRequest = object.reference;

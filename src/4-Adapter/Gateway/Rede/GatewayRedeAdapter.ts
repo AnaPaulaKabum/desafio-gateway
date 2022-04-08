@@ -1,5 +1,5 @@
 import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede.js';
-import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
 import { MockAPISendRede } from './Mock/API/MockAPISendRede.js';
 import { MapperSend } from './Mapper/Transaction/MapperSend.js';
@@ -17,7 +17,7 @@ import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionD
 import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO.js';
 
 export class GatewayRedeAdapter implements IGateways {
-    async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
+    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
         console.log('..sendTransaction(Adapter)');
         const transactionRedeRequest = MapperTrasactionRede.toTransactionRede(transaction);
         const returnAPI = await MockAPISendRede.send(transactionRedeRequest);

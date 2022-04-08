@@ -4,7 +4,7 @@ import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { ICancelRepository } from '../../5-Shared/Interfaces/Repository/ICancelRepository.js';
@@ -39,11 +39,11 @@ export class CancelReversalTransaction {
         }
     }
 
-    private isNoFinished(transaction: Transaction) {
+    private isNoFinished(transaction: TransactionOrder) {
         return transaction.status !== StatusTransaction.FINNALY;
     }
 
-    private isValidDate(transaction: Transaction) {
+    private isValidDate(transaction: TransactionOrder) {
         return true;
     }
 }

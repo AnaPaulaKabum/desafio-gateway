@@ -1,6 +1,6 @@
 import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction.js';
 import { ITransactionRepository } from '../../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
-import { Transaction } from '../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder.js';
 
 export class TransactionRepository implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
@@ -8,13 +8,13 @@ export class TransactionRepository implements ITransactionRepository {
             resolve(StatusTransaction.NO_CAPTURE);
         });
     }
-    findOne(numberRequest: string): Promise<Transaction> {
+    findOne(numberRequest: string): Promise<TransactionOrder> {
         return new Promise(function (resolve) {
-            resolve(new Transaction());
+            resolve(new TransactionOrder());
         });
     }
 
-    save(transaction: Transaction): Promise<any> {
+    save(transaction: TransactionOrder): Promise<any> {
         return new Promise(function (resolve) {
             resolve(console.log('...salvando transaction'));
         });

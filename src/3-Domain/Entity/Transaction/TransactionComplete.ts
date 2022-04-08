@@ -1,6 +1,6 @@
 import { CaptureOrder } from './CaptureOrder.js';
 import { RefundOrder } from './RefundOrder.js';
-import { Transaction } from './Transaction.js';
+import { TransactionOrder } from './TransactionOrder.js';
 
 class Card {
     number: string;
@@ -14,13 +14,13 @@ class Card {
 }
 
 export class TransactionComplete {
-    transaction: Transaction;
+    transaction: TransactionOrder;
     capture: CaptureOrder;
     card: Card;
     refund: RefundOrder;
 
     constructor() {
-        this.transaction = new Transaction();
+        this.transaction = new TransactionOrder();
         this.card = new Card();
     }
 

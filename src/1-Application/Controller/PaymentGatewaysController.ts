@@ -2,7 +2,7 @@ import { CancelReversalTransaction } from '../../2-Usecases/Transaction/CancelRe
 import { CaptureTransaction } from '../../2-Usecases/Transaction/CaptureTransaction.js';
 import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransaction.js';
 import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
-import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { TransactionComplete } from '../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder.js';
@@ -19,7 +19,7 @@ export class PaymentGatewaysController {
         private readonly cancelReversalTransaction: CancelReversalTransaction,
     ) {}
 
-    public async sendTransactions(createTransaction: TransactionRequest): Promise<Transaction> {
+    public async sendTransactions(createTransaction: TransactionRequest): Promise<TransactionOrder> {
         console.log('.Controller');
         return await this.sendTransaction.execute(FactoryDTO.toTrasactionDTO(createTransaction));
     }

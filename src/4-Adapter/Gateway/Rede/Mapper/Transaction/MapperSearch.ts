@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
 import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { Transaction } from '../../../../../3-Domain/Entity/Transaction/Transaction.js';
+import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder.js';
 import { TransactionComplete } from '../../../../../3-Domain/Entity/Transaction/TransactionComplete.js';
 import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
 import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
@@ -12,7 +12,7 @@ export abstract class MapperSearch {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
         let transactionSearchResponse = new TransactionComplete();
-        transactionSearchResponse.transaction = new Transaction();
+        transactionSearchResponse.transaction = new TransactionOrder();
         transactionSearchResponse.transaction.tid = object.authorization.tid;
         transactionSearchResponse.transaction.amount = object.authorization.amount;
         transactionSearchResponse.transaction.installments = object.authorization.installments;
