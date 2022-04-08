@@ -14,7 +14,7 @@ import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepos
 import { SearchRequest } from './1-Application/Request/SearchRequest.js';
 import { CaptureRequest } from './1-Application/Request/CaptureRequest.js';
 import { TransactionRequest } from './1-Application/Request/TransactionRequest.js';
-import { configRede } from './4-Adapter/Gateway/Rede/Rede.js';
+import { configRede } from './4-Adapter/Gateway/Rede/configRede.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {
