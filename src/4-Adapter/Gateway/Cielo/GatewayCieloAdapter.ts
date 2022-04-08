@@ -16,6 +16,7 @@ import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo.js';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
 import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
 import { SearchRequest } from '../../../1-Application/Request/SearchRequest.js';
+import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
 
 export class GatewayCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -35,11 +36,11 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(numberRequest: string, amount: number): Promise<Capture> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<Capture> {
         console.log('..captureTransaction(Adapter)');
         let transactionCaptureRequest = new TransactionCieloCaptureRequest();
-        transactionCaptureRequest.amount = amount;
-        transactionCaptureRequest.paymentId = numberRequest;
+        transactionCaptureRequest.amount = captureTransactionDTO.amount;
+        transactionCaptureRequest.paymentId = captureTransactionDTO.numberRequest;
 
         let returnAPI = await MockAPICaptureCielo.captureTotal(transactionCaptureRequest);
 

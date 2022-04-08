@@ -14,6 +14,7 @@ import { TransactionComplete } from '../../../3-Domain/Entity/Transaction/Transa
 import { Capture } from '../../../3-Domain/Entity/Transaction/Capture.js';
 import { Refund } from '../../../3-Domain/Entity/Transaction/Refund.js';
 import { SearchRequest } from '../../../1-Application/Request/SearchRequest.js';
+import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
 
 export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<Transaction> {
@@ -35,12 +36,15 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(numberRequest: string, amount: number): Promise<Capture> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<Capture> {
         console.log('..captureTransaction(Adapter)');
-        const returnAPI = await MockAPICaptureRede.capture(numberRequest, amount);
+        const returnAPI = await MockAPICaptureRede.capture(
+            captureTransactionDTO.numberRequest,
+            captureTransactionDTO.amount,
+        );
 
         return new Promise(function (resolve) {
-            resolve(MapperCapture.toCapture(returnAPI, amount));
+            resolve(MapperCapture.toCapture(returnAPI, captureTransactionDTO.amount));
         });
     }
 

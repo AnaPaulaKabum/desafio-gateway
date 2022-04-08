@@ -31,7 +31,7 @@ export class PaymentGatewaysController {
 
     public captureTransactions(captureRequest: CaptureRequest): Promise<Capture> {
         console.log('.Controller');
-        return this.captureTransaction.execute(captureRequest.numberRequest, captureRequest.amount);
+        return this.captureTransaction.execute(MapperTransactionRequest.toCaptureDTO(captureRequest));
     }
 
     public cancelReversalTransactions(paramNumberRequest: string): Promise<Refund> {

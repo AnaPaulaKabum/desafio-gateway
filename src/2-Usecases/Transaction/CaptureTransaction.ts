@@ -8,6 +8,8 @@ import { Action } from '../../3-Domain/Entity/Transaction/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
 import { ICaptureRepository } from '../../5-Shared/Interfaces/Repository/ICaptureRepository.js';
+import { CaptureRequest } from '../../1-Application/Request/CaptureRequest.js';
+import { CaptureTransactionDTO } from '../../5-Shared/DTO/CaptureTransactionDTO.js';
 
 export class CaptureTransaction {
     constructor(
@@ -18,13 +20,13 @@ export class CaptureTransaction {
         private readonly mail: IMail,
     ) {}
 
-    public async execute(numberRequest: string, amount: number): Promise<Capture> {
+    public async execute(captureDTO: CaptureTransactionDTO): Promise<Capture> {
         try {
             console.log('..SendTransaction(UseCases)');
 
-            if (await this.isValidToCapture(numberRequest)) {
-                const captureTranstion = this.gateway.captureTransaction(numberRequest, amount);
-                await this.repositoryTransaction.updateStatus(numberRequest, StatusTransaction.CAPTURE);
+            if (await this.isValidToCapture(captureDTO.numberRequest)) {
+                const captureTranstion = this.gateway.captureTransaction(captureDTO);
+                await this.repositoryTransaction.updateStatus(captureDTO.numberRequest, StatusTransaction.CAPTURE);
                 await this.repositoryCapture.save(await captureTranstion);
                 await this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTranstion;
