@@ -45,14 +45,11 @@ export abstract class ValidateParam {
             throw new Error('SoftDescriptor deverá ter menos ' + param.softDescriptor_MAX + ' caracter');
         }
 
-        /*
-        if (transactionRequest.amount) {
-            throw new Error();
+        if (request.amount.toString().replace('.', '').length > param.amount_MAX) {
+            throw new Error('amount deverá ter menos ' + param.amount_MAX + ' caracteres');
         }
 
-
-
-
+        /*
 
         if (transactionRequest.kind) {
             throw new Error();

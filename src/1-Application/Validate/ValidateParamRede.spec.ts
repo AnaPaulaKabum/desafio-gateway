@@ -12,6 +12,7 @@ const makeSut = (): SutTypes => {
         installments_MAX: 12,
         cardholderName_MAX: 5,
         softDescriptor_MAX: 10,
+        amount_MAX: 4,
     };
 
     let transactionSend = new TransactionRequest(
@@ -120,6 +121,14 @@ describe('isValidSend', () => {
     test('Should return error if softDescriptor invalid', () => {
         let { validateGateway, transactionSend } = makeSut();
         transactionSend.softDescriptor = 'soft_descriptr_invalid';
+        expect(() => {
+            ValidateParam.isValidSend(validateGateway, transactionSend);
+        }).toThrow();
+    });
+
+    test('Should return error if amount invalid', () => {
+        let { validateGateway, transactionSend } = makeSut();
+        transactionSend.amount = 100.25;
         expect(() => {
             ValidateParam.isValidSend(validateGateway, transactionSend);
         }).toThrow();

@@ -4,4 +4,5 @@ export type ParamValidateType = {
     installments_MAX: number;
     cardholderName_MAX: number;
     softDescriptor_MAX: number;
+    amount_MAX: number;
 };
