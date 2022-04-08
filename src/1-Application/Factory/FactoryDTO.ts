@@ -5,7 +5,7 @@ import { CaptureRequest } from '../Request/CaptureRequest.js';
 import { SearchRequest } from '../Request/SearchRequest.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
 
-export abstract class MapperTransactionRequest {
+export abstract class FactoryDTO {
     static toTrasactionDTO(transactionRequest: TransactionRequest): TransactionDTO {
         const transaction = new TransactionDTO();
 

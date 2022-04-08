@@ -7,7 +7,7 @@ import { TransactionComplete } from '../../3-Domain/Entity/Transaction/Transacti
 import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
 import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
-import { MapperTransactionRequest } from '../Mapper/MapperTransactionRequest.js';
+import { FactoryDTO } from '../Factory/FactoryDTO.js';
 import { SearchRequest } from '../Request/SearchRequest.js';
 import { CaptureRequest } from '../Request/CaptureRequest.js';
 
@@ -21,7 +21,7 @@ export class PaymentGatewaysController {
 
     public async sendTransactions(createTransaction: TransactionRequest): Promise<Transaction> {
         console.log('.Controller');
-        return await this.sendTransaction.execute(MapperTransactionRequest.toTrasactionDTO(createTransaction));
+        return await this.sendTransaction.execute(FactoryDTO.toTrasactionDTO(createTransaction));
     }
 
     public searchTransactions(searchRequest: SearchRequest): Promise<TransactionComplete> {
@@ -30,12 +30,12 @@ export class PaymentGatewaysController {
         if (!searchRequest.numberRequest && !searchRequest.tid) {
             throw new Error('Parametros invalidos');
         }
-        return this.searchTransaction.execute(MapperTransactionRequest.toSearchDTO(searchRequest));
+        return this.searchTransaction.execute(FactoryDTO.toSearchDTO(searchRequest));
     }
 
     public captureTransactions(captureRequest: CaptureRequest): Promise<Capture> {
         console.log('.Controller');
-        return this.captureTransaction.execute(MapperTransactionRequest.toCaptureDTO(captureRequest));
+        return this.captureTransaction.execute(FactoryDTO.toCaptureDTO(captureRequest));
     }
 
     public cancelReversalTransactions(paramNumberRequest: string): Promise<Refund> {
