@@ -1,33 +1,31 @@
-import { TransactionRequest } from '../../../../1-Application/Request/TransactionRequest';
-import { TypeTransaction } from '../../../../5-Shared/Enum/TypeTransaction.enum';
+import { Card } from './Card';
 
-type SutTypes = { transactionSend: TransactionRequest };
-
-const makeSut = (): SutTypes => {
-    let transactionSend = new TransactionRequest(
-        'pedido123',
-        TypeTransaction.CREDIT,
-        2099,
-        2,
-        'John',
-        '5448280000000007',
-        1,
-        2025,
-        '123',
-        'LOJA XXX',
-    );
-    return { transactionSend };
+type SutTypes = {
+    number: string;
+    name: string;
+    expirationMonth: number;
+    expirationYear: number;
+    securityCode: string;
 };
 
-describe('ValidateParamTransaction - isValidSend', () => {
-    /* test('Should return error if expirationMonth negative', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.expirationMonth = -2;
+const makeSut = (): SutTypes => {
+    const number = '455187******0183';
+    const name = ' Teste';
+    const expirationMonth = 10;
+    const expirationYear = 2028;
+    const securityCode = '123';
+    return { number, name, expirationMonth, expirationYear, securityCode };
+};
+
+describe('Card - Validation', () => {
+    /*test('Should return error if expirationMonth negative', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+
         expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
-    test('Should return error if expirationMonth invalid', () => {
+    /*test('Should return error if expirationMonth invalid', () => {
         let { transactionSend } = makeSut();
         transactionSend.expirationMonth = 13;
         expect(() => {
@@ -75,8 +73,10 @@ describe('ValidateParamTransaction - isValidSend', () => {
         }).toThrow();
     });
 
-    test('Should return not error if correct param ', () => {
-        const { transactionSend } = makeSut();
-        expect(ValidateParamTransaction.isValidSend(transactionSend)).toBeFalsy();
-    });*/
+    */ test('Should return not error if correct param ', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        const card = Card.create(number, name, expirationMonth, expirationYear, securityCode);
+        expect(card).toBeTruthy();
+        expect(card).toBeInstanceOf(Card);
+    });
 });
