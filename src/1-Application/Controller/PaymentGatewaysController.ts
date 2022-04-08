@@ -26,7 +26,7 @@ export class PaymentGatewaysController {
 
     public searchTransactions(searchRequest: SearchRequest): Promise<TransactionComplete> {
         console.log('.Controller');
-        return this.searchTransaction.execute(searchRequest.numberRequest);
+        return this.searchTransaction.execute(MapperTransactionRequest.toSearchDTO(searchRequest));
     }
 
     public captureTransactions(captureRequest: CaptureRequest): Promise<Capture> {

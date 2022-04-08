@@ -1,4 +1,6 @@
+import { SearchTransactionDTO } from '../../5-Shared/DTO/SearchRequest.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
+import { SearchRequest } from '../Request/SearchRequest.js';
 import { TransactionRequest } from '../Request/TransactionRequest.js';
 
 export abstract class MapperTransactionRequest {
@@ -17,5 +19,12 @@ export abstract class MapperTransactionRequest {
         transaction.softDescriptor = transactionRequest.softDescriptor;
 
         return transaction;
+    }
+
+    static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTO {
+        const searchTransaction = new SearchTransactionDTO();
+        searchTransaction.numberRequest = searchTransaction.numberRequest;
+
+        return searchTransaction;
     }
 }
