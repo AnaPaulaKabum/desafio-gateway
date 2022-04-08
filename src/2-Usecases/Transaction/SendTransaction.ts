@@ -9,7 +9,6 @@ import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
 import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValidateType.js';
 import { ValidateParam } from './Validate/ValidateParam.js';
-import { ValidateParamTransaction } from '../../3-Domain/Entity/Transaction/Validate/ValidateParamTransaction.js';
 
 export class SendTransaction {
     constructor(
@@ -25,7 +24,6 @@ export class SendTransaction {
             console.log('..SendTransaction(UseCases)');
 
             ValidateParam.isValidSend(this.configGateway, transaction);
-            ValidateParamTransaction.isValidSend(transaction);
 
             if (await this.isValidToSend(transaction.numberRequest)) {
                 const transactionResult = await this.gateway.sendTransaction(transaction);

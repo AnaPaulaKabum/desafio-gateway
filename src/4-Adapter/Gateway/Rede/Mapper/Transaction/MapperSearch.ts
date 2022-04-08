@@ -28,8 +28,8 @@ export abstract class MapperSearch {
         transactionSearchResponse.transaction.nsu = object.authorization.nsu;
         transactionSearchResponse.transaction.status = StatusTransaction.NO_CAPTURE;
 
-        transactionSearchResponse.card.number = object.authorization.cardBin + object.authorization.last4;
-        transactionSearchResponse.card.name = '';
+        /*transactionSearchResponse.card.number = object.authorization.cardBin + object.authorization.last4;
+        transactionSearchResponse.card.name = '';*/
 
         if (object.capture.amount > 0) {
             transactionSearchResponse.capture = new CaptureOrder();

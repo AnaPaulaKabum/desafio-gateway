@@ -29,9 +29,9 @@ export abstract class MapperSearch {
         transactionSearchResponse.transaction.amount = object.Payment.Amount;
         transactionSearchResponse.transaction.status = StatusTransaction.NO_CAPTURE;
 
-        transactionSearchResponse.card.number = object.Payment.CreditCard.CardNumber;
+        /*transactionSearchResponse.card.number = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.card.brand = object.Payment.CreditCard.Brand;
-        transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;
+        transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;*/
 
         if (object.Payment.CapturedAmount > 0) {
             transactionSearchResponse.capture = new CaptureOrder();
