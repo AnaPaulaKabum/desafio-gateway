@@ -5,7 +5,7 @@ import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogReposit
 import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
 import { Transaction } from '../../3-Domain/Entity/Transaction/Transaction.js';
-import { Action } from '../../3-Domain/Entity/Transaction/Action.js';
+import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { ICancelRepository } from '../../5-Shared/Interfaces/Repository/ICancelRepository.js';
 import { Refund } from '../../3-Domain/Entity/Transaction/Refund.js';

@@ -4,7 +4,7 @@ import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction.js';
 import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
 import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
 import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { Action } from '../../3-Domain/Entity/Transaction/Action.js';
+import { Action } from '../../3-Domain/Entity/Log/Action.js';
 import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
 import { Capture } from '../../3-Domain/Entity/Transaction/Capture.js';
 import { ICaptureRepository } from '../../5-Shared/Interfaces/Repository/ICaptureRepository.js';
