@@ -48,13 +48,6 @@ export abstract class ValidateParam {
         if (request.amount.toString().replace('.', '').length > param.amount_MAX) {
             throw new Error('amount deverá ter menos ' + param.amount_MAX + ' caracteres');
         }
-
-        /*
-
-        if (transactionRequest.kind) {
-            throw new Error();
-        }
-        */
     }
     /*isValidCapture(): boolean {
         throw new Error('Method not implemented.');
