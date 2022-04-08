@@ -1,4 +1,4 @@
-import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValidateType';
+import { ParamValidateType } from '../../../5-Shared/Interfaces/Gateway/ParamValidateType';
 
 export const configRede = (): ParamValidateType => {
     const numberRequest_MAX = 16;

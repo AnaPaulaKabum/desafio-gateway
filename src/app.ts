@@ -14,7 +14,7 @@ import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepos
 import { SearchRequest } from './1-Application/Request/SearchRequest.js';
 import { CaptureRequest } from './1-Application/Request/CaptureRequest.js';
 import { TransactionRequest } from './1-Application/Request/TransactionRequest.js';
-import { configRede } from './1-Application/Validate/Rede.js';
+import { configRede } from './4-Adapter/Gateway/Rede/Rede.js';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number) {
@@ -64,8 +64,16 @@ export abstract class APP {
                 gateway = new GatewayCieloAdapter();
             }
 
+            let validateGateway = configRede();
+
             return {
-                sendTransaction: new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail),
+                sendTransaction: new SendTransaction(
+                    gateway,
+                    validateGateway,
+                    repositoryTransaction,
+                    repositoryLog,
+                    mail,
+                ),
                 searchTransaction: new SearchTransaction(gateway, repositoryLog),
                 captureTransaction: new CaptureTransaction(
                     gateway,
@@ -84,8 +92,6 @@ export abstract class APP {
             };
         };
 
-        let validateGateway = configRede();
-
         //Design Patter composite root:
         const { sendTransaction, searchTransaction, captureTransaction, cancelReversalTransaction } =
             TransactionServicesFactory();
@@ -94,7 +100,6 @@ export abstract class APP {
             searchTransaction,
             captureTransaction,
             cancelReversalTransaction,
-            validateGateway,
         );
 
         let result;

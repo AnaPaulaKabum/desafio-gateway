@@ -9,6 +9,6 @@ export class TransactionDTO {
     cardNumber: string;
     expirationMonth: number;
     expirationYear: number;
-    securityCode: string;
+    cardSecurityCode: string;
     softDescriptor: string;
 }

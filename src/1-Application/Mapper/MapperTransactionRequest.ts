@@ -13,7 +13,7 @@ export abstract class MapperTransactionRequest {
         transaction.cardNumber = transactionRequest.cardNumber;
         transaction.expirationMonth = transactionRequest.expirationMonth;
         transaction.expirationYear = transactionRequest.expirationYear;
-        transaction.securityCode = transactionRequest.cardSecurityCode;
+        transaction.cardSecurityCode = transactionRequest.cardSecurityCode;
         transaction.softDescriptor = transactionRequest.softDescriptor;
 
         return transaction;

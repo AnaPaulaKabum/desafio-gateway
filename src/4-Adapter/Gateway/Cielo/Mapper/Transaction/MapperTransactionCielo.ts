@@ -14,7 +14,7 @@ export abstract class MapperTransactionCielo {
         transactionCredit.creditCard.cardNumber = transaction.cardNumber;
         transactionCredit.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
         transactionCredit.creditCard.holder = transaction.cardHolderName;
-        transactionCredit.creditCard.securityCode = transaction.securityCode;
+        transactionCredit.creditCard.securityCode = transaction.cardSecurityCode;
 
         transactionCredit.isValid();
         return transactionCredit;
@@ -30,7 +30,7 @@ export abstract class MapperTransactionCielo {
         transactionDebit.creditCard.cardNumber = transaction.cardNumber;
         transactionDebit.creditCard.expirationDate = transaction.expirationMonth + '/' + transaction.expirationYear;
         transactionDebit.creditCard.holder = transaction.cardHolderName;
-        transactionDebit.creditCard.securityCode = transaction.securityCode;
+        transactionDebit.creditCard.securityCode = transaction.cardSecurityCode;
 
         transactionDebit.isValid();
         return transactionDebit;

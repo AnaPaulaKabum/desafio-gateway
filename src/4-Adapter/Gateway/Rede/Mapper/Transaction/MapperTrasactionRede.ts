@@ -13,7 +13,7 @@ export abstract class MapperTrasactionRede {
         transactionRede.cardNumber = transaction.cardNumber;
         transactionRede.expirationMonth = transaction.expirationMonth;
         transactionRede.expirationYear = transaction.expirationYear;
-        transactionRede.securityCode = transaction.securityCode;
+        transactionRede.securityCode = transaction.cardSecurityCode;
         transactionRede.softDescriptor = transaction.softDescriptor;
 
         return transactionRede;
