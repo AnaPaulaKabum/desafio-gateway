@@ -17,7 +17,7 @@ import { TransactionRequest } from './1-Application/Request/TransactionRequest.j
 import { configRede } from './4-Adapter/Gateway/Rede/configRede.js';
 
 export abstract class APP {
-    static async start(gatewayUses: number, methodUses: number) {
+    static async start(gatewayUses: number, methodUses: number, log: boolean): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
                 'pedido123',
@@ -118,18 +118,21 @@ export abstract class APP {
                 break;
         }
 
-        console.log('----------');
+        if (log) {
+            console.log('----------');
 
-        if (gatewayUses === 1) console.log('Resultado Rede: ');
-        else console.log('Resultado Cielo: ');
+            if (gatewayUses === 1) console.log('Resultado Rede: ');
+            else console.log('Resultado Cielo: ');
 
-        console.log(result);
+            console.log(result);
+        }
+        return result;
     }
 }
 
 const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
 let gatewayUses = 2; //1-Rede 2- Cielo
-APP.start(gatewayUses, methodUses);
+APP.start(gatewayUses, methodUses, true);
 
 //gatewayUses = 1 + 1;
 //APP.start(gatewayUses, methodUses);
