@@ -60,7 +60,7 @@ describe('Card - Validation', () => {
 
     test('Should return error if cardNumber invalid', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
-        securityCode = '012345678901234567890';
+        number = '012345678901234567890';
         expect(() => {
             Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
