@@ -78,7 +78,7 @@ export class Card {
         }
 
         if (securityCode.length > NUMBER_SECURITY_CODE_MAX) {
-            throw new Error('CardSecurityCode deverá ter menos 4 caracter');
+            throw new Error('CardSecurityCode deverá ter menos ' + NUMBER_SECURITY_CODE_MAX + ' caracter');
         }
 
         return new Card(number, name, expirationMonth, expirationYear, securityCode);
