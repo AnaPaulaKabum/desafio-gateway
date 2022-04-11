@@ -49,32 +49,24 @@ describe('Card - Validation', () => {
             Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
-    /*
-    test('Should return error if expirationYear invalid', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.expirationYear = 2020;
-        expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
-        }).toThrow();
-    });
 
     test('Should return error if cardSecurityCode invalid', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.cardSecurityCode = '12345';
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        securityCode = '12345';
         expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
     test('Should return error if cardNumber invalid', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.cardNumber = '012345678901234567890';
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        securityCode = '012345678901234567890';
         expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
-    */ test('Should return not error if correct param ', () => {
+    test('Should return not error if correct param ', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         const card = Card.create(number, name, expirationMonth, expirationYear, securityCode);
         expect(card).toBeTruthy();
