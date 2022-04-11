@@ -28,7 +28,7 @@ describe('Card - Validation', () => {
     });
     test('Should return error if expirationMonth invalid', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
-        expirationMonth = 13;
+        expirationMonth = 2019;
         expect(() => {
             Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
