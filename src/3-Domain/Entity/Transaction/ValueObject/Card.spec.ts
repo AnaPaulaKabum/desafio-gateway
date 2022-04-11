@@ -18,22 +18,23 @@ const makeSut = (): SutTypes => {
 };
 
 describe('Card - Validation', () => {
-    /*test('Should return error if expirationMonth negative', () => {
+    test('Should return error if expirationMonth negative', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        expirationMonth = -3;
 
         expect(() => {
             Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
-    /*test('Should return error if expirationMonth invalid', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.expirationMonth = 13;
+    test('Should return error if expirationMonth invalid', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        expirationMonth = 13;
         expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
-    test('Should return error if expirationYear negative', () => {
+    /*test('Should return error if expirationYear negative', () => {
         let { transactionSend } = makeSut();
         transactionSend.expirationYear = -2022;
         expect(() => {
