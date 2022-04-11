@@ -66,6 +66,14 @@ describe('Card - Validation', () => {
         }).toThrow();
     });
 
+    test('Should return error if name empty', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        name = '';
+        expect(() => {
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+        }).toThrow();
+    });
+
     test('Should return not error if correct param ', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         const card = Card.create(number, name, expirationMonth, expirationYear, securityCode);
