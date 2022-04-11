@@ -1,11 +1,43 @@
 export class Card {
+    private readonly _number: string;
+    private readonly _name: string;
+    private readonly _expirationMonth: number;
+    private readonly _expirationYear: number;
+    private readonly _securityCode: string;
+
     private constructor(
-        private readonly _number: string,
-        private readonly name: string,
-        private readonly expirationMonth: number,
-        private readonly expirationYear: number,
-        private readonly securityCode: string,
-    ) {}
+        number: string,
+        name: string,
+        expirationMonth: number,
+        expirationYear: number,
+        securityCode: string,
+    ) {
+        this._number = number;
+        this._name = name;
+        this._expirationMonth = expirationMonth;
+        this._expirationYear = expirationYear;
+        this._securityCode = securityCode;
+    }
+
+    get number(): string {
+        return this._number;
+    }
+
+    get name(): string {
+        return this._name;
+    }
+
+    get expirationMonth(): number {
+        return this._expirationMonth;
+    }
+
+    get expirationYear(): number {
+        return this._expirationYear;
+    }
+
+    get securityCode(): string {
+        return this._securityCode;
+    }
 
     static create(
         number: string,
