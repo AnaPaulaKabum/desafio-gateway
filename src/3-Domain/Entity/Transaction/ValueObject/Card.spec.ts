@@ -50,6 +50,14 @@ describe('Card - Validation', () => {
         }).toThrow();
     });
 
+    test('Should return error if expirationYear invalid', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        expirationYear = 2020;
+        expect(() => {
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+        }).toThrow();
+    });
+
     test('Should return error if cardSecurityCode invalid', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         securityCode = '12345';
