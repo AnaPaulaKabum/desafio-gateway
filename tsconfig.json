@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "app/dist/js",
-        "target": "ES6",
+        "target": "es2020",
         "noEmitOnError": true,
         "removeComments": true,
         "strictNullChecks": true,
@@ -9,5 +9,6 @@
         "moduleResolution": "node",
         "esModuleInterop": true
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*"],
+    "exclude": ["./*/**.spec.js"]
 }
