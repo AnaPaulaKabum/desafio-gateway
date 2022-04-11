@@ -34,22 +34,22 @@ describe('Card - Validation', () => {
         }).toThrow();
     });
 
-    /*test('Should return error if expirationYear negative', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.expirationYear = -2022;
+    test('Should return error if expirationYear negative', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        expirationYear = -2022;
         expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
     test('Should return error if expirationYear invalid', () => {
-        let { transactionSend } = makeSut();
-        transactionSend.expirationYear = 155;
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        expirationYear = 155;
         expect(() => {
-            ValidateParamTransaction.isValidSend(transactionSend);
+            Card.create(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
-
+    /*
     test('Should return error if expirationYear invalid', () => {
         let { transactionSend } = makeSut();
         transactionSend.expirationYear = 2020;
