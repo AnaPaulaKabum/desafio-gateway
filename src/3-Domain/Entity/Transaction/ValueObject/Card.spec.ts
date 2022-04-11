@@ -80,4 +80,15 @@ describe('Card - Validation', () => {
         expect(card).toBeTruthy();
         expect(card).toBeInstanceOf(Card);
     });
+
+    test('Should return not error if get param ', () => {
+        let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
+        const card = Card.create(number, name, expirationMonth, expirationYear, securityCode);
+        expect(card).toBeTruthy();
+        expect(card.number).toBe(number);
+        expect(card.name).toBe(name);
+        expect(card.expirationMonth).toBe(expirationMonth);
+        expect(card.expirationYear).toBe(expirationYear);
+        expect(card.securityCode).toBe(securityCode);
+    });
 });
