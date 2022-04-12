@@ -22,8 +22,6 @@ export class CaptureTransaction {
 
     public async execute(captureDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
         try {
-            console.log('..SendTransaction(UseCases)');
-
             if (await this.isValidToCapture(captureDTO.numberRequest)) {
                 const captureTranstion = this.gateway.captureTransaction(captureDTO);
                 await this.repositoryTransaction.updateStatus(captureDTO.numberRequest, StatusTransaction.CAPTURE);

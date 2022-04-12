@@ -21,8 +21,6 @@ export class SendTransaction {
 
     async execute(transaction: TransactionDTO): Promise<TransactionOrder> {
         try {
-            console.log('..SendTransaction(UseCases)');
-
             ValidateParam.isValidSend(this.configGateway, transaction);
 
             if (await this.isValidToSend(transaction.numberRequest)) {

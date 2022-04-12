@@ -10,7 +10,6 @@ export class SearchTransaction {
 
     public async execute(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
         try {
-            console.log('..SearchTransaction(usescases)');
             const resultado = this.gateway.searchTransaction(searchRequest);
             await this.repositoryLog.save(LogFactory.register(Action.SEARCH.toString()));
             return resultado;

@@ -130,9 +130,9 @@ export abstract class APP {
     }
 }
 
-const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
-let gatewayUses = 2; //1-Rede 2- Cielo
-APP.start(gatewayUses, methodUses, true);
+//const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
+//let gatewayUses = 2; //1-Rede 2- Cielo
+//APP.start(gatewayUses, methodUses, true);
 
 //gatewayUses = 1 + 1;
 //APP.start(gatewayUses, methodUses);

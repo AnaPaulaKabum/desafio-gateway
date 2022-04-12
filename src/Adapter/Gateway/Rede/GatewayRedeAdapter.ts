@@ -18,7 +18,6 @@ import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 
 export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        console.log('..sendTransaction(Adapter)');
         const transactionRedeRequest = MapperTrasactionRede.toTransactionRede(transaction);
         const returnAPI = await MockAPISendRede.send(transactionRedeRequest);
 
@@ -28,8 +27,6 @@ export class GatewayRedeAdapter implements IGateways {
     }
 
     async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
-        console.log('..searchTransaction(Adapter)');
-
         let returnAPI;
         if (!searchRequest.numberRequest) {
             returnAPI = await MockAPISearchRede.searchNumberRequest(searchRequest.numberRequest);
@@ -42,7 +39,6 @@ export class GatewayRedeAdapter implements IGateways {
     }
 
     async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
-        console.log('..captureTransaction(Adapter)');
         const returnAPI = await MockAPICaptureRede.capture(
             captureTransactionDTO.numberRequest,
             captureTransactionDTO.amount,
@@ -54,7 +50,6 @@ export class GatewayRedeAdapter implements IGateways {
     }
 
     async cancelReversalTransaction(numberRequest: string): Promise<RefundOrder> {
-        console.log('..cancelReversalTransaction(Adapter)');
         const returnAPI = await MockAPICancelRede.cancel(numberRequest);
 
         return new Promise(function (resolve) {
