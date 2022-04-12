@@ -22,7 +22,7 @@ export class CaptureOrder {
     static create(numberRequest: string, amount: number, date: Date, nsu: string) {
         if (amount > 0) {
             if (!date) throw new Error('Campo date é obrigatório quando possui valor na captura');
-            if (nsu === undefined) throw new Error('Campo nsu é obrigatório quando possui valor na captura');
+            if (!nsu) throw new Error('Campo nsu é obrigatório quando possui valor na captura');
             if (!numberRequest) throw new Error('Campo numRequest é obrigatório quando possui valor na captura');
         }
 

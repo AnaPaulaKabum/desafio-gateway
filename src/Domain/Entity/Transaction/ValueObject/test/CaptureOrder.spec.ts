@@ -17,6 +17,14 @@ const makeSut = (): SutTypes => {
 };
 
 describe('CaptureOrder', () => {
+    test('Should return error if nsu empty', () => {
+        let { numberRequest, amount, date, nsu } = makeSut();
+        nsu = '';
+
+        expect(() => {
+            CaptureOrder.create(numberRequest, amount, date, nsu);
+        }).toThrow();
+    });
     test('Should return not error if correct param', () => {
         let { numberRequest, amount, date, nsu } = makeSut();
         const transaction = CaptureOrder.create(numberRequest, amount, date, nsu);
