@@ -4,7 +4,7 @@ import { SearchTransaction } from '../../Usecases/Transaction/SearchTransaction'
 import { SendTransaction } from '../../Usecases/Transaction/SendTransaction';
 import { TransactionOrder } from '../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchTransactionOrder } from '../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../Domain/Entity/Transaction/CaptureOrder';
+import { CaptureOrder } from '../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { RefundOrder } from '../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { TransactionRequest } from '../Request/TransactionRequest';
 import { FactoryDTO } from '../Factory/FactoryDTO';

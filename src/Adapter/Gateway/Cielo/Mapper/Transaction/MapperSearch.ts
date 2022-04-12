@@ -2,7 +2,7 @@ import { plainToInstance } from 'class-transformer';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { RefundOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
@@ -34,11 +34,11 @@ export abstract class MapperSearch {
         transactionSearchResponse.card.name = object.Payment.CreditCard.Holder;*/
 
         if (object.Payment.CapturedAmount > 0) {
-            transactionSearchResponse.capture = new CaptureOrder();
+            /*transactionSearchResponse.capture = new CaptureOrder();
             transactionSearchResponse.capture.amount = object.Payment.CapturedAmount;
             transactionSearchResponse.capture.date = object.Payment.CapturedDate;
             transactionSearchResponse.capture.numberRequest = object.MerchantOrderId;
-            transactionSearchResponse.capture.nsu = '';
+            transactionSearchResponse.capture.nsu = '';*/
             //  transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
         }
 

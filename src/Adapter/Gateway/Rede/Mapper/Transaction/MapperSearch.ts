@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { RefundOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
@@ -51,11 +51,11 @@ export abstract class MapperSearch {
         );
 
         if (object.capture.amount > 0) {
-            transactionSearchResponse.capture = new CaptureOrder();
+            /*transactionSearchResponse.capture = new CaptureOrder();
             transactionSearchResponse.capture.amount = object.capture.amount;
             transactionSearchResponse.capture.date = object.capture.dateTime;
             transactionSearchResponse.capture.nsu = object.capture.nsu;
-            transactionSearchResponse.capture.numberRequest = object.authorization.reference;
+            transactionSearchResponse.capture.numberRequest = object.authorization.reference;*/
             status = StatusTransaction.CAPTURE;
         }
 

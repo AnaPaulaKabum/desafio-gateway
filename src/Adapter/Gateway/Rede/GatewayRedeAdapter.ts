@@ -11,7 +11,7 @@ import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MockAPICancelRede } from './Mock/API/MockAPICancelRede';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
+import { CaptureOrder } from '../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { RefundOrder } from '../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
