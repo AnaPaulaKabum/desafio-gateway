@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
+        "test:S": "jest --silent=true ",
         "test:cov": "jest --coverage",
         "start": "tsc && node app/dist/js/app.js"
     },
