@@ -8,7 +8,7 @@ import { TransactionOrder } from '../../Domain/Entity/Transaction/ValueObject/Tr
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { ICancelRepository } from '../../Shared/Interfaces/Repository/ICancelRepository';
-import { RefundOrder } from '../../Domain/Entity/Transaction/RefundOrder';
+import { RefundOrder } from '../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 
 export class CancelReversalTransaction {
     constructor(

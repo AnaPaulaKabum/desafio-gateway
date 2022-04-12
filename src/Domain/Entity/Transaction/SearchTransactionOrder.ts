@@ -1,6 +1,6 @@
 import { CaptureOrder } from './CaptureOrder';
 import { Card } from './ValueObject/Card';
-import { RefundOrder } from './RefundOrder';
+import { RefundOrder } from './ValueObject/RefundOrder';
 import { TransactionOrder } from './ValueObject/TransactionOrder';
 
 export class SearchTransactionOrder {
@@ -13,6 +13,6 @@ export class SearchTransactionOrder {
 
     isValid() {
         if (this.capture) this.capture.isValid();
-        if (this.refund) this.refund.isvalid();
+        // if (this.refund) this.refund.isvalid();
     }
 }

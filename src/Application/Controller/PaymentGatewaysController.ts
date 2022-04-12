@@ -5,7 +5,7 @@ import { SendTransaction } from '../../Usecases/Transaction/SendTransaction';
 import { TransactionOrder } from '../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchTransactionOrder } from '../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { CaptureOrder } from '../../Domain/Entity/Transaction/CaptureOrder';
-import { RefundOrder } from '../../Domain/Entity/Transaction/RefundOrder';
+import { RefundOrder } from '../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { TransactionRequest } from '../Request/TransactionRequest';
 import { FactoryDTO } from '../Factory/FactoryDTO';
 import { SearchRequest } from '../Request/SearchRequest';

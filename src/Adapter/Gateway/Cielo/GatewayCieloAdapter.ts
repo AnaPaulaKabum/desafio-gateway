@@ -14,7 +14,7 @@ import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
-import { RefundOrder } from '../../../Domain/Entity/Transaction/RefundOrder';
+import { RefundOrder } from '../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 
