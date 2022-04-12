@@ -6,30 +6,49 @@ import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
+import { Card } from '../../../../../Domain/Entity/Transaction/ValueObject/Card';
 
 export abstract class MapperSearch {
     static toTransactionComplete(Json: any): SearchTransactionOrder {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
         let transactionSearchResponse = new SearchTransactionOrder();
-        /* transactionSearchResponse.transaction = new TransactionOrder();
-        transactionSearchResponse.transaction.tid = object.authorization.tid;
-        transactionSearchResponse.transaction.amount = object.authorization.amount;
-        transactionSearchResponse.transaction.installments = object.authorization.installments;
-        transactionSearchResponse.transaction.message = object.authorization.returnMessage;
 
+        const tid = object.authorization.tid;
+        const amount = object.authorization.amount;
+        const installments = object.authorization.installments;
+        const message = object.authorization.returnMessage;
+        const numberRequest = object.authorization.reference;
+        const authorizationCode = object.authorization.authorizationCode;
+        const nsu = object.authorization.nsu;
+        let status = StatusTransaction.NO_CAPTURE;
+
+        let kind;
         if (object.authorization.kind === 'Credit') {
-            transactionSearchResponse.transaction.kind = TypeTransaction.CREDIT;
+            kind = TypeTransaction.CREDIT;
         } else if (object.authorization.kind === 'Debit') {
-            transactionSearchResponse.transaction.kind = TypeTransaction.DEBIT;
+            kind = TypeTransaction.DEBIT;
         }
-        transactionSearchResponse.transaction.numberRequest = object.authorization.reference;
-        transactionSearchResponse.transaction.authorizationCode = object.authorization.authorizationCode;
-        transactionSearchResponse.transaction.nsu = object.authorization.nsu;
-        transactionSearchResponse.transaction.status = StatusTransaction.NO_CAPTURE;
 
-        /*transactionSearchResponse.card.number = object.authorization.cardBin + object.authorization.last4;
-        transactionSearchResponse.card.name = '';*/
+        transactionSearchResponse.card = Card.create(
+            object.authorization.cardBin + object.authorization.last4,
+            'XXX',
+            1,
+            2025,
+            '123',
+        );
+
+        transactionSearchResponse.transaction = TransactionOrder.create(
+            numberRequest,
+            tid,
+            kind,
+            authorizationCode,
+            nsu,
+            status,
+            amount,
+            installments,
+            message,
+        );
 
         if (object.capture.amount > 0) {
             transactionSearchResponse.capture = new CaptureOrder();
@@ -37,7 +56,7 @@ export abstract class MapperSearch {
             transactionSearchResponse.capture.date = object.capture.dateTime;
             transactionSearchResponse.capture.nsu = object.capture.nsu;
             transactionSearchResponse.capture.numberRequest = object.authorization.reference;
-            //transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
+            status = StatusTransaction.CAPTURE;
         }
 
         if (object.refunds.amount > 0) {
@@ -45,7 +64,7 @@ export abstract class MapperSearch {
             transactionSearchResponse.refund.amount = object.refunds.amount;
             transactionSearchResponse.refund.date = object.refunds.dateTime;
             transactionSearchResponse.refund.id = object.refunds.refundId;
-            // transactionSearchResponse.transaction.status = StatusTransaction.CANCEL;
+            status = StatusTransaction.CANCEL;
         }
 
         transactionSearchResponse.isValid();
