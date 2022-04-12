@@ -1,5 +1,5 @@
 import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { MockAPISendRede } from './Mock/API/MockAPISendRede';
 import { MapperSend } from './Mapper/Transaction/MapperSend';

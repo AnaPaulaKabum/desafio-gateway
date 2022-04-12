@@ -1,6 +1,6 @@
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { MapperTransactionCielo } from './Mapper/Transaction/MapperTransactionCielo';

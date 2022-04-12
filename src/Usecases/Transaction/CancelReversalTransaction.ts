@@ -4,7 +4,7 @@ import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
 import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITransitionRepository';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
-import { TransactionOrder } from '../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { ICancelRepository } from '../../Shared/Interfaces/Repository/ICancelRepository';

@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { RefundOrder } from '../../../../../Domain/Entity/Transaction/RefundOrder';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
@@ -12,7 +12,7 @@ export abstract class MapperSearch {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
         let transactionSearchResponse = new SearchTransactionOrder();
-        transactionSearchResponse.transaction = new TransactionOrder();
+        /* transactionSearchResponse.transaction = new TransactionOrder();
         transactionSearchResponse.transaction.tid = object.authorization.tid;
         transactionSearchResponse.transaction.amount = object.authorization.amount;
         transactionSearchResponse.transaction.installments = object.authorization.installments;
@@ -37,7 +37,7 @@ export abstract class MapperSearch {
             transactionSearchResponse.capture.date = object.capture.dateTime;
             transactionSearchResponse.capture.nsu = object.capture.nsu;
             transactionSearchResponse.capture.numberRequest = object.authorization.reference;
-            transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
+            //transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
         }
 
         if (object.refunds.amount > 0) {
@@ -45,7 +45,7 @@ export abstract class MapperSearch {
             transactionSearchResponse.refund.amount = object.refunds.amount;
             transactionSearchResponse.refund.date = object.refunds.dateTime;
             transactionSearchResponse.refund.id = object.refunds.refundId;
-            transactionSearchResponse.transaction.status = StatusTransaction.CANCEL;
+            // transactionSearchResponse.transaction.status = StatusTransaction.CANCEL;
         }
 
         transactionSearchResponse.isValid();

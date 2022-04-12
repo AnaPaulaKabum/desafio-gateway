@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
@@ -12,7 +12,7 @@ export abstract class MapperSearch {
         let object = plainToInstance(SearchCieloTransactionResponse, Json);
 
         let transactionSearchResponse = new SearchTransactionOrder();
-        transactionSearchResponse.transaction = new TransactionOrder();
+        /*transactionSearchResponse.transaction = new TransactionOrder();
         transactionSearchResponse.transaction.numberRequest = object.MerchantOrderId;
 
         if (object.Payment.Type === 'CreditCard') {
@@ -27,7 +27,7 @@ export abstract class MapperSearch {
         transactionSearchResponse.transaction.authorizationCode = object.Payment.AuthorizationCode;
         transactionSearchResponse.transaction.nsu = object.Payment.ProofOfSale;
         transactionSearchResponse.transaction.amount = object.Payment.Amount;
-        transactionSearchResponse.transaction.status = StatusTransaction.NO_CAPTURE;
+        transactionSearchResponse.transaction.status = StatusTransaction.NO_CAPTURE;*/
 
         /*transactionSearchResponse.card.number = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.card.brand = object.Payment.CreditCard.Brand;
@@ -39,7 +39,7 @@ export abstract class MapperSearch {
             transactionSearchResponse.capture.date = object.Payment.CapturedDate;
             transactionSearchResponse.capture.numberRequest = object.MerchantOrderId;
             transactionSearchResponse.capture.nsu = '';
-            transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
+            //  transactionSearchResponse.transaction.status = StatusTransaction.CAPTURE;
         }
 
         if (object.Payment.VoidedAmount > 0) {
@@ -47,7 +47,7 @@ export abstract class MapperSearch {
             transactionSearchResponse.refund.id = '';
             transactionSearchResponse.refund.amount = object.Payment.VoidedAmount;
             transactionSearchResponse.refund.date = object.Payment.VoidedDate;
-            transactionSearchResponse.transaction.status = StatusTransaction.CANCEL;
+            //transactionSearchResponse.transaction.status = StatusTransaction.CANCEL;
         }
 
         transactionSearchResponse.isValid();

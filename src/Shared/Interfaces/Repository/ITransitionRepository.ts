@@ -1,4 +1,4 @@
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { StatusTransaction } from '../../Enum/StatusTransaction';
 
 export interface ITransactionRepository {

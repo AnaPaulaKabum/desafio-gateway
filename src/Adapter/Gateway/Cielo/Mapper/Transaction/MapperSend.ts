@@ -1,37 +1,54 @@
 import { plainToInstance } from 'class-transformer';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse';
 import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse';
 
 export abstract class MapperSend {
     static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {
-        let transaction = new TransactionOrder();
         if (typeTransaction === TypeTransaction.CREDIT) {
             let object = plainToInstance(SendCreditCieloTransitionResponse, Json);
 
-            transaction.numberRequest = object.Payment.PaymentId;
-            transaction.tid = object.Payment.Tid;
-            transaction.authorizationCode = object.Payment.AuthorizationCode;
-            transaction.nsu = object.Payment.ProofOfSale;
-            transaction.message = object.Payment.ReturnMessage;
-            transaction.amount = object.Payment.Amount;
-            transaction.installments = object.Payment.Installments;
-            transaction.status = StatusTransaction.NO_CAPTURE;
-        } else {
-            let object = plainToInstance(SendDebitTransitionResponse, Json);
-            transaction.numberRequest = object.Payment.PaymentId;
-            transaction.tid = object.Payment.Tid;
-            transaction.message = object.Payment.ReturnMessage;
-            transaction.amount = object.Payment.Amount;
-            transaction.installments = object.Payment.Installments;
-            transaction.status = StatusTransaction.NO_CAPTURE;
-            transaction.authorizationCode = '';
-            transaction.nsu = '';
+            const numberRequest = object.Payment.PaymentId;
+            const tid = object.Payment.Tid;
+            const authorizationCode = object.Payment.AuthorizationCode;
+            const nsu = object.Payment.ProofOfSale;
+            const amount = object.Payment.Amount;
+            const installments = object.Payment.Installments;
+            const message = object.Payment.ReturnMessage;
+
+            return TransactionOrder.create(
+                numberRequest,
+                tid,
+                typeTransaction,
+                authorizationCode,
+                nsu,
+                StatusTransaction.NO_CAPTURE,
+                amount,
+                installments,
+                message,
+            );
         }
-        transaction.kind = typeTransaction;
-        transaction.isValid();
-        return transaction;
+        let object = plainToInstance(SendDebitTransitionResponse, Json);
+        const numberRequest = object.Payment.PaymentId;
+        const tid = object.Payment.Tid;
+        const authorizationCode = '';
+        const nsu = '';
+        const message = object.Payment.ReturnMessage;
+        const amount = object.Payment.Amount;
+        const installments = object.Payment.Installments;
+
+        return TransactionOrder.create(
+            numberRequest,
+            tid,
+            typeTransaction,
+            authorizationCode,
+            nsu,
+            StatusTransaction.NO_CAPTURE,
+            amount,
+            installments,
+            message,
+        );
     }
 }

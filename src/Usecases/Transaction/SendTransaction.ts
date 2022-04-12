@@ -3,7 +3,7 @@ import { IMail } from '../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITransitionRepository';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
-import { TransactionOrder } from '../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { TransactionDTO } from '../../Shared/DTO/TransactionDTO';
