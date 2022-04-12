@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureCieloTransaction } from '../../Response/CaptureCieloTransactionResponse.js';
-import { TransactionCieloCaptureRequest } from '../../Request/TransactionCieloCaptureRequest.js';
-import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
+import { CaptureCieloTransaction } from '../../Response/CaptureCieloTransactionResponse';
+import { TransactionCieloCaptureRequest } from '../../Request/TransactionCieloCaptureRequest';
+import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder';
 
 export abstract class MapperCapture {
     static toCapture(Json: any, requestCapture: TransactionCieloCaptureRequest): CaptureOrder {

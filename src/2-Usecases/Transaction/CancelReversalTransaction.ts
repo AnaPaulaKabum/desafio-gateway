@@ -1,14 +1,14 @@
-import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways.js';
-import { IMail } from '../../5-Shared/Interfaces/Mail/IMail.js';
-import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction.js';
-import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
-import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
-import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { Action } from '../../3-Domain/Entity/Log/Action.js';
-import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
-import { ICancelRepository } from '../../5-Shared/Interfaces/Repository/ICancelRepository.js';
-import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder.js';
+import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways';
+import { IMail } from '../../5-Shared/Interfaces/Mail/IMail';
+import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction';
+import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository';
+import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail';
+import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder';
+import { Action } from '../../3-Domain/Entity/Log/Action';
+import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory';
+import { ICancelRepository } from '../../5-Shared/Interfaces/Repository/ICancelRepository';
+import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder';
 
 export class CancelReversalTransaction {
     constructor(

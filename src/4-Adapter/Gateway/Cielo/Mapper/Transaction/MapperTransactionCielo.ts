@@ -1,6 +1,6 @@
-import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO.js';
-import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
-import { SendTransactionCielo } from '../../Request/SendTransactionCielo.js';
+import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO';
+import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum';
+import { SendTransactionCielo } from '../../Request/SendTransactionCielo';
 
 export abstract class MapperTransactionCielo {
     static generateCredit(transaction: TransactionDTO): SendTransactionCielo {

@@ -1,15 +1,15 @@
-import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways.js';
-import { IMail } from '../../5-Shared/Interfaces/Mail/IMail.js';
-import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction.js';
-import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
-import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
-import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { Action } from '../../3-Domain/Entity/Log/Action.js';
-import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
-import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { ICaptureRepository } from '../../5-Shared/Interfaces/Repository/ICaptureRepository.js';
-import { CaptureRequest } from '../../1-Application/Request/CaptureRequest.js';
-import { CaptureTransactionDTO } from '../../5-Shared/DTO/CaptureTransactionDTO.js';
+import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways';
+import { IMail } from '../../5-Shared/Interfaces/Mail/IMail';
+import { StatusTransaction } from '../../5-Shared/Enum/StatusTransaction';
+import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository';
+import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail';
+import { Action } from '../../3-Domain/Entity/Log/Action';
+import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory';
+import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder';
+import { ICaptureRepository } from '../../5-Shared/Interfaces/Repository/ICaptureRepository';
+import { CaptureRequest } from '../../1-Application/Request/CaptureRequest';
+import { CaptureTransactionDTO } from '../../5-Shared/DTO/CaptureTransactionDTO';
 
 export class CaptureTransaction {
     constructor(

@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse.js';
+import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder';
+import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse';
 
 export abstract class MapperCancel {
     static toCancelTransaction(Json: any, numberRequest: string): RefundOrder {

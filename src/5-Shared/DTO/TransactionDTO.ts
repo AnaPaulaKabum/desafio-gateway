@@ -1,4 +1,4 @@
-import { TypeTransaction } from '../Enum/TypeTransaction.enum.js';
+import { TypeTransaction } from '../Enum/TypeTransaction.enum';
 
 export class TransactionDTO {
     numberRequest: string;

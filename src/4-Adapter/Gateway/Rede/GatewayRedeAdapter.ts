@@ -1,20 +1,20 @@
-import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede.js';
-import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways.js';
-import { MockAPISendRede } from './Mock/API/MockAPISendRede.js';
-import { MapperSend } from './Mapper/Transaction/MapperSend.js';
-import { MockAPISearchRede } from './Mock/API/MockAPISearchRede.js';
-import { MapperSearch } from './Mapper/Transaction/MapperSearch.js';
-import { MockAPICaptureRede } from './Mock/API/MockAPICaptureRede.js';
-import { MapperCapture } from './Mapper/Transaction/MapperCapture.js';
-import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO.js';
-import { MockAPICancelRede } from './Mock/API/MockAPICancelRede.js';
-import { MapperCancel } from './Mapper/Transaction/MapperCancel.js';
-import { SearchTransactionOrder } from '../../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
-import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO.js';
-import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO.js';
+import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede';
+import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder';
+import { IGateways } from '../../../5-Shared/Interfaces/Gateway/IGateways';
+import { MockAPISendRede } from './Mock/API/MockAPISendRede';
+import { MapperSend } from './Mapper/Transaction/MapperSend';
+import { MockAPISearchRede } from './Mock/API/MockAPISearchRede';
+import { MapperSearch } from './Mapper/Transaction/MapperSearch';
+import { MockAPICaptureRede } from './Mock/API/MockAPICaptureRede';
+import { MapperCapture } from './Mapper/Transaction/MapperCapture';
+import { TransactionDTO } from '../../../5-Shared/DTO/TransactionDTO';
+import { MockAPICancelRede } from './Mock/API/MockAPICancelRede';
+import { MapperCancel } from './Mapper/Transaction/MapperCancel';
+import { SearchTransactionOrder } from '../../../3-Domain/Entity/Transaction/SearchTransactionOrder';
+import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder';
+import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder';
+import { CaptureTransactionDTO } from '../../../5-Shared/DTO/CaptureTransactionDTO';
+import { SearchTransactionDTO } from '../../../5-Shared/DTO/SearchTransactionDTO';
 
 export class GatewayRedeAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {

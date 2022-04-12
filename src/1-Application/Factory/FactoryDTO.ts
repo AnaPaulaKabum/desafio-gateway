@@ -1,9 +1,9 @@
-import { CaptureTransactionDTO } from '../../5-Shared/DTO/CaptureTransactionDTO.js';
-import { SearchTransactionDTO } from '../../5-Shared/DTO/SearchTransactionDTO.js';
-import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
-import { CaptureRequest } from '../Request/CaptureRequest.js';
-import { SearchRequest } from '../Request/SearchRequest.js';
-import { TransactionRequest } from '../Request/TransactionRequest.js';
+import { CaptureTransactionDTO } from '../../5-Shared/DTO/CaptureTransactionDTO';
+import { SearchTransactionDTO } from '../../5-Shared/DTO/SearchTransactionDTO';
+import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO';
+import { CaptureRequest } from '../Request/CaptureRequest';
+import { SearchRequest } from '../Request/SearchRequest';
+import { TransactionRequest } from '../Request/TransactionRequest';
 
 export abstract class FactoryDTO {
     static toTrasactionDTO(transactionRequest: TransactionRequest): TransactionDTO {

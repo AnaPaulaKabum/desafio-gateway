@@ -1,4 +1,4 @@
-import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest.js';
+import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest';
 
 export abstract class MockAPISendRede {
     static send(transaction: TransactionRedeCreateRequest): Promise<any> {

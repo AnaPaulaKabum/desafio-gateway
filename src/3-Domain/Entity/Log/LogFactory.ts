@@ -1,5 +1,5 @@
-import { Log } from './Log.js';
-import { StatusLog } from '../../../5-Shared/Enum/StatusLog.js';
+import { Log } from './Log';
+import { StatusLog } from '../../../5-Shared/Enum/StatusLog';
 
 export abstract class LogFactory {
     static success(message: string): Log {

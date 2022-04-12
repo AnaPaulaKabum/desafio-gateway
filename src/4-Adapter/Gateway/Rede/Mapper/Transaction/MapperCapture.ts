@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse.js';
+import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder';
+import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse';
 
 export abstract class MapperCapture {
     static toCapture(Json: any, amount: number): CaptureOrder {

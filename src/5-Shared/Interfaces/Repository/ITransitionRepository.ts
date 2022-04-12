@@ -1,5 +1,5 @@
-import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { StatusTransaction } from '../../Enum/StatusTransaction.js';
+import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder';
+import { StatusTransaction } from '../../Enum/StatusTransaction';
 
 export interface ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction>;

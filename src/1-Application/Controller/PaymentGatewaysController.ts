@@ -1,15 +1,15 @@
-import { CancelReversalTransaction } from '../../2-Usecases/Transaction/CancelReversalTransaction.js';
-import { CaptureTransaction } from '../../2-Usecases/Transaction/CaptureTransaction.js';
-import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransaction.js';
-import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction.js';
-import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { SearchTransactionOrder } from '../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
-import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { TransactionRequest } from '../Request/TransactionRequest.js';
-import { FactoryDTO } from '../Factory/FactoryDTO.js';
-import { SearchRequest } from '../Request/SearchRequest.js';
-import { CaptureRequest } from '../Request/CaptureRequest.js';
+import { CancelReversalTransaction } from '../../2-Usecases/Transaction/CancelReversalTransaction';
+import { CaptureTransaction } from '../../2-Usecases/Transaction/CaptureTransaction';
+import { SearchTransaction } from '../../2-Usecases/Transaction/SearchTransaction';
+import { SendTransaction } from '../../2-Usecases/Transaction/SendTransaction';
+import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder';
+import { SearchTransactionOrder } from '../../3-Domain/Entity/Transaction/SearchTransactionOrder';
+import { CaptureOrder } from '../../3-Domain/Entity/Transaction/CaptureOrder';
+import { RefundOrder } from '../../3-Domain/Entity/Transaction/RefundOrder';
+import { TransactionRequest } from '../Request/TransactionRequest';
+import { FactoryDTO } from '../Factory/FactoryDTO';
+import { SearchRequest } from '../Request/SearchRequest';
+import { CaptureRequest } from '../Request/CaptureRequest';
 
 export class PaymentGatewaysController {
     constructor(

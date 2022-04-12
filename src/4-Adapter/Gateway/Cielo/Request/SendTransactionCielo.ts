@@ -1,5 +1,5 @@
-import { TypeTransaction } from '../../../../5-Shared/Enum/TypeTransaction.enum.js';
-import { BrandCard } from '../Enum/BrandCard.js';
+import { TypeTransaction } from '../../../../5-Shared/Enum/TypeTransaction.enum';
+import { BrandCard } from '../Enum/BrandCard';
 
 class Payment {
     type: string;

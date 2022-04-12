@@ -1,5 +1,5 @@
-import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { ICancelRepository } from '../../../5-Shared/Interfaces/Repository/ICancelRepository.js';
+import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder';
+import { ICancelRepository } from '../../../5-Shared/Interfaces/Repository/ICancelRepository';
 
 export class CancelRepository implements ICancelRepository {
     save(capture: RefundOrder): Promise<any> {

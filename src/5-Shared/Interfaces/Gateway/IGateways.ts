@@ -1,10 +1,10 @@
-import { TransactionDTO } from '../../DTO/TransactionDTO.js';
-import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { SearchTransactionOrder } from '../../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
-import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { SearchRequest } from '../../../1-Application/Request/SearchRequest.js';
-import { CaptureTransactionDTO } from '../../DTO/CaptureTransactionDTO.js';
+import { TransactionDTO } from '../../DTO/TransactionDTO';
+import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder';
+import { SearchTransactionOrder } from '../../../3-Domain/Entity/Transaction/SearchTransactionOrder';
+import { CaptureOrder } from '../../../3-Domain/Entity/Transaction/CaptureOrder';
+import { RefundOrder } from '../../../3-Domain/Entity/Transaction/RefundOrder';
+import { SearchRequest } from '../../../1-Application/Request/SearchRequest';
+import { CaptureTransactionDTO } from '../../DTO/CaptureTransactionDTO';
 
 export interface IGateways {
     sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder>;

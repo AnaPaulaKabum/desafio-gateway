@@ -1,7 +1,7 @@
-import { CaptureOrder } from './CaptureOrder.js';
-import { Card } from './ValueObject/Card.js';
-import { RefundOrder } from './RefundOrder.js';
-import { TransactionOrder } from './TransactionOrder.js';
+import { CaptureOrder } from './CaptureOrder';
+import { Card } from './ValueObject/Card';
+import { RefundOrder } from './RefundOrder';
+import { TransactionOrder } from './TransactionOrder';
 
 export class SearchTransactionOrder {
     transaction: TransactionOrder;

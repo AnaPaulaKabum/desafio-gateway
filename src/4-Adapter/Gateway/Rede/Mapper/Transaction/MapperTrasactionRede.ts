@@ -1,5 +1,5 @@
-import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO.js';
-import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest.js';
+import { TransactionDTO } from '../../../../../5-Shared/DTO/TransactionDTO';
+import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest';
 
 export abstract class MapperTrasactionRede {
     static toTransactionRede(transaction: TransactionDTO): TransactionRedeCreateRequest {

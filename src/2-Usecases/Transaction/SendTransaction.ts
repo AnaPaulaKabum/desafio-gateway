@@ -1,14 +1,14 @@
-import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways.js';
-import { IMail } from '../../5-Shared/Interfaces/Mail/IMail.js';
-import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository.js';
-import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
-import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail.js';
-import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { Action } from '../../3-Domain/Entity/Log/Action.js';
-import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory.js';
-import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO.js';
-import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValidateType.js';
-import { ValidateParam } from './Validate/ValidateParam.js';
+import { IGateways } from '../../5-Shared/Interfaces/Gateway/IGateways';
+import { IMail } from '../../5-Shared/Interfaces/Mail/IMail';
+import { ILogRepository } from '../../5-Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../5-Shared/Interfaces/Repository/ITransitionRepository';
+import { FieldMail } from '../../3-Domain/Entity/Mail/FieldMail';
+import { TransactionOrder } from '../../3-Domain/Entity/Transaction/TransactionOrder';
+import { Action } from '../../3-Domain/Entity/Log/Action';
+import { LogFactory } from '../../3-Domain/Entity/Log/LogFactory';
+import { TransactionDTO } from '../../5-Shared/DTO/TransactionDTO';
+import { ParamValidateType } from '../../5-Shared/Interfaces/Gateway/ParamValidateType';
+import { ValidateParam } from './Validate/ValidateParam';
 
 export class SendTransaction {
     constructor(

@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "app/dist/js",
         "target": "es2020",
+        "outDir": "app/dist/js",
         "noEmitOnError": true,
         "removeComments": true,
         "strictNullChecks": true,
         "experimentalDecorators": true,
-        "moduleResolution": "node",
+        "module": "commonjs",
         "esModuleInterop": true
     },
     "include": ["src/**/*"],

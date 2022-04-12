@@ -1,4 +1,4 @@
-import { StatusLog } from '../../../5-Shared/Enum/StatusLog.js';
+import { StatusLog } from '../../../5-Shared/Enum/StatusLog';
 
 export class Log {
     public message: string;

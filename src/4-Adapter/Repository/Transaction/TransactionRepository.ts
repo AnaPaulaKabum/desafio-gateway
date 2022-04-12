@@ -1,6 +1,6 @@
-import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction.js';
-import { ITransactionRepository } from '../../../5-Shared/Interfaces/Repository/ITransitionRepository.js';
-import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder.js';
+import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction';
+import { ITransactionRepository } from '../../../5-Shared/Interfaces/Repository/ITransitionRepository';
+import { TransactionOrder } from '../../../3-Domain/Entity/Transaction/TransactionOrder';
 
 export class TransactionRepository implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {

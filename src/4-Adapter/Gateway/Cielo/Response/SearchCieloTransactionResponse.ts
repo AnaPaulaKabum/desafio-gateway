@@ -1,4 +1,4 @@
-import { Link } from './Link.js';
+import { Link } from './Link';
 
 class Customer {
     Name: string;

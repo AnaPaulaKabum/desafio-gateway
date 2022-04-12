@@ -1,20 +1,20 @@
-import { LogRepository } from './4-Adapter/Repository/Log/LogRepository.js';
-import { Mail } from './4-Adapter/Mail/Mail.js';
-import { PaymentGatewaysController } from './1-Application/Controller/PaymentGatewaysController.js';
-import { GatewayRedeAdapter } from './4-Adapter/Gateway/Rede/GatewayRedeAdapter.js';
-import { SendTransaction } from './2-Usecases/Transaction/SendTransaction.js';
-import { SearchTransaction } from './2-Usecases/Transaction/SearchTransaction.js';
-import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction.js';
-import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction.js';
-import { TransactionRepository } from './4-Adapter/Repository/Transaction/TransactionRepository.js';
-import { GatewayCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewayCieloAdapter.js';
-import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum.js';
-import { CaptureRepository } from './4-Adapter/Repository/Transaction/CaptureRepository.js';
-import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepository.js';
-import { SearchRequest } from './1-Application/Request/SearchRequest.js';
-import { CaptureRequest } from './1-Application/Request/CaptureRequest.js';
-import { TransactionRequest } from './1-Application/Request/TransactionRequest.js';
-import { configRede } from './4-Adapter/Gateway/Rede/configRede.js';
+import { LogRepository } from './4-Adapter/Repository/Log/LogRepository';
+import { Mail } from './4-Adapter/Mail/Mail';
+import { PaymentGatewaysController } from './1-Application/Controller/PaymentGatewaysController';
+import { GatewayRedeAdapter } from './4-Adapter/Gateway/Rede/GatewayRedeAdapter';
+import { SendTransaction } from './2-Usecases/Transaction/SendTransaction';
+import { SearchTransaction } from './2-Usecases/Transaction/SearchTransaction';
+import { CaptureTransaction } from './2-Usecases/Transaction/CaptureTransaction';
+import { CancelReversalTransaction } from './2-Usecases/Transaction/CancelReversalTransaction';
+import { TransactionRepository } from './4-Adapter/Repository/Transaction/TransactionRepository';
+import { GatewayCieloAdapter } from './4-Adapter/Gateway/Cielo/GatewayCieloAdapter';
+import { TypeTransaction } from './5-Shared/Enum/TypeTransaction.enum';
+import { CaptureRepository } from './4-Adapter/Repository/Transaction/CaptureRepository';
+import { CancelRepository } from './4-Adapter/Repository/Transaction/CancelRepository';
+import { SearchRequest } from './1-Application/Request/SearchRequest';
+import { CaptureRequest } from './1-Application/Request/CaptureRequest';
+import { TransactionRequest } from './1-Application/Request/TransactionRequest';
+import { configRede } from './4-Adapter/Gateway/Rede/configRede';
 
 export abstract class APP {
     static async start(gatewayUses: number, methodUses: number, log: boolean): Promise<any> {

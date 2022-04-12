@@ -1,11 +1,11 @@
 import { plainToInstance } from 'class-transformer';
-import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse.js';
-import { SearchTransactionOrder } from '../../../../../3-Domain/Entity/Transaction/SearchTransactionOrder.js';
-import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder.js';
-import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
-import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder.js';
-import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
+import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder';
+import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
+import { SearchTransactionOrder } from '../../../../../3-Domain/Entity/Transaction/SearchTransactionOrder';
+import { CaptureOrder } from '../../../../../3-Domain/Entity/Transaction/CaptureOrder';
+import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction';
+import { RefundOrder } from '../../../../../3-Domain/Entity/Transaction/RefundOrder';
+import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum';
 
 export abstract class MapperSearch {
     static toTransactionComplete(Json: any): SearchTransactionOrder {

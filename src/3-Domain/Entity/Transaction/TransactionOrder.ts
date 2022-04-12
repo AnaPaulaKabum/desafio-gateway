@@ -1,5 +1,5 @@
-import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction.js';
-import { TypeTransaction } from '../../../5-Shared/Enum/TypeTransaction.enum.js';
+import { StatusTransaction } from '../../../5-Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../5-Shared/Enum/TypeTransaction.enum';
 
 export class TransactionOrder {
     numberRequest: string;

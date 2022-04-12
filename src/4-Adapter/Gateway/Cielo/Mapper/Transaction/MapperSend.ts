@@ -1,9 +1,9 @@
 import { plainToInstance } from 'class-transformer';
-import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction.js';
-import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum.js';
-import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder.js';
-import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse.js';
-import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse.js';
+import { StatusTransaction } from '../../../../../5-Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../../5-Shared/Enum/TypeTransaction.enum';
+import { TransactionOrder } from '../../../../../3-Domain/Entity/Transaction/TransactionOrder';
+import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse';
+import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse';
 
 export abstract class MapperSend {
     static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {

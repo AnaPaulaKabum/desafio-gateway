@@ -1,4 +1,4 @@
-import { TypeTransaction } from '../../../../5-Shared/Enum/TypeTransaction.enum.js';
+import { TypeTransaction } from '../../../../5-Shared/Enum/TypeTransaction.enum';
 
 export class TransactionRedeCreateRequest {
     numberRequest: string;
