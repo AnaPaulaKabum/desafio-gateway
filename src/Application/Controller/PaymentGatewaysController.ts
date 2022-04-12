@@ -20,13 +20,10 @@ export class PaymentGatewaysController {
     ) {}
 
     public async sendTransactions(createTransaction: TransactionRequest): Promise<TransactionOrder> {
-        console.log('.Controller');
         return await this.sendTransaction.execute(FactoryDTO.toTrasactionDTO(createTransaction));
     }
 
     public searchTransactions(searchRequest: SearchRequest): Promise<SearchTransactionOrder> {
-        console.log('.Controller');
-
         if (!searchRequest.numberRequest && !searchRequest.tid) {
             throw new Error('Parametros invalidos');
         }
@@ -34,12 +31,10 @@ export class PaymentGatewaysController {
     }
 
     public captureTransactions(captureRequest: CaptureRequest): Promise<CaptureOrder> {
-        console.log('.Controller');
         return this.captureTransaction.execute(FactoryDTO.toCaptureDTO(captureRequest));
     }
 
     public cancelReversalTransactions(paramNumberRequest: string): Promise<RefundOrder> {
-        console.log('.Controller');
         return this.cancelReversalTransaction.execute(paramNumberRequest);
     }
 }
