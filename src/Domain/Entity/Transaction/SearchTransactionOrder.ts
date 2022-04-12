@@ -8,11 +8,4 @@ export class SearchTransactionOrder {
     capture: CaptureOrder;
     card: Card;
     refund: RefundOrder;
-
-    constructor() {}
-
-    isValid() {
-        //if (this.capture) this.capture.isValid();
-        // if (this.refund) this.refund.isvalid();
-    }
 }

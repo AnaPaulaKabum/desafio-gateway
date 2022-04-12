@@ -76,7 +76,6 @@ export abstract class MapperSearch {
             status = StatusTransaction.CANCEL;
         }
 
-        transactionSearchResponse.isValid();
         return transactionSearchResponse;
     }
 }
