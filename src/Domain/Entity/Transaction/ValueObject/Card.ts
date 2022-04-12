@@ -1,23 +1,11 @@
 export class Card {
-    private readonly _number: string;
-    private readonly _name: string;
-    private readonly _expirationMonth: number;
-    private readonly _expirationYear: number;
-    private readonly _securityCode: string;
-
     private constructor(
-        number: string,
-        name: string,
-        expirationMonth: number,
-        expirationYear: number,
-        securityCode: string,
-    ) {
-        this._number = number;
-        this._name = name;
-        this._expirationMonth = expirationMonth;
-        this._expirationYear = expirationYear;
-        this._securityCode = securityCode;
-    }
+        private readonly _number: string,
+        private readonly _name: string,
+        private readonly _expirationMonth: number,
+        private readonly _expirationYear: number,
+        private readonly _securityCode: string,
+    ) {}
 
     get number(): string {
         return this._number;
