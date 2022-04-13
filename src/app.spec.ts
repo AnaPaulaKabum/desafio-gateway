@@ -18,6 +18,19 @@ describe('TransactionSend', () => {
     });
 });
 
+describe('SearchTransaction', () => {
+    test('Should return not error if to send searchTransaction', async () => {
+        const methodUses = 2; //1-Send 2-Search 3-Capture 4-Cancel
+
+        const returnSearchTransaction = await APP.start(gatewayUses, methodUses, false);
+
+        expect(returnSearchTransaction).toBeTruthy();
+        expect(returnSearchTransaction.card).toBeInstanceOf(Card);
+        expect(returnSearchTransaction.transaction).toBeInstanceOf(TransactionOrder);
+        expect(returnSearchTransaction).toBeInstanceOf(SearchTransactionOrder);
+    });
+});
+
 describe('CaptureTransaction', () => {
     test('Should return not error if to send CaptureTransaction', async () => {
         const methodUses = 3; //1-Send 2-Search 3-Capture 4-Cancel
@@ -28,17 +41,3 @@ describe('CaptureTransaction', () => {
         expect(returnCaptureTransaction).toBeInstanceOf(CaptureOrder);
     });
 });
-
-/*describe('SearchTransaction', () => {
-    test('Should return not error if to send searchTransaction', async () => {
-        const methodUses = 2; //1-Send 2-Search 3-Capture 4-Cancel
-
-        const returnSearchTransaction = await APP.start(methodUses, gatewayUses, false);
-
-        expect(returnSearchTransaction).toBeTruthy();
-        expect(returnSearchTransaction.card).toBeInstanceOf(Card);
-        expect(returnSearchTransaction.transaction).toBeInstanceOf(TransactionOrder);
-        expect(returnSearchTransaction.refund).toBeInstanceOf(RefundOrder);
-        expect(returnSearchTransaction).toBeInstanceOf(SearchTransactionOrder);
-    });
-});*/
