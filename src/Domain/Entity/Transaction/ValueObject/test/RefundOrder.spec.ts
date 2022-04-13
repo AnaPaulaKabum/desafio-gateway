@@ -1,3 +1,4 @@
+import exp from 'constants';
 import { RefundOrder } from '../RefundOrder';
 
 type SutTypes = {
@@ -28,5 +29,17 @@ describe('RefundOrder', () => {
         const transaction = RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
         expect(transaction).toBeTruthy();
         expect(transaction).toBeInstanceOf(RefundOrder);
+    });
+
+    test('Should return not error if get param ', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        const transaction = RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        expect(transaction).toBeTruthy();
+        expect(transaction.numberRequest).toBe(numberRequest);
+        expect(transaction.date).toBe(date);
+        expect(transaction.amount).toBe(amount);
+        expect(transaction.tid).toBe(tid);
+        expect(transaction.nsu).toBe(nsu);
+        expect(transaction.authorizationCode).toBe(authorizationCode);
     });
 });
