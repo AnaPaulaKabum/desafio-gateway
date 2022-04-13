@@ -24,9 +24,54 @@ const makeSut = (): SutTypes => {
 };
 
 describe('RefundOrder', () => {
-    test('Should return error if numberRequest correct', () => {
+    test('Should return error if numberRequest empty', () => {
         let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
         numberRequest = '';
+
+        expect(() => {
+            RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        }).toThrow();
+    });
+
+    test('Should return error if date empty', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        let dataEmpty: Date;
+
+        expect(() => {
+            RefundOrder.create(numberRequest, dataEmpty, id, amount, tid, nsu, authorizationCode);
+        }).toThrow();
+    });
+
+    test('Should return error if id empty', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        id = '';
+
+        expect(() => {
+            RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        }).toThrow();
+    });
+
+    test('Should return error if tid empty', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        tid = '';
+
+        expect(() => {
+            RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        }).toThrow();
+    });
+
+    test('Should return error if nsu empty', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        nsu = '';
+
+        expect(() => {
+            RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        }).toThrow();
+    });
+
+    test('Should return error if authorizationCode empty', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        authorizationCode = '';
 
         expect(() => {
             RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
