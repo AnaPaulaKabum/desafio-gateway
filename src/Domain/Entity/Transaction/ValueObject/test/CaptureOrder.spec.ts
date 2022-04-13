@@ -25,6 +25,15 @@ describe('CaptureOrder', () => {
             CaptureOrder.create(numberRequest, amount, date, nsu);
         }).toThrow();
     });
+
+    test('Should return error if numberRequest empty', () => {
+        let { numberRequest, amount, date, nsu } = makeSut();
+        numberRequest = '';
+
+        expect(() => {
+            CaptureOrder.create(numberRequest, amount, date, nsu);
+        }).toThrow();
+    });
     test('Should return not error if correct param', () => {
         let { numberRequest, amount, date, nsu } = makeSut();
         const transaction = CaptureOrder.create(numberRequest, amount, date, nsu);
