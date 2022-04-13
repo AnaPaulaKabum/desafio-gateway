@@ -1,4 +1,3 @@
-import exp from 'constants';
 import { RefundOrder } from '../RefundOrder';
 
 type SutTypes = {
@@ -91,6 +90,7 @@ describe('RefundOrder', () => {
         expect(transaction).toBeTruthy();
         expect(transaction.numberRequest).toBe(numberRequest);
         expect(transaction.date).toBe(date);
+        expect(transaction.id).toBe(id);
         expect(transaction.amount).toBe(amount);
         expect(transaction.tid).toBe(tid);
         expect(transaction.nsu).toBe(nsu);
