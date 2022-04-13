@@ -6,16 +6,11 @@ export abstract class MapperCancel {
     static toCancelTransaction(Json: any, numberRequest: string): RefundOrder {
         let object = plainToInstance(CancelTransactionResponse, Json);
 
-        /*let transactionCancel = new RefundOrder();
-        transactionCancel.numberRequest = numberRequest;
-        transactionCancel.tid = object.tid;
-        transactionCancel.nsu = object.nsu;
-        transactionCancel.date = object.refundDateTime;
-        transactionCancel.authorizationCode = object.refundId;
+        const tid = object.tid;
+        const nsu = object.nsu;
+        const date = object.refundDateTime;
+        const authorizationCode = object.refundId;
 
-        transactionCancel.isvalid();
-        return transactionCancel;*/
-
-        throw new Error('Implementar');
+        return RefundOrder.create(numberRequest, date, '', 0, tid, nsu, authorizationCode);
     }
 }

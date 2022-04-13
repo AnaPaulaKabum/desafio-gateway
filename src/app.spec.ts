@@ -7,7 +7,7 @@ import { CaptureOrder } from './Domain/Entity/Transaction/ValueObject/CaptureOrd
 
 const gatewayUses = 1; //1-Rede 2- Cielo
 
-describe('TransactionSend', () => {
+/*describe('TransactionSend', () => {
     test('Should return not error if to send transactionSend', async () => {
         const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
 
@@ -39,5 +39,16 @@ describe('CaptureTransaction', () => {
 
         expect(returnCaptureTransaction).toBeTruthy();
         expect(returnCaptureTransaction).toBeInstanceOf(CaptureOrder);
+    });
+});*/
+
+describe('CancelTransaction', () => {
+    test('Should return not error if to send CancelTransaction', async () => {
+        const methodUses = 4; //1-Send 2-Search 3-Capture 4-Cancel
+
+        const returnCancelTransaction = await APP.start(gatewayUses, methodUses, false);
+
+        expect(returnCancelTransaction).toBeTruthy();
+        expect(returnCancelTransaction).toBeInstanceOf(RefundOrder);
     });
 });
