@@ -24,6 +24,15 @@ const makeSut = (): SutTypes => {
 };
 
 describe('RefundOrder', () => {
+    test('Should return error if numberRequest correct', () => {
+        let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
+        numberRequest = '';
+
+        expect(() => {
+            RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        }).toThrow();
+    });
+
     test('Should return not error if correct param', () => {
         let { numberRequest, date, id, amount, tid, nsu, authorizationCode } = makeSut();
         const transaction = RefundOrder.create(numberRequest, date, id, amount, tid, nsu, authorizationCode);

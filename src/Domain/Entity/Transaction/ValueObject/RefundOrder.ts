@@ -40,11 +40,10 @@ export class RefundOrder {
         nsu: string,
         authorizationCode: string,
     ): RefundOrder {
+        if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
         if (amount > 0) {
             if (!date) throw new Error('Campo date é obrigatório quando possui valor na refund');
             if (id === undefined) throw new Error('Campo id é obrigatório quando possui valor na refund');
-
-            if (numberRequest === undefined) throw new Error('Campo numberRequest é obrigatório');
             if (tid === undefined) throw new Error('Campo tid é obrigatório');
             if (nsu === undefined) throw new Error('Campo nsu é obrigatório');
             if (date === undefined) throw new Error('Campo date é obrigatório');
