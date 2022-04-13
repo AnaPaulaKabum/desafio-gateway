@@ -6,16 +6,10 @@ export abstract class MapperCapture {
     static toCapture(Json: any, amount: number): CaptureOrder {
         let object = plainToInstance(CaptureTransactionResponse, Json);
 
-        /*let capture = new CaptureOrder();
+        const numberRequest = object.reference;
+        const nsu = object.nsu;
+        const date = object.dateTime;
 
-        capture.numberRequest = object.reference;
-        capture.nsu = object.nsu;
-        capture.date = object.dateTime;
-        capture.amount = amount;
-
-        capture.isValid();
-        return capture;*/
-
-        throw new Error('Implementar');
+        return CaptureOrder.create(numberRequest, amount, date, nsu);
     }
 }
