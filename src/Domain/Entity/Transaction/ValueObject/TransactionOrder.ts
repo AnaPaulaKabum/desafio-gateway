@@ -53,23 +53,15 @@ export class TransactionOrder {
         installments: number,
         message: string,
     ): TransactionOrder {
-        if (numberRequest === undefined) throw new Error('Campo numberRequest é obrigatório');
-
-        if (tid === undefined) throw new Error('Campo tid é obrigatório');
-
-        if (kind === undefined) throw new Error('Campo kind é obrigatório');
-
-        if (authorizationCode === undefined) throw new Error('Campo authorizationCode é obrigatório');
-
-        if (nsu === undefined) throw new Error('Campo nsu é obrigatório');
-
-        if (status === undefined) throw new Error('Campo status é obrigatório');
-
-        if (amount === undefined) throw new Error('Campo amount é obrigatório');
-
-        if (installments === undefined) throw new Error('Campo installments é obrigatório');
-
-        if (message === undefined) throw new Error('Campo message é obrigatório');
+        if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
+        if (!tid) throw new Error('Campo tid é obrigatório');
+        if (!kind) throw new Error('Campo kind é obrigatório');
+        if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
+        if (!nsu) throw new Error('Campo nsu é obrigatório');
+        if (!status) throw new Error('Campo status é obrigatório');
+        if (!amount) throw new Error('Campo amount é obrigatório');
+        if (!installments) throw new Error('Campo installments é obrigatório');
+        if (!message) throw new Error('Campo message é obrigatório');
 
         return new TransactionOrder(
             numberRequest,
