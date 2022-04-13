@@ -6,15 +6,11 @@ export abstract class MapperCancel {
     static toCancelTransaction(Json: any, numberRequest: string): RefundOrder {
         let object = plainToInstance(ResponseAPICieloToReversal, Json);
 
-        /*let cancelTransaction = new RefundOrder();
-        cancelTransaction.numberRequest = numberRequest;
-        cancelTransaction.nsu = object.ProofOfSale;
-        cancelTransaction.tid = object.Tid;
-        cancelTransaction.authorizationCode = object.AuthorizationCode;
-        cancelTransaction.date = new Date();
+        const nsu = object.ProofOfSale;
+        const tid = object.Tid;
+        const authorizationCode = object.AuthorizationCode;
+        const date = new Date();
 
-        cancelTransaction.isvalid();
-        return cancelTransaction;*/
-        throw new Error('Implementar');
+        return RefundOrder.create(numberRequest, date, '', 0, tid, nsu, authorizationCode);
     }
 }

@@ -6,16 +6,12 @@ import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObje
 export abstract class MapperCapture {
     static toCapture(Json: any, requestCapture: TransactionCieloCaptureRequest): CaptureOrder {
         let object = plainToInstance(CaptureCieloTransaction, Json);
-        /*let capture = new CaptureOrder();
 
-        capture.amount = requestCapture.amount;
-        capture.numberRequest = requestCapture.paymentId;
-        capture.nsu = object.ProofOfSale;
-        capture.date = new Date();
+        const amount = requestCapture.amount;
+        const numberRequest = requestCapture.paymentId;
+        const nsu = object.ProofOfSale;
+        const date = new Date();
 
-        capture.isValid();
-        return capture;*/
-
-        throw new Error('Implementar');
+        return CaptureOrder.create(numberRequest, amount, date, nsu);
     }
 }

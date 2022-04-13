@@ -31,7 +31,7 @@ describe('SearchTransaction', () => {
     });
 });
 
-/*describe('CaptureTransaction', () => {
+describe('CaptureTransaction', () => {
     test('Should return not error if to send CaptureTransaction', async () => {
         const methodUses = 3; //1-Send 2-Search 3-Capture 4-Cancel
 
@@ -52,4 +52,3 @@ describe('CancelTransaction', () => {
         expect(returnCancelTransaction).toBeInstanceOf(RefundOrder);
     });
 });
-*/
