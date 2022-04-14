@@ -18,10 +18,10 @@ export class TransactionRepository implements ITransactionRepository {
                     TypeTransaction.CREDIT,
                     StatusTransaction.NO_CAPTURE,
                     100,
-                    1,
                     'Teste',
                     '100',
                     '100',
+                    1,
                 ),
             );
         });

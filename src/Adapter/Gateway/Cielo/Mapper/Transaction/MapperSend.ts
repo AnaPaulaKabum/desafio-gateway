@@ -33,10 +33,10 @@ export class MapperSend {
             TypeTransaction.CREDIT,
             StatusTransaction.NO_CAPTURE,
             amount,
-            installments,
             message,
             nsu,
             authorizationCode,
+            installments,
         );
     }
 
@@ -47,7 +47,6 @@ export class MapperSend {
         const tid = object.Payment.Tid;
         const message = object.Payment.ReturnMessage;
         const amount = object.Payment.Amount;
-        const installments = object.Payment.Installments;
 
         return TransactionOrder.create(
             numberRequest,
@@ -55,7 +54,6 @@ export class MapperSend {
             TypeTransaction.DEBIT,
             StatusTransaction.NO_CAPTURE,
             amount,
-            installments,
             message,
         );
     }

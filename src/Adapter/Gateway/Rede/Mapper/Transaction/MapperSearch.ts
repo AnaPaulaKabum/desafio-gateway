@@ -44,10 +44,10 @@ export abstract class MapperSearch {
             kind,
             status,
             amount,
-            installments,
             message,
             nsu,
             authorizationCode,
+            installments,
         );
 
         if (object.capture.amount > 0) {

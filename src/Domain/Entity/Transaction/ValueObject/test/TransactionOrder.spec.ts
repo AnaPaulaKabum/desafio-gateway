@@ -33,7 +33,7 @@ describe('TransactionOrder', () => {
 
         number = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -42,7 +42,7 @@ describe('TransactionOrder', () => {
 
         tid = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
     test('Should return error if tid empty', () => {
@@ -57,10 +57,10 @@ describe('TransactionOrder', () => {
                 kindEmpty,
                 status,
                 amount,
-                installments,
                 message,
                 nsu,
                 authorizationCode,
+                installments,
             );
         }).toThrow();
     });
@@ -70,7 +70,7 @@ describe('TransactionOrder', () => {
 
         authorizationCode = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -79,7 +79,7 @@ describe('TransactionOrder', () => {
 
         nsu = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -88,7 +88,7 @@ describe('TransactionOrder', () => {
 
         let status: StatusTransaction;
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -97,7 +97,7 @@ describe('TransactionOrder', () => {
 
         amount = 0;
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -106,7 +106,7 @@ describe('TransactionOrder', () => {
 
         installments = 0;
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -115,7 +115,7 @@ describe('TransactionOrder', () => {
 
         message = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, installments, message, nsu, authorizationCode);
+            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -127,10 +127,10 @@ describe('TransactionOrder', () => {
             kind,
             status,
             amount,
-            installments,
             message,
             nsu,
             authorizationCode,
+            installments,
         );
         expect(transaction).toBeTruthy();
         expect(transaction).toBeInstanceOf(TransactionOrder);
@@ -144,10 +144,10 @@ describe('TransactionOrder', () => {
             kind,
             status,
             amount,
-            installments,
             message,
             nsu,
             authorizationCode,
+            installments,
         );
         expect(transaction).toBeTruthy();
         expect(transaction.numberRequest).toBe(number);
