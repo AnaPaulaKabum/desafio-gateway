@@ -7,11 +7,11 @@ export class TransactionOrder {
         private readonly _tid: string,
         private readonly _kind: TypeTransaction,
         private readonly _authorizationCode: string,
-        private readonly _nsu: string,
         private readonly _status: StatusTransaction,
         private readonly _amount: number,
         private readonly _installments: number,
         private readonly _message: string,
+        private readonly _nsu?: string,
     ) {}
 
     get numberRequest(): string {
@@ -26,7 +26,7 @@ export class TransactionOrder {
     get authorizationCode(): string {
         return this._authorizationCode;
     }
-    get nsu(): string {
+    get nsu(): string | undefined {
         return this._nsu;
     }
     get status(): StatusTransaction {
@@ -70,11 +70,11 @@ export class TransactionOrder {
             tid,
             kind,
             authorizationCode,
-            nsu,
             status,
             amount,
             installments,
             message,
+            nsu,
         );
     }
 }
