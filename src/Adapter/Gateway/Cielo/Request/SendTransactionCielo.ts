@@ -1,3 +1,4 @@
+import { Card } from '../../../../Domain/Entity/Transaction/ValueObject/Card';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { BrandCard } from '../Enum/BrandCard';
 
@@ -25,24 +26,18 @@ class Payment {
 }
 
 class CreditCard {
-    private _cardNumber: string;
+    cardNumber: string;
     expirationDate: string;
     brand: BrandCard;
     holder: string;
     securityCode: string;
 
-    get cardNumber(): string {
-        return this._cardNumber;
-    }
-
-    set cardNumber(value: string) {
-        this._cardNumber = value;
-    }
-
-    isValid() {
-        if (!this.cardNumber) throw new Error('Campo cardNumber é obrigatório');
-        if (!this.expirationDate) throw new Error('Campo expirationDate é obrigatório');
-        if (!this.brand) throw new Error('Campo brand é obrigatório');
+    constructor(card: Card) {
+        this.cardNumber = card.number;
+        this.expirationDate = card.expirationMonth + '/' + card.expirationYear;
+        this.brand = card.brand;
+        this.holder = card.name;
+        this.securityCode = card.securityCode;
     }
 }
 
@@ -51,19 +46,17 @@ export class SendTransactionCielo {
     payment: Payment;
     creditCard: CreditCard;
     kind: TypeTransaction;
-    constructor(type: TypeTransaction) {
+    constructor(type: TypeTransaction, card: Card) {
         this.payment = new Payment();
 
         this.kind = type;
         if (this.kind === TypeTransaction.CREDIT) this.payment.type = 'CreditCard';
         if (this.kind === TypeTransaction.DEBIT) this.payment.type = 'DebitCard';
-        this.creditCard = new CreditCard();
+        this.creditCard = new CreditCard(card);
     }
 
     isValid() {
         if (!this.merchantOrderId) throw new Error('Campo merchantOrderId é obrigatório');
-
-        this.creditCard.isValid();
 
         if (this.kind === TypeTransaction.CREDIT) {
             this.isValidCredit();

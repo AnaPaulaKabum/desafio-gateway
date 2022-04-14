@@ -30,7 +30,7 @@ export class Card {
         return this._securityCode;
     }
 
-    get brand(): BrandCard | undefined {
+    get brand(): BrandCard {
         return this._brand;
     }
 
