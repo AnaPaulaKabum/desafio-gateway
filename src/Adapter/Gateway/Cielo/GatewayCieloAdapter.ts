@@ -7,7 +7,6 @@ import { MapperTransactionCielo } from './Mapper/Transaction/MapperTransactionCi
 import { MockAPICaptureCielo } from './Mock/API/MockAPICaptureCielo';
 import { MockAPISearchCielo } from './Mock/API/MockAPISearchCielo';
 import { MockAPISendCielo } from './Mock/API/MockAPISendCielo';
-import { TransactionCieloCaptureRequest } from './Request/TransactionCieloCaptureRequest';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
@@ -17,6 +16,7 @@ import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { RefundOrder } from '../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
+import { MapperCaptureTrasaction } from './Mapper/Transaction/MapperCaptureTrasaction';
 
 export class GatewayCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
@@ -35,14 +35,11 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
-        let transactionCaptureRequest = new TransactionCieloCaptureRequest();
-        transactionCaptureRequest.amount = captureTransactionDTO.amount;
-        transactionCaptureRequest.paymentId = captureTransactionDTO.numberRequest;
-
+        let transactionCaptureRequest = MapperCaptureTrasaction.generate(captureTransactionDTO);
         let returnAPI = await MockAPICaptureCielo.captureTotal(transactionCaptureRequest);
 
         return new Promise(function (resolve) {
-            resolve(MapperCapture.toCapture(returnAPI, transactionCaptureRequest));
+            resolve(MapperCapture.toCapture(returnAPI, captureTransactionDTO));
         });
     }
 
