@@ -1,4 +1,4 @@
-import { BrandCard } from '../../../../Adapter/Gateway/Cielo/Enum/BrandCard';
+import { BrandCard } from '../../Enum/BrandCard';
 
 export class Card {
     private constructor(
