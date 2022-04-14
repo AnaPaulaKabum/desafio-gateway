@@ -37,17 +37,12 @@ class CreditCard {
 
     set cardNumber(value: string) {
         this._cardNumber = value;
-        this.discoverBrand();
     }
 
     isValid() {
         if (!this.cardNumber) throw new Error('Campo cardNumber é obrigatório');
         if (!this.expirationDate) throw new Error('Campo expirationDate é obrigatório');
         if (!this.brand) throw new Error('Campo brand é obrigatório');
-    }
-
-    private discoverBrand() {
-        this.brand = BrandCard.MASTER;
     }
 }
 
