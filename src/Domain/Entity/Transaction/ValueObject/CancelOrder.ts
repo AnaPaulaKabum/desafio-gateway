@@ -1,4 +1,4 @@
-export class RefundOrder {
+export class CancelOrder {
     private constructor(
         private readonly _numberRequest: string,
         private readonly _date: Date,
@@ -39,17 +39,14 @@ export class RefundOrder {
         tid: string,
         nsu: string,
         authorizationCode: string,
-    ): RefundOrder {
+    ): CancelOrder {
         if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
+        if (!date) throw new Error('Campo date é obrigatório');
+        //if (!id) throw new Error('Campo id é obrigatório');
+        if (!tid) throw new Error('Campo tid é obrigatório');
+        if (!nsu) throw new Error('Campo nsu é obrigatório');
+        if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
 
-        if (amount > 0) {
-            if (!date) throw new Error('Campo date é obrigatório quando possui valor na refund');
-            if (!id) throw new Error('Campo id é obrigatório quando possui valor na refund');
-            if (!tid) throw new Error('Campo tid é obrigatório');
-            if (!nsu) throw new Error('Campo nsu é obrigatório');
-            if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
-        }
-
-        return new RefundOrder(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        return new CancelOrder(numberRequest, date, id, amount, tid, nsu, authorizationCode);
     }
 }

@@ -2,7 +2,7 @@ import { APP } from './app';
 import { SearchTransactionOrder } from './Domain/Entity/Transaction/SearchTransactionOrder';
 import { Card } from './Domain/Entity/Transaction/ValueObject/Card';
 import { TransactionOrder } from './Domain/Entity/Transaction/ValueObject/TransactionOrder';
-import { RefundOrder } from './Domain/Entity/Transaction/ValueObject/RefundOrder';
+import { CancelOrder } from './Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { CaptureOrder } from './Domain/Entity/Transaction/ValueObject/CaptureOrder';
 
 const gatewayUses = 2; //1-Rede 2- Cielo
@@ -49,6 +49,6 @@ describe('CancelTransaction', () => {
         const returnCancelTransaction = await APP.start(gatewayUses, methodUses, false);
 
         expect(returnCancelTransaction).toBeTruthy();
-        expect(returnCancelTransaction).toBeInstanceOf(RefundOrder);
+        expect(returnCancelTransaction).toBeInstanceOf(CancelOrder);
     });
 });

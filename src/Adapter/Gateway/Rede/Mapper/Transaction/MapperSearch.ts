@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
-import { RefundOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
@@ -64,7 +64,7 @@ export abstract class MapperSearch {
             const date = object.refunds.dateTime;
             const id = object.refunds.refundId;
 
-            transactionSearchResponse.refund = RefundOrder.create(
+            transactionSearchResponse.refund = CancelOrder.create(
                 numberRequest,
                 date,
                 id,

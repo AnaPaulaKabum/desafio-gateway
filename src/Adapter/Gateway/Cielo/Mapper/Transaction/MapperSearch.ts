@@ -4,7 +4,7 @@ import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransa
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { RefundOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { Card } from '../../../../../Domain/Entity/Transaction/ValueObject/Card';
 
@@ -42,7 +42,7 @@ export abstract class MapperSearch {
             const idCancel = 'xx';
             const amountCancel = object.Payment.VoidedAmount;
             const dateCancel = object.Payment.VoidedDate;
-            transactionSearchResponse.refund = RefundOrder.create(
+            transactionSearchResponse.refund = CancelOrder.create(
                 numberRequest,
                 dateCancel,
                 idCancel,

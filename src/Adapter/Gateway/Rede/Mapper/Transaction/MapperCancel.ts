@@ -1,9 +1,9 @@
 import { plainToInstance } from 'class-transformer';
-import { RefundOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/RefundOrder';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse';
 
 export abstract class MapperCancel {
-    static toCancelTransaction(Json: any, numberRequest: string): RefundOrder {
+    static toCancelTransaction(Json: any, numberRequest: string): CancelOrder {
         let object = plainToInstance(CancelTransactionResponse, Json);
 
         const tid = object.tid;
@@ -11,6 +11,6 @@ export abstract class MapperCancel {
         const date = object.refundDateTime;
         const authorizationCode = object.refundId;
 
-        return RefundOrder.create(numberRequest, date, '', 0, tid, nsu, authorizationCode);
+        return CancelOrder.create(numberRequest, date, '', 0, tid, nsu, authorizationCode);
     }
 }

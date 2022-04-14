@@ -8,7 +8,7 @@ import { TransactionOrder } from '../../Domain/Entity/Transaction/ValueObject/Tr
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { ICancelRepository } from '../../Shared/Interfaces/Repository/ICancelRepository';
-import { RefundOrder } from '../../Domain/Entity/Transaction/ValueObject/RefundOrder';
+import { CancelOrder } from '../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 
 export class CancelReversalTransaction {
     constructor(
@@ -19,7 +19,7 @@ export class CancelReversalTransaction {
         private readonly mail: IMail,
     ) {}
 
-    async execute(numberRequest: string): Promise<RefundOrder> {
+    async execute(numberRequest: string): Promise<CancelOrder> {
         try {
             const transaction = await this.repositoryTransaction.findOne(numberRequest);
 
