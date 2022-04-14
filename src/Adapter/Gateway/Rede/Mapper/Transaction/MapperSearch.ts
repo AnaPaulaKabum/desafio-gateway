@@ -42,12 +42,12 @@ export abstract class MapperSearch {
             numberRequest,
             tid,
             kind,
-            authorizationCode,
             status,
             amount,
             installments,
             message,
             nsu,
+            authorizationCode,
         );
 
         if (object.capture.amount > 0) {

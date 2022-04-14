@@ -31,21 +31,20 @@ export class MapperSend {
             numberRequest,
             tid,
             TypeTransaction.CREDIT,
-            authorizationCode,
             StatusTransaction.NO_CAPTURE,
             amount,
             installments,
             message,
             nsu,
+            authorizationCode,
         );
     }
 
     private static transactionDebit(Json: any) {
         let object = plainToInstance(SendDebitTransitionResponse, Json);
+
         const numberRequest = object.Payment.PaymentId;
         const tid = object.Payment.Tid;
-        const authorizationCode = '';
-        const nsu = '';
         const message = object.Payment.ReturnMessage;
         const amount = object.Payment.Amount;
         const installments = object.Payment.Installments;
@@ -54,12 +53,10 @@ export class MapperSend {
             numberRequest,
             tid,
             TypeTransaction.DEBIT,
-            authorizationCode,
             StatusTransaction.NO_CAPTURE,
             amount,
             installments,
             message,
-            nsu,
         );
     }
 }

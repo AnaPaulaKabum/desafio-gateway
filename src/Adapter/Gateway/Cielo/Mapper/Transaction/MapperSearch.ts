@@ -69,12 +69,12 @@ export abstract class MapperSearch {
             numberRequest,
             tid,
             kind,
-            authorizationCodePayment,
             status,
             amount,
             installments,
             message,
             nsu,
+            authorizationCodePayment,
         );
 
         return transactionSearchResponse;

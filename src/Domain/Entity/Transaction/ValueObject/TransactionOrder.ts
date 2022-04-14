@@ -6,12 +6,12 @@ export class TransactionOrder {
         private readonly _numberRequest: string,
         private readonly _tid: string,
         private readonly _kind: TypeTransaction,
-        private readonly _authorizationCode: string,
         private readonly _status: StatusTransaction,
         private readonly _amount: number,
         private readonly _installments: number,
         private readonly _message: string,
         private readonly _nsu?: string,
+        private readonly _authorizationCode?: string,
     ) {}
 
     get numberRequest(): string {
@@ -23,7 +23,7 @@ export class TransactionOrder {
     get kind(): TypeTransaction {
         return this._kind;
     }
-    get authorizationCode(): string {
+    get authorizationCode(): string | undefined {
         return this._authorizationCode;
     }
     get nsu(): string | undefined {
@@ -46,19 +46,19 @@ export class TransactionOrder {
         numberRequest: string,
         tid: string,
         kind: TypeTransaction,
-        authorizationCode: string,
         status: StatusTransaction,
         amount: number,
         installments: number,
         message: string,
         nsu?: string,
+        authorizationCode?: string,
     ): TransactionOrder {
         if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
         if (!tid) throw new Error('Campo tid é obrigatório');
         if (!kind) throw new Error('Campo kind é obrigatório');
-        if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
         if (kind === TypeTransaction.CREDIT) {
             if (!nsu) throw new Error('Campo nsu é obrigatório');
+            if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
         }
         if (!status) throw new Error('Campo status é obrigatório');
         if (!amount) throw new Error('Campo amount é obrigatório');
@@ -69,12 +69,12 @@ export class TransactionOrder {
             numberRequest,
             tid,
             kind,
-            authorizationCode,
             status,
             amount,
             installments,
             message,
             nsu,
+            authorizationCode,
         );
     }
 }
