@@ -4,15 +4,16 @@ import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse';
 import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse';
-import { json } from 'stream/consumers';
 
 export class MapperSend {
-    public static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {
+    private constructor() {}
+
+    public static toTransaction(JsonAPI: any, typeTransaction: TypeTransaction): TransactionOrder {
         if (typeTransaction === TypeTransaction.CREDIT) {
-            return MapperSend.transactionCredit(json);
+            return MapperSend.transactionCredit(JsonAPI);
         }
 
-        return MapperSend.transactionDebit(json);
+        return MapperSend.transactionDebit(JsonAPI);
     }
 
     private static transactionCredit(Json: any) {
