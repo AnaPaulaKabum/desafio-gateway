@@ -40,7 +40,7 @@ export class Card {
         expirationMonth: number,
         expirationYear: number,
         securityCode: string,
-        brand: BrandCard,
+        brand?: BrandCard,
     ): Card {
         const FIRST_MONTH = 1;
         const LAST_MONTH = 12;
