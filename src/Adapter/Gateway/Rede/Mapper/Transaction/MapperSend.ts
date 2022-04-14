@@ -15,7 +15,6 @@ export abstract class MapperSend {
         const message = object.returnMessage;
         const amount = object.amount;
         const installments = object.installments;
-        const kind = typeTransaction;
 
         return TransactionOrder.create(
             numberRequest,
