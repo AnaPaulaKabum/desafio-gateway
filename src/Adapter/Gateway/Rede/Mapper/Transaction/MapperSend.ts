@@ -22,11 +22,11 @@ export abstract class MapperSend {
             tid,
             typeTransaction,
             authorizationCode,
-            nsu,
             StatusTransaction.NO_CAPTURE,
             amount,
             installments,
             message,
+            nsu,
         );
     }
 }

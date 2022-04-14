@@ -32,11 +32,11 @@ export class MapperSend {
             tid,
             TypeTransaction.CREDIT,
             authorizationCode,
-            nsu,
             StatusTransaction.NO_CAPTURE,
             amount,
             installments,
             message,
+            nsu,
         );
     }
 
@@ -55,11 +55,11 @@ export class MapperSend {
             tid,
             TypeTransaction.DEBIT,
             authorizationCode,
-            nsu,
             StatusTransaction.NO_CAPTURE,
             amount,
             installments,
             message,
+            nsu,
         );
     }
 }

@@ -47,17 +47,19 @@ export class TransactionOrder {
         tid: string,
         kind: TypeTransaction,
         authorizationCode: string,
-        nsu: string,
         status: StatusTransaction,
         amount: number,
         installments: number,
         message: string,
+        nsu?: string,
     ): TransactionOrder {
         if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
         if (!tid) throw new Error('Campo tid é obrigatório');
         if (!kind) throw new Error('Campo kind é obrigatório');
         if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
-        if (!nsu) throw new Error('Campo nsu é obrigatório');
+        if (kind === TypeTransaction.CREDIT) {
+            if (!nsu) throw new Error('Campo nsu é obrigatório');
+        }
         if (!status) throw new Error('Campo status é obrigatório');
         if (!amount) throw new Error('Campo amount é obrigatório');
         if (!installments) throw new Error('Campo installments é obrigatório');
