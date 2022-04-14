@@ -20,7 +20,6 @@ import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 
 export class GatewayCieloAdapter implements IGateways {
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        console.log('..sendTransaction(Adapter)');
         if (transaction.kind === TypeTransaction.CREDIT) {
             return this.sendCreditTransaction(transaction);
         }
@@ -28,7 +27,6 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
-        console.log('..searchTransaction(Adapter)');
         const returnAPI = await MockAPISearchCielo.search(searchRequest.numberRequest);
 
         return new Promise(function (resolve) {
@@ -37,7 +35,6 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
-        console.log('..captureTransaction(Adapter)');
         let transactionCaptureRequest = new TransactionCieloCaptureRequest();
         transactionCaptureRequest.amount = captureTransactionDTO.amount;
         transactionCaptureRequest.paymentId = captureTransactionDTO.numberRequest;
@@ -50,7 +47,6 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async cancelReversalTransaction(numberRequest: string): Promise<RefundOrder> {
-        console.log('..cancelReversalTransaction(Adapter)');
         const returnAPI = await MockAPIReversalCielo.cancel(numberRequest);
 
         return new Promise(function (resolve) {
@@ -59,7 +55,6 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     private async sendCreditTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        console.log('...Credito');
         const transactionRedeRequest = MapperTransactionCielo.generateCredit(transaction);
         const returnAPI = await MockAPISendCielo.sendCredit(transactionRedeRequest);
 
@@ -69,7 +64,6 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     private async sendDebitTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        console.log('...Debito');
         const transactionRedeRequest = MapperTransactionCielo.generateDebit(transaction);
         const returnAPI = await MockAPISendCielo.sendDebit(transactionRedeRequest);
 
