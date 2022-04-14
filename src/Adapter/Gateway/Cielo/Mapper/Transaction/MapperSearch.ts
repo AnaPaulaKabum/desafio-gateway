@@ -27,11 +27,13 @@ export abstract class MapperSearch {
             const dateCapture = object.Payment.CapturedDate;
             const numberRequestCapture = object.MerchantOrderId;
             const nsuCapture = '123';
+            const authorizationCode = '123';
             transactionSearchResponse.capture = CaptureOrder.create(
                 numberRequest,
                 amountCapture,
                 dateCapture,
                 nsuCapture,
+                authorizationCode,
             );
             status = StatusTransaction.CAPTURE;
         }

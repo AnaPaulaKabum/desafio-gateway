@@ -3,13 +3,15 @@ import { CaptureCieloTransaction } from '../../Response/CaptureCieloTransactionR
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { CaptureTransactionDTO } from '../../../../../Shared/DTO/CaptureTransactionDTO';
 
-export abstract class MapperCapture {
+export class MapperCapture {
+    private constructor() {}
+
     static toCapture(Json: any, captureDTO: CaptureTransactionDTO): CaptureOrder {
         let object = plainToInstance(CaptureCieloTransaction, Json);
-
         const nsu = object.ProofOfSale;
+        const authorizationCode = object.AuthorizationCode;
         const date = new Date();
 
-        return CaptureOrder.create(captureDTO.numberRequest, captureDTO.amount, date, nsu);
+        return CaptureOrder.create(captureDTO.numberRequest, captureDTO.amount, date, nsu, authorizationCode);
     }
 }

@@ -4,6 +4,7 @@ export class CaptureOrder {
         private readonly _amount: number,
         private readonly _date: Date,
         private readonly _nsu: string,
+        private readonly _authorizationCode: string,
     ) {}
 
     get numberRequest(): string {
@@ -19,13 +20,16 @@ export class CaptureOrder {
         return this._nsu;
     }
 
-    static create(numberRequest: string, amount: number, date: Date, nsu: string) {
-        if (amount > 0) {
-            if (!date) throw new Error('Campo date é obrigatório quando possui valor na captura');
-            if (!nsu) throw new Error('Campo nsu é obrigatório quando possui valor na captura');
-            if (!numberRequest) throw new Error('Campo numRequest é obrigatório quando possui valor na captura');
-        }
+    get authorizationCode(): string {
+        return this._authorizationCode;
+    }
 
-        return new CaptureOrder(numberRequest, amount, date, nsu);
+    static create(numberRequest: string, amount: number, date: Date, nsu: string, authorizationCode) {
+        if (!numberRequest) throw new Error('Campo numRequest é obrigatório');
+        if (!date) throw new Error('Campo date é obrigatório q');
+        if (!nsu) throw new Error('Campo nsu é obrigatório ');
+        if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
+
+        return new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
     }
 }

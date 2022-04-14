@@ -9,7 +9,8 @@ export abstract class MapperCapture {
         const numberRequest = object.reference;
         const nsu = object.nsu;
         const date = object.dateTime;
+        const authorizationCode = object.authorizationCode;
 
-        return CaptureOrder.create(numberRequest, amount, date, nsu);
+        return CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
     }
 }
