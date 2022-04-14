@@ -59,9 +59,9 @@ export abstract class APP {
 
             let gateway;
             if (gatewayUses === 1) {
-                gateway = new GatewayRedeAdapter();
+                gateway = new GatewayRedeAdapter(repositoryTransaction);
             } else {
-                gateway = new GatewayCieloAdapter();
+                gateway = new GatewayCieloAdapter(repositoryTransaction);
             }
 
             let validateGateway = configRede();

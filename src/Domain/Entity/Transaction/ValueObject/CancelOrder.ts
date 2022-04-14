@@ -2,7 +2,6 @@ export class CancelOrder {
     private constructor(
         private readonly _numberRequest: string,
         private readonly _date: Date,
-        private readonly _id: string,
         private readonly _amount: number,
         private readonly _tid: string,
         private readonly _nsu: string,
@@ -15,9 +14,7 @@ export class CancelOrder {
     get date(): Date {
         return this._date;
     }
-    get id(): string {
-        return this._id;
-    }
+
     get amount(): number {
         return this._amount;
     }
@@ -34,7 +31,6 @@ export class CancelOrder {
     static create(
         numberRequest: string,
         date: Date,
-        id: string,
         amount: number,
         tid: string,
         nsu: string,
@@ -42,11 +38,10 @@ export class CancelOrder {
     ): CancelOrder {
         if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
         if (!date) throw new Error('Campo date é obrigatório');
-        //if (!id) throw new Error('Campo id é obrigatório');
         if (!tid) throw new Error('Campo tid é obrigatório');
         if (!nsu) throw new Error('Campo nsu é obrigatório');
         if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
 
-        return new CancelOrder(numberRequest, date, id, amount, tid, nsu, authorizationCode);
+        return new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
     }
 }

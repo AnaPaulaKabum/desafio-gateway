@@ -39,13 +39,11 @@ export abstract class MapperSearch {
         }
 
         if (object.Payment.VoidedAmount > 0) {
-            const idCancel = 'xx';
             const amountCancel = object.Payment.VoidedAmount;
             const dateCancel = object.Payment.VoidedDate;
             transactionSearchResponse.refund = CancelOrder.create(
                 numberRequest,
                 dateCancel,
-                idCancel,
                 amountCancel,
                 '123',
                 '123',

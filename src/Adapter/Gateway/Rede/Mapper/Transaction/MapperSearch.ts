@@ -62,17 +62,8 @@ export abstract class MapperSearch {
         if (object.refunds.amount > 0) {
             const amount = object.refunds.amount;
             const date = object.refunds.dateTime;
-            const id = object.refunds.refundId;
 
-            transactionSearchResponse.refund = CancelOrder.create(
-                numberRequest,
-                date,
-                id,
-                amount,
-                'tid',
-                'nsu',
-                'autho',
-            );
+            transactionSearchResponse.refund = CancelOrder.create(numberRequest, date, amount, 'tid', 'nsu', 'autho');
             status = StatusTransaction.CANCEL;
         }
 

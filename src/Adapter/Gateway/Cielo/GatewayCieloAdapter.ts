@@ -17,8 +17,12 @@ import { CancelOrder } from '../../../Domain/Entity/Transaction/ValueObject/Canc
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { MapperCaptureTrasaction } from './Mapper/Transaction/MapperCaptureTrasaction';
+import { CancelRepository } from '../../Repository/Transaction/CancelRepository';
+import { TransactionRepository } from '../../Repository/Transaction/TransactionRepository';
 
 export class GatewayCieloAdapter implements IGateways {
+    constructor(private readonly transactionRepository: TransactionRepository) {}
+
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
         if (transaction.kind === TypeTransaction.CREDIT) {
             return this.sendCreditTransaction(transaction);
@@ -45,9 +49,10 @@ export class GatewayCieloAdapter implements IGateways {
 
     async cancelReversalTransaction(numberRequest: string): Promise<CancelOrder> {
         const returnAPI = await MockAPIReversalCielo.cancel(numberRequest);
+        const transaction = await this.transactionRepository.findOne(numberRequest);
 
         return new Promise(function (resolve) {
-            resolve(MapperCancel.toCancelTransaction(returnAPI, numberRequest));
+            resolve(MapperCancel.toCancelTransaction(returnAPI, transaction));
         });
     }
 
