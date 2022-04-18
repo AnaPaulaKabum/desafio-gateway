@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse';
 
 export class MapperCapture {

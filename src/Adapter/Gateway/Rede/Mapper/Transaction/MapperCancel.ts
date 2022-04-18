@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
-import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse';
 
 export class MapperCancel {

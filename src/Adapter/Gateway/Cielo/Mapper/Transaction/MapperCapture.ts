@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureCieloTransaction } from '../../Response/CaptureCieloTransactionResponse';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { CaptureTransactionDTO } from '../../../../../Shared/DTO/CaptureTransactionDTO';
 
 export class MapperCapture {

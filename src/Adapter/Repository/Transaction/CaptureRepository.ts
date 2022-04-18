@@ -1,4 +1,4 @@
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
+import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { ICaptureRepository } from '../../../Shared/Interfaces/Repository/ICaptureRepository';
 
 export class CaptureRepository implements ICaptureRepository {

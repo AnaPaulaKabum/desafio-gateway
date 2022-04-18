@@ -1,4 +1,4 @@
-import { Card } from '../Card';
+import { Card } from './Card';
 
 type SutTypes = {
     number: string;

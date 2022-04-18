@@ -1,4 +1,4 @@
-import { CancelOrder } from '../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { ICancelRepository } from '../../../Shared/Interfaces/Repository/ICancelRepository';
 
 export class CancelRepository implements ICancelRepository {

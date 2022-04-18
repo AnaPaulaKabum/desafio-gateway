@@ -1,7 +1,7 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
-import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';

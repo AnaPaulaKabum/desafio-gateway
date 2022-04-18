@@ -1,6 +1,6 @@
-import { CaptureOrder } from './ValueObject/CaptureOrder';
-import { CancelOrder } from './ValueObject/CancelOrder';
-import { TransactionOrder } from './ValueObject/TransactionOrder';
+import { CaptureOrder } from './CaptureOrder';
+import { CancelOrder } from './CancelOrder';
+import { TransactionOrder } from './TransactionOrder';
 
 export class SearchTransactionOrder {
     private _capture: CaptureOrder;

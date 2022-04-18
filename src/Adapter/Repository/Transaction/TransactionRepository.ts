@@ -1,6 +1,6 @@
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 
 export class TransactionRepository implements ITransactionRepository {

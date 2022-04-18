@@ -6,9 +6,8 @@ import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITran
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
-import { CaptureOrder } from '../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
+import { CaptureOrder } from '../../Domain/Entity/Transaction/CaptureOrder';
 import { ICaptureRepository } from '../../Shared/Interfaces/Repository/ICaptureRepository';
-import { CaptureRequest } from '../../Application/Request/CaptureRequest';
 import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
 
 export class CaptureTransaction {

@@ -1,10 +1,10 @@
 import { plainToInstance } from 'class-transformer';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
 import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 
 export class MapperSearch {

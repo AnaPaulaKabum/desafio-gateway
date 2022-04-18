@@ -1,4 +1,4 @@
-import { CancelOrder } from '../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 
 export interface ICancelRepository {
     save(capture: CancelOrder): Promise<any>;

@@ -1,5 +1,5 @@
-import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { TransactionOrder } from '../TransactionOrder';
 
 type SutTypes = {

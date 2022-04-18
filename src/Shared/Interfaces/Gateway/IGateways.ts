@@ -1,8 +1,8 @@
 import { TransactionDTO } from '../../DTO/TransactionDTO';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
-import { CancelOrder } from '../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
+import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { SearchRequest } from '../../../Application/Request/SearchRequest';
 import { CaptureTransactionDTO } from '../../DTO/CaptureTransactionDTO';
 

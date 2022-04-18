@@ -1,5 +1,5 @@
 import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { MockAPISendRede } from './Mock/API/MockAPISendRede';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
@@ -11,8 +11,8 @@ import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MockAPICancelRede } from './Mock/API/MockAPICancelRede';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
-import { CancelOrder } from '../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
+import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionRepository } from '../../Repository/Transaction/TransactionRepository';
