@@ -12,43 +12,30 @@ export abstract class MapperSearch {
     static toTransactionComplete(Json: any): SearchTransactionOrder {
         let object = plainToInstance(SearchCieloTransactionResponse, Json);
 
-        let transactionSearchResponse = new SearchTransactionOrder();
-
         const numberRequest = object.MerchantOrderId;
         const numberCard = object.Payment.CreditCard.CardNumber;
         const brandCard = object.Payment.CreditCard.Brand;
         const nameCard = object.Payment.CreditCard.Holder;
 
-        transactionSearchResponse.card = Card.create(numberCard, nameCard, 1, 2022, '123');
+        const creditCard = Card.create(numberCard, nameCard, 1, 2022, '123');
         let status = StatusTransaction.NO_CAPTURE;
 
+        let capture;
         if (object.Payment.CapturedAmount > 0) {
             const amountCapture = object.Payment.CapturedAmount;
             const dateCapture = object.Payment.CapturedDate;
             const numberRequestCapture = object.MerchantOrderId;
             const nsuCapture = '123';
             const authorizationCode = '123';
-            transactionSearchResponse.capture = CaptureOrder.create(
-                numberRequest,
-                amountCapture,
-                dateCapture,
-                nsuCapture,
-                authorizationCode,
-            );
+            capture = CaptureOrder.create(numberRequest, amountCapture, dateCapture, nsuCapture, authorizationCode);
             status = StatusTransaction.CAPTURE;
         }
 
+        let refund;
         if (object.Payment.VoidedAmount > 0) {
             const amountCancel = object.Payment.VoidedAmount;
             const dateCancel = object.Payment.VoidedDate;
-            transactionSearchResponse.refund = CancelOrder.create(
-                numberRequest,
-                dateCancel,
-                amountCancel,
-                '123',
-                '123',
-                '123',
-            );
+            refund = CancelOrder.create(numberRequest, dateCancel, amountCancel, '123', '123', '123');
             status = StatusTransaction.CANCEL;
         }
         let kind;
@@ -65,7 +52,7 @@ export abstract class MapperSearch {
         const nsu = object.Payment.ProofOfSale;
         const amount = object.Payment.Amount;
 
-        transactionSearchResponse.transaction = TransactionOrder.create(
+        const transaction = TransactionOrder.create(
             numberRequest,
             tid,
             kind,
@@ -77,6 +64,9 @@ export abstract class MapperSearch {
             installments,
         );
 
+        let transactionSearchResponse = new SearchTransactionOrder(transaction, creditCard);
+        transactionSearchResponse.cancel = refund;
+        transactionSearchResponse.capture = capture;
         return transactionSearchResponse;
     }
 }

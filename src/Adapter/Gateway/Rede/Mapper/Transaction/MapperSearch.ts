@@ -8,12 +8,35 @@ import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
 import { Card } from '../../../../../Domain/Entity/Transaction/ValueObject/Card';
 
-export abstract class MapperSearch {
+export class MapperSearch {
+    private constructor() {}
+
     static toTransactionComplete(Json: any): SearchTransactionOrder {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
-        let transactionSearchResponse = new SearchTransactionOrder();
+        const card = Card.create(object.authorization.cardBin + object.authorization.last4, 'XXX', 1, 2025, '123');
+        const transaction = MapperSearch.createTransaction(object);
 
+        let searchTransaction = new SearchTransactionOrder(transaction, card);
+
+        if (object.capture.amount > 0) {
+            searchTransaction.capture = MapperSearch.createCaptura(object);
+        }
+
+        if (object.refunds.amount > 0) {
+            searchTransaction.cancel = MapperSearch.createCancel(object, transaction);
+        }
+
+        return searchTransaction;
+    }
+
+    private static createTransaction(object: SearchTransactionResponse): TransactionOrder {
+        let kind;
+        if (object.authorization.kind === 'Credit') {
+            kind = TypeTransaction.CREDIT;
+        } else if (object.authorization.kind === 'Debit') {
+            kind = TypeTransaction.DEBIT;
+        }
         const tid = object.authorization.tid;
         const amount = object.authorization.amount;
         const installments = object.authorization.installments;
@@ -23,22 +46,7 @@ export abstract class MapperSearch {
         const nsu = object.authorization.nsu;
         let status = StatusTransaction.NO_CAPTURE;
 
-        let kind;
-        if (object.authorization.kind === 'Credit') {
-            kind = TypeTransaction.CREDIT;
-        } else if (object.authorization.kind === 'Debit') {
-            kind = TypeTransaction.DEBIT;
-        }
-
-        transactionSearchResponse.card = Card.create(
-            object.authorization.cardBin + object.authorization.last4,
-            'XXX',
-            1,
-            2025,
-            '123',
-        );
-
-        transactionSearchResponse.transaction = TransactionOrder.create(
+        return TransactionOrder.create(
             numberRequest,
             tid,
             kind,
@@ -49,24 +57,21 @@ export abstract class MapperSearch {
             authorizationCode,
             installments,
         );
+    }
 
-        if (object.capture.amount > 0) {
-            /*transactionSearchResponse.capture = new CaptureOrder();
-            transactionSearchResponse.capture.amount = object.capture.amount;
-            transactionSearchResponse.capture.date = object.capture.dateTime;
-            transactionSearchResponse.capture.nsu = object.capture.nsu;
-            transactionSearchResponse.capture.numberRequest = object.authorization.reference;*/
-            status = StatusTransaction.CAPTURE;
-        }
+    private static createCaptura(object: SearchTransactionResponse): CaptureOrder {
+        const amount = object.capture.amount;
+        const date = object.capture.dateTime;
+        const nsu = object.capture.nsu;
+        const numberRequest = object.authorization.reference;
 
-        if (object.refunds.amount > 0) {
-            const amount = object.refunds.amount;
-            const date = object.refunds.dateTime;
+        return CaptureOrder.create(numberRequest, amount, date, nsu, '');
+    }
 
-            transactionSearchResponse.refund = CancelOrder.create(numberRequest, date, amount, 'tid', 'nsu', 'autho');
-            status = StatusTransaction.CANCEL;
-        }
+    private static createCancel(object: SearchTransactionResponse, transaction: TransactionOrder): CancelOrder {
+        const amount = object.refunds.amount;
+        const date = object.refunds.dateTime;
 
-        return transactionSearchResponse;
+        return CancelOrder.create(transaction.numberRequest, date, amount, 'tid', 'nsu', 'autho');
     }
 }
