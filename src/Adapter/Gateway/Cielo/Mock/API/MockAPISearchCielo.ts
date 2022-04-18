@@ -1,7 +1,7 @@
 export class MockAPISearchCielo {
     private constructor() {}
 
-    static search(paramNumberRequest: string): Promise<any> {
+    static searchToNumberRequest(paramNumberRequest: string): Promise<any> {
         const returnSearch = {
             MerchantOrderId: '2014111706',
             AcquirerOrderId: '202202231037440D1BD0',
@@ -75,6 +75,13 @@ export class MockAPISearchCielo {
             },
         };
 
+        return new Promise(function (resolve) {
+            resolve(returnSearch);
+        });
+    }
+
+    static searchToTid(tid: string) {
+        const returnSearch = {};
         return new Promise(function (resolve) {
             resolve(returnSearch);
         });

@@ -1,4 +1,4 @@
 export class SearchRequest {
-    numberRequest?: string;
-    tid?: string;
+    numberRequest: string;
+    tid: string;
 }

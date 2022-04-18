@@ -28,7 +28,8 @@ export class FactoryDTO {
     static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTO {
         const searchTransaction = new SearchTransactionDTO();
 
-        searchTransaction.numberRequest = searchTransaction.numberRequest;
+        searchTransaction.numberRequest = searchRequest.numberRequest;
+        searchTransaction.tid = searchRequest.tid;
 
         return searchTransaction;
     }

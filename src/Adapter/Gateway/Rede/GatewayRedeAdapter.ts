@@ -31,7 +31,7 @@ export class GatewayRedeAdapter implements IGateways {
 
     async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
         let returnAPI;
-        if (!searchRequest.numberRequest) {
+        if (searchRequest.numberRequest) {
             returnAPI = await MockAPISearchRede.searchNumberRequest(searchRequest.numberRequest);
         } else {
             returnAPI = await MockAPISearchRede.searchTid(searchRequest.tid);

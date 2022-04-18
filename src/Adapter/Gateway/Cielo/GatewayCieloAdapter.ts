@@ -17,7 +17,6 @@ import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { MapperCaptureTrasaction } from './Mapper/Transaction/MapperCaptureTrasaction';
-import { CancelRepository } from '../../Repository/Transaction/CancelRepository';
 import { TransactionRepository } from '../../Repository/Transaction/TransactionRepository';
 
 export class GatewayCieloAdapter implements IGateways {
@@ -31,7 +30,14 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
-        const returnAPI = await MockAPISearchCielo.search(searchRequest.numberRequest);
+        let returnAPI;
+
+        console.log('xxx' + JSON.stringify(searchRequest));
+        if (searchRequest.numberRequest) {
+            returnAPI = await MockAPISearchCielo.searchToNumberRequest(searchRequest.numberRequest);
+        } else {
+            returnAPI = await MockAPISearchCielo.searchToTid(searchRequest.tid);
+        }
 
         return new Promise(function (resolve) {
             resolve(MapperSearch.toTransactionComplete(returnAPI));
