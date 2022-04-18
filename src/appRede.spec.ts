@@ -1,6 +1,5 @@
 import { APP } from './app';
 import { SearchTransactionOrder } from './Domain/Entity/Transaction/SearchTransactionOrder';
-import { Card } from './Domain/Entity/Transaction/ValueObject/Card';
 import { TransactionOrder } from './Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { CancelOrder } from './Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { CaptureOrder } from './Domain/Entity/Transaction/ValueObject/CaptureOrder';
@@ -25,7 +24,6 @@ describe('SearchTransaction', () => {
         const returnSearchTransaction = await APP.start(gatewayUses, methodUses, false);
 
         expect(returnSearchTransaction).toBeTruthy();
-        expect(returnSearchTransaction.card).toBeInstanceOf(Card);
         expect(returnSearchTransaction.transaction).toBeInstanceOf(TransactionOrder);
         expect(returnSearchTransaction).toBeInstanceOf(SearchTransactionOrder);
     });

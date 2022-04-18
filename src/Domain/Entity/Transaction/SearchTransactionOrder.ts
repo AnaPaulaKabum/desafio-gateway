@@ -1,13 +1,13 @@
 import { CaptureOrder } from './ValueObject/CaptureOrder';
-import { Card } from './ValueObject/Card';
 import { CancelOrder } from './ValueObject/CancelOrder';
 import { TransactionOrder } from './ValueObject/TransactionOrder';
 
 export class SearchTransactionOrder {
     private _capture: CaptureOrder;
     private _cancel: CancelOrder;
+    private _cardNumber: string;
 
-    constructor(private readonly transaction: TransactionOrder, private readonly card: Card) {}
+    constructor(private readonly transaction: TransactionOrder) {}
 
     set capture(value: CaptureOrder) {
         if (this._capture) throw new Error('É possivel atribuir o capture apenas uma vez.');
@@ -19,11 +19,20 @@ export class SearchTransactionOrder {
     }
 
     set cancel(value: CancelOrder) {
-        if (this._cancel) throw new Error('É possivel atribuir o capture apenas uma vez.');
+        if (this._cancel) throw new Error('É possivel atribuir o cancel apenas uma vez.');
         this._cancel = value;
     }
 
     get cancel(): CancelOrder {
         return this._cancel;
+    }
+
+    set creditCard(value: string) {
+        if (this._capture) throw new Error('É possivel atribuir o capture apenas uma vez.');
+        this._cardNumber = value;
+    }
+
+    get creditCard(): string {
+        return this._cardNumber;
     }
 }

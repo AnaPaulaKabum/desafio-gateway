@@ -25,7 +25,6 @@ describe('SearchTransaction', () => {
         const returnSearchTransaction = await APP.start(gatewayUses, methodUses, false);
 
         expect(returnSearchTransaction).toBeTruthy();
-        expect(returnSearchTransaction.card).toBeInstanceOf(Card);
         expect(returnSearchTransaction.transaction).toBeInstanceOf(TransactionOrder);
         expect(returnSearchTransaction).toBeInstanceOf(SearchTransactionOrder);
     });

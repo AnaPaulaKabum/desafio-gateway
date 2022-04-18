@@ -6,25 +6,19 @@ import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObje
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
-import { Card } from '../../../../../Domain/Entity/Transaction/ValueObject/Card';
 
 export abstract class MapperSearch {
     static toTransactionComplete(Json: any): SearchTransactionOrder {
         let object = plainToInstance(SearchCieloTransactionResponse, Json);
 
         const numberRequest = object.MerchantOrderId;
-        const numberCard = object.Payment.CreditCard.CardNumber;
-        const brandCard = object.Payment.CreditCard.Brand;
-        const nameCard = object.Payment.CreditCard.Holder;
 
-        const creditCard = Card.create(numberCard, nameCard, 1, 2022, '123');
         let status = StatusTransaction.NO_CAPTURE;
 
         let capture;
         if (object.Payment.CapturedAmount > 0) {
             const amountCapture = object.Payment.CapturedAmount;
             const dateCapture = object.Payment.CapturedDate;
-            const numberRequestCapture = object.MerchantOrderId;
             const nsuCapture = '123';
             const authorizationCode = '123';
             capture = CaptureOrder.create(numberRequest, amountCapture, dateCapture, nsuCapture, authorizationCode);
@@ -64,7 +58,8 @@ export abstract class MapperSearch {
             installments,
         );
 
-        let transactionSearchResponse = new SearchTransactionOrder(transaction, creditCard);
+        let transactionSearchResponse = new SearchTransactionOrder(transaction);
+        transactionSearchResponse.creditCard = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.cancel = refund;
         transactionSearchResponse.capture = capture;
         return transactionSearchResponse;

@@ -14,10 +14,10 @@ export class MapperSearch {
     static toTransactionComplete(Json: any): SearchTransactionOrder {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
-        const card = Card.create(object.authorization.cardBin + object.authorization.last4, 'XXX', 1, 2025, '123');
         const transaction = MapperSearch.createTransaction(object);
 
-        let searchTransaction = new SearchTransactionOrder(transaction, card);
+        let searchTransaction = new SearchTransactionOrder(transaction);
+        searchTransaction.creditCard = object.authorization.cardBin + object.authorization.last4;
 
         if (object.capture.amount > 0) {
             searchTransaction.capture = MapperSearch.createCaptura(object);
@@ -64,8 +64,9 @@ export class MapperSearch {
         const date = object.capture.dateTime;
         const nsu = object.capture.nsu;
         const numberRequest = object.authorization.reference;
+        const authorizationCode = '';
 
-        return CaptureOrder.create(numberRequest, amount, date, nsu, '');
+        return CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
     }
 
     private static createCancel(object: SearchTransactionResponse, transaction: TransactionOrder): CancelOrder {
