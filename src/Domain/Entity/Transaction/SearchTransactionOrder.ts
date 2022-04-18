@@ -28,7 +28,6 @@ export class SearchTransactionOrder {
     }
 
     set creditCard(value: string) {
-        if (this._capture) throw new Error('É possivel atribuir o capture apenas uma vez.');
         this._cardNumber = value;
     }
 
