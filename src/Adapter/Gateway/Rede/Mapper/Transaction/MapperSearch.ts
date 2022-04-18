@@ -6,7 +6,6 @@ import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
-import { Card } from '../../../../../Domain/Entity/Transaction/ValueObject/Card';
 
 export class MapperSearch {
     private constructor() {}
