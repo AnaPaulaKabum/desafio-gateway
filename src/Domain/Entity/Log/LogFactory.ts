@@ -1,7 +1,9 @@
 import { Log } from './Log';
 import { StatusLog } from '../../../Shared/Enum/StatusLog';
 
-export abstract class LogFactory {
+export class LogFactory {
+    private constructor() {}
+
     static success(message: string): Log {
         let log = new Log();
         log.message = message;

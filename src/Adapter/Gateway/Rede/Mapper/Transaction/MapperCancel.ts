@@ -3,7 +3,9 @@ import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObjec
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse';
 
-export abstract class MapperCancel {
+export class MapperCancel {
+    private constructor() {}
+
     static toCancelTransaction(Json: any, transaction: TransactionOrder): CancelOrder {
         let object = plainToInstance(CancelTransactionResponse, Json);
 

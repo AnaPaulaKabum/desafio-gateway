@@ -7,7 +7,9 @@ import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction'
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 
-export abstract class MapperSearch {
+export class MapperSearch {
+    private constructor() {}
+
     static toTransactionComplete(Json: any): SearchTransactionOrder {
         let object = plainToInstance(SearchCieloTransactionResponse, Json);
 

@@ -3,7 +3,9 @@ import { CancelOrder } from '../../../../../Domain/Entity/Transaction/ValueObjec
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { ResponseAPICieloToReversal } from '../../Response/ReversalCieloTransactionResponse';
 
-export abstract class MapperCancel {
+export class MapperCancel {
+    private constructor() {}
+
     static toCancelTransaction(Json: any, transactionOrder: TransactionOrder): CancelOrder {
         let object = plainToInstance(ResponseAPICieloToReversal, Json);
 

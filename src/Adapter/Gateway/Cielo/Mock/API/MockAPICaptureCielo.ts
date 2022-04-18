@@ -1,6 +1,8 @@
 import { TransactionCieloCaptureRequest } from '../../Request/TransactionCieloCaptureRequest';
 
-export abstract class MockAPICaptureCielo {
+export class MockAPICaptureCielo {
+    private constructor() {}
+
     //put /1/sales/{PaymentId}/capture
     static captureTotal(transactionCapture: TransactionCieloCaptureRequest): Promise<any> {
         return new Promise(function (resolve) {

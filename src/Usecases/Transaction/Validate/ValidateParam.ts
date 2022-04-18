@@ -1,7 +1,9 @@
 import { ParamValidateType } from '../../../Shared/Interfaces/Gateway/ParamValidateType';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 
-export abstract class ValidateParam {
+export class ValidateParam {
+    private constructor() {}
+
     static isValidSend(param: ParamValidateType, request: TransactionDTO) {
         if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');

@@ -2,7 +2,7 @@ import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/CaptureOrder';
 import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse';
 
-export abstract class MapperCapture {
+export class MapperCapture {
     static toCapture(Json: any, amount: number): CaptureOrder {
         let object = plainToInstance(CaptureTransactionResponse, Json);
 

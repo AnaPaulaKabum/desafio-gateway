@@ -16,7 +16,9 @@ import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
 import { configRede } from './Adapter/Gateway/Rede/configRede';
 
-export abstract class APP {
+export class APP {
+    private constructor() {}
+
     static async start(gatewayUses: number, methodUses: number, log: boolean): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(

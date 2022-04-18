@@ -1,7 +1,7 @@
 import { TransactionDTO } from '../../../../../Shared/DTO/TransactionDTO';
 import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest';
 
-export abstract class MapperTrasactionRede {
+export class MapperTrasactionRede {
     static toTransactionRede(transaction: TransactionDTO): TransactionRedeCreateRequest {
         let transactionRede = new TransactionRedeCreateRequest();
 

@@ -1,4 +1,6 @@
-export abstract class MockAPIReversalCielo {
+export class MockAPIReversalCielo {
+    private constructor() {}
+
     static cancel(numberRequest: string): Promise<any> {
         const returnAPI = {
             Status: 10,

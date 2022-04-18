@@ -1,6 +1,8 @@
 import { TransactionRedeCreateRequest } from '../../Request/TransactionRedeCreateRequest';
 
-export abstract class MockAPISendRede {
+export class MockAPISendRede {
+    private constructor() {}
+
     static send(transaction: TransactionRedeCreateRequest): Promise<any> {
         return new Promise(function (resolve, reject) {
             resolve({

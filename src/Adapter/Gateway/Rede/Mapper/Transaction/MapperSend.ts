@@ -4,7 +4,7 @@ import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/ValueObject/TransactionOrder';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse';
 
-export abstract class MapperSend {
+export class MapperSend {
     static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {
         let object = plainToInstance(SendTransitionResponse, Json);
 

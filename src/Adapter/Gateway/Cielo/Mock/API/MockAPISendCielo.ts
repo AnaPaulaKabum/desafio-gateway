@@ -1,4 +1,6 @@
-export abstract class MockAPISendCielo {
+export class MockAPISendCielo {
+    private constructor() {}
+
     static sendCredit(transaction: any): Promise<any> {
         return new Promise(function (resolve) {
             resolve({

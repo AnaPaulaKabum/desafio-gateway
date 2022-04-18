@@ -1,4 +1,6 @@
-export abstract class MockAPISearchRede {
+export class MockAPISearchRede {
+    private constructor() {}
+
     static searchNumberRequest(paramNumberRequest: string): Promise<any> {
         const returnSearch = {
             requestDateTime: '2017-03-12T08:54:00.000-03:00',
