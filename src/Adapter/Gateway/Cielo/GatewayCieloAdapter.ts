@@ -47,7 +47,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async cancelReversalTransaction(numberRequest: string): Promise<CancelOrder> {
+    async cancelTransaction(numberRequest: string): Promise<CancelOrder> {
         const returnAPI = await MockAPIReversalCielo.cancel(numberRequest);
         const transaction = await this.transactionRepository.findOne(numberRequest);
 

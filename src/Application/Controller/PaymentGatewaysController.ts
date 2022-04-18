@@ -1,4 +1,4 @@
-import { CancelReversalTransaction } from '../../Usecases/Transaction/CancelReversalTransaction';
+import { CancelTransaction } from '../../Usecases/Transaction/CancelTransaction';
 import { CaptureTransaction } from '../../Usecases/Transaction/CaptureTransaction';
 import { SearchTransaction } from '../../Usecases/Transaction/SearchTransaction';
 import { SendTransaction } from '../../Usecases/Transaction/SendTransaction';
@@ -16,7 +16,7 @@ export class PaymentGatewaysController {
         private readonly sendTransaction: SendTransaction,
         private readonly searchTransaction: SearchTransaction,
         private readonly captureTransaction: CaptureTransaction,
-        private readonly cancelReversalTransaction: CancelReversalTransaction,
+        private readonly cancelTransaction: CancelTransaction,
     ) {}
 
     public async sendTransactions(createTransaction: TransactionRequest): Promise<TransactionOrder> {
@@ -35,6 +35,6 @@ export class PaymentGatewaysController {
     }
 
     public cancelReversalTransactions(paramNumberRequest: string): Promise<CancelOrder> {
-        return this.cancelReversalTransaction.execute(paramNumberRequest);
+        return this.cancelTransaction.execute(paramNumberRequest);
     }
 }

@@ -5,7 +5,7 @@ import { GatewayRedeAdapter } from './Adapter/Gateway/Rede/GatewayRedeAdapter';
 import { SendTransaction } from './Usecases/Transaction/SendTransaction';
 import { SearchTransaction } from './Usecases/Transaction/SearchTransaction';
 import { CaptureTransaction } from './Usecases/Transaction/CaptureTransaction';
-import { CancelReversalTransaction } from './Usecases/Transaction/CancelReversalTransaction';
+import { CancelTransaction } from './Usecases/Transaction/CancelTransaction';
 import { TransactionRepository } from './Adapter/Repository/Transaction/TransactionRepository';
 import { GatewayCieloAdapter } from './Adapter/Gateway/Cielo/GatewayCieloAdapter';
 import { TypeTransaction } from './Shared/Enum/TypeTransaction.enum';
@@ -82,7 +82,7 @@ export abstract class APP {
                     repositoryLog,
                     mail,
                 ),
-                cancelReversalTransaction: new CancelReversalTransaction(
+                cancelTransaction: new CancelTransaction(
                     gateway,
                     repositoryTransaction,
                     repositoryCancel,
@@ -93,13 +93,13 @@ export abstract class APP {
         };
 
         //Design Patter composite root:
-        const { sendTransaction, searchTransaction, captureTransaction, cancelReversalTransaction } =
+        const { sendTransaction, searchTransaction, captureTransaction, cancelTransaction } =
             TransactionServicesFactory();
         const paymentGatewaysController = new PaymentGatewaysController(
             sendTransaction,
             searchTransaction,
             captureTransaction,
-            cancelReversalTransaction,
+            cancelTransaction,
         );
 
         let result;

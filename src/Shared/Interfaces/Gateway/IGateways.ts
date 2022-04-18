@@ -10,5 +10,5 @@ export interface IGateways {
     sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder>;
     searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrder>;
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder>;
-    cancelReversalTransaction(numberRequest: string): Promise<CancelOrder>;
+    cancelTransaction(numberRequest: string): Promise<CancelOrder>;
 }

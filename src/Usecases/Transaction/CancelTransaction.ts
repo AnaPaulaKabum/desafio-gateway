@@ -10,7 +10,7 @@ import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { ICancelRepository } from '../../Shared/Interfaces/Repository/ICancelRepository';
 import { CancelOrder } from '../../Domain/Entity/Transaction/ValueObject/CancelOrder';
 
-export class CancelReversalTransaction {
+export class CancelTransaction {
     constructor(
         private readonly gateway: IGateways,
         private readonly repositoryTransaction: ITransactionRepository,
@@ -24,7 +24,7 @@ export class CancelReversalTransaction {
             const transaction = await this.repositoryTransaction.findOne(numberRequest);
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
-                const cancelTransaction = this.gateway.cancelReversalTransaction(numberRequest);
+                const cancelTransaction = this.gateway.cancelTransaction(numberRequest);
                 await this.repositoryTransaction.updateStatus(numberRequest, StatusTransaction.CANCEL);
                 await this.repositoryCancel.save(await cancelTransaction);
                 await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
