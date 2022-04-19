@@ -2,6 +2,8 @@ import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
+import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 
 export class TransactionRepository implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
@@ -27,15 +29,25 @@ export class TransactionRepository implements ITransactionRepository {
         });
     }
 
-    save(transaction: TransactionOrder): Promise<any> {
+    updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
+        return new Promise(function (resolve) {
+            resolve(console.log('...update no status da transaction'));
+        });
+    }
+
+    saveTransaction(transaction: TransactionOrder): Promise<any> {
         return new Promise(function (resolve) {
             resolve(console.log('...salvando transaction'));
         });
     }
-
-    updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
+    saveCapture(capture: CaptureOrder): Promise<any> {
         return new Promise(function (resolve) {
-            resolve(console.log('...update no status da transaction'));
+            resolve(console.log('...salvando capture'));
+        });
+    }
+    saveCancel(cancel: CancelOrder): Promise<any> {
+        return new Promise(function (resolve) {
+            resolve(console.log('...salvando cancel transaction'));
         });
     }
 }

@@ -7,14 +7,12 @@ import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { TransactionOrder } from '../../Domain/Entity/Transaction/TransactionOrder';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
-import { ICancelRepository } from '../../Shared/Interfaces/Repository/ICancelRepository';
 import { CancelOrder } from '../../Domain/Entity/Transaction/CancelOrder';
 
 export class CancelTransaction {
     constructor(
         private readonly gateway: IGateways,
         private readonly repositoryTransaction: ITransactionRepository,
-        private readonly repositoryCancel: ICancelRepository,
         private readonly repositoryLog: ILogRepository,
         private readonly mail: IMail,
     ) {}
@@ -26,7 +24,7 @@ export class CancelTransaction {
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 const cancelTransaction = this.gateway.cancelTransaction(numberRequest);
                 await this.repositoryTransaction.updateStatus(numberRequest, StatusTransaction.CANCEL);
-                await this.repositoryCancel.save(await cancelTransaction);
+                await this.repositoryTransaction.saveCancel(await cancelTransaction);
                 await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
                 return cancelTransaction;
             }

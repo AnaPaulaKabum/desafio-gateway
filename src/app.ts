@@ -9,8 +9,6 @@ import { CancelTransaction } from './Usecases/Transaction/CancelTransaction';
 import { TransactionRepository } from './Adapter/Repository/Transaction/TransactionRepository';
 import { GatewayCieloAdapter } from './Adapter/Gateway/Cielo/GatewayCieloAdapter';
 import { TypeTransaction } from './Shared/Enum/TypeTransaction.enum';
-import { CaptureRepository } from './Adapter/Repository/Transaction/CaptureRepository';
-import { CancelRepository } from './Adapter/Repository/Transaction/CancelRepository';
 import { SearchRequest } from './Application/Request/SearchRequest';
 import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
@@ -55,8 +53,6 @@ export class APP {
         const TransactionServicesFactory = () => {
             const repositoryTransaction = new TransactionRepository();
             const repositoryLog = new LogRepository();
-            const repositoryCapture = new CaptureRepository();
-            const repositoryCancel = new CancelRepository();
             const mail = new Mail();
 
             let gateway;
@@ -77,20 +73,8 @@ export class APP {
                     mail,
                 ),
                 searchTransaction: new SearchTransaction(gateway, repositoryLog),
-                captureTransaction: new CaptureTransaction(
-                    gateway,
-                    repositoryTransaction,
-                    repositoryCapture,
-                    repositoryLog,
-                    mail,
-                ),
-                cancelTransaction: new CancelTransaction(
-                    gateway,
-                    repositoryTransaction,
-                    repositoryCancel,
-                    repositoryLog,
-                    mail,
-                ),
+                captureTransaction: new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
+                cancelTransaction: new CancelTransaction(gateway, repositoryTransaction, repositoryLog, mail),
             };
         };
 

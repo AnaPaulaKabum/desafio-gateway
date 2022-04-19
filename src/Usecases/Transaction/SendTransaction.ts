@@ -25,7 +25,7 @@ export class SendTransaction {
 
             if (await this.isValidToSend(transaction.numberRequest)) {
                 const transactionResult = await this.gateway.sendTransaction(transaction);
-                await this.repositoryTransaction.save(transactionResult);
+                await this.repositoryTransaction.saveTransaction(transactionResult);
                 await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
 
                 return transactionResult;

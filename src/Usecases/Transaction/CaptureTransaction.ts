@@ -7,14 +7,12 @@ import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CaptureOrder } from '../../Domain/Entity/Transaction/CaptureOrder';
-import { ICaptureRepository } from '../../Shared/Interfaces/Repository/ICaptureRepository';
 import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
 
 export class CaptureTransaction {
     constructor(
         private readonly gateway: IGateways,
         private readonly repositoryTransaction: ITransactionRepository,
-        private readonly repositoryCapture: ICaptureRepository,
         private readonly repositoryLog: ILogRepository,
         private readonly mail: IMail,
     ) {}
@@ -24,7 +22,7 @@ export class CaptureTransaction {
             if (await this.isValidToCapture(captureDTO.numberRequest)) {
                 const captureTranstion = this.gateway.captureTransaction(captureDTO);
                 await this.repositoryTransaction.updateStatus(captureDTO.numberRequest, StatusTransaction.CAPTURE);
-                await this.repositoryCapture.save(await captureTranstion);
+                await this.repositoryTransaction.saveCapture(await captureTranstion);
                 await this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTranstion;
             }
