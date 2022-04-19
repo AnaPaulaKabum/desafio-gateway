@@ -27,13 +27,4 @@ export class ValidateParam {
             throw new Error('amount deverá ter menos ' + param.amount_MAX + ' caracteres');
         }
     }
-    /*isValidCapture(): boolean {
-        throw new Error('Method not implemented.');
-    }
-    isValidSearch(): boolean {
-        throw new Error('Method not implemented.');
-    }
-    isValidCancel(): boolean {
-        throw new Error('Method not implemented.');
-    }*/
 }

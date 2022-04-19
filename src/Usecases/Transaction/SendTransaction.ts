@@ -9,6 +9,7 @@ import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { TransactionDTO } from '../../Shared/DTO/TransactionDTO';
 import { ParamValidateType } from '../../Shared/Interfaces/Gateway/ParamValidateType';
 import { ValidateParam } from './Validate/ValidateParam';
+import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
 
 export class SendTransaction {
     constructor(
@@ -34,14 +35,16 @@ export class SendTransaction {
             throw new Error('Transação já cadastrada');
         } catch (error) {
             await this.mail.send(new FieldMail(error));
-            this.repositoryLog.save(LogFactory.error(Action.SEND.toString() + error));
+            await this.repositoryLog.save(LogFactory.error(Action.SEND.toString() + error));
             throw new Error(error);
         }
     }
 
-    private async isValidToSend(numberRequest: string) {
+    private async isValidToSend(numberRequest: string): Promise<boolean> {
         const status = await this.repositoryTransaction.searchStatus(numberRequest);
-        //return status === StatusTransaction.NO_REGISTER;
-        return true;
+
+        return new Promise(function (resolve) {
+            resolve(status !== StatusTransaction.FINNALY);
+        });
     }
 }
