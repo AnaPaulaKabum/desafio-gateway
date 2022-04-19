@@ -37,7 +37,7 @@ export class TransactionRepository implements ITransactionRepository {
 
     saveTransaction(transaction: TransactionOrder): Promise<any> {
         return new Promise(function (resolve) {
-            resolve(console.log('...salvando transaction'));
+            resolve(null);
         });
     }
     saveCapture(capture: CaptureOrder): Promise<any> {
