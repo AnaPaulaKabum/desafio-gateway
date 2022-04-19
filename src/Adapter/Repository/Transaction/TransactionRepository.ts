@@ -31,7 +31,7 @@ export class TransactionRepository implements ITransactionRepository {
 
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
         return new Promise(function (resolve) {
-            resolve(console.log('...update no status da transaction'));
+            resolve(null);
         });
     }
 
@@ -42,12 +42,12 @@ export class TransactionRepository implements ITransactionRepository {
     }
     saveCapture(capture: CaptureOrder): Promise<any> {
         return new Promise(function (resolve) {
-            resolve(console.log('...salvando capture'));
+            resolve(null);
         });
     }
     saveCancel(cancel: CancelOrder): Promise<any> {
         return new Promise(function (resolve) {
-            resolve(console.log('...salvando cancel transaction'));
+            resolve(null);
         });
     }
 }
