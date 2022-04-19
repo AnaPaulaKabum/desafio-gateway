@@ -1,4 +1,7 @@
 import { Mail } from '../../../Adapter/Mail/Mail';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
@@ -39,6 +42,30 @@ describe('UseCase - CancelTransaction', () => {
 
     test('Should return error when functions return error', async () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockRejectedValueOnce(new Error());
+
+        expect(service.execute(numberRequest)).rejects.toThrow();
+    });
+
+    test('Should return error when findOne return transactionOrder with TypeTrasaction.FINNALY', async () => {
+        jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
+            new Promise(function (resolve) {
+                return new Promise(function (resolve) {
+                    resolve(
+                        TransactionOrder.create(
+                            numberRequest,
+                            '100',
+                            TypeTransaction.CREDIT,
+                            StatusTransaction.FINNALY,
+                            100,
+                            'Teste',
+                            '100',
+                            '100',
+                            1,
+                        ),
+                    );
+                });
+            }),
+        );
 
         expect(service.execute(numberRequest)).rejects.toThrow();
     });
