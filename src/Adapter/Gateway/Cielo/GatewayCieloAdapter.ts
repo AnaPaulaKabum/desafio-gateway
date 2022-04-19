@@ -31,8 +31,6 @@ export class GatewayCieloAdapter implements IGateways {
 
     async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
         let returnAPI;
-
-        console.log('xxx' + JSON.stringify(searchRequest));
         if (searchRequest.numberRequest) {
             returnAPI = await MockAPISearchCielo.searchToNumberRequest(searchRequest.numberRequest);
         } else {
