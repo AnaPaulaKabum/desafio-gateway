@@ -43,6 +43,14 @@ export class GatewayMock implements IGateways {
         throw new Error('Method not implemented - captureTransaction');
     }
     cancelTransaction(numberRequest: string): Promise<CancelOrder> {
-        throw new Error('Method not implemented - cancelTransaction');
+        const date = new Date();
+        const amount = 100;
+        const tid = '100';
+        const nsu = '100';
+        const authorizationCode = '100';
+
+        return new Promise(function (resolve) {
+            resolve(CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode));
+        });
     }
 }
