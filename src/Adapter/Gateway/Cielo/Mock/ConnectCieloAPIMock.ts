@@ -1,14 +1,14 @@
-import { CaptureTransactionDTO } from '../../../../../Shared/DTO/CaptureTransactionDTO';
-import { SearchTransactionDTO } from '../../../../../Shared/DTO/SearchTransactionDTO';
-import { TransactionDTO } from '../../../../../Shared/DTO/TransactionDTO';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
-import { IConnectCieloAPI } from '../../Interface/IConnectCieloAPI';
-import { MapperCaptureTrasaction } from '../../Mapper/Transaction/MapperCaptureTrasaction';
-import { MapperTransactionCielo } from '../../Mapper/Transaction/MapperTransactionCielo';
-import { MockAPICaptureCielo } from './MockAPICaptureCielo';
-import { MockAPIReversalCielo } from './MockAPIReversalCielo';
-import { MockAPISearchCielo } from './MockAPISearchCielo';
-import { MockAPISendCielo } from './MockAPISendCielo';
+import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
+import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
+import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
+import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { IConnectCieloAPI } from '../Interface/IConnectCieloAPI';
+import { MapperCaptureTrasaction } from '../Mapper/Transaction/MapperCaptureTrasaction';
+import { MapperTransactionCielo } from '../Mapper/Transaction/MapperTransactionCielo';
+import { MockAPICaptureCielo } from './ReturnAPI/MockAPICaptureCielo';
+import { MockAPIReversalCielo } from './ReturnAPI/MockAPIReversalCielo';
+import { MockAPISearchCielo } from './ReturnAPI/MockAPISearchCielo';
+import { MockAPISendCielo } from './ReturnAPI/MockAPISendCielo';
 
 export class ConnectCieloAPIMock implements IConnectCieloAPI {
     sendTransaction(transaction: TransactionDTO): Promise<any> {

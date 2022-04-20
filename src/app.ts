@@ -13,8 +13,8 @@ import { SearchRequest } from './Application/Request/SearchRequest';
 import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
 import { configRede } from './Adapter/Gateway/Rede/configRede';
-import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/API/ConnectRedeAPIMock';
-import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/API/ConnectCieloAPIMock';
+import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/ConnectCieloAPIMock';
+import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/ConnectRedeAPIMock';
 
 export class APP {
     private constructor() {}

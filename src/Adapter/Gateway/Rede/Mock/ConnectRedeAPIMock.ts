@@ -1,12 +1,12 @@
-import { CaptureTransactionDTO } from '../../../../../Shared/DTO/CaptureTransactionDTO';
-import { SearchTransactionDTO } from '../../../../../Shared/DTO/SearchTransactionDTO';
-import { TransactionDTO } from '../../../../../Shared/DTO/TransactionDTO';
-import { IConnectRedeAPI } from '../../Interface/IConnectRedeAPI';
-import { MapperTrasactionRede } from '../../Mapper/Transaction/MapperTrasactionRede';
-import { MockAPICancelRede } from './MockAPICancelRede';
-import { MockAPICaptureRede } from './MockAPICaptureRede';
-import { MockAPISearchRede } from './MockAPISearchRede';
-import { MockAPISendRede } from './MockAPISendRede';
+import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
+import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
+import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
+import { IConnectRedeAPI } from '../Interface/IConnectRedeAPI';
+import { MapperTrasactionRede } from '../Mapper/Transaction/MapperTrasactionRede';
+import { MockAPICancelRede } from './ReturnAPI/MockAPICancelRede';
+import { MockAPICaptureRede } from './ReturnAPI/MockAPICaptureRede';
+import { MockAPISearchRede } from './ReturnAPI/MockAPISearchRede';
+import { MockAPISendRede } from './ReturnAPI/MockAPISendRede';
 
 export class ConnectRedeAPIMock implements IConnectRedeAPI {
     sendTransaction(transaction: TransactionDTO): Promise<any> {
