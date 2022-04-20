@@ -1,4 +1,4 @@
-import { ParamValidateType } from '../../../../Shared/Interfaces/Gateway/ParamValidateType';
+import { ParamValidateType } from '../../../Shared/Interfaces/Gateway/ParamValidateType';
 
 export const configMock = (): ParamValidateType => {
     const numberRequest_MAX = 16;

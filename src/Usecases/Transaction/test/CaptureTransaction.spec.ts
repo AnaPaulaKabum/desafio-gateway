@@ -5,9 +5,9 @@ import { IMail } from '../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { CaptureTransaction } from '../CaptureTransaction';
-import { GatewayMock } from './mock/GatewayMock';
-import { LogRepositoryMock } from './mock/LogRepositoryMock';
-import { TransactionRepositoryMock } from './mock/TransactionRepositoryMock';
+import { GatewayMock } from '../../../Adapter/Gateway/Mock/GatewayMock';
+import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
+import { TransactionRepositoryMock } from '../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
 
 describe('UseCase - CaptureTransaction', () => {
     let service: CaptureTransaction;

@@ -1,13 +1,13 @@
-import { SearchRequest } from '../../../../Application/Request/SearchRequest';
-import { CancelOrder } from '../../../../Domain/Entity/Transaction/CancelOrder';
-import { SearchTransactionOrder } from '../../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
-import { CaptureOrderDTO } from '../../../../Shared/DTO/Order/CaptureOrderDTO';
-import { TransactionOrderDTO } from '../../../../Shared/DTO/Order/TransactionOrderDTO';
-import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
-import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
-import { IGateways } from '../../../../Shared/Interfaces/Gateway/IGateways';
+import { SearchRequest } from '../../../Application/Request/SearchRequest';
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
+import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
+import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
+import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
+import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
+import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
+import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 
 export class GatewayMock implements IGateways {
     sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {

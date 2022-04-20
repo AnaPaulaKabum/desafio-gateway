@@ -6,10 +6,10 @@ import { IMail } from '../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { SendTransaction } from '../SendTransaction';
-import { configMock } from './mock/configMock';
-import { GatewayMock } from './mock/GatewayMock';
-import { LogRepositoryMock } from './mock/LogRepositoryMock';
-import { TransactionRepositoryMock } from './mock/TransactionRepositoryMock';
+import { GatewayMock } from '../../../Adapter/Gateway/Mock/GatewayMock';
+import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
+import { configMock } from '../../../Adapter/Gateway/Mock/configMock';
+import { TransactionRepositoryMock } from '../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
 
 describe('UseCase - SendTransaction', () => {
     let service: SendTransaction;
