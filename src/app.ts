@@ -13,6 +13,7 @@ import { SearchRequest } from './Application/Request/SearchRequest';
 import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
 import { configRede } from './Adapter/Gateway/Rede/configRede';
+import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/API/ConnectRedeAPIMock';
 
 export class APP {
     private constructor() {}
@@ -57,7 +58,8 @@ export class APP {
 
             let gateway;
             if (gatewayUses === 1) {
-                gateway = new GatewayRedeAdapter(repositoryTransaction);
+                const conecctAPIRede = new ConnectRedeAPIMock();
+                gateway = new GatewayRedeAdapter(repositoryTransaction, conecctAPIRede);
             } else {
                 gateway = new GatewayCieloAdapter(repositoryTransaction);
             }
