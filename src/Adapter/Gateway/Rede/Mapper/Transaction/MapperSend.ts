@@ -3,29 +3,24 @@ import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction'
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse';
+import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class MapperSend {
-    static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrder {
+    static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrderDTO {
         let object = plainToInstance(SendTransitionResponse, Json);
 
-        const tid = object.brandTid;
-        const numberRequest = object.reference;
-        const authorizationCode = object.authorizationCode;
-        const nsu = object.nsu;
-        const message = object.returnMessage;
-        const amount = object.amount;
-        const installments = object.installments;
+        const transactionOrderDTO = new TransactionOrderDTO();
 
-        return TransactionOrder.create(
-            numberRequest,
-            tid,
-            typeTransaction,
-            StatusTransaction.NO_CAPTURE,
-            amount,
-            message,
-            nsu,
-            authorizationCode,
-            installments,
-        );
+        transactionOrderDTO.tid = object.brandTid;
+        transactionOrderDTO.numberRequest = object.reference;
+        transactionOrderDTO.authorizationCode = object.authorizationCode;
+        transactionOrderDTO.nsu = object.nsu;
+        transactionOrderDTO.message = object.returnMessage;
+        transactionOrderDTO.amount = object.amount;
+        transactionOrderDTO.installments = object.installments;
+        transactionOrderDTO.kind = typeTransaction;
+        transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+
+        return transactionOrderDTO;
     }
 }

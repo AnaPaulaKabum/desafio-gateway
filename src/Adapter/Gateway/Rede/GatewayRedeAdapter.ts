@@ -1,4 +1,3 @@
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
@@ -12,6 +11,7 @@ import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { IConnectRedeAPI } from './Interface/IConnectRedeAPI';
+import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class GatewayRedeAdapter implements IGateways {
     constructor(
@@ -19,7 +19,7 @@ export class GatewayRedeAdapter implements IGateways {
         private readonly connectAPI: IConnectRedeAPI,
     ) {}
 
-    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
+    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {
         const returnAPI = await this.connectAPI.sendTransaction(transaction);
 
         return new Promise(function (resolve) {

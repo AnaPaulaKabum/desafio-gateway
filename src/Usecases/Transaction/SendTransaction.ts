@@ -25,11 +25,13 @@ export class SendTransaction {
             ValidateParam.isValidSend(this.configGateway, transaction);
 
             if (await this.isValidToSend(transaction.numberRequest)) {
-                const transactionResult = await this.gateway.sendTransaction(transaction);
-                await this.repositoryTransaction.saveTransaction(transactionResult);
+                const transactionDTO = await this.gateway.sendTransaction(transaction);
+
+                const transactionOrder = TransactionOrder.createForDTO(transactionDTO);
+                await this.repositoryTransaction.saveTransaction(transactionOrder);
                 await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
 
-                return transactionResult;
+                return transactionOrder;
             }
 
             throw new Error('Transação já cadastrada');

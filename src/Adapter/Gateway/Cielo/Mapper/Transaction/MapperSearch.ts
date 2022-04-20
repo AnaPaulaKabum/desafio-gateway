@@ -11,7 +11,9 @@ export class MapperSearch {
     private constructor() {}
 
     static toTransactionComplete(Json: any): SearchTransactionOrder {
-        let object = plainToInstance(SearchCieloTransactionResponse, Json);
+        throw new Error('Implementar;');
+
+        /*let object = plainToInstance(SearchCieloTransactionResponse, Json);
 
         const numberRequest = object.MerchantOrderId;
 
@@ -64,6 +66,6 @@ export class MapperSearch {
         transactionSearchResponse.creditCard = object.Payment.CreditCard.CardNumber;
         transactionSearchResponse.cancel = refund;
         transactionSearchResponse.capture = capture;
-        return transactionSearchResponse;
+        return transactionSearchResponse;*/
     }
 }

@@ -4,36 +4,27 @@ import { CaptureOrder } from '../../../../Domain/Entity/Transaction/CaptureOrder
 import { SearchTransactionOrder } from '../../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { TransactionOrder } from '../../../../Domain/Entity/Transaction/TransactionOrder';
 import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
+import { TransactionOrderDTO } from '../../../../Shared/DTO/Order/TransactionOrderDTO';
 import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { IGateways } from '../../../../Shared/Interfaces/Gateway/IGateways';
 
 export class GatewayMock implements IGateways {
-    sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
+    sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {
         return new Promise(function (resolve) {
-            const number = '100';
-            const tid = '100';
-            const kind = TypeTransaction.CREDIT;
-            const authorizationCode = '100';
-            const nsu = '100';
-            const status = StatusTransaction.NO_CAPTURE;
-            const amount = 100;
-            const installments = 2;
-            const message = 'Teste';
-            resolve(
-                TransactionOrder.create(
-                    number,
-                    tid,
-                    kind,
-                    status,
-                    amount,
-                    message,
-                    nsu,
-                    authorizationCode,
-                    installments,
-                ),
-            );
+            const transactionOrderDTO = new TransactionOrderDTO();
+
+            transactionOrderDTO.numberRequest = '100';
+            transactionOrderDTO.tid = '100';
+            transactionOrderDTO.kind = TypeTransaction.CREDIT;
+            transactionOrderDTO.authorizationCode = '100';
+            transactionOrderDTO.nsu = '100';
+            transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+            transactionOrderDTO.amount = 100;
+            transactionOrderDTO.installments = 2;
+            transactionOrderDTO.message = 'Teste';
+            resolve(transactionOrderDTO);
         });
     }
     searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrder> {

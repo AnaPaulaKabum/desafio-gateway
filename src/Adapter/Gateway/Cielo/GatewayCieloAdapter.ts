@@ -1,5 +1,4 @@
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
@@ -12,6 +11,7 @@ import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
+import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class GatewayCieloAdapter implements IGateways {
     constructor(
@@ -19,7 +19,7 @@ export class GatewayCieloAdapter implements IGateways {
         private readonly connectAPI: IConnectCieloAPI,
     ) {}
 
-    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
+    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {
         const returnAPI = await this.connectAPI.sendTransaction(transaction);
 
         return new Promise(function (resolve) {

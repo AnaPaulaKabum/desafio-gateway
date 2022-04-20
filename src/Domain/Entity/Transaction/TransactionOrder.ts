@@ -1,3 +1,4 @@
+import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 
@@ -40,6 +41,21 @@ export class TransactionOrder {
     }
     get message(): string {
         return this._message;
+    }
+
+    static createForDTO(transactionDTO: TransactionOrderDTO): TransactionOrder {
+        console.log('DTO ' + JSON.stringify(transactionDTO));
+        return TransactionOrder.create(
+            transactionDTO.numberRequest,
+            transactionDTO.tid,
+            transactionDTO.kind,
+            transactionDTO.status,
+            transactionDTO.amount,
+            transactionDTO.message,
+            transactionDTO.nsu,
+            transactionDTO.authorizationCode,
+            transactionDTO.installments,
+        );
     }
 
     static create(

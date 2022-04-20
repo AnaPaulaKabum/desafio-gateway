@@ -11,7 +11,9 @@ export class MapperSearch {
     private constructor() {}
 
     static toTransactionComplete(Json: any): SearchTransactionOrder {
-        let object = plainToInstance(SearchTransactionResponse, Json);
+        throw new Error('Implementar;');
+
+        /*  let object = plainToInstance(SearchTransactionResponse, Json);
 
         const transaction = MapperSearch.createTransaction(object);
 
@@ -26,11 +28,13 @@ export class MapperSearch {
             searchTransaction.cancel = MapperSearch.createCancel(object, transaction);
         }
 
-        return searchTransaction;
+        return searchTransaction;*/
     }
 
     private static createTransaction(object: SearchTransactionResponse): TransactionOrder {
-        let kind;
+        throw new Error('Implementar;');
+
+        /*let kind;
         if (object.authorization.kind === 'Credit') {
             kind = TypeTransaction.CREDIT;
         } else if (object.authorization.kind === 'Debit') {
@@ -55,7 +59,7 @@ export class MapperSearch {
             nsu,
             authorizationCode,
             installments,
-        );
+        );*/
     }
 
     private static createCaptura(object: SearchTransactionResponse): CaptureOrder {
