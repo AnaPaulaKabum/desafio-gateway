@@ -7,8 +7,8 @@ import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogReposi
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { CancelTransaction } from '../CancelTransaction';
 import { GatewayMock } from '../../../Adapter/Gateway/Mock/GatewayMock';
-import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
 import { TransactionRepositoryMock } from '../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
+import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
 
 describe('UseCase - CancelTransaction', () => {
     let service: CancelTransaction;
@@ -49,21 +49,19 @@ describe('UseCase - CancelTransaction', () => {
     test('Should return error when findOne return transactionOrder with TypeTrasaction.FINNALY', async () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
             new Promise(function (resolve) {
-                return new Promise(function (resolve) {
-                    resolve(
-                        TransactionOrder.create(
-                            numberRequest,
-                            '100',
-                            TypeTransaction.CREDIT,
-                            StatusTransaction.FINNALY,
-                            100,
-                            'Teste',
-                            '100',
-                            '100',
-                            1,
-                        ),
-                    );
-                });
+                resolve(
+                    TransactionOrder.create(
+                        numberRequest,
+                        '100',
+                        TypeTransaction.CREDIT,
+                        StatusTransaction.FINNALY,
+                        100,
+                        'Teste',
+                        '100',
+                        '100',
+                        1,
+                    ),
+                );
             }),
         );
 
