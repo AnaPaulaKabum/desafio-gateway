@@ -1,41 +1,34 @@
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
-import { MapperTransactionCielo } from './Mapper/Transaction/MapperTransactionCielo';
-import { MockAPICaptureCielo } from './Mock/API/MockAPICaptureCielo';
-import { MockAPISearchCielo } from './Mock/API/MockAPISearchCielo';
-import { MockAPISendCielo } from './Mock/API/MockAPISendCielo';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
-import { MockAPIReversalCielo } from './Mock/API/MockAPIReversalCielo';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
-import { MapperCaptureTrasaction } from './Mapper/Transaction/MapperCaptureTrasaction';
-import { TransactionRepository } from '../../Repository/Transaction/TransactionRepository';
+import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
+import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 
 export class GatewayCieloAdapter implements IGateways {
-    constructor(private readonly transactionRepository: TransactionRepository) {}
+    constructor(
+        private readonly transactionRepository: ITransactionRepository,
+        private readonly connectAPI: IConnectCieloAPI,
+    ) {}
 
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        if (transaction.kind === TypeTransaction.CREDIT) {
-            return this.sendCreditTransaction(transaction);
-        }
-        return this.sendDebitTransaction(transaction);
+        const returnAPI = await this.connectAPI.sendTransaction(transaction);
+
+        return new Promise(function (resolve) {
+            resolve(MapperSend.toTransaction(returnAPI, transaction.kind));
+        });
     }
 
     async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
-        let returnAPI;
-        if (searchRequest.numberRequest) {
-            returnAPI = await MockAPISearchCielo.searchToNumberRequest(searchRequest.numberRequest);
-        } else {
-            returnAPI = await MockAPISearchCielo.searchToTid(searchRequest.tid);
-        }
+        let returnAPI = await this.connectAPI.searchTransaction(searchRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperSearch.toTransactionComplete(returnAPI));
@@ -43,8 +36,7 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
-        let transactionCaptureRequest = MapperCaptureTrasaction.generate(captureTransactionDTO);
-        let returnAPI = await MockAPICaptureCielo.captureTotal(transactionCaptureRequest);
+        const returnAPI = await this.connectAPI.captureTransaction(captureTransactionDTO);
 
         return new Promise(function (resolve) {
             resolve(MapperCapture.toCapture(returnAPI, captureTransactionDTO));
@@ -52,29 +44,11 @@ export class GatewayCieloAdapter implements IGateways {
     }
 
     async cancelTransaction(numberRequest: string): Promise<CancelOrder> {
-        const returnAPI = await MockAPIReversalCielo.cancel(numberRequest);
+        const returnAPI = await this.connectAPI.cancelTransaction(numberRequest);
         const transaction = await this.transactionRepository.findOne(numberRequest);
 
         return new Promise(function (resolve) {
             resolve(MapperCancel.toCancelTransaction(returnAPI, transaction));
-        });
-    }
-
-    private async sendCreditTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        const transactionRedeRequest = MapperTransactionCielo.generateCredit(transaction);
-        const returnAPI = await MockAPISendCielo.sendCredit(transactionRedeRequest);
-
-        return new Promise(function (resolve) {
-            resolve(MapperSend.toTransaction(returnAPI, TypeTransaction.CREDIT));
-        });
-    }
-
-    private async sendDebitTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        const transactionRedeRequest = MapperTransactionCielo.generateDebit(transaction);
-        const returnAPI = await MockAPISendCielo.sendDebit(transactionRedeRequest);
-
-        return new Promise(function (resolve) {
-            resolve(MapperSend.toTransaction(returnAPI, TypeTransaction.DEBIT));
         });
     }
 }

@@ -14,6 +14,7 @@ import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
 import { configRede } from './Adapter/Gateway/Rede/configRede';
 import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/API/ConnectRedeAPIMock';
+import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/API/ConnectCieloAPIMock';
 
 export class APP {
     private constructor() {}
@@ -61,7 +62,8 @@ export class APP {
                 const conecctAPIRede = new ConnectRedeAPIMock();
                 gateway = new GatewayRedeAdapter(repositoryTransaction, conecctAPIRede);
             } else {
-                gateway = new GatewayCieloAdapter(repositoryTransaction);
+                const conecctAPICielo = new ConnectCieloAPIMock();
+                gateway = new GatewayCieloAdapter(repositoryTransaction, conecctAPICielo);
             }
 
             let validateGateway = configRede();
