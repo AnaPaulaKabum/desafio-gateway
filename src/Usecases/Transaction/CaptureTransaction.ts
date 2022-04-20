@@ -20,11 +20,12 @@ export class CaptureTransaction {
     public async execute(captureDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
         try {
             if (await this.isValidToCapture(captureDTO.numberRequest)) {
-                const captureTranstion = this.gateway.captureTransaction(captureDTO);
+                const captureTranstionDTO = await this.gateway.captureTransaction(captureDTO);
+                const captureTransaction = CaptureOrder.createForDTO(captureTranstionDTO);
                 await this.repositoryTransaction.updateStatus(captureDTO.numberRequest, StatusTransaction.CAPTURE);
-                await this.repositoryTransaction.saveCapture(await captureTranstion);
+                await this.repositoryTransaction.saveCapture(captureTransaction);
                 await this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
-                return captureTranstion;
+                return captureTransaction;
             }
 
             throw new Error('Trasação não pode ser capturada.');

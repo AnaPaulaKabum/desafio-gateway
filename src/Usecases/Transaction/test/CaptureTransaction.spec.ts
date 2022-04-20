@@ -30,14 +30,18 @@ describe('UseCase - CaptureTransaction', () => {
     });
 
     test('Should functions that are called', async () => {
-        jest.spyOn(gateway, 'captureTransaction').mockImplementation();
         jest.spyOn(repositoryTransaction, 'updateStatus').mockImplementation();
         jest.spyOn(repositoryTransaction, 'saveCapture').mockImplementation();
         jest.spyOn(repositoryLog, 'save').mockImplementation();
+        jest.spyOn(repositoryTransaction, 'searchStatus').mockReturnValueOnce(
+            new Promise(function (resolve) {
+                resolve(StatusTransaction.NO_CAPTURE);
+            }),
+        );
 
         await service.execute(captureDTO);
 
-        expect(gateway.captureTransaction).toHaveBeenCalledTimes(1);
+        expect(repositoryTransaction.searchStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.updateStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.saveCapture).toHaveBeenCalledTimes(1);
         expect(repositoryLog.save).toHaveBeenCalledTimes(1);

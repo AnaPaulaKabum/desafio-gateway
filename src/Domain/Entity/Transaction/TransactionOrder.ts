@@ -44,7 +44,6 @@ export class TransactionOrder {
     }
 
     static createForDTO(transactionDTO: TransactionOrderDTO): TransactionOrder {
-        console.log('DTO ' + JSON.stringify(transactionDTO));
         return TransactionOrder.create(
             transactionDTO.numberRequest,
             transactionDTO.tid,

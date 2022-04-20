@@ -5,13 +5,13 @@ import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { IConnectRedeAPI } from './Interface/IConnectRedeAPI';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
+import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 
 export class GatewayRedeAdapter implements IGateways {
     constructor(
@@ -35,7 +35,7 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
         const returnAPI = await this.connectAPI.captureTransaction(captureTransactionDTO);
 
         return new Promise(function (resolve) {

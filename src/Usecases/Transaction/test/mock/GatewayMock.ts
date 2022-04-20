@@ -1,9 +1,8 @@
 import { SearchRequest } from '../../../../Application/Request/SearchRequest';
 import { CancelOrder } from '../../../../Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from '../../../../Domain/Entity/Transaction/CaptureOrder';
 import { SearchTransactionOrder } from '../../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { TransactionOrder } from '../../../../Domain/Entity/Transaction/TransactionOrder';
 import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureOrderDTO } from '../../../../Shared/DTO/Order/CaptureOrderDTO';
 import { TransactionOrderDTO } from '../../../../Shared/DTO/Order/TransactionOrderDTO';
 import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
@@ -30,8 +29,16 @@ export class GatewayMock implements IGateways {
     searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrder> {
         throw new Error('Method not implemented - searchTransaction');
     }
-    captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
-        throw new Error('Method not implemented - captureTransaction');
+    captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
+        return new Promise(function (resolve) {
+            const capture = new CaptureOrderDTO();
+            capture.amount = 100;
+            capture.numberRequest = 'pedido123';
+            capture.authorizationCode = '123';
+            capture.nsu = '123';
+            capture.date = new Date();
+            resolve(capture);
+        });
     }
     cancelTransaction(numberRequest: string): Promise<CancelOrder> {
         const date = new Date();

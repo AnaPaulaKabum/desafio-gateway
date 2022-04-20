@@ -12,6 +12,7 @@ import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
+import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 
 export class GatewayCieloAdapter implements IGateways {
     constructor(
@@ -35,7 +36,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
         const returnAPI = await this.connectAPI.captureTransaction(captureTransactionDTO);
 
         return new Promise(function (resolve) {
