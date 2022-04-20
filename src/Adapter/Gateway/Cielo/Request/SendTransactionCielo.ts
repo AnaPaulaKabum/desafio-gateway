@@ -1,5 +1,5 @@
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
-import { BrandCard } from '../../../../Domain/Entity/Enum/BrandCard';
+import { BrandCard } from '../../../../Domain/Enum/BrandCard';
 import { Card } from '../../../../Domain/Entity/Transaction/Card';
 
 class Payment {
