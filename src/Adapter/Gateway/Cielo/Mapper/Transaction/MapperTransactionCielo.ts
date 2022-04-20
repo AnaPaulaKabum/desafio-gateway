@@ -1,4 +1,4 @@
-import { Card } from '../../../../../Domain/Entity/Transaction/ValueObject/Card';
+import { Card } from '../../../../../Domain/Entity/Transaction/Card';
 import { TransactionDTO } from '../../../../../Shared/DTO/TransactionDTO';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { SendTransactionCielo } from '../../Request/SendTransactionCielo';
