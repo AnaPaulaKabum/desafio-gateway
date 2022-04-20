@@ -1,4 +1,3 @@
-import { MapperTrasactionRede } from './Mapper/Transaction/MapperTrasactionRede';
 import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
@@ -21,8 +20,7 @@ export class GatewayRedeAdapter implements IGateways {
     ) {}
 
     async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrder> {
-        const transactionRedeRequest = MapperTrasactionRede.toTransactionRede(transaction);
-        const returnAPI = await this.connectAPI.sendTransaction(transactionRedeRequest);
+        const returnAPI = await this.connectAPI.sendTransaction(transaction);
 
         return new Promise(function (resolve) {
             resolve(MapperSend.toTransaction(returnAPI, transaction.kind));
