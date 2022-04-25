@@ -4,15 +4,14 @@ import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
-import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
+import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 
 export class GatewayCieloAdapter implements IGateways {
     constructor(
@@ -44,7 +43,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async cancelTransaction(numberRequest: string): Promise<CancelOrder> {
+    async cancelTransaction(numberRequest: string): Promise<CancelOrderDTO> {
         const returnAPI = await this.connectAPI.cancelTransaction(numberRequest);
         const transaction = await this.transactionRepository.findOne(numberRequest);
 

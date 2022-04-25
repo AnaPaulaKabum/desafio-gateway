@@ -1,3 +1,5 @@
+import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
+
 export class CancelOrder {
     private constructor(
         private readonly _numberRequest: string,
@@ -26,6 +28,17 @@ export class CancelOrder {
     }
     get authorizationCode(): string {
         return this._authorizationCode;
+    }
+
+    static createForDTO(cancelOrderDTO: CancelOrderDTO): CancelOrder {
+        return CancelOrder.create(
+            cancelOrderDTO.numberRequest,
+            cancelOrderDTO.date,
+            cancelOrderDTO.amount,
+            cancelOrderDTO.tid,
+            cancelOrderDTO.nsu,
+            cancelOrderDTO.authorizationCode,
+        );
     }
 
     static create(

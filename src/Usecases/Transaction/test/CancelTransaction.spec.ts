@@ -15,11 +15,10 @@ describe('UseCase - CancelTransaction', () => {
     let repositoryTransaction: ITransactionRepository;
     let repositoryLog: ILogRepository;
     let mail: IMail;
-    let gateway;
     const numberRequest = 'pedido123';
 
     beforeEach(() => {
-        gateway = new GatewayMock();
+        const gateway = new GatewayMock();
         repositoryTransaction = new TransactionRepositoryMock();
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();
@@ -27,14 +26,29 @@ describe('UseCase - CancelTransaction', () => {
     });
 
     test('Should functions that are called', async () => {
-        jest.spyOn(gateway, 'cancelTransaction').mockImplementation();
+        jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
+            new Promise(function (resolve) {
+                resolve(
+                    TransactionOrder.create(
+                        numberRequest,
+                        '100',
+                        TypeTransaction.CREDIT,
+                        StatusTransaction.CAPTURE,
+                        100,
+                        'Teste',
+                        '100',
+                        '100',
+                        1,
+                    ),
+                );
+            }),
+        );
         jest.spyOn(repositoryTransaction, 'updateStatus').mockImplementation();
         jest.spyOn(repositoryTransaction, 'saveCancel').mockImplementation();
         jest.spyOn(repositoryLog, 'save').mockImplementation();
 
         await service.execute(numberRequest);
 
-        expect(gateway.cancelTransaction).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.updateStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.saveCancel).toHaveBeenCalledTimes(1);
         expect(repositoryLog.save).toHaveBeenCalledTimes(1);

@@ -1,26 +1,23 @@
 import { plainToInstance } from 'class-transformer';
-import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { CancelOrderDTO } from '../../../../../Shared/DTO/Order/CancelOrderDTO';
 import { ResponseAPICieloToReversal } from '../../Response/ReversalCieloTransactionResponse';
 
 export class MapperCancel {
     private constructor() {}
 
-    static toCancelTransaction(Json: any, transactionOrder: TransactionOrder): CancelOrder {
+    static toCancelTransaction(Json: any, transactionOrder: TransactionOrder): CancelOrderDTO {
         let object = plainToInstance(ResponseAPICieloToReversal, Json);
 
-        const nsu = object.ProofOfSale;
-        const tid = object.Tid;
-        const authorizationCode = object.AuthorizationCode;
-        const date = new Date();
+        const cancelOrderDTO = new CancelOrderDTO();
 
-        return CancelOrder.create(
-            transactionOrder.numberRequest,
-            date,
-            transactionOrder.amount,
-            tid,
-            nsu,
-            authorizationCode,
-        );
+        cancelOrderDTO.numberRequest = transactionOrder.numberRequest;
+        cancelOrderDTO.amount = transactionOrder.amount;
+        cancelOrderDTO.nsu = object.ProofOfSale;
+        cancelOrderDTO.tid = object.Tid;
+        cancelOrderDTO.authorizationCode = object.AuthorizationCode;
+        cancelOrderDTO.date = new Date();
+
+        return cancelOrderDTO;
     }
 }
