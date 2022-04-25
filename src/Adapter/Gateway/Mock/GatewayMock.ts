@@ -1,7 +1,7 @@
 import { SearchRequest } from '../../../Application/Request/SearchRequest';
-import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
+import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
@@ -40,15 +40,16 @@ export class GatewayMock implements IGateways {
             resolve(capture);
         });
     }
-    cancelTransaction(numberRequest: string): Promise<CancelOrder> {
-        const date = new Date();
-        const amount = 100;
-        const tid = '100';
-        const nsu = '100';
-        const authorizationCode = '100';
+    cancelTransaction(numberRequest: string): Promise<CancelOrderDTO> {
+        const cancelOrderDTO = new CancelOrderDTO();
+
+        cancelOrderDTO.date = new Date();
+        cancelOrderDTO.tid = '100';
+        cancelOrderDTO.nsu = '100';
+        cancelOrderDTO.authorizationCode = '100';
 
         return new Promise(function (resolve) {
-            resolve(CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode));
+            resolve(cancelOrderDTO);
         });
     }
 }

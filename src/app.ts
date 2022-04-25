@@ -59,11 +59,11 @@ export class APP {
 
             let gateway;
             if (gatewayUses === 1) {
-                const conecctAPIRede = new ConnectRedeAPIMock();
-                gateway = new GatewayRedeAdapter(repositoryTransaction, conecctAPIRede);
+                const conectAPIRede = new ConnectRedeAPIMock();
+                gateway = new GatewayRedeAdapter(conectAPIRede);
             } else {
-                const conecctAPICielo = new ConnectCieloAPIMock();
-                gateway = new GatewayCieloAdapter(repositoryTransaction, conecctAPICielo);
+                const conectAPICielo = new ConnectCieloAPIMock();
+                gateway = new GatewayCieloAdapter(repositoryTransaction, conectAPICielo);
             }
 
             let validateGateway = configRede();
