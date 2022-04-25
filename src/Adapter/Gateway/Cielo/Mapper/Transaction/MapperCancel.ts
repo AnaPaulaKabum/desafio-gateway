@@ -1,5 +1,4 @@
 import { plainToInstance } from 'class-transformer';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { CancelOrderDTO } from '../../../../../Shared/DTO/Order/CancelOrderDTO';
 import { ResponseAPICieloToReversal } from '../../Response/ReversalCieloTransactionResponse';
 
