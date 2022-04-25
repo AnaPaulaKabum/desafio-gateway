@@ -23,10 +23,8 @@ export class CancelTransaction {
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 let cancelOrderDTO = await this.gateway.cancelTransaction(numberRequest);
-                console.log(JSON.stringify(cancelOrderDTO));
                 cancelOrderDTO.numberRequest = transaction.numberRequest;
                 cancelOrderDTO.amount = transaction.amount;
-
                 const cancelTransaction = CancelOrder.createForDTO(cancelOrderDTO);
                 await this.repositoryTransaction.updateStatus(numberRequest, StatusTransaction.CANCEL);
                 await this.repositoryTransaction.saveCancel(cancelTransaction);
