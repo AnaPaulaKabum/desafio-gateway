@@ -6,13 +6,10 @@ import { ResponseAPICieloToReversal } from '../../Response/ReversalCieloTransact
 export class MapperCancel {
     private constructor() {}
 
-    static toCancelTransaction(Json: any, transactionOrder: TransactionOrder): CancelOrderDTO {
+    static toCancelTransaction(Json: any): CancelOrderDTO {
         let object = plainToInstance(ResponseAPICieloToReversal, Json);
 
         const cancelOrderDTO = new CancelOrderDTO();
-
-        cancelOrderDTO.numberRequest = transactionOrder.numberRequest;
-        cancelOrderDTO.amount = transactionOrder.amount;
         cancelOrderDTO.nsu = object.ProofOfSale;
         cancelOrderDTO.tid = object.Tid;
         cancelOrderDTO.authorizationCode = object.AuthorizationCode;

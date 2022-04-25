@@ -63,7 +63,7 @@ export class APP {
                 gateway = new GatewayRedeAdapter(conectAPIRede);
             } else {
                 const conectAPICielo = new ConnectCieloAPIMock();
-                gateway = new GatewayCieloAdapter(repositoryTransaction, conectAPICielo);
+                gateway = new GatewayCieloAdapter(conectAPICielo);
             }
 
             let validateGateway = configRede();
