@@ -10,9 +10,12 @@ export class SearchTransaction {
 
     public async execute(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
         try {
-            const resultado = this.gateway.searchTransaction(searchRequest);
+            const searchTransactionDTO = await this.gateway.searchTransaction(searchRequest);
+            console.log(JSON.stringify(searchTransactionDTO));
+            const searchTransaction = SearchTransactionOrder.createForDTO(searchTransactionDTO);
             await this.repositoryLog.save(LogFactory.register(Action.SEARCH.toString()));
-            return resultado;
+            console.log(JSON.stringify(searchTransaction));
+            return searchTransaction;
         } catch (error) {
             throw new Error(error);
         }

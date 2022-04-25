@@ -2,22 +2,21 @@ import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
-import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
+import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
+import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 
 export class MapperSearch {
     private constructor() {}
 
-    static toTransactionComplete(Json: any): SearchTransactionOrder {
-        throw new Error('Implementar;');
-
-        /*  let object = plainToInstance(SearchTransactionResponse, Json);
+    static toTransactionComplete(Json: any): SearchTransactionOrderDTO {
+        let object = plainToInstance(SearchTransactionResponse, Json);
 
         const transaction = MapperSearch.createTransaction(object);
 
-        let searchTransaction = new SearchTransactionOrder(transaction);
+        let searchTransaction = new SearchTransactionOrderDTO();
+        searchTransaction.transaction = transaction;
         searchTransaction.creditCard = object.authorization.cardBin + object.authorization.last4;
 
         if (object.capture.amount > 0) {
@@ -28,13 +27,11 @@ export class MapperSearch {
             searchTransaction.cancel = MapperSearch.createCancel(object, transaction);
         }
 
-        return searchTransaction;*/
+        return searchTransaction;
     }
 
     private static createTransaction(object: SearchTransactionResponse): TransactionOrder {
-        throw new Error('Implementar;');
-
-        /*let kind;
+        let kind;
         if (object.authorization.kind === 'Credit') {
             kind = TypeTransaction.CREDIT;
         } else if (object.authorization.kind === 'Debit') {
@@ -59,7 +56,7 @@ export class MapperSearch {
             nsu,
             authorizationCode,
             installments,
-        );*/
+        );
     }
 
     private static createCaptura(object: SearchTransactionResponse): CaptureOrder {

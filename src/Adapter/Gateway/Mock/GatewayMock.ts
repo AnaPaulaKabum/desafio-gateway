@@ -1,8 +1,8 @@
 import { SearchRequest } from '../../../Application/Request/SearchRequest';
-import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
+import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
@@ -26,8 +26,11 @@ export class GatewayMock implements IGateways {
             resolve(transactionOrderDTO);
         });
     }
-    searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrder> {
-        throw new Error('Method not implemented - searchTransaction');
+    searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrderDTO> {
+        return new Promise(function (resolve) {
+            const transactionOrderDTO = new SearchTransactionOrderDTO();
+            resolve(transactionOrderDTO);
+        });
     }
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
         return new Promise(function (resolve) {

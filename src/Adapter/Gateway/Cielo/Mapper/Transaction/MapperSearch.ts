@@ -6,11 +6,12 @@ import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOr
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
 
 export class MapperSearch {
     private constructor() {}
 
-    static toTransactionComplete(Json: any): SearchTransactionOrder {
+    static toTransactionComplete(Json: any): SearchTransactionOrderDTO {
         throw new Error('Implementar;');
 
         /*let object = plainToInstance(SearchCieloTransactionResponse, Json);

@@ -11,6 +11,7 @@ import { IConnectRedeAPI } from './Interface/IConnectRedeAPI';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
+import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 
 export class GatewayRedeAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectRedeAPI) {}
@@ -23,7 +24,7 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
         const returnAPI = await this.connectAPI.searchTransaction(searchRequest);
 
         return new Promise(function (resolve) {

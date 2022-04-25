@@ -1,37 +1,20 @@
 import { CaptureOrder } from './CaptureOrder';
 import { CancelOrder } from './CancelOrder';
 import { TransactionOrder } from './TransactionOrder';
+import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 
 export class SearchTransactionOrder {
-    private _capture: CaptureOrder;
+    /*private _capture: CaptureOrder;
     private _cancel: CancelOrder;
-    private _cardNumber: string;
+    private _cardNumber: string;*/
 
-    constructor(private readonly transaction: TransactionOrder) {}
+    private constructor(private readonly _transaction: TransactionOrder) {}
 
-    set capture(value: CaptureOrder) {
-        if (this._capture) throw new Error('É possivel atribuir o capture apenas uma vez.');
-        this._capture = value;
+    static createForDTO(searchTransactionDTO: SearchTransactionOrderDTO): SearchTransactionOrder {
+        return SearchTransactionOrder.create(searchTransactionDTO.transaction);
     }
 
-    get capture(): CaptureOrder {
-        return this._capture;
-    }
-
-    set cancel(value: CancelOrder) {
-        if (this._cancel) throw new Error('É possivel atribuir o cancel apenas uma vez.');
-        this._cancel = value;
-    }
-
-    get cancel(): CancelOrder {
-        return this._cancel;
-    }
-
-    set creditCard(value: string) {
-        this._cardNumber = value;
-    }
-
-    get creditCard(): string {
-        return this._cardNumber;
+    static create(transaction: TransactionOrder) {
+        return new SearchTransactionOrder(transaction);
     }
 }

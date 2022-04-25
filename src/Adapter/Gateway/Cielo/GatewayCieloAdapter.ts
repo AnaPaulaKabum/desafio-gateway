@@ -11,6 +11,7 @@ import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
+import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 
 export class GatewayCieloAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectCieloAPI) {}
@@ -23,7 +24,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
         let returnAPI = await this.connectAPI.searchTransaction(searchRequest);
 
         return new Promise(function (resolve) {
