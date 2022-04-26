@@ -33,6 +33,11 @@ export class SearchTransactionOrder {
             transactionDTO.authorizationCode,
             transactionDTO.installments,
         );
+
+        if (captureAmount > 0) {
+            if (!captureAmount) throw new Error('Campo captureAmount é obrigatório');
+            if (!captureDate) throw new Error('Campo captureDate é obrigatório');
+        }
         const searchTransaction = new SearchTransactionOrder(transaction, captureAmount, captureDate);
 
         return searchTransaction;
