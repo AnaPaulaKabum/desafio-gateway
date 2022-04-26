@@ -1,7 +1,6 @@
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
-import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';

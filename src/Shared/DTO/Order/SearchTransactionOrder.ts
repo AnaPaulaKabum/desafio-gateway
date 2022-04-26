@@ -6,6 +6,8 @@ export class SearchTransactionOrderDTO {
     transaction: TransactionOrderDTO;
     captureAmount: number;
     captureDate: Date;
+    cancelAmount: number;
+    cancelDate: Date;
 
     capture: CaptureOrder;
     cancel: CancelOrder;

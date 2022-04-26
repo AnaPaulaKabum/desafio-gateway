@@ -1,9 +1,9 @@
 import { plainToInstance } from 'class-transformer';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
+import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 
 export class MapperSearch {
     private constructor() {}
@@ -19,14 +19,12 @@ export class MapperSearch {
             searchTransactionDTO.captureDate = object.Payment.CapturedDate;
             status = StatusTransaction.CAPTURE;
         }
-        /*
-        let refund;
+
         if (object.Payment.VoidedAmount > 0) {
-            const amountCancel = object.Payment.VoidedAmount;
-            const dateCancel = object.Payment.VoidedDate;
-            refund = CancelOrder.create(numberRequest, dateCancel, amountCancel, '123', '123', '123');
+            searchTransactionDTO.cancelAmount = object.Payment.VoidedAmount;
+            searchTransactionDTO.cancelDate = object.Payment.VoidedDate;
             status = StatusTransaction.CANCEL;
-        }*/
+        }
 
         searchTransactionDTO.transaction = MapperSearch.createTransactionOrderDTO(object);
         searchTransactionDTO.creditCard = object.Payment.CreditCard.CardNumber;

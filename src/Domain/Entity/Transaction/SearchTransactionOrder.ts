@@ -3,14 +3,12 @@ import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTrans
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class SearchTransactionOrder {
-    /*;
-    private _cancel: CancelOrder;
-    private _cardNumber: string;*/
-
     private constructor(
         private readonly _transaction: TransactionOrder,
         private readonly _captureAmount: number,
         private readonly _captureDate: Date,
+        private readonly _cancelAmount: number,
+        private readonly _cancelDate: Date,
     ) {}
 
     static createForDTO(searchTransactionDTO: SearchTransactionOrderDTO): SearchTransactionOrder {
@@ -18,10 +16,18 @@ export class SearchTransactionOrder {
             searchTransactionDTO.transaction,
             searchTransactionDTO.captureAmount,
             searchTransactionDTO.captureDate,
+            searchTransactionDTO.cancelAmount,
+            searchTransactionDTO.cancelDate,
         );
     }
 
-    static create(transactionDTO: TransactionOrderDTO, captureAmount: number, captureDate: Date) {
+    static create(
+        transactionDTO: TransactionOrderDTO,
+        captureAmount: number,
+        captureDate: Date,
+        cancelAmount: number,
+        cancelDate: Date,
+    ) {
         const transaction = TransactionOrder.create(
             transactionDTO.numberRequest,
             transactionDTO.tid,
@@ -38,7 +44,13 @@ export class SearchTransactionOrder {
             if (!captureAmount) throw new Error('Campo captureAmount é obrigatório');
             if (!captureDate) throw new Error('Campo captureDate é obrigatório');
         }
-        const searchTransaction = new SearchTransactionOrder(transaction, captureAmount, captureDate);
+        const searchTransaction = new SearchTransactionOrder(
+            transaction,
+            captureAmount,
+            captureDate,
+            cancelAmount,
+            cancelDate,
+        );
 
         return searchTransaction;
     }
