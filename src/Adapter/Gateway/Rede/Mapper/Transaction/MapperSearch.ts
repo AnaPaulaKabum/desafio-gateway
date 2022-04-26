@@ -1,11 +1,11 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
 import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
+import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class MapperSearch {
     private constructor() {}
@@ -30,33 +30,24 @@ export class MapperSearch {
         return searchTransaction;
     }
 
-    private static createTransaction(object: SearchTransactionResponse): TransactionOrder {
-        let kind;
-        if (object.authorization.kind === 'Credit') {
-            kind = TypeTransaction.CREDIT;
-        } else if (object.authorization.kind === 'Debit') {
-            kind = TypeTransaction.DEBIT;
-        }
-        const tid = object.authorization.tid;
-        const amount = object.authorization.amount;
-        const installments = object.authorization.installments;
-        const message = object.authorization.returnMessage;
-        const numberRequest = object.authorization.reference;
-        const authorizationCode = object.authorization.authorizationCode;
-        const nsu = object.authorization.nsu;
-        let status = StatusTransaction.NO_CAPTURE;
+    private static createTransaction(object: SearchTransactionResponse): TransactionOrderDTO {
+        const transactionOrderDTO = new TransactionOrderDTO();
 
-        return TransactionOrder.create(
-            numberRequest,
-            tid,
-            kind,
-            status,
-            amount,
-            message,
-            nsu,
-            authorizationCode,
-            installments,
-        );
+        if (object.authorization.kind === 'Credit') {
+            transactionOrderDTO.kind = TypeTransaction.CREDIT;
+        } else if (object.authorization.kind === 'Debit') {
+            transactionOrderDTO.kind = TypeTransaction.DEBIT;
+        }
+        transactionOrderDTO.tid = object.authorization.tid;
+        transactionOrderDTO.amount = object.authorization.amount;
+        transactionOrderDTO.installments = object.authorization.installments;
+        transactionOrderDTO.message = object.authorization.returnMessage;
+        transactionOrderDTO.numberRequest = object.authorization.reference;
+        transactionOrderDTO.authorizationCode = object.authorization.authorizationCode;
+        transactionOrderDTO.nsu = object.authorization.nsu;
+        transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+
+        return transactionOrderDTO;
     }
 
     private static createCaptura(object: SearchTransactionResponse): CaptureOrder {
@@ -69,7 +60,7 @@ export class MapperSearch {
         return CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
     }
 
-    private static createCancel(object: SearchTransactionResponse, transaction: TransactionOrder): CancelOrder {
+    private static createCancel(object: SearchTransactionResponse, transaction: TransactionOrderDTO): CancelOrder {
         const amount = object.refunds.amount;
         const date = object.refunds.dateTime;
 

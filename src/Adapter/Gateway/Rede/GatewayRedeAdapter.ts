@@ -4,7 +4,6 @@ import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
-import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectRedeAPI } from './Interface/IConnectRedeAPI';
