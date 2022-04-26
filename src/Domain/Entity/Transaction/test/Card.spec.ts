@@ -23,14 +23,14 @@ describe('Card - Validation', () => {
         expirationMonth = -3;
 
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
     test('Should return error if expirationMonth invalid', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         expirationMonth = 13;
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
@@ -38,7 +38,7 @@ describe('Card - Validation', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         expirationYear = -2022;
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
@@ -46,7 +46,7 @@ describe('Card - Validation', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         expirationYear = 155;
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
@@ -54,7 +54,7 @@ describe('Card - Validation', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         expirationYear = 2020;
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
@@ -62,7 +62,7 @@ describe('Card - Validation', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         securityCode = '12345';
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
@@ -70,7 +70,7 @@ describe('Card - Validation', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         number = '012345678901234567890';
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
@@ -78,20 +78,20 @@ describe('Card - Validation', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         name = '';
         expect(() => {
-            Card.create(number, name, expirationMonth, expirationYear, securityCode);
+            new Card(number, name, expirationMonth, expirationYear, securityCode);
         }).toThrow();
     });
 
     test('Should return not error if correct param ', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
-        const card = Card.create(number, name, expirationMonth, expirationYear, securityCode);
+        const card = new Card(number, name, expirationMonth, expirationYear, securityCode);
         expect(card).toBeTruthy();
         expect(card).toBeInstanceOf(Card);
     });
 
     test('Should return not error if get param ', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
-        const card = Card.create(number, name, expirationMonth, expirationYear, securityCode);
+        const card = new Card(number, name, expirationMonth, expirationYear, securityCode);
         expect(card).toBeTruthy();
         expect(card.number).toBe(number);
         expect(card.name).toBe(name);

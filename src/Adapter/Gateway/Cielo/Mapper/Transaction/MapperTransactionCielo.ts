@@ -41,6 +41,6 @@ export class MapperTransactionCielo {
         const holder = transaction.cardHolderName;
         const securityCode = transaction.cardSecurityCode;
 
-        return Card.create(cardNumber, holder, expirationMonth, expirationYear, securityCode);
+        return new Card(cardNumber, holder, expirationMonth, expirationYear, securityCode);
     }
 }

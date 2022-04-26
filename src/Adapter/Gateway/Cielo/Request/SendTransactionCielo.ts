@@ -28,7 +28,7 @@ class Payment {
 class CreditCard {
     cardNumber: string;
     expirationDate: string;
-    brand: BrandCard;
+    brand: BrandCard | undefined;
     holder: string;
     securityCode: string;
 
