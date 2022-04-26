@@ -27,7 +27,7 @@ export class MapperSearch {
         }
 
         searchTransactionDTO.transaction = MapperSearch.createTransactionOrderDTO(object);
-        searchTransactionDTO.creditCard = object.Payment.CreditCard.CardNumber;
+        searchTransactionDTO.numberCreditCard = object.Payment.CreditCard.CardNumber;
         return searchTransactionDTO;
     }
 

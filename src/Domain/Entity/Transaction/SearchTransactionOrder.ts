@@ -9,6 +9,7 @@ export class SearchTransactionOrder {
         private readonly _captureDate: Date,
         private readonly _cancelAmount: number,
         private readonly _cancelDate: Date,
+        private readonly _numberCreditCard: string,
     ) {}
 
     static createForDTO(searchTransactionDTO: SearchTransactionOrderDTO): SearchTransactionOrder {
@@ -18,6 +19,7 @@ export class SearchTransactionOrder {
             searchTransactionDTO.captureDate,
             searchTransactionDTO.cancelAmount,
             searchTransactionDTO.cancelDate,
+            searchTransactionDTO.numberCreditCard,
         );
     }
 
@@ -27,6 +29,7 @@ export class SearchTransactionOrder {
         captureDate: Date,
         cancelAmount: number,
         cancelDate: Date,
+        numberCreditCard: string,
     ) {
         const transaction = TransactionOrder.create(
             transactionDTO.numberRequest,
@@ -39,6 +42,8 @@ export class SearchTransactionOrder {
             transactionDTO.authorizationCode,
             transactionDTO.installments,
         );
+
+        if (!numberCreditCard) throw new Error('Campo numberCreditCard é obrigatório');
 
         if (captureAmount > 0) {
             if (!captureAmount) throw new Error('Campo captureAmount é obrigatório');
@@ -55,6 +60,7 @@ export class SearchTransactionOrder {
             captureDate,
             cancelAmount,
             cancelDate,
+            numberCreditCard,
         );
 
         return searchTransaction;

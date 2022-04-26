@@ -1,6 +1,4 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
-import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
 import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
@@ -17,7 +15,7 @@ export class MapperSearch {
 
         let searchTransaction = new SearchTransactionOrderDTO();
         searchTransaction.transaction = transaction;
-        searchTransaction.creditCard = object.authorization.cardBin + object.authorization.last4;
+        searchTransaction.numberCreditCard = object.authorization.cardBin + object.authorization.last4;
 
         if (object.capture.amount > 0) {
             searchTransaction.captureAmount = object.capture.amount;
@@ -25,7 +23,8 @@ export class MapperSearch {
         }
 
         if (object.refunds.amount > 0) {
-            searchTransaction.cancel = MapperSearch.createCancel(object, transaction);
+            searchTransaction.cancelAmount = object.refunds.amount;
+            searchTransaction.cancelDate = object.refunds.dateTime;
         }
 
         return searchTransaction;
@@ -49,12 +48,5 @@ export class MapperSearch {
         transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
 
         return transactionOrderDTO;
-    }
-
-    private static createCancel(object: SearchTransactionResponse, transaction: TransactionOrderDTO): CancelOrder {
-        const amount = object.refunds.amount;
-        const date = object.refunds.dateTime;
-
-        return CancelOrder.create(transaction.numberRequest, date, amount, 'tid', 'nsu', 'autho');
     }
 }

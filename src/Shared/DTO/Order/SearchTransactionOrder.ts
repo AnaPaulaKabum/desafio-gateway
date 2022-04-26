@@ -1,5 +1,3 @@
-import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { TransactionOrderDTO } from './TransactionOrderDTO';
 
 export class SearchTransactionOrderDTO {
@@ -8,9 +6,5 @@ export class SearchTransactionOrderDTO {
     captureDate: Date;
     cancelAmount: number;
     cancelDate: Date;
-
-    capture: CaptureOrder;
-    cancel: CancelOrder;
-    cardNumber: string;
-    creditCard: string;
+    numberCreditCard: string;
 }
