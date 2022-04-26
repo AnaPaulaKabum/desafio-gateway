@@ -27,7 +27,6 @@ export class SearchTransactionOrder {
         );
         const searchTransaction = new SearchTransactionOrder(transaction);
 
-        console.log('xx' + JSON.stringify(searchTransaction));
         return searchTransaction;
     }
 }

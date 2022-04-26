@@ -13,7 +13,6 @@ export class SearchTransaction {
             const searchTransactionDTO = await this.gateway.searchTransaction(searchRequest);
             const searchTransaction = SearchTransactionOrder.createForDTO(searchTransactionDTO);
             await this.repositoryLog.save(LogFactory.register(Action.SEARCH.toString()));
-            console.log('Resultado:' + JSON.stringify(searchTransaction));
             return searchTransaction;
         } catch (error) {
             throw new Error(error);
