@@ -44,6 +44,11 @@ export class SearchTransactionOrder {
             if (!captureAmount) throw new Error('Campo captureAmount é obrigatório');
             if (!captureDate) throw new Error('Campo captureDate é obrigatório');
         }
+
+        if (cancelAmount > 0) {
+            if (!cancelAmount) throw new Error('Campo cancelAmount é obrigatório');
+            if (!cancelDate) throw new Error('Campo cancelDate é obrigatório');
+        }
         const searchTransaction = new SearchTransactionOrder(
             transaction,
             captureAmount,
