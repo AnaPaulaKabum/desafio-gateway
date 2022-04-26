@@ -20,7 +20,8 @@ export class MapperSearch {
         searchTransaction.creditCard = object.authorization.cardBin + object.authorization.last4;
 
         if (object.capture.amount > 0) {
-            searchTransaction.capture = MapperSearch.createCaptura(object);
+            searchTransaction.captureAmount = object.capture.amount;
+            searchTransaction.captureDate = object.capture.dateTime;
         }
 
         if (object.refunds.amount > 0) {
@@ -48,16 +49,6 @@ export class MapperSearch {
         transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
 
         return transactionOrderDTO;
-    }
-
-    private static createCaptura(object: SearchTransactionResponse): CaptureOrder {
-        const amount = object.capture.amount;
-        const date = object.capture.dateTime;
-        const nsu = object.capture.nsu;
-        const numberRequest = object.authorization.reference;
-        const authorizationCode = '';
-
-        return CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
     }
 
     private static createCancel(object: SearchTransactionResponse, transaction: TransactionOrderDTO): CancelOrder {

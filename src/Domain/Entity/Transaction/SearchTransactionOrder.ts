@@ -1,7 +1,6 @@
 import { TransactionOrder } from './TransactionOrder';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
-import { CaptureOrder } from './CaptureOrder';
 
 export class SearchTransactionOrder {
     /*;
@@ -10,7 +9,7 @@ export class SearchTransactionOrder {
 
     private constructor(
         private readonly _transaction: TransactionOrder,
-        private readonly _captureAmount: string,
+        private readonly _captureAmount: number,
         private readonly _captureDate: Date,
     ) {}
 
@@ -22,7 +21,7 @@ export class SearchTransactionOrder {
         );
     }
 
-    static create(transactionDTO: TransactionOrderDTO, captureAmount: string, captureDate: Date) {
+    static create(transactionDTO: TransactionOrderDTO, captureAmount: number, captureDate: Date) {
         const transaction = TransactionOrder.create(
             transactionDTO.numberRequest,
             transactionDTO.tid,

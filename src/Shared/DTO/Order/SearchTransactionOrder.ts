@@ -4,7 +4,7 @@ import { TransactionOrderDTO } from './TransactionOrderDTO';
 
 export class SearchTransactionOrderDTO {
     transaction: TransactionOrderDTO;
-    captureAmount: string;
+    captureAmount: number;
     captureDate: Date;
 
     capture: CaptureOrder;
