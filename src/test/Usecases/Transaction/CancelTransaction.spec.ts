@@ -5,7 +5,7 @@ import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { CancelTransaction } from '../CancelTransaction';
+import { CancelTransaction } from '../../../Usecases/Transaction/CancelTransaction';
 import { GatewayMock } from '../../../Adapter/Gateway/Mock/GatewayMock';
 import { TransactionRepositoryMock } from '../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
 import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';

@@ -4,10 +4,10 @@ import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { IMail } from '../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { CaptureTransaction } from '../CaptureTransaction';
 import { GatewayMock } from '../../../Adapter/Gateway/Mock/GatewayMock';
 import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
 import { TransactionRepositoryMock } from '../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
+import { CaptureTransaction } from '../../../Usecases/Transaction/CaptureTransaction';
 
 describe('UseCase - CaptureTransaction', () => {
     let service: CaptureTransaction;

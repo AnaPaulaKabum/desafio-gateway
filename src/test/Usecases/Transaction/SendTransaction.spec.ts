@@ -5,11 +5,11 @@ import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { SendTransaction } from '../SendTransaction';
 import { GatewayMock } from '../../../Adapter/Gateway/Mock/GatewayMock';
 import { LogRepositoryMock } from '../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
 import { configMock } from '../../../Adapter/Gateway/Mock/configMock';
 import { TransactionRepositoryMock } from '../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
+import { SendTransaction } from '../../../Usecases/Transaction/SendTransaction';
 
 describe('UseCase - SendTransaction', () => {
     let service: SendTransaction;

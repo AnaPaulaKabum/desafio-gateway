@@ -1,10 +1,11 @@
-import { APP } from './app';
-import { SearchTransactionOrder } from './Domain/Entity/Transaction/SearchTransactionOrder';
-import { TransactionOrder } from './Domain/Entity/Transaction/TransactionOrder';
-import { CancelOrder } from './Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from './Domain/Entity/Transaction/CaptureOrder';
+import { APP } from "../../app";
+import { CancelOrder } from "../../Domain/Entity/Transaction/CancelOrder";
+import { CaptureOrder } from "../../Domain/Entity/Transaction/CaptureOrder";
+import { SearchTransactionOrder } from "../../Domain/Entity/Transaction/SearchTransactionOrder";
+import { TransactionOrder } from "../../Domain/Entity/Transaction/TransactionOrder";
 
-const gatewayUses = 2; //1-Rede 2- Cielo
+
+const gatewayUses = 1; //1-Rede 2- Cielo
 
 describe('TransactionSend', () => {
     test('Should return not error if to send transactionSend', async () => {

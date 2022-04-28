@@ -1,4 +1,4 @@
-import { CancelOrder } from '../CancelOrder';
+import { CancelOrder } from '../../../../Domain/Entity/Transaction/CancelOrder';
 
 type SutTypes = {
     numberRequest: string;
