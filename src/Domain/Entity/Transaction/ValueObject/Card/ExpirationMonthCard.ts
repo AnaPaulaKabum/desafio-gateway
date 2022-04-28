@@ -11,7 +11,7 @@ export class ExpirationMonthCard {
         return new ExpirationMonthCard(expirationMonth);
     }
 
-    get expirationMonth(): number {
+    public get(): number {
         return this._expirationMonth;
     }
 }

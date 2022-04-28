@@ -35,23 +35,23 @@ export class Card {
     }
 
     get number(): string {
-        return this._number.number;
+        return this._number.get();
     }
 
     get name(): string {
-        return this._name.name;
+        return this._name.get();
     }
 
     get expirationMonth(): number {
-        return this._expirationMonth.expirationMonth;
+        return this._expirationMonth.get();
     }
 
     get expirationYear(): number {
-        return this._expirationYear.expirationMonth;
+        return this._expirationYear.get();
     }
 
     get securityCode(): string {
-        return this._securityCode.securityCode;
+        return this._securityCode.get();
     }
 
     get brand(): BrandCard | undefined {

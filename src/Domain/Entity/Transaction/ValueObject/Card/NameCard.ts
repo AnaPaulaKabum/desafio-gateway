@@ -10,7 +10,7 @@ export class NameCard {
         return new NameCard(name);
     }
 
-    get name(): string {
+    public get(): string {
         return this._name;
     }
 }

@@ -17,7 +17,7 @@ export class SecurityCode {
         return new SecurityCode(securityCode);
     }
 
-    get securityCode(): string {
+    public get(): string {
         return this._securityCode;
     }
 }

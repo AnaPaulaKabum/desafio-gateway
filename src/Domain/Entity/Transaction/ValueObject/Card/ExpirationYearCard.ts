@@ -13,7 +13,7 @@ export class ExpirationYearCard {
         return new ExpirationYearCard(expirationYear);
     }
 
-    get expirationMonth(): number {
+    public get(): number {
         return this._expirationYear;
     }
 }

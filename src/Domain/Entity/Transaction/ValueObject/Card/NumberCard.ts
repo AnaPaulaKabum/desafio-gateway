@@ -9,7 +9,7 @@ export class NumberCard {
         return new NumberCard(number);
     }
 
-    get number(): string {
+    public get(): string {
         return this._number;
     }
 }
