@@ -47,7 +47,6 @@ export class SearchTransactionOrder {
 
     static createForDTO(searchTransactionDTO: SearchTransactionOrderDTO): SearchTransactionOrder {
         const transactionOrder = TransactionOrder.createForDTO(searchTransactionDTO.transaction);
-
         const searchTransactionOrder = new SearchTransactionOrder(
             transactionOrder,
             searchTransactionDTO.numberCreditCard,

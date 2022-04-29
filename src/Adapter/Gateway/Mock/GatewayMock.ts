@@ -1,3 +1,4 @@
+import { serialize } from 'v8';
 import { SearchRequest } from '../../../Application/Request/SearchRequest';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
@@ -28,8 +29,20 @@ export class GatewayMock implements IGateways {
     }
     searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrderDTO> {
         return new Promise(function (resolve) {
-            const transactionOrderDTO = new SearchTransactionOrderDTO();
-            resolve(transactionOrderDTO);
+            const transactionOrderDTO = new TransactionOrderDTO();
+            transactionOrderDTO.numberRequest = '100';
+            transactionOrderDTO.tid = '100';
+            transactionOrderDTO.kind = TypeTransaction.CREDIT;
+            transactionOrderDTO.authorizationCode = '100';
+            transactionOrderDTO.nsu = '100';
+            transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+            transactionOrderDTO.amount = 100;
+            transactionOrderDTO.installments = 2;
+            transactionOrderDTO.message = 'Teste';
+            const searchTransactionOrderDTO = new SearchTransactionOrderDTO();
+            searchTransactionOrderDTO.transaction = transactionOrderDTO;
+            searchTransactionOrderDTO.numberCreditCard = '123456789';
+            resolve(searchTransactionOrderDTO);
         });
     }
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {

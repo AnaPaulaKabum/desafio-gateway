@@ -26,8 +26,8 @@ describe('UseCase - SearchTransaction', () => {
     });
 
     test('Should functions that are called', async () => {
-        //expect(1).toBe(1);
-        //const resultado = await service.execute(searchTransactionDTO);
-        //expect(resultado).toBeTruthy();
+        expect(1).toBe(1);
+        const resultado = await service.execute(searchTransactionDTO);
+        expect(resultado).toBeTruthy();
     });
 });
