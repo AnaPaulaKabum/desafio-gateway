@@ -15,18 +15,32 @@ export class SearchTransactionOrder {
         return this._numberCreditCard;
     }
 
-    public setCapturar(amount, date) {
-        if (!amount) throw new Error('Campo captureAmount é obrigatório');
-        if (!date) throw new Error('Campo captureDate é obrigatório');
+    get captureAmount(): number {
+        return this._captureAmount;
+    }
 
+    get captureDate(): Date {
+        return this._captureDate;
+    }
+
+    get cancelAmount(): number {
+        return this._cancelAmount;
+    }
+
+    get cancelDate(): Date {
+        return this._cancelDate;
+    }
+
+    public setCapturar(amount: number, date: Date) {
+        if (!amount) throw new Error('Campo captureAmount é obrigatório');
+        if (amount < 0) throw new Error('Amount não pode ser negativo');
         this._captureAmount = amount;
         this._captureDate = date;
     }
 
-    public setCancel(amount, date) {
+    public setCancel(amount: number, date: Date) {
         if (!amount) throw new Error('Campo cancelAmount é obrigatório');
-        if (!date) throw new Error('Campo cancelDate é obrigatório');
-
+        if (amount < 0) throw new Error('Amount não pode ser negativo');
         this._cancelAmount = amount;
         this._cancelDate = date;
     }
@@ -38,14 +52,10 @@ export class SearchTransactionOrder {
             transactionOrder,
             searchTransactionDTO.numberCreditCard,
         );
-
-        if (searchTransactionDTO.captureAmount > 0) {
+        if (searchTransactionDTO.captureAmount > 0)
             searchTransactionOrder.setCapturar(searchTransactionDTO.captureAmount, searchTransactionDTO.captureDate);
-        }
-
-        if (searchTransactionDTO.cancelAmount > 0) {
+        if (searchTransactionDTO.cancelAmount > 0)
             searchTransactionOrder.setCancel(searchTransactionDTO.cancelAmount, searchTransactionDTO.cancelDate);
-        }
 
         return searchTransactionOrder;
     }

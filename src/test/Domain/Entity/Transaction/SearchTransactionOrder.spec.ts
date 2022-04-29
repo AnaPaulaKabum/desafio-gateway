@@ -44,6 +44,69 @@ const makeSut = (): SutTypes => {
 };
 
 describe('Entity - SearchTransactionOrder', () => {
+    test('Should return error if amountCancel value negative', () => {
+        let { transaction, creditCard } = makeSut();
+
+        const serachTransactionOrder = new SearchTransactionOrder(transaction, creditCard);
+        expect(() => {
+            serachTransactionOrder.setCancel(-100, new Date());
+        }).toThrow();
+    });
+    test('Should return error if amountCancel value zero', () => {
+        let { transaction, creditCard } = makeSut();
+
+        const serachTransactionOrder = new SearchTransactionOrder(transaction, creditCard);
+        expect(() => {
+            serachTransactionOrder.setCancel(0, new Date());
+        }).toThrow();
+    });
+    test('Should return error if amountCaptura value negative', () => {
+        let { transaction, creditCard } = makeSut();
+
+        const serachTransactionOrder = new SearchTransactionOrder(transaction, creditCard);
+        expect(() => {
+            serachTransactionOrder.setCapturar(-100, new Date());
+        }).toThrow();
+    });
+    test('Should return error if amountCaptura value zero', () => {
+        let { transaction, creditCard } = makeSut();
+
+        const serachTransactionOrder = new SearchTransactionOrder(transaction, creditCard);
+        expect(() => {
+            serachTransactionOrder.setCapturar(0, new Date());
+        }).toThrow();
+    });
+    test('Should return error if not have creditCard', () => {
+        let { transaction } = makeSut();
+
+        expect(() => {
+            new SearchTransactionOrder(transaction, '');
+        }).toThrow();
+    });
+    test('Should return value if have param value with captura', () => {
+        let { transaction, creditCard } = makeSut();
+        const amount = 150;
+        const date = new Date();
+        const transactionSearch = new SearchTransactionOrder(transaction, creditCard);
+
+        transactionSearch.setCapturar(amount, date);
+
+        expect(transactionSearch).toBeTruthy();
+        expect(transactionSearch.captureAmount).toBe(amount);
+        expect(transactionSearch.captureDate).toBe(date);
+    });
+    test('Should return value if have param value with cancel', () => {
+        const { transaction, creditCard } = makeSut();
+        const amount = 1000;
+        const date = new Date();
+        const transactionSearch = new SearchTransactionOrder(transaction, creditCard);
+
+        transactionSearch.setCancel(amount, date);
+
+        expect(transactionSearch).toBeTruthy();
+        expect(transactionSearch.cancelAmount).toBe(amount);
+        expect(transactionSearch.cancelDate).toBe(date);
+    });
     test('Should return value if have param value', () => {
         let { transaction, creditCard } = makeSut();
 
