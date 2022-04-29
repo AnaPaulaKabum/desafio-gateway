@@ -43,7 +43,7 @@ const makeSut = (): SutTypes => {
     return { transaction, creditCard, capture, cancel };
 };
 
-describe('SearchTransactionOrder', () => {
+describe('Entity - SearchTransactionOrder', () => {
     test('Should return value if have param value', () => {
         let { transaction, creditCard } = makeSut();
 

@@ -20,7 +20,7 @@ const makeSut = (): SutTypes => {
     return { numberRequest, date, amount, tid, nsu, authorizationCode };
 };
 
-describe('CancelOrder', () => {
+describe('Entity - CancelOrder', () => {
     test('Should return error if numberRequest empty', () => {
         let { numberRequest, date, amount, tid, nsu, authorizationCode } = makeSut();
         numberRequest = '';

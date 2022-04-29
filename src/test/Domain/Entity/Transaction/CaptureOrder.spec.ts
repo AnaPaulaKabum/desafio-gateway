@@ -18,7 +18,7 @@ const makeSut = (): SutTypes => {
     return { numberRequest, amount, date, nsu, authorizationCode };
 };
 
-describe('CaptureOrder', () => {
+describe('Entity - CaptureOrder', () => {
     test('Should return error if nsu empty', () => {
         let { numberRequest, amount, date, nsu, authorizationCode } = makeSut();
         nsu = '';

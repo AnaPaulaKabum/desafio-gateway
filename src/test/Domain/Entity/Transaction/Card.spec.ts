@@ -17,7 +17,7 @@ const makeSut = (): SutTypes => {
     return { number, name, expirationMonth, expirationYear, securityCode };
 };
 
-describe('Card - Validation', () => {
+describe('Entity - Card(Validation)', () => {
     test('Should return error if expirationMonth negative', () => {
         let { number, name, expirationMonth, expirationYear, securityCode } = makeSut();
         expirationMonth = -3;
