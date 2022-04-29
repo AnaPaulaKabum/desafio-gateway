@@ -1,4 +1,3 @@
-import { serialize } from 'v8';
 import { SearchRequest } from '../../../Application/Request/SearchRequest';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
