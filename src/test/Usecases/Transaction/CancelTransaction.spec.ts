@@ -29,7 +29,7 @@ describe('UseCase - CancelTransaction', () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
             new Promise(function (resolve) {
                 resolve(
-                    TransactionOrder.create(
+                    new TransactionOrder(
                         numberRequest,
                         '100',
                         TypeTransaction.CREDIT,
@@ -64,7 +64,7 @@ describe('UseCase - CancelTransaction', () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
             new Promise(function (resolve) {
                 resolve(
-                    TransactionOrder.create(
+                    new TransactionOrder(
                         numberRequest,
                         '100',
                         TypeTransaction.CREDIT,

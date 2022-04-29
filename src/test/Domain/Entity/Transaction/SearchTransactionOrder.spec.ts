@@ -21,7 +21,7 @@ const makeSut = (): SutTypes => {
     const amount = 100;
     const installments = 2;
     const message = 'Teste';
-    const transaction = TransactionOrder.create(
+    const transaction = new TransactionOrder(
         number,
         tid,
         kind,

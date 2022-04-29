@@ -14,7 +14,7 @@ export class TransactionRepository implements ITransactionRepository {
     findOne(numberRequest: string): Promise<TransactionOrder> {
         return new Promise(function (resolve) {
             resolve(
-                TransactionOrder.create(
+                new TransactionOrder(
                     '100',
                     '100',
                     TypeTransaction.CREDIT,

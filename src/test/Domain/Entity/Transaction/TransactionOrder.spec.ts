@@ -33,7 +33,7 @@ describe('TransactionOrder', () => {
 
         number = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -42,7 +42,7 @@ describe('TransactionOrder', () => {
 
         tid = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
     test('Should return error if tid empty', () => {
@@ -51,17 +51,7 @@ describe('TransactionOrder', () => {
         let kindEmpty: TypeTransaction;
 
         expect(() => {
-            TransactionOrder.create(
-                number,
-                tid,
-                kindEmpty,
-                status,
-                amount,
-                message,
-                nsu,
-                authorizationCode,
-                installments,
-            );
+            new TransactionOrder(number, tid, kindEmpty, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -70,7 +60,7 @@ describe('TransactionOrder', () => {
 
         authorizationCode = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -79,7 +69,7 @@ describe('TransactionOrder', () => {
 
         nsu = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -88,7 +78,7 @@ describe('TransactionOrder', () => {
 
         let status: StatusTransaction;
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -97,7 +87,7 @@ describe('TransactionOrder', () => {
 
         amount = 0;
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -106,7 +96,7 @@ describe('TransactionOrder', () => {
 
         installments = 0;
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
@@ -115,13 +105,13 @@ describe('TransactionOrder', () => {
 
         message = '';
         expect(() => {
-            TransactionOrder.create(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
+            new TransactionOrder(number, tid, kind, status, amount, message, nsu, authorizationCode, installments);
         }).toThrow();
     });
 
     test('Should return not error if correct param', () => {
         let { number, tid, kind, authorizationCode, nsu, status, amount, installments, message } = makeSut();
-        const transaction = TransactionOrder.create(
+        const transaction = new TransactionOrder(
             number,
             tid,
             kind,
@@ -138,7 +128,7 @@ describe('TransactionOrder', () => {
 
     test('Should return not error if correct param', () => {
         let { number, tid, kind, authorizationCode, nsu, status, amount, installments, message } = makeSut();
-        const transaction = TransactionOrder.create(
+        const transaction = new TransactionOrder(
             number,
             tid,
             kind,

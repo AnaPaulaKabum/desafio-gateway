@@ -31,7 +31,7 @@ export class SearchTransactionOrder {
         cancelDate: Date,
         numberCreditCard: string,
     ) {
-        const transaction = TransactionOrder.create(
+        const transaction = new TransactionOrder(
             transactionDTO.numberRequest,
             transactionDTO.tid,
             transactionDTO.kind,
