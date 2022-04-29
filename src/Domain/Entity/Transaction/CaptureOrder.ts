@@ -1,13 +1,18 @@
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 
 export class CaptureOrder {
-    private constructor(
+    constructor(
         private readonly _numberRequest: string,
         private readonly _amount: number,
         private readonly _date: Date,
         private readonly _nsu: string,
         private readonly _authorizationCode: string,
-    ) {}
+    ) {
+        if (!_numberRequest) throw new Error('Campo numberRequest é obrigatório');
+        if (!_date) throw new Error('Campo date é obrigatório q');
+        if (!_nsu) throw new Error('Campo nsu é obrigatório ');
+        if (!_authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
+    }
 
     get numberRequest(): string {
         return this._numberRequest;
@@ -27,21 +32,12 @@ export class CaptureOrder {
     }
 
     static createForDTO(captureOrderDTO: CaptureOrderDTO): CaptureOrder {
-        return CaptureOrder.create(
+        return new CaptureOrder(
             captureOrderDTO.numberRequest,
             captureOrderDTO.amount,
             captureOrderDTO.date,
             captureOrderDTO.nsu,
             captureOrderDTO.authorizationCode,
         );
-    }
-
-    static create(numberRequest: string, amount: number, date: Date, nsu: string, authorizationCode) {
-        if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
-        if (!date) throw new Error('Campo date é obrigatório q');
-        if (!nsu) throw new Error('Campo nsu é obrigatório ');
-        if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
-
-        return new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
     }
 }

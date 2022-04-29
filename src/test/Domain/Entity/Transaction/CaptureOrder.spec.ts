@@ -24,7 +24,7 @@ describe('CaptureOrder', () => {
         nsu = '';
 
         expect(() => {
-            CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
+            new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -33,7 +33,7 @@ describe('CaptureOrder', () => {
         numberRequest = '';
 
         expect(() => {
-            CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
+            new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -42,7 +42,7 @@ describe('CaptureOrder', () => {
         let dateEmpty: Date;
 
         expect(() => {
-            CaptureOrder.create(numberRequest, amount, dateEmpty, nsu, authorizationCode);
+            new CaptureOrder(numberRequest, amount, dateEmpty, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -51,19 +51,19 @@ describe('CaptureOrder', () => {
         authorizationCode = '';
 
         expect(() => {
-            CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
+            new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
         }).toThrow();
     });
     test('Should return not error if correct param', () => {
         let { numberRequest, amount, date, nsu, authorizationCode } = makeSut();
-        const transaction = CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
+        const transaction = new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
         expect(transaction).toBeTruthy();
         expect(transaction).toBeInstanceOf(CaptureOrder);
     });
 
     test('Should get param correct', () => {
         let { numberRequest, amount, date, nsu, authorizationCode } = makeSut();
-        const transaction = CaptureOrder.create(numberRequest, amount, date, nsu, authorizationCode);
+        const transaction = new CaptureOrder(numberRequest, amount, date, nsu, authorizationCode);
         expect(transaction).toBeTruthy();
         expect(transaction.numberRequest).toBe(numberRequest);
         expect(transaction.amount).toBe(amount);

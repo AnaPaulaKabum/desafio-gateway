@@ -36,7 +36,7 @@ const makeSut = (): SutTypes => {
     const creditCard = '123456789';
 
     const date = new Date();
-    const capture = CaptureOrder.create(number, amount, date, nsu, authorizationCode);
+    const capture = new CaptureOrder(number, amount, date, nsu, authorizationCode);
     const cancel = CancelOrder.create(number, date, amount, tid, nsu, authorizationCode);
 
     return { transaction, creditCard, capture, cancel };
