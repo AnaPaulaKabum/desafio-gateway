@@ -26,7 +26,7 @@ describe('CancelOrder', () => {
         numberRequest = '';
 
         expect(() => {
-            CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode);
+            new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -35,7 +35,7 @@ describe('CancelOrder', () => {
         let dataEmpty: Date;
 
         expect(() => {
-            CancelOrder.create(numberRequest, dataEmpty, amount, tid, nsu, authorizationCode);
+            new CancelOrder(numberRequest, dataEmpty, amount, tid, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -44,7 +44,7 @@ describe('CancelOrder', () => {
         tid = '';
 
         expect(() => {
-            CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode);
+            new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -53,7 +53,7 @@ describe('CancelOrder', () => {
         nsu = '';
 
         expect(() => {
-            CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode);
+            new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
         }).toThrow();
     });
 
@@ -62,20 +62,20 @@ describe('CancelOrder', () => {
         authorizationCode = '';
 
         expect(() => {
-            CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode);
+            new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
         }).toThrow();
     });
 
     test('Should return not error if correct param', () => {
         let { numberRequest, date, amount, tid, nsu, authorizationCode } = makeSut();
-        const transaction = CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode);
+        const transaction = new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
         expect(transaction).toBeTruthy();
         expect(transaction).toBeInstanceOf(CancelOrder);
     });
 
     test('Should return not error if get param ', () => {
         let { numberRequest, date, amount, tid, nsu, authorizationCode } = makeSut();
-        const transaction = CancelOrder.create(numberRequest, date, amount, tid, nsu, authorizationCode);
+        const transaction = new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
         expect(transaction).toBeTruthy();
         expect(transaction.numberRequest).toBe(numberRequest);
         expect(transaction.date).toBe(date);

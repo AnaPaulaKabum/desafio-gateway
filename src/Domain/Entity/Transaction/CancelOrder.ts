@@ -1,14 +1,20 @@
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 
 export class CancelOrder {
-    private constructor(
+    constructor(
         private readonly _numberRequest: string,
         private readonly _date: Date,
         private readonly _amount: number,
         private readonly _tid: string,
         private readonly _nsu: string,
         private readonly _authorizationCode: string,
-    ) {}
+    ) {
+        if (!_numberRequest) throw new Error('Campo numberRequest é obrigatório');
+        if (!_date) throw new Error('Campo date é obrigatório');
+        if (!_tid) throw new Error('Campo tid é obrigatório');
+        if (!_nsu) throw new Error('Campo nsu é obrigatório');
+        if (!_authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
+    }
 
     get numberRequest(): string {
         return this._numberRequest;
@@ -31,7 +37,7 @@ export class CancelOrder {
     }
 
     static createForDTO(cancelOrderDTO: CancelOrderDTO): CancelOrder {
-        return CancelOrder.create(
+        return new CancelOrder(
             cancelOrderDTO.numberRequest,
             cancelOrderDTO.date,
             cancelOrderDTO.amount,
@@ -39,22 +45,5 @@ export class CancelOrder {
             cancelOrderDTO.nsu,
             cancelOrderDTO.authorizationCode,
         );
-    }
-
-    static create(
-        numberRequest: string,
-        date: Date,
-        amount: number,
-        tid: string,
-        nsu: string,
-        authorizationCode: string,
-    ): CancelOrder {
-        if (!numberRequest) throw new Error('Campo numberRequest é obrigatório');
-        if (!date) throw new Error('Campo date é obrigatório');
-        if (!tid) throw new Error('Campo tid é obrigatório');
-        if (!nsu) throw new Error('Campo nsu é obrigatório');
-        if (!authorizationCode) throw new Error('Campo authorizationCode é obrigatório');
-
-        return new CancelOrder(numberRequest, date, amount, tid, nsu, authorizationCode);
     }
 }
