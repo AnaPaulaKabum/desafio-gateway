@@ -14,7 +14,6 @@ export class GatewayMock implements IGateways {
     sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {
         return new Promise(function (resolve) {
             const transactionOrderDTO = new TransactionOrderDTO();
-
             transactionOrderDTO.numberRequest = '100';
             transactionOrderDTO.tid = '100';
             transactionOrderDTO.kind = TypeTransaction.CREDIT;
