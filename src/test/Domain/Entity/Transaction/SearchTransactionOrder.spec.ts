@@ -44,60 +44,12 @@ const makeSut = (): SutTypes => {
 };
 
 describe('SearchTransactionOrder', () => {
-    test('Should return error if have two assignment in cancel', () => {
-        expect(1).toBe(1);
-        /* let { transaction, creditCard, cancel } = makeSut();
-
-        const transactionSearch = new SearchTransactionOrder(transaction);
-        transactionSearch.creditCard = creditCard;
-        transactionSearch.cancel = cancel;
-
-        expect(() => {
-            transactionSearch.cancel = cancel;
-        }).toThrow();*/
-    });
-    /*test('Should return error if have two assignment in capture', () => {
-        let { transaction, creditCard, capture } = makeSut();
-
-        const transactionSearch = new SearchTransactionOrder(transaction);
-        transactionSearch.creditCard = creditCard;
-        transactionSearch.capture = capture;
-
-        expect(() => {
-            transactionSearch.capture = capture;
-        }).toThrow();
-    });
-
-    test('Should not return error if have capture', () => {
-        let { transaction, creditCard, capture } = makeSut();
-
-        const transactionSearch = new SearchTransactionOrder(transaction);
-        transactionSearch.creditCard = creditCard;
-        transactionSearch.capture = capture;
-
-        expect(transactionSearch).toBeTruthy();
-        expect(transactionSearch.capture).toBeInstanceOf(CaptureOrder);
-        expect(transactionSearch.capture).toEqual(capture);
-    });
-
-    test('Should not return error if have cancel', () => {
-        let { transaction, creditCard, cancel } = makeSut();
-
-        const transactionSearch = new SearchTransactionOrder(transaction);
-        transactionSearch.creditCard = creditCard;
-        transactionSearch.cancel = cancel;
-
-        expect(transactionSearch).toBeTruthy();
-        expect(transactionSearch.cancel).toBeInstanceOf(CancelOrder);
-        expect(transactionSearch.cancel).toEqual(cancel);
-    });
     test('Should return value if have param value', () => {
         let { transaction, creditCard } = makeSut();
 
-        const transactionSearch = new SearchTransactionOrder(transaction);
-        transactionSearch.creditCard = creditCard;
+        const transactionSearch = new SearchTransactionOrder(transaction, creditCard);
 
         expect(transactionSearch).toBeTruthy();
-        expect(transactionSearch.creditCard).toBe(creditCard);
-    });*/
+        expect(transactionSearch.numberCreditCard).toBe(creditCard);
+    });
 });
