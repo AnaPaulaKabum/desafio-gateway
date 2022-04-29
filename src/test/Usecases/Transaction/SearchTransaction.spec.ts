@@ -26,6 +26,13 @@ describe('UseCase - SearchTransaction', () => {
     });
 
     test('Should functions that are called', async () => {
+        jest.spyOn(repositoryLog, 'save').mockImplementation();
+
+        const resultado = await service.execute(searchTransactionDTO);
+
+        expect(repositoryLog.save).toHaveBeenCalledTimes(1);
+    });
+    test('Should functions that are called', async () => {
         expect(1).toBe(1);
         const resultado = await service.execute(searchTransactionDTO);
         expect(resultado).toBeTruthy();
