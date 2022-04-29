@@ -27,7 +27,7 @@ const makeSut = (): SutTypes => {
     return { number, tid, kind, authorizationCode, nsu, status, amount, installments, message };
 };
 
-describe('Entity -TransactionOrder', () => {
+describe('Entity - TransactionOrder', () => {
     test('Should return error if numberRequest empty', () => {
         let { number, tid, kind, authorizationCode, nsu, status, amount, installments, message } = makeSut();
 
