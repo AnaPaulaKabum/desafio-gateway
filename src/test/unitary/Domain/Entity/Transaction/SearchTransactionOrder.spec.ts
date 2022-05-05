@@ -1,9 +1,9 @@
-import { CancelOrder } from '../../../../Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from '../../../../Domain/Entity/Transaction/CaptureOrder';
-import { SearchTransactionOrder } from '../../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { TransactionOrder } from '../../../../Domain/Entity/Transaction/TransactionOrder';
-import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
+import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { SearchTransactionOrder } from '../../../../../Domain/Entity/Transaction/SearchTransactionOrder';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 
 type SutTypes = {
     transaction: TransactionOrder;

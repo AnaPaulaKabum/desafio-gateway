@@ -1,7 +1,7 @@
-import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
-import { ParamValidateType } from '../../../Shared/Interfaces/Gateway/ParamValidateType';
-import { ValidateParam } from '../../../Usecases/Transaction/Validate/ValidateParam';
+import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
+import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { ParamValidateType } from '../../../../Shared/Interfaces/Gateway/ParamValidateType';
+import { ValidateParam } from '../../../../Usecases/Transaction/Validate/ValidateParam';
 
 type SutTypes = { validateGateway: ParamValidateType; transactionSend: TransactionDTO };
 

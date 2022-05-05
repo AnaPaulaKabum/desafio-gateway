@@ -1,6 +1,6 @@
-import { TransactionOrder } from '../../../../Domain/Entity/Transaction/TransactionOrder';
-import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 
 type SutTypes = {
     number: string;
