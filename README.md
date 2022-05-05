@@ -24,6 +24,3 @@ src
     -   Interfaces
 
 app.ts: Componente responsavel por instanciar e compor todo o projeto.
-
-### Documentation
-
