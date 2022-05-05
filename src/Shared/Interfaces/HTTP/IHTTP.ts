@@ -1,5 +1,5 @@
 export interface IHTTP {
-    get(): Promise<any>;
-    post(): Promise<any>;
-    delete(): Promise<any>;
+    get(endpoint: string): Promise<any>;
+    post(endpoint: string, data: any): Promise<any>;
+    put(endpoint: string, data: any): Promise<any>;
 }

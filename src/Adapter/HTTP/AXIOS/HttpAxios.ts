@@ -2,16 +2,49 @@ import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
 import axios from 'axios';
 
 export class HttpAxios implements IHTTP {
-    constructor(private readonly urlBase) {}
+    private auth;
 
-    async get(): Promise<any> {
-        const resultado = await axios.get(this.urlBase);
-        return resultado.data;
+    constructor(private readonly urlBase: string, username: string, password: string) {
+        this.auth = { username: username, password: password };
     }
-    post(): Promise<any> {
-        throw new Error('Method not implemented.');
+
+    async get(endpoint: string): Promise<any> {
+        try {
+            const config = {
+                auth: this.auth,
+            };
+
+            const req = await axios.get(this.urlBase + endpoint, config);
+            return req.data;
+        } catch (error) {
+            throw new Error(error.response.data);
+        }
     }
-    delete(): Promise<any> {
-        throw new Error('Method not implemented.');
+    async post(endpoint: string, data: any): Promise<any> {
+        try {
+            const config = {
+                auth: this.auth,
+            };
+
+            const req = await axios.post(this.urlBase + endpoint, data, config);
+
+            return req.data;
+        } catch (error) {
+            throw new Error(error.response.data);
+        }
+    }
+
+    async put(endpoint: string, data: any): Promise<any> {
+        try {
+            const config = {
+                auth: this.auth,
+            };
+
+            const req = await axios.put(this.urlBase + endpoint, data, config);
+
+            return req.data;
+        } catch (error) {
+            throw new Error(error.response.data);
+        }
     }
 }
