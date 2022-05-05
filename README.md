@@ -27,6 +27,3 @@ app.ts: Componente responsavel por instanciar e compor todo o projeto.
 
 ### Documentation
 
-#### TransactionOrder
-
----NSU, AuthorizationCode não é obrigátorio para debito na Cielo.
