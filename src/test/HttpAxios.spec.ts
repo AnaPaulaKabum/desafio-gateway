@@ -5,8 +5,11 @@ describe('Teste HttpAxios', () => {
     const username = '23172018';
     const password = '63c968b7b58a46a5b260fe812d4a2fb0';
 
+    const http = new HttpAxios();
+    http.setBaseUrl(urlbase);
+    http.setAuth(username, password);
+
     test.skip('Testa conexão para consultar uma transação', async () => {
-        const http = new HttpAxios(urlbase, username, password);
         const resource = '/v1/transactions/';
         const id = '10012204291418405486';
 
@@ -16,7 +19,6 @@ describe('Teste HttpAxios', () => {
     }, 10000);
 
     test.skip('Testa conexão ao enviar uma transação.', async () => {
-        const http = new HttpAxios(urlbase, username, password);
         const data = {
             capture: false,
             kind: 'credit',
@@ -42,9 +44,7 @@ describe('Teste HttpAxios', () => {
         expect(resultado).toBeTruthy();
     }, 10000);
 
-    test('Testa conexão ao cancelar uma transação.', async () => {
-        const http = new HttpAxios(urlbase, username, password);
-
+    test.skip('Testa conexão ao cancelar uma transação.', async () => {
         const id = '10012204291418405486';
         const resource = '/v1/transactions/' + id + '/refunds';
         const data = { amount: 100 };

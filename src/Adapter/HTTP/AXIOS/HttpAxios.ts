@@ -3,30 +3,42 @@ import axios from 'axios';
 
 export class HttpAxios implements IHTTP {
     private auth;
+    private baseUrl;
 
-    constructor(private readonly urlBase: string, username: string, password: string) {
+    setBaseUrl(baseUrl: string) {
+        this.baseUrl = baseUrl;
+    }
+    setAuth(username: string, password: string) {
         this.auth = { username: username, password: password };
     }
 
+    private isValidBaseUrl(): boolean {
+        return !!this.isValidBaseUrl;
+    }
+
     async get(endpoint: string): Promise<any> {
+        if (!this.isValidBaseUrl()) throw new Error('BaseUrl não é valida.');
+
         try {
             const config = {
                 auth: this.auth,
             };
 
-            const returnGet = await axios.get(this.urlBase + endpoint, config);
+            const returnGet = await axios.get(this.baseUrl + endpoint, config);
             return returnGet.data;
         } catch (error) {
             throw new Error(error.response.data);
         }
     }
     async post(endpoint: string, data: any): Promise<any> {
+        if (!this.isValidBaseUrl()) throw new Error('BaseUrl não é valida.');
+
         try {
             const config = {
                 auth: this.auth,
             };
 
-            const returnPost = await axios.post(this.urlBase + endpoint, data, config);
+            const returnPost = await axios.post(this.baseUrl + endpoint, data, config);
             return returnPost.data;
         } catch (error) {
             throw new Error(error.response.data);
@@ -34,12 +46,13 @@ export class HttpAxios implements IHTTP {
     }
 
     async put(endpoint: string, data: any): Promise<any> {
+        if (!this.isValidBaseUrl()) throw new Error('BaseUrl não é valida.');
         try {
             const config = {
                 auth: this.auth,
             };
 
-            const returnPut = await axios.put(this.urlBase + endpoint, data, config);
+            const returnPut = await axios.put(this.baseUrl + endpoint, data, config);
             return returnPut.data;
         } catch (error) {
             throw new Error(error.response.data);
