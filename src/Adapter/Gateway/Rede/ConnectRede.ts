@@ -28,10 +28,8 @@ export class ConnectRede implements IConnectRedeAPI {
         return this.http.put(endpoint, data);
     }
     cancelTransaction(numberRequest: string): Promise<any> {
-        const id = '10012204291418405486';
         const resource = '/v1/transactions/' + numberRequest + '/refunds';
         const data = { amount: 100 };
-
         return this.http.post(resource, data);
     }
 }
