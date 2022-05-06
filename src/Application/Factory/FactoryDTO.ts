@@ -1,6 +1,8 @@
+import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../Shared/DTO/TransactionDTO';
+import { CancelRequest } from '../Request/CancelRequest';
 import { CaptureRequest } from '../Request/CaptureRequest';
 import { SearchRequest } from '../Request/SearchRequest';
 import { TransactionRequest } from '../Request/TransactionRequest';
@@ -10,7 +12,6 @@ export class FactoryDTO {
 
     static toTrasactionDTO(transactionRequest: TransactionRequest): TransactionDTO {
         const transaction = new TransactionDTO();
-
         transaction.numberRequest = transactionRequest.numberRequest;
         transaction.kind = transactionRequest.kind;
         transaction.amount = transactionRequest.amount;
@@ -27,7 +28,6 @@ export class FactoryDTO {
 
     static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTO {
         const searchTransaction = new SearchTransactionDTO();
-
         searchTransaction.numberRequest = searchRequest.numberRequest;
         searchTransaction.tid = searchRequest.tid;
 
@@ -36,10 +36,17 @@ export class FactoryDTO {
 
     static toCaptureDTO(captureRequest: CaptureRequest): CaptureTransactionDTO {
         const captureTransactionDTO = new CaptureTransactionDTO();
-
         captureTransactionDTO.numberRequest = captureRequest.numberRequest;
         captureTransactionDTO.amount = captureRequest.amount;
 
-        return captureRequest;
+        return captureTransactionDTO;
+    }
+
+    static toCancelDTO(cancelRequest: CancelRequest): CancelTransactionDTO {
+        const captureTransactionDTO = new CancelTransactionDTO();
+        captureTransactionDTO.numberRequest = cancelRequest.numberRequest;
+        captureTransactionDTO.amount = cancelRequest.amount;
+
+        return captureTransactionDTO;
     }
 }

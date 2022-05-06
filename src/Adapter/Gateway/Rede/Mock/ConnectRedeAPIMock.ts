@@ -1,3 +1,4 @@
+import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
@@ -23,7 +24,7 @@ export class ConnectRedeAPIMock implements IConnectRedeAPI {
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<any> {
         return MockAPICaptureRede.capture(captureTransactionDTO.numberRequest, captureTransactionDTO.amount);
     }
-    cancelTransaction(numberRequest: string): Promise<any> {
-        return MockAPICancelRede.cancel(numberRequest);
+    cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<any> {
+        return MockAPICancelRede.cancel(cancelTransactionDTO);
     }
 }

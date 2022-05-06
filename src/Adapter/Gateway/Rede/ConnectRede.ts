@@ -1,3 +1,4 @@
+import { CancelRequest } from '../../../Application/Request/CancelRequest';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
@@ -27,8 +28,8 @@ export class ConnectRede implements IConnectRedeAPI {
         const data = { amount: captureTransactionDTO.amount };
         return this.http.put(endpoint, data);
     }
-    cancelTransaction(numberRequest: string): Promise<any> {
-        const resource = '/v1/transactions/' + numberRequest + '/refunds';
+    cancelTransaction(cancelRequest: CancelRequest): Promise<any> {
+        const resource = '/v1/transactions/' + cancelRequest.numberRequest + '/refunds';
         const data = { amount: 100 };
         return this.http.post(resource, data);
     }

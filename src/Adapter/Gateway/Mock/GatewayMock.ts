@@ -1,9 +1,10 @@
-import { SearchRequest } from '../../../Application/Request/SearchRequest';
+import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
+import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
@@ -25,7 +26,7 @@ export class GatewayMock implements IGateways {
             resolve(transactionOrderDTO);
         });
     }
-    searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrderDTO> {
+    searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
         return new Promise(function (resolve) {
             const transactionOrderDTO = new TransactionOrderDTO();
             transactionOrderDTO.numberRequest = '100';
@@ -54,7 +55,7 @@ export class GatewayMock implements IGateways {
             resolve(capture);
         });
     }
-    cancelTransaction(numberRequest: string): Promise<CancelOrderDTO> {
+    cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTO> {
         const cancelOrderDTO = new CancelOrderDTO();
 
         cancelOrderDTO.date = new Date();

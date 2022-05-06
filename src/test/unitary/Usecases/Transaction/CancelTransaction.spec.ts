@@ -9,13 +9,16 @@ import { CancelTransaction } from '../../../../Usecases/Transaction/CancelTransa
 import { GatewayMock } from '../../../../Adapter/Gateway/Mock/GatewayMock';
 import { TransactionRepositoryMock } from '../../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
 import { LogRepositoryMock } from '../../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
+import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
 
 describe('UseCase - CancelTransaction', () => {
     let service: CancelTransaction;
     let repositoryTransaction: ITransactionRepository;
     let repositoryLog: ILogRepository;
     let mail: IMail;
-    const numberRequest = 'pedido123';
+    const cancelTransactionDTO = new CancelTransactionDTO();
+    cancelTransactionDTO.numberRequest = 'pedido123';
+    cancelTransactionDTO.amount = 100;
 
     beforeEach(() => {
         const gateway = new GatewayMock();
@@ -30,7 +33,7 @@ describe('UseCase - CancelTransaction', () => {
             new Promise(function (resolve) {
                 resolve(
                     new TransactionOrder(
-                        numberRequest,
+                        cancelTransactionDTO.numberRequest,
                         '100',
                         TypeTransaction.CREDIT,
                         StatusTransaction.CAPTURE,
@@ -47,7 +50,7 @@ describe('UseCase - CancelTransaction', () => {
         jest.spyOn(repositoryTransaction, 'saveCancel').mockImplementation();
         jest.spyOn(repositoryLog, 'save').mockImplementation();
 
-        await service.execute(numberRequest);
+        await service.execute(cancelTransactionDTO);
 
         expect(repositoryTransaction.updateStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.saveCancel).toHaveBeenCalledTimes(1);
@@ -57,7 +60,7 @@ describe('UseCase - CancelTransaction', () => {
     test('Should return error when functions return error', async () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockRejectedValueOnce(new Error());
 
-        expect(service.execute(numberRequest)).rejects.toThrow();
+        expect(service.execute(cancelTransactionDTO)).rejects.toThrow();
     });
 
     test('Should return error when findOne return transactionOrder with TypeTrasaction.FINNALY', async () => {
@@ -65,7 +68,7 @@ describe('UseCase - CancelTransaction', () => {
             new Promise(function (resolve) {
                 resolve(
                     new TransactionOrder(
-                        numberRequest,
+                        cancelTransactionDTO.numberRequest,
                         '100',
                         TypeTransaction.CREDIT,
                         StatusTransaction.FINNALY,
@@ -79,6 +82,6 @@ describe('UseCase - CancelTransaction', () => {
             }),
         );
 
-        expect(service.execute(numberRequest)).rejects.toThrow();
+        expect(service.execute(cancelTransactionDTO)).rejects.toThrow();
     });
 });

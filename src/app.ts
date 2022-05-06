@@ -52,6 +52,14 @@ export class APP {
             return captureTrasactionRequest;
         };
 
+        const cancelTransactionRequest = () => {
+            let captureTrasactionRequest = new CaptureRequest();
+            captureTrasactionRequest.numberRequest = 'pedido123';
+            captureTrasactionRequest.amount = 100;
+
+            return captureTrasactionRequest;
+        };
+
         const TransactionServicesFactory = () => {
             const repositoryTransaction = new TransactionRepository();
             const repositoryLog = new LogRepository();
@@ -104,7 +112,7 @@ export class APP {
                 result = await paymentGatewaysController.captureTransactions(captureTransactionRequest());
                 break;
             case 4:
-                result = await paymentGatewaysController.cancelReversalTransactions('1');
+                result = await paymentGatewaysController.cancelReversalTransactions(cancelTransactionRequest());
                 break;
         }
 

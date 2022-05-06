@@ -11,6 +11,7 @@ import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderD
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
+import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 
 export class GatewayRedeAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectRedeAPI) {}
@@ -39,8 +40,8 @@ export class GatewayRedeAdapter implements IGateways {
         });
     }
 
-    async cancelTransaction(numberRequest: string): Promise<CancelOrderDTO> {
-        const returnAPI = await this.connectAPI.cancelTransaction(numberRequest);
+    async cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTO> {
+        const returnAPI = await this.connectAPI.cancelTransaction(cancelTransactionDTO);
         return new Promise(function (resolve) {
             resolve(MapperCancel.toCancelTransaction(returnAPI));
         });

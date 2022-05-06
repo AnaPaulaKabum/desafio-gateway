@@ -10,6 +10,7 @@ import { TransactionRequest } from '../Request/TransactionRequest';
 import { FactoryDTO } from '../Factory/FactoryDTO';
 import { SearchRequest } from '../Request/SearchRequest';
 import { CaptureRequest } from '../Request/CaptureRequest';
+import { CancelRequest } from '../Request/CancelRequest';
 
 export class PaymentGatewaysController {
     constructor(
@@ -34,7 +35,7 @@ export class PaymentGatewaysController {
         return this.captureTransaction.execute(FactoryDTO.toCaptureDTO(captureRequest));
     }
 
-    public cancelReversalTransactions(paramNumberRequest: string): Promise<CancelOrder> {
-        return this.cancelTransaction.execute(paramNumberRequest);
+    public cancelReversalTransactions(cancelRequest: CancelRequest): Promise<CancelOrder> {
+        return this.cancelTransaction.execute(FactoryDTO.toCancelDTO(cancelRequest));
     }
 }

@@ -1,7 +1,9 @@
+import { CancelTransactionDTO } from '../../../../../Shared/DTO/CancelTransactionDTO';
+
 export class MockAPIReversalCielo {
     private constructor() {}
 
-    static cancel(numberRequest: string): Promise<any> {
+    static cancel(cancelTransactionDTO: CancelTransactionDTO): Promise<any> {
         const returnAPI = {
             Status: 10,
             Tid: '0719094510712',

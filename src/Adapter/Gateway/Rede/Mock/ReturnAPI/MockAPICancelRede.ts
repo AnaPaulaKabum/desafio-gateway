@@ -1,6 +1,8 @@
+import { CancelTransactionDTO } from '../../../../../Shared/DTO/CancelTransactionDTO';
+
 export class MockAPICancelRede {
     private constructor() {}
-    static cancel(numberRequest: string): Promise<any> {
+    static cancel(cancelTransactionDTO: CancelTransactionDTO): Promise<any> {
         const returnCancel = {
             returnCode: '360',
             returnMessage: 'Refund request has been successful',
