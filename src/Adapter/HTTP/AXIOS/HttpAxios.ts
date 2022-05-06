@@ -14,8 +14,8 @@ export class HttpAxios implements IHTTP {
                 auth: this.auth,
             };
 
-            const req = await axios.get(this.urlBase + endpoint, config);
-            return req.data;
+            const returnGet = await axios.get(this.urlBase + endpoint, config);
+            return returnGet.data;
         } catch (error) {
             throw new Error(error.response.data);
         }
@@ -26,9 +26,8 @@ export class HttpAxios implements IHTTP {
                 auth: this.auth,
             };
 
-            const req = await axios.post(this.urlBase + endpoint, data, config);
-
-            return req.data;
+            const returnPost = await axios.post(this.urlBase + endpoint, data, config);
+            return returnPost.data;
         } catch (error) {
             throw new Error(error.response.data);
         }
@@ -40,9 +39,8 @@ export class HttpAxios implements IHTTP {
                 auth: this.auth,
             };
 
-            const req = await axios.put(this.urlBase + endpoint, data, config);
-
-            return req.data;
+            const returnPut = await axios.put(this.urlBase + endpoint, data, config);
+            return returnPut.data;
         } catch (error) {
             throw new Error(error.response.data);
         }
