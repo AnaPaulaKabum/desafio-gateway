@@ -5,7 +5,7 @@ describe('Teste HttpAxios', () => {
     const username = '23172018';
     const password = '63c968b7b58a46a5b260fe812d4a2fb0';
 
-    test('Testa conexão com get', async () => {
+    test.skip('Testa conexão para consultar uma transação', async () => {
         const http = new HttpAxios(urlbase, username, password);
         const resource = '/v1/transactions/';
         const id = '10012204291418405486';
@@ -15,7 +15,7 @@ describe('Teste HttpAxios', () => {
         expect(resultado).toBeTruthy();
     }, 10000);
 
-    test.skip('Testa conexão com post', async () => {
+    test.skip('Testa conexão ao enviar uma transação.', async () => {
         const http = new HttpAxios(urlbase, username, password);
         const data = {
             capture: false,
@@ -42,14 +42,14 @@ describe('Teste HttpAxios', () => {
         expect(resultado).toBeTruthy();
     }, 10000);
 
-    test.skip('Testa conexão com post', async () => {
+    test('Testa conexão ao cancelar uma transação.', async () => {
         const http = new HttpAxios(urlbase, username, password);
 
-        const resource = '/v1/transactions/';
         const id = '10012204291418405486';
-        const data = { amount: 10000 };
+        const resource = '/v1/transactions/' + id + '/refunds';
+        const data = { amount: 100 };
 
-        const resultado = await http.put(resource + id, data);
+        const resultado = await http.post(resource, data);
 
         expect(resultado).toBeTruthy();
     }, 15000);
