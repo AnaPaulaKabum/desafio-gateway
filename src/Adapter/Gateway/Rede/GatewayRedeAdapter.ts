@@ -16,16 +16,16 @@ import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 export class GatewayRedeAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectRedeAPI) {}
 
-    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {
-        const returnAPI = await this.connectAPI.sendTransaction(transaction);
+    async sendTransaction(transactionDTO: TransactionDTO): Promise<TransactionOrderDTO> {
+        const returnAPI = await this.connectAPI.sendTransaction(transactionDTO);
 
         return new Promise(function (resolve) {
-            resolve(MapperSend.toTransaction(returnAPI, transaction.kind));
+            resolve(MapperSend.toTransaction(returnAPI, transactionDTO.kind));
         });
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
-        const returnAPI = await this.connectAPI.searchTransaction(searchRequest);
+    async searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
+        const returnAPI = await this.connectAPI.searchTransaction(searchTransactionDTO);
 
         return new Promise(function (resolve) {
             resolve(MapperSearch.toTransactionComplete(returnAPI));

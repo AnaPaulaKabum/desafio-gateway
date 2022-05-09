@@ -41,9 +41,16 @@ export class APP {
             return transactionDTO;
         };
 
-        const searchTransactionRequest = () => {
+        const searchTransactionRequestNumberRequest = () => {
             let searchTrasaction = new SearchRequest();
             searchTrasaction.numberRequest = 'pedido1234';
+
+            return searchTrasaction;
+        };
+
+        const searchTransactionRequestTid = () => {
+            let searchTrasaction = new SearchRequest();
+            searchTrasaction.tid = '10012205051406212774';
 
             return searchTrasaction;
         };
@@ -115,7 +122,7 @@ export class APP {
                 result = await paymentGatewaysController.sendTransactions(createTransactionRequest());
                 break;
             case 2:
-                result = await paymentGatewaysController.searchTransactions(searchTransactionRequest());
+                result = await paymentGatewaysController.searchTransactions(searchTransactionRequestTid());
                 break;
             case 3:
                 result = await paymentGatewaysController.captureTransactions(captureTransactionRequest());
