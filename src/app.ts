@@ -58,7 +58,7 @@ export class APP {
 
         const cancelTransactionRequest = () => {
             let captureTrasactionRequest = new CancelRequest();
-            captureTrasactionRequest.numberRequest = 'pedido123';
+            captureTrasactionRequest.tid = 'pedido123';
             captureTrasactionRequest.amount = 100;
 
             return captureTrasactionRequest;

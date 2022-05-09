@@ -20,14 +20,14 @@ export class CancelTransaction {
 
     async execute(cancelDTO: CancelTransactionDTO): Promise<CancelOrder> {
         try {
-            const transaction = await this.repositoryTransaction.findOne(cancelDTO.numberRequest);
+            const transaction = await this.repositoryTransaction.findOne(cancelDTO.tid);
 
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 let cancelOrderDTO = await this.gateway.cancelTransaction(cancelDTO);
                 cancelOrderDTO.numberRequest = transaction.numberRequest;
                 cancelOrderDTO.amount = transaction.amount;
                 const cancelTransaction = CancelOrder.createForDTO(cancelOrderDTO);
-                await this.repositoryTransaction.updateStatus(cancelDTO.numberRequest, StatusTransaction.CANCEL);
+                await this.repositoryTransaction.updateStatus(cancelDTO.tid, StatusTransaction.CANCEL);
                 await this.repositoryTransaction.saveCancel(cancelTransaction);
                 await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
                 return cancelTransaction;

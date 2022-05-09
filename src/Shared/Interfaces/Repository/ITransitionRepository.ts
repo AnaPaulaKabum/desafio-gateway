@@ -5,7 +5,7 @@ import { StatusTransaction } from '../../Enum/StatusTransaction';
 
 export interface ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction>;
-    findOne(numberRequest: string): Promise<TransactionOrder>;
+    findOne(tid: string): Promise<TransactionOrder>;
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any>;
     saveTransaction(transaction: TransactionOrder): Promise<any>;
     saveCapture(capture: CaptureOrder): Promise<any>;

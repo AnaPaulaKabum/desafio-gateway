@@ -44,7 +44,7 @@ export class FactoryDTO {
 
     static toCancelDTO(cancelRequest: CancelRequest): CancelTransactionDTO {
         const captureTransactionDTO = new CancelTransactionDTO();
-        captureTransactionDTO.numberRequest = cancelRequest.numberRequest;
+        captureTransactionDTO.tid = cancelRequest.tid;
         captureTransactionDTO.amount = cancelRequest.amount;
 
         return captureTransactionDTO;

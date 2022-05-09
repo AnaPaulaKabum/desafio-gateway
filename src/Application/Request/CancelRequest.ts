@@ -1,4 +1,4 @@
 export class CancelRequest {
-    numberRequest: string;
+    tid: string;
     amount: number;
 }

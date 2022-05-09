@@ -17,7 +17,7 @@ describe('UseCase - CancelTransaction', () => {
     let repositoryLog: ILogRepository;
     let mail: IMail;
     const cancelTransactionDTO = new CancelTransactionDTO();
-    cancelTransactionDTO.numberRequest = 'pedido123';
+    cancelTransactionDTO.tid = 'pedido123';
     cancelTransactionDTO.amount = 100;
 
     beforeEach(() => {
@@ -33,7 +33,7 @@ describe('UseCase - CancelTransaction', () => {
             new Promise(function (resolve) {
                 resolve(
                     new TransactionOrder(
-                        cancelTransactionDTO.numberRequest,
+                        cancelTransactionDTO.tid,
                         '100',
                         TypeTransaction.CREDIT,
                         StatusTransaction.CAPTURE,
@@ -68,7 +68,7 @@ describe('UseCase - CancelTransaction', () => {
             new Promise(function (resolve) {
                 resolve(
                     new TransactionOrder(
-                        cancelTransactionDTO.numberRequest,
+                        cancelTransactionDTO.tid,
                         '100',
                         TypeTransaction.CREDIT,
                         StatusTransaction.FINNALY,

@@ -46,7 +46,7 @@ export class ConnectRede implements IConnectRedeAPI {
         return this.http.put(endpoint, data);
     }
     cancelTransaction(cancelRequest: CancelTransactionDTO): Promise<any> {
-        const resource = '/v1/transactions/' + cancelRequest.numberRequest + '/refunds';
+        const resource = '/v1/transactions/' + cancelRequest.tid + '/refunds';
         const data = { amount: 100 };
         return this.http.post(resource, data);
     }

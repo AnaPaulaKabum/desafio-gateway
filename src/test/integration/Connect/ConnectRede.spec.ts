@@ -41,7 +41,7 @@ describe('ConnectRede', () => {
     test.skip('Testa conexão ao cancelar uma transação.', async () => {
         const cancelTransactionDTO = new CancelTransactionDTO();
         cancelTransactionDTO.amount = 100;
-        cancelTransactionDTO.numberRequest = '10012204291418405486';
+        cancelTransactionDTO.tid = '10012204291418405486';
 
         const resultado = await connectRede.cancelTransaction(cancelTransactionDTO);
         console.log(JSON.stringify(resultado));

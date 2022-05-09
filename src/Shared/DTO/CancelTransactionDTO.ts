@@ -1,4 +1,4 @@
 export class CancelTransactionDTO {
-    numberRequest: string;
+    tid: string;
     amount: number;
 }
