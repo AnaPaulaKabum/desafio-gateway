@@ -15,21 +15,24 @@ import { TransactionRequest } from './Application/Request/TransactionRequest';
 import { configRede } from './Adapter/Gateway/Rede/configRede';
 import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/ConnectCieloAPIMock';
 import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/ConnectRedeAPIMock';
+import { ConnectRede } from './Adapter/Gateway/Rede/ConnectRede';
+import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
+import { IConnectRedeAPI } from './Adapter/Gateway/Rede/Interface/IConnectRedeAPI';
 
 export class APP {
     private constructor() {}
 
-    static async start(gatewayUses: number, methodUses: number, log: boolean): Promise<any> {
+    static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
-                'pedido123',
+                'pedido124',
                 TypeTransaction.CREDIT,
                 2099,
                 2,
                 'John Snow',
                 '5448280000000007',
                 1,
-                2021,
+                2028,
                 '123',
                 'Compra na loja XXX',
             );
@@ -39,7 +42,7 @@ export class APP {
 
         const searchTransactionRequest = () => {
             let searchTrasaction = new SearchRequest();
-            searchTrasaction.numberRequest = 'pedido123';
+            searchTrasaction.numberRequest = 'pedido1234';
 
             return searchTrasaction;
         };
@@ -67,7 +70,12 @@ export class APP {
 
             let gateway;
             if (gatewayUses === 1) {
-                const conectAPIRede = new ConnectRedeAPIMock();
+                let conectAPIRede: IConnectRedeAPI;
+                if (testAPI) {
+                    const http = new HttpAxios();
+                    conectAPIRede = new ConnectRede(http);
+                } else conectAPIRede = new ConnectRedeAPIMock();
+
                 gateway = new GatewayRedeAdapter(conectAPIRede);
             } else {
                 const conectAPICielo = new ConnectCieloAPIMock();
@@ -128,9 +136,10 @@ export class APP {
     }
 }
 
-//const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
-//let gatewayUses = 2; //1-Rede 2- Cielo
-//APP.start(gatewayUses, methodUses, true);
+const methodUses = 2; //1-Send 2-Search 3-Capture 4-Cancel
+let gatewayUses = 1; //1-Rede 2- Cielo
+const testAPI = true;
+APP.start(gatewayUses, methodUses, true, testAPI);
 
 //gatewayUses = 1 + 1;
 //APP.start(gatewayUses, methodUses);

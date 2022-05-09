@@ -4,7 +4,6 @@ import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
 import { IConnectRedeAPI } from './Interface/IConnectRedeAPI';
-import { TransactionRedeCreateRequest } from './Request/TransactionRedeCreateRequest';
 
 export class ConnectRede implements IConnectRedeAPI {
     constructor(private readonly http: IHTTP) {
@@ -16,8 +15,6 @@ export class ConnectRede implements IConnectRedeAPI {
     }
 
     sendTransaction(transaction: TransactionDTO): Promise<any> {
-        console.log(transaction.numberRequest);
-
         const data = {
             //capture: false,
             kind: transaction.kind,
