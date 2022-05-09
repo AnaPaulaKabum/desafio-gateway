@@ -10,7 +10,7 @@ export class MapperCapture {
         let object = plainToInstance(CaptureCieloTransaction, Json);
 
         const captureOrderDTO = new CaptureOrderDTO();
-        captureOrderDTO.numberRequest = captureDTO.numberRequest;
+        captureOrderDTO.numberRequest = captureDTO.tid;
         captureOrderDTO.nsu = object.ProofOfSale;
         captureOrderDTO.authorizationCode = object.AuthorizationCode;
         captureOrderDTO.date = new Date();

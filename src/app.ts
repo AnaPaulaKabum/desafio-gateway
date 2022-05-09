@@ -18,6 +18,7 @@ import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/ConnectRedeAPIMo
 import { ConnectRede } from './Adapter/Gateway/Rede/ConnectRede';
 import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
 import { IConnectRedeAPI } from './Adapter/Gateway/Rede/Interface/IConnectRedeAPI';
+import { CancelRequest } from './Application/Request/CancelRequest';
 
 export class APP {
     private constructor() {}
@@ -49,14 +50,14 @@ export class APP {
 
         const captureTransactionRequest = () => {
             let captureTrasactionRequest = new CaptureRequest();
-            captureTrasactionRequest.numberRequest = 'pedido123';
+            captureTrasactionRequest.tid = '8345000363484052380';
             captureTrasactionRequest.amount = 100;
 
             return captureTrasactionRequest;
         };
 
         const cancelTransactionRequest = () => {
-            let captureTrasactionRequest = new CaptureRequest();
+            let captureTrasactionRequest = new CancelRequest();
             captureTrasactionRequest.numberRequest = 'pedido123';
             captureTrasactionRequest.amount = 100;
 

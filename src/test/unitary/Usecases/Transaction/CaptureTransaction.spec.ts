@@ -26,7 +26,7 @@ describe('UseCase - CaptureTransaction', () => {
 
         captureDTO = new CaptureTransactionDTO();
         captureDTO.amount = 1000;
-        captureDTO.numberRequest = 'pedido123';
+        captureDTO.tid = '8345000363484052380';
     });
 
     test('Should functions that are called', async () => {

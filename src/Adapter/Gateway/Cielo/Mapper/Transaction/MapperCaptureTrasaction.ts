@@ -7,7 +7,7 @@ export class MapperCaptureTrasaction {
     static generate(captureTransactionDTO: CaptureTransactionDTO): TransactionCieloCaptureRequest {
         let transactionCaptureRequest = new TransactionCieloCaptureRequest();
         transactionCaptureRequest.amount = captureTransactionDTO.amount;
-        transactionCaptureRequest.paymentId = captureTransactionDTO.numberRequest;
+        transactionCaptureRequest.paymentId = captureTransactionDTO.tid;
 
         return transactionCaptureRequest;
     }

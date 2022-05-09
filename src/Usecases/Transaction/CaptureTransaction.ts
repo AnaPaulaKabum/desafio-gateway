@@ -19,10 +19,10 @@ export class CaptureTransaction {
 
     public async execute(captureDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
         try {
-            if (await this.isValidToCapture(captureDTO.numberRequest)) {
+            if (await this.isValidToCapture(captureDTO.tid)) {
                 const captureTranstionDTO = await this.gateway.captureTransaction(captureDTO);
                 const captureTransaction = CaptureOrder.createForDTO(captureTranstionDTO);
-                await this.repositoryTransaction.updateStatus(captureDTO.numberRequest, StatusTransaction.CAPTURE);
+                await this.repositoryTransaction.updateStatus(captureDTO.tid, StatusTransaction.CAPTURE);
                 await this.repositoryTransaction.saveCapture(captureTransaction);
                 await this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTransaction;

@@ -1,4 +1,4 @@
 export class CaptureRequest {
-    numberRequest: string;
+    tid: string;
     amount: number;
 }

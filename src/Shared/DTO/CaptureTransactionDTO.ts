@@ -1,4 +1,4 @@
 export class CaptureTransactionDTO {
-    numberRequest: string;
+    tid: string;
     amount: number;
 }

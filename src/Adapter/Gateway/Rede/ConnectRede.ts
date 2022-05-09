@@ -41,7 +41,7 @@ export class ConnectRede implements IConnectRedeAPI {
         return this.http.get(endpoint);
     }
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<any> {
-        const endpoint = '/v1/transactions/' + captureTransactionDTO.numberRequest;
+        const endpoint = '/v1/transactions/' + captureTransactionDTO.tid;
         const data = { amount: captureTransactionDTO.amount };
         return this.http.put(endpoint, data);
     }

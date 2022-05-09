@@ -22,7 +22,7 @@ export class ConnectRedeAPIMock implements IConnectRedeAPI {
         return MockAPISearchRede.searchTid(searchRequest.tid);
     }
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<any> {
-        return MockAPICaptureRede.capture(captureTransactionDTO.numberRequest, captureTransactionDTO.amount);
+        return MockAPICaptureRede.capture(captureTransactionDTO.tid, captureTransactionDTO.amount);
     }
     cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<any> {
         return MockAPICancelRede.cancel(cancelTransactionDTO);

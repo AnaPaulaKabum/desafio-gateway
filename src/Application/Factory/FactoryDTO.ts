@@ -36,7 +36,7 @@ export class FactoryDTO {
 
     static toCaptureDTO(captureRequest: CaptureRequest): CaptureTransactionDTO {
         const captureTransactionDTO = new CaptureTransactionDTO();
-        captureTransactionDTO.numberRequest = captureRequest.numberRequest;
+        captureTransactionDTO.tid = captureRequest.tid;
         captureTransactionDTO.amount = captureRequest.amount;
 
         return captureTransactionDTO;

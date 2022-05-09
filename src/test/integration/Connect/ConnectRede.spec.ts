@@ -51,7 +51,7 @@ describe('ConnectRede', () => {
     test.skip('Testa conexão ao capturar uma transação.', async () => {
         const capturarTransactionDTO = new CaptureTransactionDTO();
         capturarTransactionDTO.amount = 100;
-        capturarTransactionDTO.numberRequest = '10012204291418405486';
+        capturarTransactionDTO.tid = '10012204291418405486';
 
         const resultado = await connectRede.captureTransaction(capturarTransactionDTO);
         console.log(JSON.stringify(resultado));
