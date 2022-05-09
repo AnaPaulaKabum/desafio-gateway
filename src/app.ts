@@ -50,7 +50,7 @@ export class APP {
 
         const captureTransactionRequest = () => {
             let captureTrasactionRequest = new CaptureRequest();
-            captureTrasactionRequest.tid = '8345000363484052380';
+            captureTrasactionRequest.tid = '10012205051406212774';
             captureTrasactionRequest.amount = 100;
 
             return captureTrasactionRequest;
@@ -58,7 +58,7 @@ export class APP {
 
         const cancelTransactionRequest = () => {
             let captureTrasactionRequest = new CancelRequest();
-            captureTrasactionRequest.tid = 'pedido123';
+            captureTrasactionRequest.tid = '10012205051406212774';
             captureTrasactionRequest.amount = 100;
 
             return captureTrasactionRequest;
@@ -137,7 +137,7 @@ export class APP {
     }
 }
 
-const methodUses = 2; //1-Send 2-Search 3-Capture 4-Cancel
+const methodUses = 4; //1-Send 2-Search 3-Capture 4-Cancel
 let gatewayUses = 1; //1-Rede 2- Cielo
 const testAPI = true;
 APP.start(gatewayUses, methodUses, true, testAPI);
