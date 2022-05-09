@@ -27,6 +27,7 @@ export class HttpAxios implements IHTTP {
             const returnGet = await axios.get(this.baseUrl + endpoint, config);
             return returnGet.data;
         } catch (error) {
+            console.log(JSON.stringify(error.response.data));
             throw new Error(error.response.data);
         }
     }
@@ -41,6 +42,7 @@ export class HttpAxios implements IHTTP {
             const returnPost = await axios.post(this.baseUrl + endpoint, data, config);
             return returnPost.data;
         } catch (error) {
+            console.log(JSON.stringify(error.response.data));
             throw new Error(error.response.data);
         }
     }
@@ -55,6 +57,7 @@ export class HttpAxios implements IHTTP {
             const returnPut = await axios.put(this.baseUrl + endpoint, data, config);
             return returnPut.data;
         } catch (error) {
+            console.log(JSON.stringify(error.response.data));
             throw new Error(error.response.data);
         }
     }

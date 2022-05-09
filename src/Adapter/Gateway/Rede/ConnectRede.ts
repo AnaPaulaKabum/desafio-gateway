@@ -1,9 +1,10 @@
-import { CancelRequest } from '../../../Application/Request/CancelRequest';
+import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
 import { IConnectRedeAPI } from './Interface/IConnectRedeAPI';
+import { TransactionRedeCreateRequest } from './Request/TransactionRedeCreateRequest';
 
 export class ConnectRede implements IConnectRedeAPI {
     constructor(private readonly http: IHTTP) {
@@ -15,8 +16,27 @@ export class ConnectRede implements IConnectRedeAPI {
     }
 
     sendTransaction(transaction: TransactionDTO): Promise<any> {
-        const data = {};
-        const endpoint = '';
+        console.log(transaction.numberRequest);
+
+        const data = {
+            //capture: false,
+            kind: transaction.kind,
+            reference: transaction.numberRequest,
+            amount: transaction.amount,
+            installments: transaction.installments,
+            cardholderName: transaction.cardHolderName,
+            cardNumber: transaction.cardNumber,
+            expirationMonth: transaction.expirationMonth,
+            expirationYear: transaction.expirationYear,
+            securityCode: transaction.cardSecurityCode,
+            softDescriptor: transaction.softDescriptor,
+            /*subscription: false,
+            origin: 1,
+            distributorAffiliation: 0,
+            brandTid: 'string',
+            storageCard: '1',*/
+        };
+        const endpoint = '/v1/transactions/';
         return this.http.post(endpoint, data);
     }
     searchTransaction(searchRequest: SearchTransactionDTO): Promise<any> {
@@ -28,7 +48,7 @@ export class ConnectRede implements IConnectRedeAPI {
         const data = { amount: captureTransactionDTO.amount };
         return this.http.put(endpoint, data);
     }
-    cancelTransaction(cancelRequest: CancelRequest): Promise<any> {
+    cancelTransaction(cancelRequest: CancelTransactionDTO): Promise<any> {
         const resource = '/v1/transactions/' + cancelRequest.numberRequest + '/refunds';
         const data = { amount: 100 };
         return this.http.post(resource, data);
