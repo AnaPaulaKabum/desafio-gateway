@@ -14,10 +14,7 @@ import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
 import { configRede } from './Adapter/Gateway/Rede/configRede';
 import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/ConnectCieloAPIMock';
-import { ConnectRedeAPIMock } from './Adapter/Gateway/Rede/Mock/ConnectRedeAPIMock';
-import { ConnectRede } from './Adapter/Gateway/Rede/ConnectRede';
 import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
-import { IConnectRedeAPI } from './Adapter/Gateway/Rede/Interface/IConnectRedeAPI';
 import { CancelRequest } from './Application/Request/CancelRequest';
 
 export class APP {
@@ -78,13 +75,10 @@ export class APP {
 
             let gateway;
             if (gatewayUses === 1) {
-                let conectAPIRede: IConnectRedeAPI;
                 if (testAPI) {
                     const http = new HttpAxios();
-                    conectAPIRede = new ConnectRede(http);
-                } else conectAPIRede = new ConnectRedeAPIMock();
-
-                gateway = new GatewayRedeAdapter(conectAPIRede);
+                    gateway = new GatewayRedeAdapter(http);
+                } // else conectAPIRede = new ConnectRedeAPIMock();
             } else {
                 const conectAPICielo = new ConnectCieloAPIMock();
                 gateway = new GatewayCieloAdapter(conectAPICielo);
