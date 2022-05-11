@@ -14,13 +14,7 @@ import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
 
 export class GatewayRedeAdapter implements IGateways {
-    constructor(private readonly http: IHTTP) {
-        const baseURL = 'https://sandbox-erede.useredecloud.com.br';
-        const username = '23172018';
-        const password = '63c968b7b58a46a5b260fe812d4a2fb0';
-        this.http.setAuth(username, password);
-        this.http.setBaseUrl(baseURL);
-    }
+    constructor(private readonly http: IHTTP) {}
 
     async sendTransaction(transactionDTO: TransactionDTO): Promise<TransactionOrderDTO> {
         const data = {

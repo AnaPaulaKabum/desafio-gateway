@@ -16,6 +16,7 @@ import { configRede } from './Adapter/Gateway/Rede/configRede';
 import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/ConnectCieloAPIMock';
 import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
 import { CancelRequest } from './Application/Request/CancelRequest';
+import * as dotenv from 'dotenv';
 
 export class APP {
     private constructor() {}
@@ -77,6 +78,15 @@ export class APP {
             if (gatewayUses === 1) {
                 if (testAPI) {
                     const http = new HttpAxios();
+                    dotenv.config();
+                    const baseUrl = process.env.API;
+                    if (!baseUrl) throw new Error('Favor preencher o campo API do .env');
+                    http.setBaseUrl(baseUrl);
+                    const username = process.env.USERNAME;
+                    if (!username) throw new Error('Favor username o campo API do .env');
+                    const password = process.env.PASSWORD;
+                    if (!password) throw new Error('Favor password o campo API do .env');
+                    http.setAuth(username, password);
                     gateway = new GatewayRedeAdapter(http);
                 } // else conectAPIRede = new ConnectRedeAPIMock();
             } else {
@@ -138,7 +148,7 @@ export class APP {
     }
 }
 
-const methodUses = 4; //1-Send 2-Search 3-Capture 4-Cancel
+const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
 let gatewayUses = 1; //1-Rede 2- Cielo
 const testAPI = true;
 APP.start(gatewayUses, methodUses, true, testAPI);
