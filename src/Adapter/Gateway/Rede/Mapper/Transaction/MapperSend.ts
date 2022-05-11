@@ -1,7 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse';
 import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
 
