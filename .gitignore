@@ -2,3 +2,5 @@
 /servidor-api/node_modules
 /app/dist/js
 /coverage
+.env
+package-lock.json
