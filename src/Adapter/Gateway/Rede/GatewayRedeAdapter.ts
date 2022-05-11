@@ -18,7 +18,6 @@ export class GatewayRedeAdapter implements IGateways {
 
     async sendTransaction(transactionDTO: TransactionDTO): Promise<TransactionOrderDTO> {
         const data = {
-            //capture: false,
             kind: transactionDTO.kind,
             reference: transactionDTO.numberRequest,
             amount: transactionDTO.amount,
@@ -29,11 +28,6 @@ export class GatewayRedeAdapter implements IGateways {
             expirationYear: transactionDTO.expirationYear,
             securityCode: transactionDTO.cardSecurityCode,
             softDescriptor: transactionDTO.softDescriptor,
-            /*subscription: false,
-            origin: 1,
-            distributorAffiliation: 0,
-            brandTid: 'string',
-            storageCard: '1',*/
         };
         const endpoint = '/v1/transactions/';
         const returnAPI = await this.http.post(endpoint, data);
