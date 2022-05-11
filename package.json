@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "axios": "^0.27.2",
-        "class-transformer": "^0.5.1"
+        "class-transformer": "^0.5.1",
+        "dotenv": "^16.0.1"
     }
 }
