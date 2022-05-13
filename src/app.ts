@@ -148,10 +148,14 @@ export class APP {
     }
 }
 
-const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
-let gatewayUses = 1; //1-Rede 2- Cielo
-const testAPI = true;
-APP.start(gatewayUses, methodUses, true, testAPI);
+try {
+    const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
+    let gatewayUses = 1; //1-Rede 2- Cielo
+    const testAPI = true;
+    APP.start(gatewayUses, methodUses, true, testAPI);
+} catch (error) {
+    console.error('Erro app' + error);
+}
 
 //gatewayUses = 1 + 1;
 //APP.start(gatewayUses, methodUses);

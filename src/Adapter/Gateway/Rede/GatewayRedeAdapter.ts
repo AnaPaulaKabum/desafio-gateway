@@ -12,6 +12,7 @@ import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
+import { translateErrorCodeAPI } from './RedeStatusCodeLibrary';
 
 export class GatewayRedeAdapter implements IGateways {
     constructor(private readonly http: IHTTP) {}
@@ -32,18 +33,24 @@ export class GatewayRedeAdapter implements IGateways {
         const endpoint = '/v1/transactions/';
         const returnAPI = await this.http.post(endpoint, data);
 
-        return new Promise(function (resolve) {
-            resolve(MapperSend.toTransaction(returnAPI, transactionDTO.kind));
-        });
+        if (returnAPI.isSuccess)
+            return new Promise(function (resolve) {
+                resolve(MapperSend.toTransaction(returnAPI.getValue(), transactionDTO.kind));
+            });
+
+        throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
     async searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
         const endpoint = '/v1/transactions/' + searchTransactionDTO.numberRequest;
-        const returnAPI = this.http.get(endpoint);
+        const returnAPI = await this.http.get(endpoint);
 
-        return new Promise(function (resolve) {
-            resolve(MapperSearch.toTransactionComplete(returnAPI));
-        });
+        if (returnAPI.isSuccess)
+            return new Promise(function (resolve) {
+                resolve(MapperSearch.toTransactionComplete(returnAPI));
+            });
+
+        throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
     async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
@@ -51,9 +58,11 @@ export class GatewayRedeAdapter implements IGateways {
         const data = { amount: captureTransactionDTO.amount };
         const returnAPI = await this.http.put(endpoint, data);
 
-        return new Promise(function (resolve) {
-            resolve(MapperCapture.toCapture(returnAPI, captureTransactionDTO.amount));
-        });
+        if (returnAPI.isSuccess)
+            return new Promise(function (resolve) {
+                resolve(MapperCapture.toCapture(returnAPI, captureTransactionDTO.amount));
+            });
+        throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
     async cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTO> {
@@ -61,8 +70,10 @@ export class GatewayRedeAdapter implements IGateways {
         const data = { amount: cancelTransactionDTO.amount };
         const returnAPI = await this.http.post(resource, data);
 
-        return new Promise(function (resolve) {
-            resolve(MapperCancel.toCancelTransaction(returnAPI));
-        });
+        if (returnAPI.isSuccess)
+            return new Promise(function (resolve) {
+                resolve(MapperCancel.toCancelTransaction(returnAPI));
+            });
+        throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 }

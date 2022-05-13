@@ -1,5 +1,6 @@
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
 import axios from 'axios';
+import { ResponseAPI } from './ResponseAPI';
 
 export class HttpAxios implements IHTTP {
     private auth;
@@ -16,7 +17,7 @@ export class HttpAxios implements IHTTP {
         return !!this.isValidBaseUrl;
     }
 
-    async get(endpoint: string): Promise<any> {
+    async get(endpoint: string): Promise<ResponseAPI<any>> {
         if (!this.isValidBaseUrl()) throw new Error('BaseUrl não é valida.');
 
         try {
@@ -24,14 +25,13 @@ export class HttpAxios implements IHTTP {
                 auth: this.auth,
             };
 
-            const returnGet = await axios.get(this.baseUrl + endpoint, config);
-            return returnGet.data;
+            return ResponseAPI.ok((await axios.get(this.baseUrl + endpoint, config)).data);
         } catch (error) {
             console.log(JSON.stringify(error.response.data));
-            throw new Error(error.response.data);
+            return ResponseAPI.fail(error.response.data);
         }
     }
-    async post(endpoint: string, data: any): Promise<any> {
+    async post(endpoint: string, data: any): Promise<ResponseAPI<any>> {
         if (!this.isValidBaseUrl()) throw new Error('BaseUrl não é valida.');
 
         try {
@@ -39,26 +39,24 @@ export class HttpAxios implements IHTTP {
                 auth: this.auth,
             };
 
-            const returnPost = await axios.post(this.baseUrl + endpoint, data, config);
-            return returnPost.data;
+            return ResponseAPI.ok((await axios.post(this.baseUrl + endpoint, data, config)).data);
         } catch (error) {
             console.log(JSON.stringify(error.response.data));
-            throw new Error(error.response.data);
+            return ResponseAPI.fail(error.response.data);
         }
     }
 
-    async put(endpoint: string, data: any): Promise<any> {
+    async put(endpoint: string, data: any): Promise<ResponseAPI<any>> {
         if (!this.isValidBaseUrl()) throw new Error('BaseUrl não é valida.');
         try {
             const config = {
                 auth: this.auth,
             };
 
-            const returnPut = await axios.put(this.baseUrl + endpoint, data, config);
-            return returnPut.data;
+            return ResponseAPI.ok(await (await axios.put(this.baseUrl + endpoint, data, config)).data);
         } catch (error) {
             console.log(JSON.stringify(error.response.data));
-            throw new Error(error.response.data);
+            return ResponseAPI.fail(error.response.data);
         }
     }
 }
