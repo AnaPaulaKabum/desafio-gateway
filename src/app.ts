@@ -82,9 +82,9 @@ export class APP {
                     const baseUrl = process.env.API;
                     if (!baseUrl) throw new Error('Favor preencher o campo API do .env');
                     http.setBaseUrl(baseUrl);
-                    const username = process.env.USERNAME;
+                    const username = process.env.USERNAME_API;
                     if (!username) throw new Error('Favor username o campo API do .env');
-                    const password = process.env.PASSWORD;
+                    const password = process.env.PASSWORD_API;
                     if (!password) throw new Error('Favor password o campo API do .env');
                     http.setAuth(username, password);
                     gateway = new GatewayRedeAdapter(http);
