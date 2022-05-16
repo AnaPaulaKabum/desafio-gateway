@@ -1,0 +1,10 @@
+CREATE TABLE Desafio.Log (
+	`User` INT NULL,
+	Descripto varchar(255) NULL,
+	process INT NULL,
+	gravity INT NULL
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci
+COMMENT='Tabela de Log';

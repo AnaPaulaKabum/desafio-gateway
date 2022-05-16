@@ -17,6 +17,8 @@ import { ConnectCieloAPIMock } from './Adapter/Gateway/Cielo/Mock/ConnectCieloAP
 import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
 import { CancelRequest } from './Application/Request/CancelRequest';
 import * as dotenv from 'dotenv';
+import { ConnectDBTypeORM } from './Adapter/Connect/ConnectDBTypeORM';
+import { appendFile } from 'fs';
 
 export class APP {
     private constructor() {}
@@ -146,16 +148,23 @@ export class APP {
         }
         return result;
     }
+
+    static testConnectBD() {
+        const connect = new ConnectDBTypeORM();
+        connect.start();
+    }
 }
 
-try {
+/*try {
     const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
     let gatewayUses = 1; //1-Rede 2- Cielo
     const testAPI = true;
     APP.start(gatewayUses, methodUses, true, testAPI);
 } catch (error) {
     console.error('Erro app' + error);
-}
+}*/
+
+APP.testConnectBD();
 
 //gatewayUses = 1 + 1;
 //APP.start(gatewayUses, methodUses);
