@@ -24,3 +24,27 @@ src
     -   Interfaces
 
 app.ts: Componente responsavel por instanciar e compor todo o projeto.
+
+## Install
+
+-   yarn install
+
+## Execute
+
+-   test: yarn test
+-   start : yarn start
+
+## Configuration
+
+-   Exemple file .env:
+
+TYPE=mysql
+HOST=localhost
+PORT=3306
+DATABASE=test
+USERBASE_BD=test
+PASSWORD_BD=root
+DATABASE=test
+API=
+USERNAME_API=
+PASSWORD_API=
