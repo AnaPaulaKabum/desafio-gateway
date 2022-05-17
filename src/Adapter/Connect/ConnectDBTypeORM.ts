@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 export class ConnectDBTypeORM {
     private appDataSource: DataSource;
 
-    constructor() {
+    constructor(entitesUrl: string) {
         const { type, host, port, username, password, database } = this.validateParamEnv();
 
         this.appDataSource = new DataSource({
@@ -14,6 +14,8 @@ export class ConnectDBTypeORM {
             username: username,
             password: password,
             database: database,
+            synchronize: true,
+            entities: [entitesUrl],
         });
     }
 

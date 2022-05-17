@@ -18,7 +18,6 @@ import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
 import { CancelRequest } from './Application/Request/CancelRequest';
 import * as dotenv from 'dotenv';
 import { ConnectDBTypeORM } from './Adapter/Connect/ConnectDBTypeORM';
-import { appendFile } from 'fs';
 
 export class APP {
     private constructor() {}
@@ -150,7 +149,7 @@ export class APP {
     }
 
     static testConnectBD() {
-        const connect = new ConnectDBTypeORM();
+        const connect = new ConnectDBTypeORM('app/dist/js/Adapter/Repository/Entity/*.js');
         connect.start();
     }
 }
