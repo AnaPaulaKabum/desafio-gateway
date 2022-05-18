@@ -32,7 +32,7 @@ describe('UseCase - CaptureTransaction', () => {
     test('Should functions that are called', async () => {
         jest.spyOn(repositoryTransaction, 'updateStatus').mockImplementation();
         jest.spyOn(repositoryTransaction, 'saveCapture').mockImplementation();
-        jest.spyOn(repositoryLog, 'save').mockImplementation();
+        jest.spyOn(repositoryLog, 'register').mockImplementation();
         jest.spyOn(repositoryTransaction, 'searchStatus').mockReturnValueOnce(
             new Promise(function (resolve) {
                 resolve(StatusTransaction.NO_CAPTURE);
@@ -44,7 +44,7 @@ describe('UseCase - CaptureTransaction', () => {
         expect(repositoryTransaction.searchStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.updateStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.saveCapture).toHaveBeenCalledTimes(1);
-        expect(repositoryLog.save).toHaveBeenCalledTimes(1);
+        expect(repositoryLog.register).toHaveBeenCalledTimes(1);
     });
 
     test('Should return error when functions return error', async () => {

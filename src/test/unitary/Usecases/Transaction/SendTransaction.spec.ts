@@ -41,13 +41,13 @@ describe('UseCase - SendTransaction', () => {
     test('Should functions that are called by sendTransaction', async () => {
         jest.spyOn(repositoryTransaction, 'searchStatus').mockImplementation();
         jest.spyOn(repositoryTransaction, 'saveTransaction').mockImplementation();
-        jest.spyOn(repositoryLog, 'save').mockImplementation();
+        jest.spyOn(repositoryLog, 'register').mockImplementation();
 
         await service.execute(transactionDTO);
 
         expect(repositoryTransaction.searchStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.saveTransaction).toHaveBeenCalledTimes(1);
-        expect(repositoryLog.save).toHaveBeenCalledTimes(1);
+        expect(repositoryLog.register).toHaveBeenCalledTimes(1);
     });
 
     test('Should return error when functions return error', async () => {

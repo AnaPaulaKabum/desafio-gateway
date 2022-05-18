@@ -18,11 +18,15 @@ import { HttpAxios } from './Adapter/HTTP/AXIOS/HttpAxios';
 import { CancelRequest } from './Application/Request/CancelRequest';
 import * as dotenv from 'dotenv';
 import { ConnectDBTypeORM } from './Adapter/Connect/ConnectDBTypeORM';
+import { LogEntity } from './Adapter/Repository/Entity/Log.entity';
+import { Repository } from 'typeorm';
+import { Log } from './Domain/Entity/Log/Log';
+import { StatusLog } from './Shared/Enum/StatusLog';
 
 export class APP {
     private constructor() {}
 
-    static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
+    /*static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
                 'pedido124',
@@ -72,7 +76,7 @@ export class APP {
 
         const TransactionServicesFactory = () => {
             const repositoryTransaction = new TransactionRepository();
-            const repositoryLog = new LogRepository();
+            const repositoryLog = new LogRepository(LogEntity);
             const mail = new Mail();
 
             let gateway;
@@ -146,11 +150,21 @@ export class APP {
             console.log(result);
         }
         return result;
-    }
+    }*/
 
-    static testConnectBD() {
-        const connect = new ConnectDBTypeORM('app/dist/js/Adapter/Repository/Entity/*.js');
-        connect.start();
+    static async testConnectBD() {
+        const connect = new ConnectDBTypeORM(__dirname + '/../**/*.entity{.ts,.js}');
+        await connect.start();
+
+        const log = new Log();
+        log.date = new Date();
+        log.message = 'Teste';
+        log.statusLog = StatusLog.REGISTER;
+        log.userCode = 10;
+
+        const repository = new LogRepository(LogEntity, connect.appDataSource.manager);
+
+        repository.register(log);
     }
 }
 

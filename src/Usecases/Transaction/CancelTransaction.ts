@@ -29,14 +29,14 @@ export class CancelTransaction {
                 const cancelTransaction = CancelOrder.createForDTO(cancelOrderDTO);
                 await this.repositoryTransaction.updateStatus(cancelDTO.tid, StatusTransaction.CANCEL);
                 await this.repositoryTransaction.saveCancel(cancelTransaction);
-                await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
+                await this.repositoryLog.register(LogFactory.success(Action.SEND.toString()));
                 return cancelTransaction;
             }
 
             throw new Error('Não é possivel cancelar');
         } catch (error) {
             await this.mail.send(new FieldMail(error));
-            await this.repositoryLog.save(LogFactory.error(Action.CANCEL.toString()));
+            await this.repositoryLog.register(LogFactory.error(Action.CANCEL.toString()));
             throw new Error(error);
         }
     }

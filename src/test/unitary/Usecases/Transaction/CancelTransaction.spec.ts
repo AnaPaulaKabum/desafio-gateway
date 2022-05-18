@@ -48,13 +48,13 @@ describe('UseCase - CancelTransaction', () => {
         );
         jest.spyOn(repositoryTransaction, 'updateStatus').mockImplementation();
         jest.spyOn(repositoryTransaction, 'saveCancel').mockImplementation();
-        jest.spyOn(repositoryLog, 'save').mockImplementation();
+        jest.spyOn(repositoryLog, 'register').mockImplementation();
 
         await service.execute(cancelTransactionDTO);
 
         expect(repositoryTransaction.updateStatus).toHaveBeenCalledTimes(1);
         expect(repositoryTransaction.saveCancel).toHaveBeenCalledTimes(1);
-        expect(repositoryLog.save).toHaveBeenCalledTimes(1);
+        expect(repositoryLog.register).toHaveBeenCalledTimes(1);
     });
 
     test('Should return error when functions return error', async () => {

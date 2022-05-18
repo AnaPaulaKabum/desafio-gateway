@@ -29,7 +29,7 @@ export class SendTransaction {
 
                 const transactionOrder = TransactionOrder.createForDTO(transactionDTO);
                 await this.repositoryTransaction.saveTransaction(transactionOrder);
-                await this.repositoryLog.save(LogFactory.success(Action.SEND.toString()));
+                await this.repositoryLog.register(LogFactory.success(Action.SEND.toString()));
 
                 return transactionOrder;
             }
@@ -37,7 +37,7 @@ export class SendTransaction {
             throw new Error('Transação já cadastrada');
         } catch (error) {
             await this.mail.send(new FieldMail(error));
-            await this.repositoryLog.save(LogFactory.error(Action.SEND.toString() + error));
+            await this.repositoryLog.register(LogFactory.error(Action.SEND.toString() + error));
             throw new Error(error);
         }
     }

@@ -1,8 +1,9 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
+import { LogEntity } from '../Repository/Entity/Log.entity';
 
 export class ConnectDBTypeORM {
-    private appDataSource: DataSource;
+    appDataSource: DataSource;
 
     constructor(entitesUrl: string) {
         const { type, host, port, username, password, database } = this.validateParamEnv();
@@ -39,15 +40,18 @@ export class ConnectDBTypeORM {
         return { type, host, port, username, password, database };
     }
 
-    start() {
-        this.appDataSource
-            .initialize()
-            .then(() => {
-                console.log('Data Source has been initialized!');
-            })
-            .catch((err) => {
-                console.error('Error during Data Source initialization', err);
-            });
+    async start() {
+        await this.appDataSource.initialize();
+        console.log('Data Source has been initialized!');
+    }
+
+    async getRepository(name: string) {
+        const repository = this.appDataSource.getRepository(name);
+        return repository;
+    }
+
+    disconnect() {
+        // this.appDataSource.destroy();
     }
 }
 

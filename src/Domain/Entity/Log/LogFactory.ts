@@ -8,7 +8,7 @@ export class LogFactory {
         let log = new Log();
         log.message = message;
         log.statusLog = StatusLog.SUCCESS;
-        log.user = 'root';
+        log.userCode = 1;
         log.date = new Date();
 
         return log;
@@ -18,7 +18,7 @@ export class LogFactory {
         let log = new Log();
         log.message = message;
         log.statusLog = StatusLog.ERROR;
-        log.user = 'root';
+        log.userCode = 1;
         log.date = new Date();
 
         return log;
@@ -28,7 +28,7 @@ export class LogFactory {
         let log = new Log();
         log.message = message;
         log.statusLog = StatusLog.REGISTER;
-        log.user = 'root';
+        log.userCode = 1;
         log.date = new Date();
 
         return log;

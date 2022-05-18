@@ -24,14 +24,14 @@ export class CaptureTransaction {
                 const captureTransaction = CaptureOrder.createForDTO(captureTranstionDTO);
                 await this.repositoryTransaction.updateStatus(captureDTO.tid, StatusTransaction.CAPTURE);
                 await this.repositoryTransaction.saveCapture(captureTransaction);
-                await this.repositoryLog.save(LogFactory.success(Action.CAPTURE.toString()));
+                await this.repositoryLog.register(LogFactory.success(Action.CAPTURE.toString()));
                 return captureTransaction;
             }
 
             throw new Error('Trasação não pode ser capturada.');
         } catch (error) {
             this.mail.send(new FieldMail(error));
-            await this.repositoryLog.save(LogFactory.error(Action.CAPTURE.toString()));
+            await this.repositoryLog.register(LogFactory.error(Action.CAPTURE.toString()));
             throw new Error(error);
         }
     }

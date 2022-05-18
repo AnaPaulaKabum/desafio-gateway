@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
 @Entity({ name: 'Log' })
-export class LogBD {
+export class LogEntity extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -14,9 +14,6 @@ export class LogBD {
 
     @Column()
     process: number;
-
-    @Column()
-    gravity: number;
 
     @Column()
     date: Date;
