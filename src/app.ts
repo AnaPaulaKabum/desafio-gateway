@@ -19,14 +19,13 @@ import { CancelRequest } from './Application/Request/CancelRequest';
 import * as dotenv from 'dotenv';
 import { ConnectDBTypeORM } from './Adapter/Connect/ConnectDBTypeORM';
 import { LogEntity } from './Adapter/Repository/Entity/Log.entity';
-import { Repository } from 'typeorm';
 import { Log } from './Domain/Entity/Log/Log';
 import { StatusLog } from './Shared/Enum/StatusLog';
 
 export class APP {
     private constructor() {}
 
-    /*static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
+    static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
                 'pedido124',
@@ -74,9 +73,12 @@ export class APP {
             return captureTrasactionRequest;
         };
 
-        const TransactionServicesFactory = () => {
+        const TransactionServicesFactory = async () => {
+            const connect = new ConnectDBTypeORM(__dirname + '/../**/*.entity{.ts,.js}');
+            await connect.start();
+
             const repositoryTransaction = new TransactionRepository();
-            const repositoryLog = new LogRepository(LogEntity);
+            const repositoryLog = new LogRepository(LogEntity, connect.appDataSource.manager);
             const mail = new Mail();
 
             let gateway;
@@ -117,7 +119,7 @@ export class APP {
 
         //Design Patter composite root:
         const { sendTransaction, searchTransaction, captureTransaction, cancelTransaction } =
-            TransactionServicesFactory();
+            await TransactionServicesFactory();
         const paymentGatewaysController = new PaymentGatewaysController(
             sendTransaction,
             searchTransaction,
@@ -150,7 +152,7 @@ export class APP {
             console.log(result);
         }
         return result;
-    }*/
+    }
 
     static async testConnectBD() {
         const connect = new ConnectDBTypeORM(__dirname + '/../**/*.entity{.ts,.js}');
@@ -168,16 +170,16 @@ export class APP {
     }
 }
 
-/*try {
+try {
     const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
     let gatewayUses = 1; //1-Rede 2- Cielo
     const testAPI = true;
     APP.start(gatewayUses, methodUses, true, testAPI);
 } catch (error) {
     console.error('Erro app' + error);
-}*/
+}
 
-APP.testConnectBD();
+//APP.testConnectBD();
 
 //gatewayUses = 1 + 1;
 //APP.start(gatewayUses, methodUses);
