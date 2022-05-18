@@ -1,15 +1,15 @@
-import { Mail } from '../../../../Adapter/Mail/Mail';
+import { Mail } from '../../../../Infra/Mail/Mail';
 import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { GatewayMock } from '../../../../Adapter/Gateway/Mock/GatewayMock';
-import { LogRepositoryMock } from '../../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
-import { configMock } from '../../../../Adapter/Gateway/Mock/configMock';
-import { TransactionRepositoryMock } from '../../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
+import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
+import { LogRepositoryMock } from '../../../../Infra/ConnectBD/TypeORM/Repository/Log/Mock/LogRepositoryMock';
+import { configMock } from '../../../Mock/Gateway/configMock';
 import { SendTransaction } from '../../../../Usecases/Transaction/SendTransaction';
+import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
 describe('UseCase - SendTransaction', () => {
     let service: SendTransaction;

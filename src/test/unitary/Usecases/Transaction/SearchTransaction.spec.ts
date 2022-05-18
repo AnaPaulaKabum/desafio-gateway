@@ -1,12 +1,12 @@
-import { Mail } from '../../../../Adapter/Mail/Mail';
+import { Mail } from '../../../../Infra/Mail/Mail';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { GatewayMock } from '../../../../Adapter/Gateway/Mock/GatewayMock';
-import { TransactionRepositoryMock } from '../../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
-import { LogRepositoryMock } from '../../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
+import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
+import { LogRepositoryMock } from '../../../../Infra/ConnectBD/TypeORM/Repository/Log/Mock/LogRepositoryMock';
 import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
 import { SearchTransaction } from '../../../../Usecases/Transaction/SearchTransaction';
+import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
 describe('UseCase - SearchTransaction', () => {
     let service: SearchTransaction;

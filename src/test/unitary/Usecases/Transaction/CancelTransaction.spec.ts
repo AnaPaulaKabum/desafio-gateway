@@ -1,4 +1,4 @@
-import { Mail } from '../../../../Adapter/Mail/Mail';
+import { Mail } from '../../../../Infra/Mail/Mail';
 import { TransactionOrder } from '../../../../Domain/Entity/Transaction/TransactionOrder';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
@@ -6,10 +6,10 @@ import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { CancelTransaction } from '../../../../Usecases/Transaction/CancelTransaction';
-import { GatewayMock } from '../../../../Adapter/Gateway/Mock/GatewayMock';
-import { TransactionRepositoryMock } from '../../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
-import { LogRepositoryMock } from '../../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
+import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
+import { LogRepositoryMock } from '../../../../Infra/ConnectBD/TypeORM/Repository/Log/Mock/LogRepositoryMock';
 import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
+import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
 describe('UseCase - CancelTransaction', () => {
     let service: CancelTransaction;

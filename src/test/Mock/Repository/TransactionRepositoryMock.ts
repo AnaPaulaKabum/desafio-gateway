@@ -1,11 +1,11 @@
-import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
-import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
+import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
+import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
 
-export class TransactionRepository implements ITransactionRepository {
+export class TransactionRepositoryMock implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
         return new Promise(function (resolve) {
             resolve(StatusTransaction.NO_CAPTURE);
@@ -28,13 +28,11 @@ export class TransactionRepository implements ITransactionRepository {
             );
         });
     }
-
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
         return new Promise(function (resolve) {
             resolve(null);
         });
     }
-
     saveTransaction(transaction: TransactionOrder): Promise<any> {
         return new Promise(function (resolve) {
             resolve(null);
@@ -46,8 +44,6 @@ export class TransactionRepository implements ITransactionRepository {
         });
     }
     saveCancel(cancel: CancelOrder): Promise<any> {
-        return new Promise(function (resolve) {
-            resolve(null);
-        });
+        throw new Error('Method not implemented- saveCapture');
     }
 }

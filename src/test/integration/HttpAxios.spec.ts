@@ -1,4 +1,4 @@
-import { HttpAxios } from '../../Adapter/HTTP/AXIOS/HttpAxios';
+import { HttpAxios } from '../../Infra/HTTP/AXIOS/HttpAxios';
 
 describe('Teste HttpAxios', () => {
     const urlbase = 'https://sandbox-erede.useredecloud.com.br';

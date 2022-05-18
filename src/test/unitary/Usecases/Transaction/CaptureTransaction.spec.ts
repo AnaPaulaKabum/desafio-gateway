@@ -1,13 +1,13 @@
-import { Mail } from '../../../../Adapter/Mail/Mail';
+import { Mail } from '../../../../Infra/Mail/Mail';
 import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { GatewayMock } from '../../../../Adapter/Gateway/Mock/GatewayMock';
-import { LogRepositoryMock } from '../../../../Adapter/Repository/Log/Mock/LogRepositoryMock';
-import { TransactionRepositoryMock } from '../../../../Adapter/Repository/Transaction/Mock/TransactionRepositoryMock';
+import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
+import { LogRepositoryMock } from '../../../../Infra/ConnectBD/TypeORM/Repository/Log/Mock/LogRepositoryMock';
 import { CaptureTransaction } from '../../../../Usecases/Transaction/CaptureTransaction';
+import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
 describe('UseCase - CaptureTransaction', () => {
     let service: CaptureTransaction;
