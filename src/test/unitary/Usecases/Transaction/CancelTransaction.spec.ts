@@ -7,7 +7,7 @@ import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRep
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { CancelTransaction } from '../../../../Usecases/Transaction/CancelTransaction';
 import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
-import { LogRepositoryMock } from '../../../../Infra/ConnectBD/TypeORM/Repository/Log/Mock/LogRepositoryMock';
+import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 

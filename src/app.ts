@@ -18,7 +18,7 @@ import { HttpAxios } from './Infra/HTTP/AXIOS/HttpAxios';
 import { CancelRequest } from './Application/Request/CancelRequest';
 import * as dotenv from 'dotenv';
 import { ConnectDBTypeORM } from './Infra/ConnectBD/TypeORM/ConnectDBTypeORM';
-import { LogEntity } from './Infra/ConnectBD/TypeORM/Entity/Log.entity';
+import { LogEntity } from './Infra/ConnectBD/TypeORM/Entity/LogEntity';
 import { Log } from './Domain/Entity/Log/Log';
 import { StatusLog } from './Shared/Enum/StatusLog';
 

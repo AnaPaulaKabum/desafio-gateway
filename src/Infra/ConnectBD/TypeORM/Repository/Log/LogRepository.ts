@@ -1,7 +1,7 @@
 import { ILogRepository } from '../../../../../Shared/Interfaces/Repository/ILogRepository';
 import { Log } from '../../../../../Domain/Entity/Log/Log';
 import { Repository } from 'typeorm';
-import { LogEntity } from '../../Entity/Log.entity';
+import { LogEntity } from '../../Entity/LogEntity';
 
 export class LogRepository extends Repository<LogEntity> implements ILogRepository {
     register(log: Log): Promise<any> {

@@ -3,7 +3,7 @@ import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
-import { LogRepositoryMock } from '../../../../Infra/ConnectBD/TypeORM/Repository/Log/Mock/LogRepositoryMock';
+import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
 import { SearchTransaction } from '../../../../Usecases/Transaction/SearchTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
