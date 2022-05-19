@@ -7,12 +7,16 @@ import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOr
 import { TransactionOrderRepository } from './TransactionOrderRepository';
 import { TransactionOrderEntity } from '../../Entity/TransactionOrderEntity';
 import { EntityManager } from 'typeorm';
+import { CaptureOrderRepository } from './CaptureOrderRepository';
+import { CaptureOrderEntity } from '../../Entity/CaptureOrderEntity';
 
 export class TransactionRepository implements ITransactionRepository {
     private transactionOrder: TransactionOrderRepository;
+    private captureOrder: CaptureOrderRepository;
 
     constructor(manager: EntityManager) {
         this.transactionOrder = new TransactionOrderRepository(TransactionOrderEntity, manager);
+        this.captureOrder = new CaptureOrderRepository(CaptureOrderEntity, manager);
     }
 
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
@@ -79,9 +83,14 @@ export class TransactionRepository implements ITransactionRepository {
         return this.transactionOrder.save(transactionEntity);
     }
     saveCapture(capture: CaptureOrder): Promise<any> {
-        return new Promise(function (resolve) {
-            resolve(null);
-        });
+        const captureEntity = new CaptureOrderEntity();
+        captureEntity.numberRequest = capture.numberRequest;
+        captureEntity.amount = capture.amount;
+        captureEntity.date = capture.date;
+        captureEntity.nsu = capture.nsu;
+        captureEntity.authorizationCode = capture.authorizationCode;
+
+        return this.captureOrder.save(captureEntity);
     }
     saveCancel(cancel: CancelOrder): Promise<any> {
         return new Promise(function (resolve) {

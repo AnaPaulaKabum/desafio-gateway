@@ -28,7 +28,7 @@ export class APP {
     static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
-                'pedido127',
+                'pedido129',
                 TypeTransaction.CREDIT,
                 2099,
                 2,
@@ -52,14 +52,14 @@ export class APP {
 
         const searchTransactionRequestTid = () => {
             let searchTrasaction = new SearchRequest();
-            searchTrasaction.tid = '10012205051406212774';
+            searchTrasaction.tid = '430075';
 
             return searchTrasaction;
         };
 
         const captureTransactionRequest = () => {
             let captureTrasactionRequest = new CaptureRequest();
-            captureTrasactionRequest.tid = '10012205051406212774';
+            captureTrasactionRequest.tid = '430075';
             captureTrasactionRequest.amount = 100;
 
             return captureTrasactionRequest;
@@ -172,7 +172,7 @@ export class APP {
 }
 
 try {
-    const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
+    const methodUses = 3; //1-Send 2-Search 3-Capture 4-Cancel
     let gatewayUses = 1; //1-Rede 2- Cielo
     const testAPI = true;
     APP.start(gatewayUses, methodUses, true, testAPI);
