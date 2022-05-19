@@ -4,13 +4,13 @@ import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/Trans
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
-import { TransactionOrderRepository } from './TransactionOrderRepository';
 import { TransactionOrderEntity } from '../../Entity/TransactionOrderEntity';
 import { EntityManager } from 'typeorm';
-import { CaptureOrderRepository } from './CaptureOrderRepository';
 import { CaptureOrderEntity } from '../../Entity/CaptureOrderEntity';
-import { CancelOrderRepository } from './CancelOrderRepository';
+import { CancelOrderRepository } from './Order/CancelOrderRepository';
 import { CancelOrderEntity } from '../../Entity/CancelOrderEntity';
+import { TransactionOrderRepository } from './Order/TransactionOrderRepository';
+import { CaptureOrderRepository } from './Order/CaptureOrderRepository';
 
 export class TransactionRepository implements ITransactionRepository {
     private transactionOrder: TransactionOrderRepository;
