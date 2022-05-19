@@ -47,6 +47,10 @@ export class ConnectDBTypeORM {
         const repository = this.appDataSource.getRepository(name);
         return repository;
     }
+
+    async close() {
+        await this.appDataSource.destroy();
+    }
 }
 
 type connectType = {
