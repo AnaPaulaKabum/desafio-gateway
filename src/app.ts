@@ -28,7 +28,7 @@ export class APP {
     static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
-                'pedido124',
+                'pedido126',
                 TypeTransaction.CREDIT,
                 2099,
                 2,
@@ -74,8 +74,8 @@ export class APP {
         };
 
         const TransactionServicesFactory = async () => {
-            console.log('dir: ' + __dirname + '/../Adapter/Repository/Entity/');
-            const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*{.ts,.js}');
+            console.log('dir: ' + __dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
+            const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
             await connect.start();
 
             const repositoryTransaction = new TransactionRepository();
@@ -156,7 +156,7 @@ export class APP {
     }
 
     static async testConnectBD() {
-        const connect = new ConnectDBTypeORM(__dirname + '/../**/*.entity{.ts,.js}');
+        const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
         await connect.start();
 
         const log = new Log();
