@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Capture' })
-export class CaptureEntity {
+export class CaptureOrderEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

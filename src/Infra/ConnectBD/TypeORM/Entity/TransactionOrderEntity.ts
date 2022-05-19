@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: 'Transaction' })
-export class TransactionEntity {
+export class TransactionOrderEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
