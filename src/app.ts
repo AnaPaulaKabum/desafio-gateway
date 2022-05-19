@@ -28,7 +28,7 @@ export class APP {
     static async start(gatewayUses: number, methodUses: number, log: boolean, testAPI: boolean = false): Promise<any> {
         const createTransactionRequest = () => {
             let transactionDTO = new TransactionRequest(
-                'pedido126',
+                'pedido127',
                 TypeTransaction.CREDIT,
                 2099,
                 2,
@@ -78,7 +78,7 @@ export class APP {
             const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
             await connect.start();
 
-            const repositoryTransaction = new TransactionRepository();
+            const repositoryTransaction = new TransactionRepository(connect.appDataSource.manager);
             const repositoryLog = new LogRepository(LogEntity, connect.appDataSource.manager);
             const mail = new Mail();
 

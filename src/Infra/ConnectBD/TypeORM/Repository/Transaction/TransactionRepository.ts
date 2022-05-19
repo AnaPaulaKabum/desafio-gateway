@@ -4,8 +4,17 @@ import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/Trans
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { TransactionOrderRepository } from './TransactionOrderRepository';
+import { TransactionOrderEntity } from '../../Entity/TransactionOrderEntity';
+import { EntityManager } from 'typeorm';
 
 export class TransactionRepository implements ITransactionRepository {
+    private transactionOrder: TransactionOrderRepository;
+
+    constructor(manager: EntityManager) {
+        this.transactionOrder = new TransactionOrderRepository(TransactionOrderEntity, manager);
+    }
+
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
         return new Promise(function (resolve) {
             resolve(StatusTransaction.NO_CAPTURE);
@@ -36,9 +45,38 @@ export class TransactionRepository implements ITransactionRepository {
     }
 
     saveTransaction(transaction: TransactionOrder): Promise<any> {
-        return new Promise(function (resolve) {
-            resolve(null);
-        });
+        const transactionEntity = new TransactionOrderEntity();
+        transactionEntity.numberRequest = transaction.numberRequest;
+        transactionEntity.tid = transaction.tid;
+
+        if (transaction.kind === TypeTransaction.CREDIT) transactionEntity.kind = 1;
+        else transactionEntity.kind = 2;
+
+        switch (transaction.status) {
+            case 'no_register':
+                transactionEntity.status = 1;
+                break;
+            case 'no_capture':
+                transactionEntity.status = 2;
+                break;
+            case 'capture':
+                transactionEntity.status = 3;
+                break;
+            case 'finnaly':
+                transactionEntity.status = 4;
+                break;
+            case 'cancel':
+                transactionEntity.status = 5;
+                break;
+        }
+
+        transactionEntity.amount = transaction.amount;
+        transactionEntity.message = transaction.message;
+        transactionEntity.nsu = transaction.nsu;
+        transactionEntity.authorizationCode = transaction.authorizationCode;
+        transactionEntity.installments = transaction.installments;
+
+        return this.transactionOrder.save(transactionEntity);
     }
     saveCapture(capture: CaptureOrder): Promise<any> {
         return new Promise(function (resolve) {
