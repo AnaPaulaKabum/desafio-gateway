@@ -74,7 +74,8 @@ export class APP {
         };
 
         const TransactionServicesFactory = async () => {
-            const connect = new ConnectDBTypeORM(__dirname + '/../**/*.entity{.ts,.js}');
+            console.log('dir: ' + __dirname + '/../Adapter/Repository/Entity/');
+            const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*{.ts,.js}');
             await connect.start();
 
             const repositoryTransaction = new TransactionRepository();
