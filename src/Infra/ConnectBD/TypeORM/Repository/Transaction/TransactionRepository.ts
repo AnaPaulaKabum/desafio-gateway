@@ -9,14 +9,18 @@ import { TransactionOrderEntity } from '../../Entity/TransactionOrderEntity';
 import { EntityManager } from 'typeorm';
 import { CaptureOrderRepository } from './CaptureOrderRepository';
 import { CaptureOrderEntity } from '../../Entity/CaptureOrderEntity';
+import { CancelOrderRepository } from './CancelOrderRepository';
+import { CancelOrderEntity } from '../../Entity/CancelOrderEntity';
 
 export class TransactionRepository implements ITransactionRepository {
     private transactionOrder: TransactionOrderRepository;
     private captureOrder: CaptureOrderRepository;
+    private cancelOrder: CancelOrderRepository;
 
     constructor(manager: EntityManager) {
         this.transactionOrder = new TransactionOrderRepository(TransactionOrderEntity, manager);
         this.captureOrder = new CaptureOrderRepository(CaptureOrderEntity, manager);
+        this.cancelOrder = new CancelOrderRepository(CancelOrderEntity, manager);
     }
 
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
