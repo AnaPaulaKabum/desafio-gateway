@@ -1,6 +1,5 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-import { TransactionOrderEntity } from './Entity/TransactionOrderEntity';
 
 export class ConnectDBTypeORM {
     appDataSource: DataSource;
@@ -18,6 +17,8 @@ export class ConnectDBTypeORM {
             synchronize: true,
             entities: [entites],
         });
+
+        console.log('Criado');
     }
 
     private validateParamEnv(): connectType {
@@ -42,6 +43,7 @@ export class ConnectDBTypeORM {
 
     async start() {
         await this.appDataSource.initialize();
+        console.log('start');
     }
 
     async getRepository(name: string) {
@@ -51,6 +53,8 @@ export class ConnectDBTypeORM {
 
     async close() {
         await this.appDataSource.destroy();
+
+        console.log('Fechado');
     }
 }
 
