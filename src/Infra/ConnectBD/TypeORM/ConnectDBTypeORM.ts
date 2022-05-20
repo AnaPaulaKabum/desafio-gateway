@@ -1,10 +1,11 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
+import { TransactionOrderEntity } from './Entity/TransactionOrderEntity';
 
 export class ConnectDBTypeORM {
     appDataSource: DataSource;
 
-    constructor(entitesUrl: string) {
+    constructor(entites: any) {
         const { type, host, port, username, password, database } = this.validateParamEnv();
 
         this.appDataSource = new DataSource({
@@ -15,7 +16,7 @@ export class ConnectDBTypeORM {
             password: password,
             database: database,
             synchronize: true,
-            entities: [entitesUrl],
+            entities: [entites],
         });
     }
 
