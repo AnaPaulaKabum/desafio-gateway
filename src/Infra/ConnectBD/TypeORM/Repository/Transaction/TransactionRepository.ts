@@ -37,10 +37,14 @@ export class TransactionRepository implements ITransactionRepository {
 
         if (!result) return null;
 
+        //double bonus = salario * (salario > 1000 ? 0.10 : 0.15);
+
+        const kind = result.kind === 1 ? 'credit' : 'debit';
+
         const transactionOrder = new TransactionOrder(
             result.numberRequest,
             result.tid,
-            TypeTransaction[result.kind],
+            TypeTransaction[kind],
             StatusTransaction[result.status],
             result.amount,
             result.message,
