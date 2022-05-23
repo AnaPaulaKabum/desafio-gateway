@@ -13,14 +13,14 @@ import { TransactionOrderRepository } from './Order/TransactionOrderRepository';
 import { CaptureOrderRepository } from './Order/CaptureOrderRepository';
 
 export class TransactionRepository implements ITransactionRepository {
-    private transactionOrder: TransactionOrderRepository;
-    private captureOrder: CaptureOrderRepository;
-    private cancelOrder: CancelOrderRepository;
+    private transactionOrderRepository: TransactionOrderRepository;
+    private captureOrderRepository: CaptureOrderRepository;
+    private cancelOrderRepository: CancelOrderRepository;
 
     constructor(manager: EntityManager) {
-        this.transactionOrder = new TransactionOrderRepository(TransactionOrderEntity, manager);
-        this.captureOrder = new CaptureOrderRepository(CaptureOrderEntity, manager);
-        this.cancelOrder = new CancelOrderRepository(CancelOrderEntity, manager);
+        this.transactionOrderRepository = new TransactionOrderRepository(TransactionOrderEntity, manager);
+        this.captureOrderRepository = new CaptureOrderRepository(CaptureOrderEntity, manager);
+        this.cancelOrderRepository = new CancelOrderRepository(CancelOrderEntity, manager);
     }
 
     searchStatus(numberRequest: string): Promise<StatusTransaction> {
@@ -84,7 +84,7 @@ export class TransactionRepository implements ITransactionRepository {
         transactionEntity.authorizationCode = transaction.authorizationCode;
         transactionEntity.installments = transaction.installments;
 
-        return this.transactionOrder.save(transactionEntity);
+        return this.transactionOrderRepository.save(transactionEntity);
     }
     saveCapture(capture: CaptureOrder): Promise<any> {
         const captureEntity = new CaptureOrderEntity();
@@ -94,7 +94,7 @@ export class TransactionRepository implements ITransactionRepository {
         captureEntity.nsu = capture.nsu;
         captureEntity.authorizationCode = capture.authorizationCode;
 
-        return this.captureOrder.save(captureEntity);
+        return this.captureOrderRepository.save(captureEntity);
     }
     saveCancel(cancel: CancelOrder): Promise<any> {
         const cancelEntity = new CancelOrderEntity();
@@ -105,6 +105,6 @@ export class TransactionRepository implements ITransactionRepository {
         cancelEntity.authorizationCode = cancel.authorizationCode;
         cancelEntity.tid = cancel.tid;
 
-        return this.cancelOrder.save(cancelEntity);
+        return this.cancelOrderRepository.save(cancelEntity);
     }
 }
