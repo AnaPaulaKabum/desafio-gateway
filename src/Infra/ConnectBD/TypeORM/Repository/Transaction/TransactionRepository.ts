@@ -28,22 +28,28 @@ export class TransactionRepository implements ITransactionRepository {
             resolve(StatusTransaction.NO_CAPTURE);
         });
     }
-    findOne(numberRequest: string): Promise<TransactionOrder> {
-        return new Promise(function (resolve) {
-            resolve(
-                new TransactionOrder(
-                    '100',
-                    '100',
-                    TypeTransaction.CREDIT,
-                    StatusTransaction.NO_CAPTURE,
-                    100,
-                    'Teste',
-                    '100',
-                    '100',
-                    1,
-                ),
-            );
+    async findOne(numberRequest: string): Promise<TransactionOrder | null> {
+        const result = await this.transactionOrderRepository.findOne({
+            where: {
+                numberRequest: numberRequest,
+            },
         });
+
+        if (!result) return null;
+
+        const transactionOrder = new TransactionOrder(
+            result.numberRequest,
+            result.tid,
+            TypeTransaction[result.kind],
+            StatusTransaction[result.status],
+            result.amount,
+            result.message,
+            result.nsu,
+            result.authorizationCode,
+            result.installments,
+        );
+
+        return transactionOrder;
     }
 
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
