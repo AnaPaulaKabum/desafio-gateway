@@ -29,12 +29,9 @@ export class ConnectDBTypeORM {
                 synchronize: true,
                 entities: [entites],
             });
-
-        console.log('Criado');
     }
 
     private validateParamEnv(): connectType {
-        console.log('entrei');
         dotenv.config();
 
         const type = process.env.TYPE;
@@ -56,7 +53,6 @@ export class ConnectDBTypeORM {
 
     async start() {
         await this.appDataSource.initialize();
-        console.log('start');
     }
 
     async getRepository(name: string) {
@@ -66,8 +62,6 @@ export class ConnectDBTypeORM {
 
     async close() {
         await this.appDataSource.destroy();
-
-        console.log('Fechado');
     }
 }
 
