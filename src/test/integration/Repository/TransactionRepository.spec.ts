@@ -8,13 +8,13 @@ import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 
 let connect: ConnectDBTypeORM;
-let repository: TransactionRepository;
+let transctionRepository: TransactionRepository;
 
 describe('Repository : TransactionRepository', () => {
     beforeEach(async function () {
         connect = new ConnectDBTypeORM([TransactionOrderEntity, CaptureOrderEntity, CancelOrderEntity]);
         await connect.start();
-        repository = new TransactionRepository(connect.appDataSource.manager);
+        transctionRepository = new TransactionRepository(connect.appDataSource.manager);
     });
 
     afterEach(async function () {
@@ -22,10 +22,7 @@ describe('Repository : TransactionRepository', () => {
     });
 
     describe('SaveTransaction', () => {
-        test('Não deve retornar error', async () => {
-            connect.appDataSource.options;
-
-            repository = new TransactionRepository(connect.appDataSource.manager);
+        it('Não deve retornar error', async () => {
             const transactionOrder = new TransactionOrder(
                 'pedido123',
                 '100',
@@ -37,8 +34,7 @@ describe('Repository : TransactionRepository', () => {
                 '100',
                 1,
             );
-            const result = await repository.saveTransaction(transactionOrder);
-
+            const result = await transctionRepository.saveTransaction(transactionOrder);
             expect(result).toBeTruthy();
         });
     });
