@@ -1,3 +1,4 @@
+import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
 import { ConnectDBTypeORM } from '../../../Infra/ConnectBD/TypeORM/ConnectDBTypeORM';
@@ -44,6 +45,14 @@ describe('Repository : TransactionRepository', () => {
         it('Não deve retornar error', async () => {
             const captureOrder = new CaptureOrder('pedido123', 100, new Date(), '123456789', '1234');
             const result = await transctionRepository.saveCapture(captureOrder);
+            expect(result).toBeTruthy();
+        });
+    });
+
+    describe('SaveCancel', () => {
+        it('Não deve retornar error', async () => {
+            const cancelOrder = new CancelOrder('pedido123', new Date(), 100, '123456789', '123456', '123');
+            const result = await transctionRepository.saveCancel(cancelOrder);
             expect(result).toBeTruthy();
         });
     });
