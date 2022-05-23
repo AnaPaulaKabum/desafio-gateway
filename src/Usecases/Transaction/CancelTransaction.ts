@@ -22,6 +22,8 @@ export class CancelTransaction {
         try {
             const transaction = await this.repositoryTransaction.findOne(cancelDTO.tid);
 
+            if (!transaction) throw new Error('Não foi encontrado a transaction com tid ' + cancelDTO.tid);
+
             if (this.isValidDate(transaction) && this.isNoFinished(transaction)) {
                 let cancelOrderDTO = await this.gateway.cancelTransaction(cancelDTO);
                 cancelOrderDTO.numberRequest = transaction.numberRequest;
