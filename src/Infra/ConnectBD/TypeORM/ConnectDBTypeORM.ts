@@ -7,21 +7,34 @@ export class ConnectDBTypeORM {
     constructor(entites: any) {
         const { type, host, port, username, password, database } = this.validateParamEnv();
 
-        this.appDataSource = new DataSource({
-            type: type,
-            host: host,
-            port: port,
-            username: username,
-            password: password,
-            database: database,
-            synchronize: true,
-            entities: [entites],
-        });
+        if (Array.isArray(entites))
+            this.appDataSource = new DataSource({
+                type: type,
+                host: host,
+                port: port,
+                username: username,
+                password: password,
+                database: database,
+                synchronize: true,
+                entities: [...entites],
+            });
+        else
+            this.appDataSource = new DataSource({
+                type: type,
+                host: host,
+                port: port,
+                username: username,
+                password: password,
+                database: database,
+                synchronize: true,
+                entities: [entites],
+            });
 
         console.log('Criado');
     }
 
     private validateParamEnv(): connectType {
+        console.log('entrei');
         dotenv.config();
 
         const type = process.env.TYPE;
