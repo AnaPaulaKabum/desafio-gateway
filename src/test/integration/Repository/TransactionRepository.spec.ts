@@ -56,4 +56,12 @@ describe('Repository : TransactionRepository', () => {
             expect(result).toBeTruthy();
         });
     });
+
+    describe('findOne', () => {
+        it('Não deve retornar error', async () => {
+            const tid = 'pedido123';
+            const result = await transctionRepository.findOne(tid);
+            expect(result).toBeTruthy();
+        });
+    });
 });
