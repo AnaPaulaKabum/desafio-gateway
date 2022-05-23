@@ -105,6 +105,6 @@ export class TransactionRepository implements ITransactionRepository {
         cancelEntity.authorizationCode = cancel.authorizationCode;
         cancelEntity.tid = cancel.tid;
 
-        return this.captureOrder.save(cancelEntity);
+        return this.cancelOrder.save(cancelEntity);
     }
 }
