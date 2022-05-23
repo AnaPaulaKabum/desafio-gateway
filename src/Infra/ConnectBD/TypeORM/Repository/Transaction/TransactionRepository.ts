@@ -28,19 +28,16 @@ export class TransactionRepository implements ITransactionRepository {
             resolve(StatusTransaction.NO_CAPTURE);
         });
     }
-    async findOne(numberRequest: string): Promise<TransactionOrder | null> {
+    async findOne(tid: string): Promise<TransactionOrder | null> {
         const result = await this.transactionOrderRepository.findOne({
             where: {
-                numberRequest: numberRequest,
+                tid: tid,
             },
         });
 
         if (!result) return null;
 
-        //double bonus = salario * (salario > 1000 ? 0.10 : 0.15);
-
         const kind = result.kind === 1 ? 'credit' : 'debit';
-
         const transactionOrder = new TransactionOrder(
             result.numberRequest,
             result.tid,
