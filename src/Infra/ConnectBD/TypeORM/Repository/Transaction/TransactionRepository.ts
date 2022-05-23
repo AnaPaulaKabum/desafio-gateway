@@ -97,8 +97,14 @@ export class TransactionRepository implements ITransactionRepository {
         return this.captureOrder.save(captureEntity);
     }
     saveCancel(cancel: CancelOrder): Promise<any> {
-        return new Promise(function (resolve) {
-            resolve(null);
-        });
+        const cancelEntity = new CancelOrderEntity();
+        cancelEntity.numberRequest = cancel.numberRequest;
+        cancelEntity.amount = cancel.amount;
+        cancelEntity.date = cancel.date;
+        cancelEntity.nsu = cancel.nsu;
+        cancelEntity.authorizationCode = cancel.authorizationCode;
+        cancelEntity.tid = cancel.tid;
+
+        return this.captureOrder.save(cancelEntity);
     }
 }
