@@ -4,11 +4,11 @@ import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
 import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITransitionRepository';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
-import { TransactionOrder } from '../../Domain/Entity/Transaction/TransactionOrder';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CancelOrder } from '../../Domain/Entity/Transaction/CancelOrder';
 import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
+import { TransactionOrderDTO } from '../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class CancelTransaction {
     constructor(
@@ -43,11 +43,11 @@ export class CancelTransaction {
         }
     }
 
-    private isNoFinished(transaction: TransactionOrder) {
+    private isNoFinished(transaction: TransactionOrderDTO) {
         return transaction.status !== StatusTransaction.FINNALY;
     }
 
-    private isValidDate(transaction: TransactionOrder) {
+    private isValidDate(transaction: TransactionOrderDTO) {
         return true;
     }
 }

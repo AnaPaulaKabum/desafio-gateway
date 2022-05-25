@@ -1,3 +1,4 @@
+import { EntityManager } from 'typeorm';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { ITransactionRepository } from '../../../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
@@ -5,12 +6,12 @@ import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum
 import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
 import { TransactionOrderEntity } from '../../Entity/TransactionOrderEntity';
-import { EntityManager } from 'typeorm';
 import { CaptureOrderEntity } from '../../Entity/CaptureOrderEntity';
 import { CancelOrderRepository } from './Order/CancelOrderRepository';
 import { CancelOrderEntity } from '../../Entity/CancelOrderEntity';
 import { TransactionOrderRepository } from './Order/TransactionOrderRepository';
 import { CaptureOrderRepository } from './Order/CaptureOrderRepository';
+import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
 
 export class TransactionRepository implements ITransactionRepository {
     private transactionOrderRepository: TransactionOrderRepository;
@@ -28,7 +29,7 @@ export class TransactionRepository implements ITransactionRepository {
             resolve(StatusTransaction.NO_CAPTURE);
         });
     }
-    async findOne(tid: string): Promise<TransactionOrder | null> {
+    async findOne(tid: string): Promise<TransactionOrderDTO | null> {
         const result = await this.transactionOrderRepository.findOne({
             where: {
                 tid: tid,
@@ -38,19 +39,19 @@ export class TransactionRepository implements ITransactionRepository {
         if (!result) return null;
 
         const kind = result.kind === 1 ? 'credit' : 'debit';
-        const transactionOrder = new TransactionOrder(
-            result.numberRequest,
-            result.tid,
-            TypeTransaction[kind],
-            StatusTransaction[result.status],
-            result.amount,
-            result.message,
-            result.nsu,
-            result.authorizationCode,
-            result.installments,
-        );
+        const transactionOrderDTO = new TransactionOrderDTO();
+        transactionOrderDTO.numberRequest = result.numberRequest;
+        transactionOrderDTO.tid = result.tid;
+        transactionOrderDTO.kind = TypeTransaction[kind];
+        transactionOrderDTO.status = StatusTransaction[result.status];
+        transactionOrderDTO.amount = result.amount;
+        transactionOrderDTO.message = result.message;
 
-        return transactionOrder;
+        if (result.nsu) transactionOrderDTO.nsu = result.nsu;
+        if (result.authorizationCode) transactionOrderDTO.authorizationCode = result.authorizationCode;
+        if (result.installments) transactionOrderDTO.installments = result.installments;
+
+        return transactionOrderDTO;
     }
 
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {

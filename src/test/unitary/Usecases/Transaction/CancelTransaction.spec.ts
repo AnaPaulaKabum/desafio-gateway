@@ -10,6 +10,7 @@ import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
+import { TransactionOrderDTO } from '../../../../Shared/DTO/Order/TransactionOrderDTO';
 
 describe('UseCase - CancelTransaction', () => {
     let service: CancelTransaction;
@@ -31,19 +32,17 @@ describe('UseCase - CancelTransaction', () => {
     test('Should functions that are called', async () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
             new Promise(function (resolve) {
-                resolve(
-                    new TransactionOrder(
-                        cancelTransactionDTO.tid,
-                        '100',
-                        TypeTransaction.CREDIT,
-                        StatusTransaction.CAPTURE,
-                        100,
-                        'Teste',
-                        '100',
-                        '100',
-                        1,
-                    ),
-                );
+                const transactionOrderDTO = new TransactionOrderDTO();
+                transactionOrderDTO.numberRequest = '100';
+                transactionOrderDTO.tid = '100';
+                transactionOrderDTO.kind = TypeTransaction.CREDIT;
+                transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+                transactionOrderDTO.amount = 100;
+                transactionOrderDTO.message = 'Teste';
+                transactionOrderDTO.nsu = '100';
+                transactionOrderDTO.authorizationCode = '100';
+                transactionOrderDTO.installments = 1;
+                resolve(transactionOrderDTO);
             }),
         );
         jest.spyOn(repositoryTransaction, 'updateStatus').mockImplementation();
@@ -66,19 +65,17 @@ describe('UseCase - CancelTransaction', () => {
     test('Should return error when findOne return transactionOrder with TypeTrasaction.FINNALY', async () => {
         jest.spyOn(repositoryTransaction, 'findOne').mockReturnValueOnce(
             new Promise(function (resolve) {
-                resolve(
-                    new TransactionOrder(
-                        cancelTransactionDTO.tid,
-                        '100',
-                        TypeTransaction.CREDIT,
-                        StatusTransaction.FINNALY,
-                        100,
-                        'Teste',
-                        '100',
-                        '100',
-                        1,
-                    ),
-                );
+                const transactionOrderDTO = new TransactionOrderDTO();
+                transactionOrderDTO.numberRequest = '100';
+                transactionOrderDTO.tid = '100';
+                transactionOrderDTO.kind = TypeTransaction.CREDIT;
+                transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+                transactionOrderDTO.amount = 100;
+                transactionOrderDTO.message = 'Teste';
+                transactionOrderDTO.nsu = '100';
+                transactionOrderDTO.authorizationCode = '100';
+                transactionOrderDTO.installments = 1;
+                resolve(transactionOrderDTO);
             }),
         );
 

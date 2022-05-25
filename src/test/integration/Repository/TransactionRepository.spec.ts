@@ -59,7 +59,7 @@ describe('Repository : TransactionRepository', () => {
 
     describe('findOne', () => {
         it('Não deve retornar error', async () => {
-            const tid = 'pedido123';
+            const tid = '100';
             const result = await transctionRepository.findOne(tid);
             expect(result).toBeTruthy();
         });

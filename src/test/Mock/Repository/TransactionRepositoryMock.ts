@@ -1,6 +1,7 @@
 import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
 import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
@@ -11,23 +12,23 @@ export class TransactionRepositoryMock implements ITransactionRepository {
             resolve(StatusTransaction.NO_CAPTURE);
         });
     }
-    findOne(numberRequest: string): Promise<TransactionOrder> {
+    findOne(tid: string): Promise<TransactionOrderDTO | null> {
         return new Promise(function (resolve) {
-            resolve(
-                new TransactionOrder(
-                    '100',
-                    '100',
-                    TypeTransaction.CREDIT,
-                    StatusTransaction.NO_CAPTURE,
-                    100,
-                    'Teste',
-                    '100',
-                    '100',
-                    1,
-                ),
-            );
+            const transactionOrderDTO = new TransactionOrderDTO();
+            transactionOrderDTO.numberRequest = '100';
+            transactionOrderDTO.tid = '100';
+            transactionOrderDTO.kind = TypeTransaction.CREDIT;
+            transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
+            transactionOrderDTO.amount = 100;
+            transactionOrderDTO.message = 'Teste';
+            transactionOrderDTO.nsu = '100';
+            transactionOrderDTO.authorizationCode = '100';
+            transactionOrderDTO.installments = 1;
+
+            resolve(transactionOrderDTO);
         });
     }
+
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
         return new Promise(function (resolve) {
             resolve(null);
