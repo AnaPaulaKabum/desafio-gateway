@@ -24,10 +24,10 @@ export class TransactionRepository implements ITransactionRepository {
         this.cancelOrderRepository = new CancelOrderRepository(CancelOrderEntity, manager);
     }
 
-    searchStatus(numberRequest: string): Promise<StatusTransaction> {
-        return new Promise(function (resolve) {
-            resolve(StatusTransaction.NO_CAPTURE);
-        });
+    async searchStatus(tid: string): Promise<StatusTransaction | null> {
+        const transactionDTO = await this.findOne(tid);
+        if (!transactionDTO) return null;
+        return transactionDTO.status;
     }
     async findOne(tid: string): Promise<TransactionOrderDTO | null> {
         const result = await this.transactionOrderRepository.findOne({
@@ -43,7 +43,7 @@ export class TransactionRepository implements ITransactionRepository {
         transactionOrderDTO.numberRequest = result.numberRequest;
         transactionOrderDTO.tid = result.tid;
         transactionOrderDTO.kind = TypeTransaction[kind];
-        transactionOrderDTO.status = StatusTransaction[result.status];
+        transactionOrderDTO.status = result.status;
         transactionOrderDTO.amount = result.amount;
         transactionOrderDTO.message = result.message;
 
@@ -68,29 +68,12 @@ export class TransactionRepository implements ITransactionRepository {
         if (transaction.kind === TypeTransaction.CREDIT) transactionEntity.kind = 1;
         else transactionEntity.kind = 2;
 
-        switch (transaction.status) {
-            case 'no_register':
-                transactionEntity.status = 1;
-                break;
-            case 'no_capture':
-                transactionEntity.status = 2;
-                break;
-            case 'capture':
-                transactionEntity.status = 3;
-                break;
-            case 'finnaly':
-                transactionEntity.status = 4;
-                break;
-            case 'cancel':
-                transactionEntity.status = 5;
-                break;
-        }
-
         transactionEntity.amount = transaction.amount;
         transactionEntity.message = transaction.message;
         transactionEntity.nsu = transaction.nsu;
         transactionEntity.authorizationCode = transaction.authorizationCode;
         transactionEntity.installments = transaction.installments;
+        transactionEntity.status = transaction.status;
 
         return this.transactionOrderRepository.save(transactionEntity);
     }

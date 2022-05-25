@@ -5,7 +5,7 @@ import { TransactionOrderDTO } from '../../DTO/Order/TransactionOrderDTO';
 import { StatusTransaction } from '../../Enum/StatusTransaction';
 
 export interface ITransactionRepository {
-    searchStatus(numberRequest: string): Promise<StatusTransaction>;
+    searchStatus(tid: string): Promise<StatusTransaction | null>;
     findOne(tid: string): Promise<TransactionOrderDTO | null>;
     updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any>;
     saveTransaction(transaction: TransactionOrder): Promise<any>;

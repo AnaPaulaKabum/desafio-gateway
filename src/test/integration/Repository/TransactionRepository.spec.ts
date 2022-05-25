@@ -64,4 +64,13 @@ describe('Repository : TransactionRepository', () => {
             expect(result).toBeTruthy();
         });
     });
+
+    describe('searchStatus', () => {
+        it('Não deve retornar error', async () => {
+            const tid = '100';
+            const result = await transctionRepository.searchStatus(tid);
+
+            expect(result).toBeTruthy();
+        });
+    });
 });
