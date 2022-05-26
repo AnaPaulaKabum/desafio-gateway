@@ -11,7 +11,7 @@ import { CancelOrderRepository } from './Order/CancelOrderRepository';
 import { CancelOrderEntity } from '../../Entity/CancelOrderEntity';
 import { TransactionOrderRepository } from './Order/TransactionOrderRepository';
 import { CaptureOrderRepository } from './Order/CaptureOrderRepository';
-import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
+import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
 
 export class TransactionRepository implements ITransactionRepository {
     private transactionOrderRepository: TransactionOrderRepository;
@@ -29,7 +29,7 @@ export class TransactionRepository implements ITransactionRepository {
         if (!transactionDTO) return null;
         return transactionDTO.status;
     }
-    async findOne(tid: string): Promise<TransactionOrderDTO | null> {
+    async findOne(tid: string): Promise<TransactionOrderDTOType | null> {
         const result = await this.transactionOrderRepository.findOne({
             where: {
                 tid: tid,
@@ -39,19 +39,19 @@ export class TransactionRepository implements ITransactionRepository {
         if (!result) return null;
 
         const kind = result.kind === 1 ? 'credit' : 'debit';
-        const transactionOrderDTO = new TransactionOrderDTO();
-        transactionOrderDTO.numberRequest = result.numberRequest;
-        transactionOrderDTO.tid = result.tid;
-        transactionOrderDTO.kind = TypeTransaction[kind];
-        transactionOrderDTO.status = result.status;
-        transactionOrderDTO.amount = result.amount;
-        transactionOrderDTO.message = result.message;
 
-        if (result.nsu) transactionOrderDTO.nsu = result.nsu;
-        if (result.authorizationCode) transactionOrderDTO.authorizationCode = result.authorizationCode;
-        if (result.installments) transactionOrderDTO.installments = result.installments;
-
-        return transactionOrderDTO;
+        return {
+            id: result.id,
+            numberRequest: result.numberRequest,
+            tid: result.tid,
+            kind: TypeTransaction[kind],
+            status: result.status,
+            amount: result.amount,
+            message: result.message,
+            nsu: result.nsu,
+            authorizationCode: result.authorizationCode,
+            installments: result.installments,
+        };
     }
 
     async updateStatus(tid: string, statusTransaction: StatusTransaction): Promise<any> {

@@ -1,4 +1,4 @@
-import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
+import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 
@@ -55,7 +55,7 @@ export class TransactionOrder {
         return this._message;
     }
 
-    static createForDTO(transactionDTO: TransactionOrderDTO): TransactionOrder {
+    static createForDTO(transactionDTO: TransactionOrderDTOType): TransactionOrder {
         return new TransactionOrder(
             transactionDTO.numberRequest,
             transactionDTO.tid,

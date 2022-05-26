@@ -3,7 +3,7 @@ import { SearchTransactionResponse } from '../../Response/SearchTransactionRespo
 import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { TransactionOrderDTO } from '../../../../../Shared/DTO/Order/TransactionOrderDTO';
+import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
 
 export class MapperSearch {
     private constructor() {}
@@ -30,23 +30,24 @@ export class MapperSearch {
         return searchTransaction;
     }
 
-    private static createTransaction(object: SearchTransactionResponse): TransactionOrderDTO {
-        const transactionOrderDTO = new TransactionOrderDTO();
-
+    private static createTransaction(object: SearchTransactionResponse): TransactionOrderDTOType {
+        let kind;
         if (object.authorization.kind === 'Credit') {
-            transactionOrderDTO.kind = TypeTransaction.CREDIT;
+            kind = TypeTransaction.CREDIT;
         } else if (object.authorization.kind === 'Debit') {
-            transactionOrderDTO.kind = TypeTransaction.DEBIT;
+            kind = TypeTransaction.DEBIT;
         }
-        transactionOrderDTO.tid = object.authorization.tid;
-        transactionOrderDTO.amount = object.authorization.amount;
-        transactionOrderDTO.installments = object.authorization.installments;
-        transactionOrderDTO.message = object.authorization.returnMessage;
-        transactionOrderDTO.numberRequest = object.authorization.reference;
-        transactionOrderDTO.authorizationCode = object.authorization.authorizationCode;
-        transactionOrderDTO.nsu = object.authorization.nsu;
-        transactionOrderDTO.status = StatusTransaction.NO_CAPTURE;
 
-        return transactionOrderDTO;
+        return {
+            tid: object.authorization.tid,
+            amount: object.authorization.amount,
+            installments: object.authorization.installments,
+            message: object.authorization.returnMessage,
+            numberRequest: object.authorization.reference,
+            authorizationCode: object.authorization.authorizationCode,
+            nsu: object.authorization.nsu,
+            status: StatusTransaction.NO_CAPTURE,
+            kind: kind,
+        };
     }
 }

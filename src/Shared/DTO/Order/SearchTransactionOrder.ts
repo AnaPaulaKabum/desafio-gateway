@@ -1,7 +1,7 @@
-import { TransactionOrderDTO } from './TransactionOrderDTO';
+import { TransactionOrderDTOType } from './TransactionOrderDTOType';
 
 export class SearchTransactionOrderDTO {
-    transaction: TransactionOrderDTO;
+    transaction: TransactionOrderDTOType;
     captureAmount: number;
     captureDate: Date;
     cancelAmount: number;

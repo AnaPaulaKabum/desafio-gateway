@@ -8,7 +8,7 @@ import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CancelOrder } from '../../Domain/Entity/Transaction/CancelOrder';
 import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
-import { TransactionOrderDTO } from '../../Shared/DTO/Order/TransactionOrderDTO';
+import { TransactionOrderDTOType } from '../../Shared/DTO/Order/TransactionOrderDTOType';
 
 export class CancelTransaction {
     constructor(
@@ -43,11 +43,11 @@ export class CancelTransaction {
         }
     }
 
-    private isNoFinished(transaction: TransactionOrderDTO) {
+    private isNoFinished(transaction: TransactionOrderDTOType) {
         return transaction.status !== StatusTransaction.FINNALY;
     }
 
-    private isValidDate(transaction: TransactionOrderDTO) {
+    private isValidDate(transaction: TransactionOrderDTOType) {
         return true;
     }
 }

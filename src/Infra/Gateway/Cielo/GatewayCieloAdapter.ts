@@ -7,7 +7,7 @@ import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
-import { TransactionOrderDTO } from '../../../Shared/DTO/Order/TransactionOrderDTO';
+import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
@@ -16,7 +16,7 @@ import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 export class GatewayCieloAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectCieloAPI) {}
 
-    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTO> {
+    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTOType> {
         const returnAPI = await this.connectAPI.sendTransaction(transaction);
 
         return new Promise(function (resolve) {
