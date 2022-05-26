@@ -1,7 +1,7 @@
-export class CaptureOrderDTO {
+export type CaptureOrderDTOType = {
     numberRequest: string;
-    amount: number;
+    amount?: number;
     date: Date;
     nsu: string;
     authorizationCode: string;
-}
+};

@@ -1,4 +1,4 @@
-import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
+import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 
 export class CaptureOrder {
     constructor(
@@ -31,10 +31,10 @@ export class CaptureOrder {
         return this._authorizationCode;
     }
 
-    static createForDTO(captureOrderDTO: CaptureOrderDTO): CaptureOrder {
+    static createForDTO(captureOrderDTO: CaptureOrderDTOType): CaptureOrder {
         return new CaptureOrder(
             captureOrderDTO.numberRequest,
-            captureOrderDTO.amount,
+            captureOrderDTO.amount || 0,
             captureOrderDTO.date,
             captureOrderDTO.nsu,
             captureOrderDTO.authorizationCode,

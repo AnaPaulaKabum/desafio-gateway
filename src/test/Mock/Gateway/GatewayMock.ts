@@ -1,7 +1,7 @@
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
-import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
+import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
@@ -44,15 +44,15 @@ export class GatewayMock implements IGateways {
             resolve(searchTransactionOrderDTO);
         });
     }
-    captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
+    captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTOType> {
         return new Promise(function (resolve) {
-            const capture = new CaptureOrderDTO();
-            capture.amount = 100;
-            capture.numberRequest = 'pedido123';
-            capture.authorizationCode = '123';
-            capture.nsu = '123';
-            capture.date = new Date();
-            resolve(capture);
+            resolve({
+                amount: 100,
+                numberRequest: 'pedido123',
+                authorizationCode: '123',
+                nsu: '123',
+                date: new Date(),
+            });
         });
     }
     cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTOType> {
