@@ -31,7 +31,7 @@ app.ts: Componente responsavel por instanciar e compor todo o projeto.
 
 ## Execute
 
--   test: yarn test
+-   test: yarn test --runInBand
 -   start : yarn start
 
 ## Configuration
