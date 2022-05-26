@@ -8,10 +8,10 @@ import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
-import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
+import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
+import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 
 export class GatewayCieloAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectCieloAPI) {}
@@ -24,7 +24,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
+    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrderDTOType> {
         let returnAPI = await this.connectAPI.searchTransaction(searchRequest);
 
         return new Promise(function (resolve) {
@@ -32,7 +32,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTOType> {
         const returnAPI = await this.connectAPI.captureTransaction(captureTransactionDTO);
 
         return new Promise(function (resolve) {

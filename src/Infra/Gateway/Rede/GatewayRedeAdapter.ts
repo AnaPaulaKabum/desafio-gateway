@@ -7,9 +7,9 @@ import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
+import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
-import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
+import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
 import { translateErrorCodeAPI } from './RedeStatusCodeLibrary';
@@ -41,7 +41,7 @@ export class GatewayRedeAdapter implements IGateways {
         throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
-    async searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
+    async searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTOType> {
         const endpoint = '/v1/transactions/' + searchTransactionDTO.numberRequest;
         const returnAPI = await this.http.get(endpoint);
 
@@ -53,7 +53,7 @@ export class GatewayRedeAdapter implements IGateways {
         throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
-    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTO> {
+    async captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTOType> {
         const endpoint = '/v1/transactions/' + captureTransactionDTO.tid;
         const data = { amount: captureTransactionDTO.amount };
         const returnAPI = await this.http.put(endpoint, data);

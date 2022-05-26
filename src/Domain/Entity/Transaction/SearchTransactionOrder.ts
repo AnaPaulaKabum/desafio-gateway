@@ -1,5 +1,5 @@
 import { TransactionOrder } from './TransactionOrder';
-import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
+import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
 
 export class SearchTransactionOrder {
     private _captureAmount: number;
@@ -45,15 +45,15 @@ export class SearchTransactionOrder {
         this._cancelDate = date;
     }
 
-    static createForDTO(searchTransactionDTO: SearchTransactionOrderDTO): SearchTransactionOrder {
+    static createForDTO(searchTransactionDTO: SearchTransactionOrderDTOType): SearchTransactionOrder {
         const transactionOrder = TransactionOrder.createForDTO(searchTransactionDTO.transaction);
         const searchTransactionOrder = new SearchTransactionOrder(
             transactionOrder,
             searchTransactionDTO.numberCreditCard,
         );
-        if (searchTransactionDTO.captureAmount > 0)
+        if (searchTransactionDTO.captureAmount && searchTransactionDTO.captureDate)
             searchTransactionOrder.setCapturar(searchTransactionDTO.captureAmount, searchTransactionDTO.captureDate);
-        if (searchTransactionDTO.cancelAmount > 0)
+        if (searchTransactionDTO.cancelAmount && searchTransactionDTO.cancelDate)
             searchTransactionOrder.setCancel(searchTransactionDTO.cancelAmount, searchTransactionDTO.cancelDate);
 
         return searchTransactionOrder;

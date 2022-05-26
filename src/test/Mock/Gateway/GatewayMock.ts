@@ -2,7 +2,7 @@ import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
-import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
+import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
@@ -26,10 +26,9 @@ export class GatewayMock implements IGateways {
             });
         });
     }
-    searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTO> {
+    searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTOType> {
         return new Promise(function (resolve) {
-            const searchTransactionOrderDTO = new SearchTransactionOrderDTO();
-            searchTransactionOrderDTO.transaction = {
+            const transaction = {
                 numberRequest: '100',
                 tid: '100',
                 kind: TypeTransaction.CREDIT,
@@ -40,8 +39,8 @@ export class GatewayMock implements IGateways {
                 installments: 2,
                 message: 'Teste',
             };
-            searchTransactionOrderDTO.numberCreditCard = '123456789';
-            resolve(searchTransactionOrderDTO);
+            const numberCreditCard = '123456789';
+            resolve({ transaction, numberCreditCard });
         });
     }
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTOType> {

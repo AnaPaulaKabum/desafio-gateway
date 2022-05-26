@@ -1,34 +1,37 @@
 import { plainToInstance } from 'class-transformer';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
+import { SearchTransactionOrderDTOType } from '../../../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 
 export class MapperSearch {
     private constructor() {}
 
-    static toTransactionComplete(Json: any): SearchTransactionOrderDTO {
+    static toTransactionComplete(Json: any): SearchTransactionOrderDTOType {
         let object = plainToInstance(SearchCieloTransactionResponse, Json);
 
         let status = StatusTransaction.NO_CAPTURE;
-        const searchTransactionDTO = new SearchTransactionOrderDTO();
+
+        const transaction = MapperSearch.createTransactionOrderDTO(object);
+        const numberCreditCard = object.Payment.CreditCard.CardNumber;
 
         if (object.Payment.CapturedAmount > 0) {
-            searchTransactionDTO.captureAmount = object.Payment.CapturedAmount;
-            searchTransactionDTO.captureDate = object.Payment.CapturedDate;
+            const captureAmount = object.Payment.CapturedAmount;
+            const captureDate = object.Payment.CapturedDate;
             status = StatusTransaction.CAPTURE;
+
+            return { transaction, numberCreditCard, captureAmount, captureDate };
         }
 
         if (object.Payment.VoidedAmount > 0) {
-            searchTransactionDTO.cancelAmount = object.Payment.VoidedAmount;
-            searchTransactionDTO.cancelDate = object.Payment.VoidedDate;
+            const cancelAmount = object.Payment.VoidedAmount;
+            const cancelDate = object.Payment.VoidedDate;
             status = StatusTransaction.CANCEL;
+            return { transaction, numberCreditCard, cancelAmount, cancelDate };
         }
 
-        searchTransactionDTO.transaction = MapperSearch.createTransactionOrderDTO(object);
-        searchTransactionDTO.numberCreditCard = object.Payment.CreditCard.CardNumber;
-        return searchTransactionDTO;
+        return { transaction, numberCreditCard };
     }
 
     private static createTransactionOrderDTO(object: SearchCieloTransactionResponse): TransactionOrderDTOType {

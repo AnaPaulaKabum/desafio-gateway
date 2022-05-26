@@ -1,6 +1,6 @@
 import { plainToInstance } from 'class-transformer';
 import { SearchTransactionResponse } from '../../Response/SearchTransactionResponse';
-import { SearchTransactionOrderDTO } from '../../../../../Shared/DTO/Order/SearchTransactionOrder';
+import { SearchTransactionOrderDTOType } from '../../../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
@@ -8,26 +8,27 @@ import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/Transac
 export class MapperSearch {
     private constructor() {}
 
-    static toTransactionComplete(Json: any): SearchTransactionOrderDTO {
+    static toTransactionComplete(Json: any): SearchTransactionOrderDTOType {
         let object = plainToInstance(SearchTransactionResponse, Json);
 
         const transaction = MapperSearch.createTransaction(object);
-
-        let searchTransaction = new SearchTransactionOrderDTO();
-        searchTransaction.transaction = transaction;
-        searchTransaction.numberCreditCard = object.authorization.cardBin + object.authorization.last4;
+        const numberCreditCard = object.authorization.cardBin + object.authorization.last4;
 
         if (object.capture.amount > 0) {
-            searchTransaction.captureAmount = object.capture.amount;
-            searchTransaction.captureDate = object.capture.dateTime;
+            const captureAmount = object.capture.amount;
+            const captureDate = object.capture.dateTime;
+
+            return { transaction, numberCreditCard, captureAmount, captureDate };
         }
 
         if (object.refunds.amount > 0) {
-            searchTransaction.cancelAmount = object.refunds.amount;
-            searchTransaction.cancelDate = object.refunds.dateTime;
+            const cancelAmount = object.refunds.amount;
+            const cancelDate = object.refunds.dateTime;
+
+            return { transaction, numberCreditCard, cancelAmount, cancelDate };
         }
 
-        return searchTransaction;
+        return { transaction, numberCreditCard };
     }
 
     private static createTransaction(object: SearchTransactionResponse): TransactionOrderDTOType {
