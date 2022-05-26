@@ -1,19 +1,13 @@
 import { plainToInstance } from 'class-transformer';
-import { CancelOrderDTO } from '../../../../../Shared/DTO/Order/CancelOrderDTO';
+import { CancelOrderDTOType } from '../../../../../Shared/DTO/Order/CancelOrderDTOType';
 import { CancelTransactionResponse } from '../../Response/CancelTransactionResponse';
 
 export class MapperCancel {
     private constructor() {}
 
-    static toCancelTransaction(Json: any): CancelOrderDTO {
+    static toCancelTransaction(Json: any): CancelOrderDTOType {
         let object = plainToInstance(CancelTransactionResponse, Json);
 
-        let cancelOrderDTO = new CancelOrderDTO();
-        cancelOrderDTO.tid = object.tid;
-        cancelOrderDTO.nsu = object.nsu;
-        cancelOrderDTO.date = object.refundDateTime;
-        cancelOrderDTO.authorizationCode = object.refundId;
-
-        return cancelOrderDTO;
+        return { tid: object.tid, date: object.refundDateTime, nsu: object.nsu, authorizationCode: object.refundId };
     }
 }

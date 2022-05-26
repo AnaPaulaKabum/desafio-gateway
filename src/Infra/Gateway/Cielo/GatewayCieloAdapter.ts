@@ -9,7 +9,7 @@ import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
-import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
+import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 
@@ -40,7 +40,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTO> {
+    async cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTOType> {
         const returnAPI = await this.connectAPI.cancelTransaction(cancelTransactionDTO);
 
         return new Promise(function (resolve) {

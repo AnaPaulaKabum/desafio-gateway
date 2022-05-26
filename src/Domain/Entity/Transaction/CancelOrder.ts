@@ -1,4 +1,4 @@
-import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
+import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 
 export class CancelOrder {
     constructor(
@@ -36,11 +36,11 @@ export class CancelOrder {
         return this._authorizationCode;
     }
 
-    static createForDTO(cancelOrderDTO: CancelOrderDTO): CancelOrder {
+    static createForDTO(cancelOrderDTO: CancelOrderDTOType): CancelOrder {
         return new CancelOrder(
-            cancelOrderDTO.numberRequest,
+            cancelOrderDTO.numberRequest || '',
             cancelOrderDTO.date,
-            cancelOrderDTO.amount,
+            cancelOrderDTO.amount || 0,
             cancelOrderDTO.tid,
             cancelOrderDTO.nsu,
             cancelOrderDTO.authorizationCode,

@@ -8,7 +8,7 @@ import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { CaptureOrderDTO } from '../../../Shared/DTO/Order/CaptureOrderDTO';
-import { CancelOrderDTO } from '../../../Shared/DTO/Order/CancelOrderDTO';
+import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 import { SearchTransactionOrderDTO } from '../../../Shared/DTO/Order/SearchTransactionOrder';
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
 import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
@@ -65,7 +65,7 @@ export class GatewayRedeAdapter implements IGateways {
         throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
-    async cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTO> {
+    async cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTOType> {
         const resource = '/v1/transactions/' + cancelTransactionDTO.tid + '/refunds';
         const data = { amount: cancelTransactionDTO.amount };
         const returnAPI = await this.http.post(resource, data);
