@@ -54,10 +54,12 @@ export class TransactionRepository implements ITransactionRepository {
         return transactionOrderDTO;
     }
 
-    updateStatus(numberRequest: string, statusTransaction: StatusTransaction): Promise<any> {
-        return new Promise(function (resolve) {
-            resolve(null);
-        });
+    async updateStatus(tid: string, statusTransaction: StatusTransaction): Promise<any> {
+        const transaction = await this.findOne(tid);
+
+        if (!transaction) return null;
+
+        return await this.transactionOrderRepository.update({ tid: tid }, { status: statusTransaction });
     }
 
     saveTransaction(transaction: TransactionOrder): Promise<any> {
