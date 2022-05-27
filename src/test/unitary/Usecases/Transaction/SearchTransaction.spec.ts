@@ -4,7 +4,7 @@ import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRep
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
-import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
+import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
 import { SearchTransaction } from '../../../../Usecases/Transaction/SearchTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
@@ -13,7 +13,7 @@ describe('UseCase - SearchTransaction', () => {
     let repositoryTransaction: ITransactionRepository;
     let repositoryLog: ILogRepository;
     let mail: IMail;
-    let searchTransactionDTO: SearchTransactionDTO;
+    let searchTransactionDTO: SearchTransactionDTOType;
 
     beforeEach(() => {
         const gateway = new GatewayMock();
@@ -21,8 +21,7 @@ describe('UseCase - SearchTransaction', () => {
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();
         service = new SearchTransaction(gateway, repositoryLog);
-        searchTransactionDTO = new SearchTransactionDTO();
-        searchTransactionDTO.numberRequest = 'pedido123';
+        searchTransactionDTO = { numberRequest: 'pedido123' };
     });
 
     test('Should functions that are called', async () => {

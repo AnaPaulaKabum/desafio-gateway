@@ -5,7 +5,7 @@ import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
-import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
+import { SearchTransactionDTOType } from '../../../Shared/DTO/SearchTransactionDTOType';
 import { IConnectCieloAPI } from './Interface/IConnectCieloAPI';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
@@ -24,7 +24,7 @@ export class GatewayCieloAdapter implements IGateways {
         });
     }
 
-    async searchTransaction(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrderDTOType> {
+    async searchTransaction(searchRequest: SearchTransactionDTOType): Promise<SearchTransactionOrderDTOType> {
         let returnAPI = await this.connectAPI.searchTransaction(searchRequest);
 
         return new Promise(function (resolve) {

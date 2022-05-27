@@ -4,7 +4,7 @@ import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType
 import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
+import { SearchTransactionDTOType } from '../../../Shared/DTO/SearchTransactionDTOType';
 import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
@@ -26,7 +26,7 @@ export class GatewayMock implements IGateways {
             });
         });
     }
-    searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTOType> {
+    searchTransaction(searchTransactionDTO: SearchTransactionDTOType): Promise<SearchTransactionOrderDTOType> {
         return new Promise(function (resolve) {
             const transaction = {
                 numberRequest: '100',

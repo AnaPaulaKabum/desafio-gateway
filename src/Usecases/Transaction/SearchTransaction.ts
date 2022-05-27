@@ -3,14 +3,14 @@ import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepositor
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { SearchTransactionOrder } from '../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { SearchTransactionDTO } from '../../Shared/DTO/SearchTransactionDTO';
+import { SearchTransactionDTOType } from '../../Shared/DTO/SearchTransactionDTOType';
 
 export class SearchTransaction {
     constructor(private readonly gateway: IGateways, private readonly repositoryLog: ILogRepository) {}
 
-    public async execute(searchRequest: SearchTransactionDTO): Promise<SearchTransactionOrder> {
+    public async execute(searchTransactionDTOType: SearchTransactionDTOType): Promise<SearchTransactionOrder> {
         try {
-            const searchTransactionDTO = await this.gateway.searchTransaction(searchRequest);
+            const searchTransactionDTO = await this.gateway.searchTransaction(searchTransactionDTOType);
             const searchTransaction = SearchTransactionOrder.createForDTO(searchTransactionDTO);
             await this.repositoryLog.register(LogFactory.register(Action.SEARCH.toString()));
             return searchTransaction;

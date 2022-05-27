@@ -5,7 +5,7 @@ import { MapperCapture } from './Mapper/Transaction/MapperCapture';
 import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
-import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
+import { SearchTransactionDTOType } from '../../../Shared/DTO/SearchTransactionDTOType';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
@@ -41,7 +41,7 @@ export class GatewayRedeAdapter implements IGateways {
         throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));
     }
 
-    async searchTransaction(searchTransactionDTO: SearchTransactionDTO): Promise<SearchTransactionOrderDTOType> {
+    async searchTransaction(searchTransactionDTO: SearchTransactionDTOType): Promise<SearchTransactionOrderDTOType> {
         const endpoint = '/v1/transactions/' + searchTransactionDTO.numberRequest;
         const returnAPI = await this.http.get(endpoint);
 

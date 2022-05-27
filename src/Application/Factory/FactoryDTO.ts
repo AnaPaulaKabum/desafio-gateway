@@ -1,6 +1,6 @@
 import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
-import { SearchTransactionDTO } from '../../Shared/DTO/SearchTransactionDTO';
+import { SearchTransactionDTOType } from '../../Shared/DTO/SearchTransactionDTOType';
 import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
 import { CancelRequest } from '../Request/CancelRequest';
 import { CaptureRequest } from '../Request/CaptureRequest';
@@ -25,12 +25,8 @@ export class FactoryDTO {
         };
     }
 
-    static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTO {
-        const searchTransaction = new SearchTransactionDTO();
-        searchTransaction.numberRequest = searchRequest.numberRequest;
-        searchTransaction.tid = searchRequest.tid;
-
-        return searchTransaction;
+    static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTOType {
+        return { numberRequest: searchRequest.numberRequest, tid: searchRequest.tid };
     }
 
     static toCaptureDTO(captureRequest: CaptureRequest): CaptureTransactionDTO {
