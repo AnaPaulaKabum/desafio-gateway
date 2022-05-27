@@ -1,4 +1,4 @@
-import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
+import { CancelTransactionDTOType } from '../../../Shared/DTO/CancelTransactionDTOType';
 import { CaptureTransactionDTOType } from '../../../Shared/DTO/CaptureTransactionDTOType';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
@@ -54,7 +54,7 @@ export class GatewayMock implements IGateways {
             });
         });
     }
-    cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTOType> {
+    cancelTransaction(cancelTransactionDTO: CancelTransactionDTOType): Promise<CancelOrderDTOType> {
         return new Promise(function (resolve) {
             resolve({ date: new Date(), tid: '100', nsu: '100', authorizationCode: '100' });
         });

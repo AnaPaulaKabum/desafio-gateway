@@ -1,4 +1,4 @@
-import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
+import { CancelTransactionDTOType } from '../../Shared/DTO/CancelTransactionDTOType';
 import { CaptureTransactionDTOType } from '../../Shared/DTO/CaptureTransactionDTOType';
 import { SearchTransactionDTOType } from '../../Shared/DTO/SearchTransactionDTOType';
 import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
@@ -33,11 +33,10 @@ export class FactoryDTO {
         return { tid: captureRequest.tid, amount: captureRequest.amount };
     }
 
-    static toCancelDTO(cancelRequest: CancelRequest): CancelTransactionDTO {
-        const captureTransactionDTO = new CancelTransactionDTO();
-        captureTransactionDTO.tid = cancelRequest.tid;
-        captureTransactionDTO.amount = cancelRequest.amount;
-
-        return captureTransactionDTO;
+    static toCancelDTO(cancelRequest: CancelRequest): CancelTransactionDTOType {
+        return {
+            tid: cancelRequest.tid,
+            amount: cancelRequest.amount,
+        };
     }
 }

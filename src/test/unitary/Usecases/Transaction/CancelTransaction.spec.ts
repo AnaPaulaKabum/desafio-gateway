@@ -1,5 +1,4 @@
 import { Mail } from '../../../../Infra/Mail/Mail';
-import { TransactionOrder } from '../../../../Domain/Entity/Transaction/TransactionOrder';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
@@ -8,7 +7,6 @@ import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository
 import { CancelTransaction } from '../../../../Usecases/Transaction/CancelTransaction';
 import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
-import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
 describe('UseCase - CancelTransaction', () => {
@@ -16,9 +14,10 @@ describe('UseCase - CancelTransaction', () => {
     let repositoryTransaction: ITransactionRepository;
     let repositoryLog: ILogRepository;
     let mail: IMail;
-    const cancelTransactionDTO = new CancelTransactionDTO();
-    cancelTransactionDTO.tid = 'pedido123';
-    cancelTransactionDTO.amount = 100;
+    const cancelTransactionDTO = {
+        tid: 'pedido123',
+        amount: 100,
+    };
 
     beforeEach(() => {
         const gateway = new GatewayMock();

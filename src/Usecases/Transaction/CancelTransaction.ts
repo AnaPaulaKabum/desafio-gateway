@@ -7,7 +7,7 @@ import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CancelOrder } from '../../Domain/Entity/Transaction/CancelOrder';
-import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
+import { CancelTransactionDTOType } from '../../Shared/DTO/CancelTransactionDTOType';
 import { TransactionOrderDTOType } from '../../Shared/DTO/Order/TransactionOrderDTOType';
 
 export class CancelTransaction {
@@ -18,7 +18,7 @@ export class CancelTransaction {
         private readonly mail: IMail,
     ) {}
 
-    async execute(cancelDTO: CancelTransactionDTO): Promise<CancelOrder> {
+    async execute(cancelDTO: CancelTransactionDTOType): Promise<CancelOrder> {
         try {
             const transaction = await this.repositoryTransaction.findOne(cancelDTO.tid);
 

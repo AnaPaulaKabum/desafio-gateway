@@ -1,4 +1,4 @@
-import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
+import { CancelTransactionDTOType } from '../../../../Shared/DTO/CancelTransactionDTOType';
 import { CaptureTransactionDTOType } from '../../../../Shared/DTO/CaptureTransactionDTOType';
 import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
 import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
@@ -32,7 +32,7 @@ export class ConnectCieloAPIMock implements IConnectCieloAPI {
         let transactionCaptureRequest = MapperCaptureTrasaction.generate(captureTransactionDTO);
         return MockAPICaptureCielo.captureTotal(transactionCaptureRequest);
     }
-    cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<any> {
+    cancelTransaction(cancelTransactionDTO: CancelTransactionDTOType): Promise<any> {
         return MockAPIReversalCielo.cancel(cancelTransactionDTO);
     }
 }
