@@ -7,7 +7,7 @@ import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CaptureOrder } from '../../Domain/Entity/Transaction/CaptureOrder';
-import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureTransactionDTOType } from '../../Shared/DTO/CaptureTransactionDTOType';
 
 export class CaptureTransaction {
     constructor(
@@ -17,7 +17,7 @@ export class CaptureTransaction {
         private readonly mail: IMail,
     ) {}
 
-    public async execute(captureDTO: CaptureTransactionDTO): Promise<CaptureOrder> {
+    public async execute(captureDTO: CaptureTransactionDTOType): Promise<CaptureOrder> {
         try {
             if (await this.isValidToCapture(captureDTO.tid)) {
                 const captureTranstionDTO = await this.gateway.captureTransaction(captureDTO);

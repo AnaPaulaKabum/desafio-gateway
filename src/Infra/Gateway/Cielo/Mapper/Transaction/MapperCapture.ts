@@ -1,12 +1,10 @@
 import { plainToInstance } from 'class-transformer';
 import { CaptureCieloTransaction } from '../../Response/CaptureCieloTransactionResponse';
-import { CaptureTransactionDTO } from '../../../../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureTransactionDTOType } from '../../../../../Shared/DTO/CaptureTransactionDTOType';
 import { CaptureOrderDTOType } from '../../../../../Shared/DTO/Order/CaptureOrderDTOType';
 
 export class MapperCapture {
-    private constructor() {}
-
-    static toCapture(Json: any, captureDTO: CaptureTransactionDTO): CaptureOrderDTOType {
+    static toCapture(Json: any, captureDTO: CaptureTransactionDTOType): CaptureOrderDTOType {
         let object = plainToInstance(CaptureCieloTransaction, Json);
 
         return {

@@ -1,5 +1,5 @@
 import { Mail } from '../../../../Infra/Mail/Mail';
-import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureTransactionDTOType } from '../../../../Shared/DTO/CaptureTransactionDTOType';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
@@ -15,7 +15,7 @@ describe('UseCase - CaptureTransaction', () => {
     let repositoryLog: ILogRepository;
     let mail: IMail;
     let gateway;
-    let captureDTO: CaptureTransactionDTO;
+    let captureDTO: CaptureTransactionDTOType;
 
     beforeEach(() => {
         gateway = new GatewayMock();
@@ -24,9 +24,10 @@ describe('UseCase - CaptureTransaction', () => {
         mail = new Mail();
         service = new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail);
 
-        captureDTO = new CaptureTransactionDTO();
-        captureDTO.amount = 1000;
-        captureDTO.tid = '8345000363484052380';
+        captureDTO = {
+            amount: 1000,
+            tid: '8345000363484052380',
+        };
     });
 
     test('Should functions that are called', async () => {

@@ -1,5 +1,5 @@
 import { CancelTransactionDTO } from '../../../Shared/DTO/CancelTransactionDTO';
-import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureTransactionDTOType } from '../../../Shared/DTO/CaptureTransactionDTOType';
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
@@ -43,7 +43,7 @@ export class GatewayMock implements IGateways {
             resolve({ transaction, numberCreditCard });
         });
     }
-    captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTOType> {
+    captureTransaction(captureTransactionDTO: CaptureTransactionDTOType): Promise<CaptureOrderDTOType> {
         return new Promise(function (resolve) {
             resolve({
                 amount: 100,

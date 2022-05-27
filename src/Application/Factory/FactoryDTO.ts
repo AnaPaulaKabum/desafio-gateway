@@ -1,5 +1,5 @@
 import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
-import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
+import { CaptureTransactionDTOType } from '../../Shared/DTO/CaptureTransactionDTOType';
 import { SearchTransactionDTOType } from '../../Shared/DTO/SearchTransactionDTOType';
 import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
 import { CancelRequest } from '../Request/CancelRequest';
@@ -29,12 +29,8 @@ export class FactoryDTO {
         return { numberRequest: searchRequest.numberRequest, tid: searchRequest.tid };
     }
 
-    static toCaptureDTO(captureRequest: CaptureRequest): CaptureTransactionDTO {
-        const captureTransactionDTO = new CaptureTransactionDTO();
-        captureTransactionDTO.tid = captureRequest.tid;
-        captureTransactionDTO.amount = captureRequest.amount;
-
-        return captureTransactionDTO;
+    static toCaptureDTO(captureRequest: CaptureRequest): CaptureTransactionDTOType {
+        return { tid: captureRequest.tid, amount: captureRequest.amount };
     }
 
     static toCancelDTO(cancelRequest: CancelRequest): CancelTransactionDTO {
