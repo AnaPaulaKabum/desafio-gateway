@@ -1,7 +1,7 @@
 import { CancelTransactionDTO } from '../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../Shared/DTO/SearchTransactionDTO';
-import { TransactionDTO } from '../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
 import { CancelRequest } from '../Request/CancelRequest';
 import { CaptureRequest } from '../Request/CaptureRequest';
 import { SearchRequest } from '../Request/SearchRequest';
@@ -10,20 +10,19 @@ import { TransactionRequest } from '../Request/TransactionRequest';
 export class FactoryDTO {
     private constructor() {}
 
-    static toTrasactionDTO(transactionRequest: TransactionRequest): TransactionDTO {
-        const transaction = new TransactionDTO();
-        transaction.numberRequest = transactionRequest.numberRequest;
-        transaction.kind = transactionRequest.kind;
-        transaction.amount = transactionRequest.amount;
-        transaction.installments = transactionRequest.installments;
-        transaction.cardHolderName = transactionRequest.cardHolderName;
-        transaction.cardNumber = transactionRequest.cardNumber;
-        transaction.expirationMonth = transactionRequest.expirationMonth;
-        transaction.expirationYear = transactionRequest.expirationYear;
-        transaction.cardSecurityCode = transactionRequest.cardSecurityCode;
-        transaction.softDescriptor = transactionRequest.softDescriptor;
-
-        return transaction;
+    static toTrasactionDTO(transactionRequest: TransactionRequest): TransactionDTOType {
+        return {
+            numberRequest: transactionRequest.numberRequest,
+            kind: transactionRequest.kind,
+            amount: transactionRequest.amount,
+            installments: transactionRequest.installments,
+            cardHolderName: transactionRequest.cardHolderName,
+            cardNumber: transactionRequest.cardNumber,
+            expirationMonth: transactionRequest.expirationMonth,
+            expirationYear: transactionRequest.expirationYear,
+            cardSecurityCode: transactionRequest.cardSecurityCode,
+            softDescriptor: transactionRequest.softDescriptor,
+        };
     }
 
     static toSearchDTO(searchRequest: SearchRequest): SearchTransactionDTO {

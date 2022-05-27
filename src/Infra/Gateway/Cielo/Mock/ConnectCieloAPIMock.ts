@@ -1,7 +1,7 @@
 import { CancelTransactionDTO } from '../../../../Shared/DTO/CancelTransactionDTO';
 import { CaptureTransactionDTO } from '../../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../../Shared/DTO/SearchTransactionDTO';
-import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { IConnectCieloAPI } from '../Interface/IConnectCieloAPI';
 import { MapperCaptureTrasaction } from '../Mapper/Transaction/MapperCaptureTrasaction';
@@ -12,7 +12,7 @@ import { MockAPISearchCielo } from './ReturnAPI/MockAPISearchCielo';
 import { MockAPISendCielo } from './ReturnAPI/MockAPISendCielo';
 
 export class ConnectCieloAPIMock implements IConnectCieloAPI {
-    sendTransaction(transaction: TransactionDTO): Promise<any> {
+    sendTransaction(transaction: TransactionDTOType): Promise<any> {
         if (transaction.kind === TypeTransaction.CREDIT) {
             const transactionRedeRequest = MapperTransactionCielo.generateCredit(transaction);
             return MockAPISendCielo.sendCredit(transactionRedeRequest);

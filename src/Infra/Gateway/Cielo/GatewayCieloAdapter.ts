@@ -1,5 +1,5 @@
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
-import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
@@ -16,7 +16,7 @@ import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOTy
 export class GatewayCieloAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectCieloAPI) {}
 
-    async sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTOType> {
+    async sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType> {
         const returnAPI = await this.connectAPI.sendTransaction(transaction);
 
         return new Promise(function (resolve) {

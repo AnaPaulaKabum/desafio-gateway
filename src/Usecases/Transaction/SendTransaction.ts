@@ -6,7 +6,7 @@ import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { TransactionOrder } from '../../Domain/Entity/Transaction/TransactionOrder';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
-import { TransactionDTO } from '../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
 import { ParamValidateType } from '../../Shared/Interfaces/Gateway/ParamValidateType';
 import { ValidateParam } from './Validate/ValidateParam';
 import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
@@ -20,7 +20,7 @@ export class SendTransaction {
         private readonly mail: IMail,
     ) {}
 
-    async execute(transaction: TransactionDTO): Promise<TransactionOrder> {
+    async execute(transaction: TransactionDTOType): Promise<TransactionOrder> {
         try {
             ValidateParam.isValidSend(this.configGateway, transaction);
 

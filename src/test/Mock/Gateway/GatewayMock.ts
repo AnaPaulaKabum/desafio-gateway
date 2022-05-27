@@ -5,13 +5,13 @@ import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOTy
 import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
-import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 
 export class GatewayMock implements IGateways {
-    sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTOType> {
+    sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType> {
         return new Promise(function (resolve) {
             resolve({
                 numberRequest: '100',

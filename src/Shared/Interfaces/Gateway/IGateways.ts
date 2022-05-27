@@ -1,4 +1,4 @@
-import { TransactionDTO } from '../../DTO/TransactionDTO';
+import { TransactionDTOType } from '../../DTO/TransactionDTOType';
 import { SearchRequest } from '../../../Application/Request/SearchRequest';
 import { CaptureTransactionDTO } from '../../DTO/CaptureTransactionDTO';
 import { TransactionOrderDTOType } from '../../DTO/Order/TransactionOrderDTOType';
@@ -8,7 +8,7 @@ import { SearchTransactionOrderDTOType } from '../../DTO/Order/SearchTransaction
 import { CaptureOrderDTOType } from '../../DTO/Order/CaptureOrderDTOType';
 
 export interface IGateways {
-    sendTransaction(transaction: TransactionDTO): Promise<TransactionOrderDTOType>;
+    sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType>;
     searchTransaction(searchRequest: SearchRequest): Promise<SearchTransactionOrderDTOType>;
     captureTransaction(captureTransactionDTO: CaptureTransactionDTO): Promise<CaptureOrderDTOType>;
     cancelTransaction(cancelTransactionDTO: CancelTransactionDTO): Promise<CancelOrderDTOType>;

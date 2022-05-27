@@ -1,10 +1,10 @@
 import { ParamValidateType } from '../../../Shared/Interfaces/Gateway/ParamValidateType';
-import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
 
 export class ValidateParam {
     private constructor() {}
 
-    static isValidSend(param: ParamValidateType, request: TransactionDTO) {
+    static isValidSend(param: ParamValidateType, request: TransactionDTOType) {
         if (request.numberRequest.length > param.numberRequest_MAX) {
             throw new Error('NumberRequest deverá possuir até ' + param.numberRequest_MAX + ' caracter');
         }

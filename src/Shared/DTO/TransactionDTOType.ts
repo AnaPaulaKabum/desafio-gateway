@@ -1,6 +1,6 @@
 import { TypeTransaction } from '../Enum/TypeTransaction.enum';
 
-export class TransactionDTO {
+export type TransactionDTOType = {
     numberRequest: string;
     kind: TypeTransaction;
     amount: number;
@@ -11,4 +11,4 @@ export class TransactionDTO {
     expirationYear: number;
     cardSecurityCode: string;
     softDescriptor: string;
-}
+};

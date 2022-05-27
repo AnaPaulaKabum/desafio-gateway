@@ -1,12 +1,12 @@
 import { Card } from '../../../../../Domain/Entity/Transaction/Card';
-import { TransactionDTO } from '../../../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../../../Shared/DTO/TransactionDTOType';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { SendTransactionCielo } from '../../Request/SendTransactionCielo';
 
 export class MapperTransactionCielo {
     private constructor() {}
 
-    static generateCredit(transaction: TransactionDTO): SendTransactionCielo {
+    static generateCredit(transaction: TransactionDTOType): SendTransactionCielo {
         let transactionCredit = new SendTransactionCielo(
             TypeTransaction.CREDIT,
             MapperTransactionCielo.createCard(transaction),
@@ -20,7 +20,7 @@ export class MapperTransactionCielo {
         transactionCredit.isValid();
         return transactionCredit;
     }
-    static generateDebit(transaction: TransactionDTO): SendTransactionCielo {
+    static generateDebit(transaction: TransactionDTOType): SendTransactionCielo {
         let transactionDebit = new SendTransactionCielo(
             TypeTransaction.DEBIT,
             MapperTransactionCielo.createCard(transaction),
@@ -34,7 +34,7 @@ export class MapperTransactionCielo {
         return transactionDebit;
     }
 
-    private static createCard(transaction: TransactionDTO): Card {
+    private static createCard(transaction: TransactionDTOType): Card {
         const cardNumber = transaction.cardNumber;
         const expirationMonth = transaction.expirationMonth;
         const expirationYear = transaction.expirationYear;

@@ -2,7 +2,7 @@ import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
-import { TransactionDTO } from '../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CaptureTransactionDTO } from '../../../Shared/DTO/CaptureTransactionDTO';
 import { SearchTransactionDTO } from '../../../Shared/DTO/SearchTransactionDTO';
@@ -17,7 +17,7 @@ import { translateErrorCodeAPI } from './RedeStatusCodeLibrary';
 export class GatewayRedeAdapter implements IGateways {
     constructor(private readonly http: IHTTP) {}
 
-    async sendTransaction(transactionDTO: TransactionDTO): Promise<TransactionOrderDTOType> {
+    async sendTransaction(transactionDTO: TransactionDTOType): Promise<TransactionOrderDTOType> {
         const endpoint = '/v1/transactions/';
         const data = {
             kind: transactionDTO.kind,

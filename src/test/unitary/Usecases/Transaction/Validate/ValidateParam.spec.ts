@@ -1,9 +1,9 @@
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
 import { ParamValidateType } from '../../../../../Shared/Interfaces/Gateway/ParamValidateType';
-import { TransactionDTO } from '../../../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../../../Shared/DTO/TransactionDTOType';
 import { ValidateParam } from '../../../../../Usecases/Transaction/Validate/ValidateParam';
 
-type SutTypes = { validateGateway: ParamValidateType; transactionSend: TransactionDTO };
+type SutTypes = { validateGateway: ParamValidateType; transactionSend: TransactionDTOType };
 
 const makeSut = (): SutTypes => {
     let validateGateway: ParamValidateType = {
@@ -15,17 +15,18 @@ const makeSut = (): SutTypes => {
         amount_MAX: 4,
     };
 
-    let transactionSend = new TransactionDTO();
-    transactionSend.numberRequest = 'pedido123';
-    transactionSend.kind = TypeTransaction.CREDIT;
-    transactionSend.amount = 2099;
-    transactionSend.installments = 2;
-    transactionSend.cardHolderName = 'John';
-    transactionSend.cardNumber = '5448280000000007';
-    transactionSend.expirationMonth = 1;
-    transactionSend.expirationYear = 2025;
-    transactionSend.cardSecurityCode = '123';
-    transactionSend.softDescriptor = 'LOJA XX;';
+    let transactionSend = {
+        numberRequest: 'pedido123',
+        kind: TypeTransaction.CREDIT,
+        amount: 2099,
+        installments: 2,
+        cardHolderName: 'John',
+        cardNumber: '5448280000000007',
+        expirationMonth: 1,
+        expirationYear: 2025,
+        cardSecurityCode: '123',
+        softDescriptor: 'LOJA XX;',
+    };
 
     return { validateGateway, transactionSend };
 };

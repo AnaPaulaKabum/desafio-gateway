@@ -1,5 +1,5 @@
 import { Mail } from '../../../../Infra/Mail/Mail';
-import { TransactionDTO } from '../../../../Shared/DTO/TransactionDTO';
+import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
 import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
@@ -13,7 +13,7 @@ import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionR
 
 describe('UseCase - SendTransaction', () => {
     let service: SendTransaction;
-    let transactionDTO: TransactionDTO;
+    let transactionDTO: TransactionDTOType;
     let repositoryTransaction: ITransactionRepository;
     let repositoryLog: ILogRepository;
     let mail: IMail;
@@ -25,17 +25,18 @@ describe('UseCase - SendTransaction', () => {
         mail = new Mail();
         service = new SendTransaction(gateway, configMock(), repositoryTransaction, repositoryLog, mail);
 
-        transactionDTO = new TransactionDTO();
-        transactionDTO.numberRequest = 'pedido123';
-        transactionDTO.kind = TypeTransaction.CREDIT;
-        transactionDTO.amount = 2099;
-        transactionDTO.installments = 2;
-        transactionDTO.cardHolderName = 'John Snow';
-        transactionDTO.cardNumber = '5448280000000007';
-        transactionDTO.expirationMonth = 1;
-        transactionDTO.expirationYear = 2021;
-        transactionDTO.cardSecurityCode = '123';
-        transactionDTO.softDescriptor = 'Compra na loja XXX';
+        transactionDTO = {
+            numberRequest: 'pedido123',
+            kind: TypeTransaction.CREDIT,
+            amount: 2099,
+            installments: 2,
+            cardHolderName: 'John Snow',
+            cardNumber: '5448280000000007',
+            expirationMonth: 1,
+            expirationYear: 2021,
+            cardSecurityCode: '123',
+            softDescriptor: 'Compra na loja XXX',
+        };
     });
 
     test('Should functions that are called by sendTransaction', async () => {
