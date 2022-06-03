@@ -1,18 +1,23 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrderDTO } from '../../../../../Shared/DTO/Order/CaptureOrderDTO';
+import { CaptureOrderDTOType } from '../../../../../Shared/DTO/Order/CaptureOrderDTOType';
 import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse';
 
 export class MapperCapture {
-    static toCapture(Json: any, amount: number): CaptureOrderDTO {
+    static toCapture(Json: any, amountCapture: number): CaptureOrderDTOType {
         let object = plainToInstance(CaptureTransactionResponse, Json);
 
-        const captureOrderDTO = new CaptureOrderDTO();
-        captureOrderDTO.numberRequest = object.reference;
-        captureOrderDTO.nsu = object.nsu;
-        captureOrderDTO.date = object.dateTime;
-        captureOrderDTO.authorizationCode = object.authorizationCode;
-        captureOrderDTO.amount = amount;
+        const numberRequest = object.reference;
+        const nsu = object.nsu;
+        const date = object.dateTime;
+        const authorizationCode = object.authorizationCode;
+        const amount = amountCapture;
 
-        return captureOrderDTO;
+        return {
+            numberRequest,
+            nsu,
+            date,
+            authorizationCode,
+            amount,
+        };
     }
 }
