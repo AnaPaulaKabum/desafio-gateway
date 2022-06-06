@@ -59,10 +59,10 @@ export class TransactionRepository implements ITransactionRepository {
 
         if (!transaction) return null;
 
-        return await this.transactionOrderRepository.update({ tid: tid }, { status: statusTransaction });
+        await this.transactionOrderRepository.update({ tid: tid }, { status: statusTransaction });
     }
 
-    saveTransaction(transaction: TransactionOrder): Promise<any> {
+    async saveTransaction(transaction: TransactionOrder): Promise<TransactionOrder> {
         const transactionEntity = new TransactionOrderEntity();
         transactionEntity.numberRequest = transaction.numberRequest;
         transactionEntity.tid = transaction.tid;
@@ -77,9 +77,13 @@ export class TransactionRepository implements ITransactionRepository {
         transactionEntity.installments = transaction.installments;
         transactionEntity.status = transaction.status;
 
-        return this.transactionOrderRepository.save(transactionEntity);
+        const saveTransaction = await this.transactionOrderRepository.save(transactionEntity);
+
+        transaction.id = saveTransaction.id;
+
+        return transaction;
     }
-    saveCapture(capture: CaptureOrder): Promise<any> {
+    async saveCapture(capture: CaptureOrder): Promise<CaptureOrder> {
         const captureEntity = new CaptureOrderEntity();
         captureEntity.numberRequest = capture.numberRequest;
         captureEntity.amount = capture.amount;
@@ -87,7 +91,10 @@ export class TransactionRepository implements ITransactionRepository {
         captureEntity.nsu = capture.nsu;
         captureEntity.authorizationCode = capture.authorizationCode;
 
-        return this.captureOrderRepository.save(captureEntity);
+        const saveCapture = await this.captureOrderRepository.save(captureEntity);
+        capture.id = saveCapture.id;
+
+        return capture;
     }
     async saveCancel(cancel: CancelOrder): Promise<any> {
         await this.updateStatus(cancel.tid, StatusTransaction.CAPTURE);
@@ -100,6 +107,8 @@ export class TransactionRepository implements ITransactionRepository {
         cancelEntity.authorizationCode = cancel.authorizationCode;
         cancelEntity.tid = cancel.tid;
 
-        return this.cancelOrderRepository.save(cancelEntity);
+        const saveCancel = await this.cancelOrderRepository.save(cancelEntity);
+        cancel.id = saveCancel.id;
+        return cancel;
     }
 }
