@@ -11,7 +11,6 @@ import { CancelOrderRepository } from './Order/CancelOrderRepository';
 import { CancelOrderEntity } from '../../Entity/CancelOrderEntity';
 import { TransactionOrderRepository } from './Order/TransactionOrderRepository';
 import { CaptureOrderRepository } from './Order/CaptureOrderRepository';
-import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
 
 export class TransactionRepository implements ITransactionRepository {
     private transactionOrderRepository: TransactionOrderRepository;
@@ -29,7 +28,8 @@ export class TransactionRepository implements ITransactionRepository {
         if (!transactionDTO) return null;
         return transactionDTO.status;
     }
-    async findOne(tid: string): Promise<TransactionOrderDTOType | null> {
+
+    async findOne(tid: string): Promise<TransactionOrder | null> {
         const result = await this.transactionOrderRepository.findOne({
             where: {
                 tid: tid,
@@ -37,21 +37,21 @@ export class TransactionRepository implements ITransactionRepository {
         });
 
         if (!result) return null;
+        const kind = result.kind === 1 ? TypeTransaction.CREDIT : TypeTransaction.DEBIT;
 
-        const kind = result.kind === 1 ? 'credit' : 'debit';
+        const transactionOrder = new TransactionOrder(
+            result.numberRequest,
+            result.tid,
+            kind,
+            result.status,
+            result.amount,
+            result.message,
+            result.nsu,
+            result.authorizationCode,
+            result.installments,
+        );
 
-        return {
-            id: result.id,
-            numberRequest: result.numberRequest,
-            tid: result.tid,
-            kind: TypeTransaction[kind],
-            status: result.status,
-            amount: result.amount,
-            message: result.message,
-            nsu: result.nsu,
-            authorizationCode: result.authorizationCode,
-            installments: result.installments,
-        };
+        return transactionOrder;
     }
 
     async updateStatus(tid: string, statusTransaction: StatusTransaction): Promise<any> {
