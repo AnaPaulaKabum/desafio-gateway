@@ -5,6 +5,10 @@ import { ConnectDBTypeORM } from '../../../Infra/ConnectBD/TypeORM/ConnectDBType
 import { CancelOrderEntity } from '../../../Infra/ConnectBD/TypeORM/Entity/CancelOrderEntity';
 import { CaptureOrderEntity } from '../../../Infra/ConnectBD/TypeORM/Entity/CaptureOrderEntity';
 import { TransactionOrderEntity } from '../../../Infra/ConnectBD/TypeORM/Entity/TransactionOrderEntity';
+import { Transaction1654287924093 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654287924093-Transaction';
+import { Log1654290129463 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654290129463-Log';
+import { Capture1654513784257 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654513784257-Capture';
+import { Cancel1654518812859 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654518812859-Cancel';
 import { TransactionRepository } from '../../../Infra/ConnectBD/TypeORM/Repository/Transaction/TransactionRepository';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
@@ -14,7 +18,10 @@ let transctionRepository: TransactionRepository;
 
 describe('Repository : TransactionRepository', () => {
     beforeEach(async function () {
-        connect = new ConnectDBTypeORM([TransactionOrderEntity, CaptureOrderEntity, CancelOrderEntity]);
+        connect = new ConnectDBTypeORM(
+            [TransactionOrderEntity, CaptureOrderEntity, CancelOrderEntity],
+            [Transaction1654287924093, Log1654290129463, Capture1654513784257, Cancel1654518812859],
+        );
         await connect.start();
         transctionRepository = new TransactionRepository(connect.appDataSource.manager);
     });
