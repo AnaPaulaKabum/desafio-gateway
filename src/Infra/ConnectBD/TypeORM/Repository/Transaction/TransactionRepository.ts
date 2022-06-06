@@ -50,6 +50,7 @@ export class TransactionRepository implements ITransactionRepository {
             result.authorizationCode,
             result.installments,
         );
+        transactionOrder.id = result.id;
 
         return transactionOrder;
     }
@@ -66,10 +67,8 @@ export class TransactionRepository implements ITransactionRepository {
         const transactionEntity = new TransactionOrderEntity();
         transactionEntity.numberRequest = transaction.numberRequest;
         transactionEntity.tid = transaction.tid;
-
         if (transaction.kind === TypeTransaction.CREDIT) transactionEntity.kind = 1;
         else transactionEntity.kind = 2;
-
         transactionEntity.amount = transaction.amount;
         transactionEntity.message = transaction.message;
         transactionEntity.nsu = transaction.nsu;
@@ -78,7 +77,6 @@ export class TransactionRepository implements ITransactionRepository {
         transactionEntity.status = transaction.status;
 
         const saveTransaction = await this.transactionOrderRepository.save(transactionEntity);
-
         transaction.id = saveTransaction.id;
 
         return transaction;

@@ -6,7 +6,6 @@ import { CancelOrderEntity } from '../../../Infra/ConnectBD/TypeORM/Entity/Cance
 import { CaptureOrderEntity } from '../../../Infra/ConnectBD/TypeORM/Entity/CaptureOrderEntity';
 import { TransactionOrderEntity } from '../../../Infra/ConnectBD/TypeORM/Entity/TransactionOrderEntity';
 import { Transaction1654287924093 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654287924093-Transaction';
-import { Log1654290129463 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654290129463-Log';
 import { Capture1654513784257 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654513784257-Capture';
 import { Cancel1654518812859 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654518812859-Cancel';
 import { TransactionRepository } from '../../../Infra/ConnectBD/TypeORM/Repository/Transaction/TransactionRepository';
@@ -20,7 +19,7 @@ describe('Repository : TransactionRepository', () => {
     beforeAll(async function () {
         connect = new ConnectDBTypeORM(
             [TransactionOrderEntity, CaptureOrderEntity, CancelOrderEntity],
-            [Transaction1654287924093, Log1654290129463, Capture1654513784257, Cancel1654518812859],
+            [Transaction1654287924093, Capture1654513784257, Cancel1654518812859],
         );
         await connect.start();
         transctionRepository = new TransactionRepository(connect.appDataSource.manager);
@@ -28,6 +27,8 @@ describe('Repository : TransactionRepository', () => {
 
     afterEach(async () => {
         await connect.clearTable('Transaction');
+        await connect.clearTable('Cancel');
+        await connect.clearTable('Capture');
     });
 
     afterAll(async function () {
@@ -35,7 +36,7 @@ describe('Repository : TransactionRepository', () => {
     });
 
     describe('SaveTransaction', () => {
-        it('Não deve retornar error', async () => {
+        it('Deverá retornar um objeto Truthy com id preenchido ', async () => {
             const transactionOrder = new TransactionOrder(
                 'pedido123',
                 '100',
@@ -48,34 +49,37 @@ describe('Repository : TransactionRepository', () => {
                 1,
             );
 
-            const result = await transctionRepository.saveTransaction(transactionOrder);
+            const resultSave = await transctionRepository.saveTransaction(transactionOrder);
 
-            expect(result).toBeTruthy();
+            expect(resultSave).toBeTruthy();
+            expect(resultSave.id).toBeTruthy();
         });
     });
 
     describe('SaveCapture', () => {
-        it('Não deve retornar error', async () => {
+        it('Deverá retornar um objeto Truthy com id preenchido', async () => {
             const captureOrder = new CaptureOrder('pedido123', 100, new Date(), '123456789', '1234');
 
-            const result = await transctionRepository.saveCapture(captureOrder);
+            const resultSave = await transctionRepository.saveCapture(captureOrder);
 
-            expect(result).toBeTruthy();
+            expect(resultSave).toBeTruthy();
+            expect(resultSave.id).toBeTruthy();
         });
     });
 
     describe('SaveCancel', () => {
-        it('Não deve retornar error', async () => {
+        it('Deverá retornar um objeto Truthy com id preenchido', async () => {
             const cancelOrder = new CancelOrder('pedido123', new Date(), 100, '123456789', '123456', '123');
 
-            const result = await transctionRepository.saveCancel(cancelOrder);
+            const resultSave = await transctionRepository.saveCancel(cancelOrder);
 
-            expect(result).toBeTruthy();
+            expect(resultSave).toBeTruthy();
+            expect(resultSave.id).toBeTruthy();
         });
     });
 
     describe('FindOne Transaction', () => {
-        it('Não deve retornar error', async () => {
+        it('Deverá encontrar o mesmo registro que foi salvo anteriormente.', async () => {
             const tid = '100';
             const transactionOrder = new TransactionOrder(
                 'pedido123',
@@ -88,22 +92,22 @@ describe('Repository : TransactionRepository', () => {
                 '100',
                 1,
             );
-            await transctionRepository.saveTransaction(transactionOrder);
+            const transactionSave = await transctionRepository.saveTransaction(transactionOrder);
 
             const result = await transctionRepository.findOne(tid);
-
-            expect(result).toBeTruthy();
+            expect(result).toEqual(transactionSave);
         });
     });
 
     describe('SearchStatus', () => {
-        it('Não deve retornar error', async () => {
+        it('Devera o status que acabou de salvar, e comparar o resultado', async () => {
             const tid = '100';
+            const status = StatusTransaction.NO_CAPTURE;
             const transactionOrder = new TransactionOrder(
                 'pedido123',
                 tid,
                 TypeTransaction.CREDIT,
-                StatusTransaction.NO_CAPTURE,
+                status,
                 100,
                 'Teste',
                 '100',
@@ -114,7 +118,7 @@ describe('Repository : TransactionRepository', () => {
 
             const result = await transctionRepository.searchStatus(tid);
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(status);
         });
     });
 
@@ -135,9 +139,10 @@ describe('Repository : TransactionRepository', () => {
             await transctionRepository.saveTransaction(transactionOrder);
             const status = StatusTransaction.FINNALY;
 
-            const result = await transctionRepository.updateStatus(tid, status);
+            await transctionRepository.updateStatus(tid, status);
 
-            expect(result).toBeTruthy();
+            const transaction = await transctionRepository.findOne(tid);
+            expect(transaction?.status).toBe(StatusTransaction.FINNALY);
         });
     });
 });
