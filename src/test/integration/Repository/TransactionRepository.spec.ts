@@ -35,7 +35,7 @@ describe('Repository : TransactionRepository', () => {
     });
 
     describe('SaveTransaction', () => {
-        it.skip('Não deve retornar error', async () => {
+        it('Não deve retornar error', async () => {
             const transactionOrder = new TransactionOrder(
                 'pedido123',
                 '100',
