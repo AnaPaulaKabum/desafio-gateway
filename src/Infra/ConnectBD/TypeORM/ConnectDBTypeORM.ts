@@ -65,6 +65,11 @@ export class ConnectDBTypeORM {
     async close() {
         await this.appDataSource.destroy();
     }
+
+    async clearTable(tableName: string) {
+        const repository = await this.getRepository(tableName);
+        await repository.query(`DELETE FROM ${tableName}`);
+    }
 }
 
 type connectType = {
