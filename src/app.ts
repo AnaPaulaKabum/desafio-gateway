@@ -19,8 +19,6 @@ import { CancelRequest } from './Application/Request/CancelRequest';
 import * as dotenv from 'dotenv';
 import { ConnectDBTypeORM } from './Infra/ConnectBD/TypeORM/ConnectDBTypeORM';
 import { LogEntity } from './Infra/ConnectBD/TypeORM/Entity/LogEntity';
-import { Log } from './Domain/Entity/Log/Log';
-import { StatusLog } from './Shared/Enum/StatusLog';
 
 export class APP {
     private constructor() {}
@@ -75,7 +73,10 @@ export class APP {
 
         const TransactionServicesFactory = async () => {
             console.log('dir: ' + __dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
-            const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
+            const connect = new ConnectDBTypeORM(
+                __dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js',
+                __dirname + '/Infra/ConnectBD/TypeORM/Migrate/*.js',
+            );
             await connect.start();
 
             const repositoryTransaction = new TransactionRepository(connect.appDataSource.manager);
@@ -155,8 +156,11 @@ export class APP {
         return result;
     }
 
-    static async testConnectBD() {
-        const connect = new ConnectDBTypeORM(__dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
+    /*static async testConnectBD() {
+        const connect = new ConnectDBTypeORM(
+            __dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js',
+            __dirname + '/Infra/ConnectBD/TypeORM/Migrate/*.js',
+        );
         await connect.start();
 
         const log = new Log();
@@ -168,11 +172,11 @@ export class APP {
         const repository = new LogRepository(LogEntity, connect.appDataSource.manager);
 
         repository.register(log);
-    }
+    }*/
 }
 
 try {
-    const methodUses = 3; //1-Send 2-Search 3-Capture 4-Cancel
+    const methodUses = 1; //1-Send 2-Search 3-Capture 4-Cancel
     let gatewayUses = 1; //1-Rede 2- Cielo
     const testAPI = true;
     APP.start(gatewayUses, methodUses, true, testAPI);
