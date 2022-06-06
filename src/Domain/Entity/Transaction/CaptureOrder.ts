@@ -1,6 +1,7 @@
 import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
 
 export class CaptureOrder {
+    public id;
     constructor(
         private readonly _numberRequest: string,
         private readonly _amount: number,

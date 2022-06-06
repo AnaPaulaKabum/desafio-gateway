@@ -1,6 +1,7 @@
 import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
 
 export class CancelOrder {
+    public id;
     constructor(
         private readonly _numberRequest: string,
         private readonly _date: Date,

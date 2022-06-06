@@ -3,6 +3,7 @@ import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
 
 export class TransactionOrder {
+    public id?: string;
     constructor(
         private readonly _numberRequest: string,
         private readonly _tid: string,
