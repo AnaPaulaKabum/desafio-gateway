@@ -6,7 +6,8 @@ export class Log1654290129463 implements MigrationInterface {
             user INT NULL,
             descripto varchar(255) NULL,
             process INT NULL,
-            gravity INT NULL
+            gravity INT NULL,
+            date Date
         )`);
     }
 

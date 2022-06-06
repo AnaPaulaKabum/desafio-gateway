@@ -1,18 +1,20 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class Capture1654513784257 implements MigrationInterface {
+export class Cancel1654518812859 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE Capture (
+        queryRunner.query(`CREATE TABLE Cancel (
             id varchar(250),
             numberRequest VARCHAR(250),
-            amount float,
             date Date,
+            amount float,
+            tid VARCHAR(250),
             nsu VARCHAR(250),
             authorizationCode VARCHAR(250)
-        ); `);
+        );
+        `);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP table Capture`);
+        await queryRunner.query(`DROP table Cancel`);
     }
 }
