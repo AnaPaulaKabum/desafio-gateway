@@ -17,7 +17,7 @@ let connect: ConnectDBTypeORM;
 let transctionRepository: TransactionRepository;
 
 describe('Repository : TransactionRepository', () => {
-    beforeEach(async function () {
+    beforeAll(async function () {
         connect = new ConnectDBTypeORM(
             [TransactionOrderEntity, CaptureOrderEntity, CancelOrderEntity],
             [Transaction1654287924093, Log1654290129463, Capture1654513784257, Cancel1654518812859],
@@ -26,7 +26,11 @@ describe('Repository : TransactionRepository', () => {
         transctionRepository = new TransactionRepository(connect.appDataSource.manager);
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
+        await connect.clearTable('Transaction');
+    });
+
+    afterAll(async function () {
         await connect.close();
     });
 
@@ -43,7 +47,9 @@ describe('Repository : TransactionRepository', () => {
                 '100',
                 1,
             );
+
             const result = await transctionRepository.saveTransaction(transactionOrder);
+
             expect(result).toBeTruthy();
         });
     });
@@ -51,7 +57,9 @@ describe('Repository : TransactionRepository', () => {
     describe('SaveCapture', () => {
         it('Não deve retornar error', async () => {
             const captureOrder = new CaptureOrder('pedido123', 100, new Date(), '123456789', '1234');
+
             const result = await transctionRepository.saveCapture(captureOrder);
+
             expect(result).toBeTruthy();
         });
     });
@@ -59,34 +67,75 @@ describe('Repository : TransactionRepository', () => {
     describe('SaveCancel', () => {
         it('Não deve retornar error', async () => {
             const cancelOrder = new CancelOrder('pedido123', new Date(), 100, '123456789', '123456', '123');
+
             const result = await transctionRepository.saveCancel(cancelOrder);
+
             expect(result).toBeTruthy();
         });
     });
 
-    describe('findOne', () => {
+    describe('FindOne Transaction', () => {
         it('Não deve retornar error', async () => {
             const tid = '100';
+            const transactionOrder = new TransactionOrder(
+                'pedido123',
+                tid,
+                TypeTransaction.CREDIT,
+                StatusTransaction.NO_CAPTURE,
+                100,
+                'Teste',
+                '100',
+                '100',
+                1,
+            );
+            await transctionRepository.saveTransaction(transactionOrder);
+
             const result = await transctionRepository.findOne(tid);
+
             expect(result).toBeTruthy();
         });
     });
 
-    describe('searchStatus', () => {
+    describe('SearchStatus', () => {
         it('Não deve retornar error', async () => {
             const tid = '100';
+            const transactionOrder = new TransactionOrder(
+                'pedido123',
+                tid,
+                TypeTransaction.CREDIT,
+                StatusTransaction.NO_CAPTURE,
+                100,
+                'Teste',
+                '100',
+                '100',
+                1,
+            );
+            await transctionRepository.saveTransaction(transactionOrder);
+
             const result = await transctionRepository.searchStatus(tid);
 
             expect(result).toBeTruthy();
         });
     });
 
-    describe('updateStatus', () => {
+    describe('UpdateStatus', () => {
         it('Não deve retornar error', async () => {
             const tid = '100';
+            const transactionOrder = new TransactionOrder(
+                'pedido123',
+                tid,
+                TypeTransaction.CREDIT,
+                StatusTransaction.NO_CAPTURE,
+                100,
+                'Teste',
+                '100',
+                '100',
+                1,
+            );
+            await transctionRepository.saveTransaction(transactionOrder);
             const status = StatusTransaction.FINNALY;
+
             const result = await transctionRepository.updateStatus(tid, status);
-            console.log(JSON.stringify(result));
 
             expect(result).toBeTruthy();
         });
