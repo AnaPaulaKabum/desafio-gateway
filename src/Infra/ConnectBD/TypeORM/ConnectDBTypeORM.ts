@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 export class ConnectDBTypeORM {
     appDataSource: DataSource;
 
-    constructor(entites: any) {
+    constructor(entites: any, migrations: any) {
         const { type, host, port, username, password, database } = this.validateParamEnv();
 
         if (Array.isArray(entites))
@@ -15,7 +15,8 @@ export class ConnectDBTypeORM {
                 username: username,
                 password: password,
                 database: database,
-                synchronize: true,
+                migrationsRun: true,
+                migrations: [...migrations],
                 entities: [...entites],
             });
         else
@@ -26,7 +27,8 @@ export class ConnectDBTypeORM {
                 username: username,
                 password: password,
                 database: database,
-                synchronize: true,
+                migrationsRun: true,
+                migrations: [migrations],
                 entities: [entites],
             });
     }
