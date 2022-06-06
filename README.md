@@ -37,7 +37,7 @@ app.ts: Componente responsavel por instanciar e compor todo o projeto.
 ## Configuration
 
 -   Exemple file .env:
-
+```
 TYPE=mysql
 HOST=localhost
 PORT=3306
@@ -48,3 +48,4 @@ DATABASE=test
 API=
 USERNAME_API=
 PASSWORD_API=
+```
