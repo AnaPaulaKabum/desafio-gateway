@@ -5,7 +5,7 @@ import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
 import { CancelTransaction } from '../../../../Usecases/Transaction/CancelTransaction';
-import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
+import { GatewayFake } from '../../../Mock/Gateway/Fake/GatewayFake';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 
@@ -20,7 +20,7 @@ describe('UseCase - CancelTransaction', () => {
     };
 
     beforeEach(() => {
-        const gateway = new GatewayMock();
+        const gateway = new GatewayFake();
         repositoryTransaction = new TransactionRepositoryMock();
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();

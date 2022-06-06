@@ -2,11 +2,11 @@ import { Mail } from '../../../../Infra/Mail/Mail';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
 import { SearchTransaction } from '../../../../Usecases/Transaction/SearchTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
+import { GatewayFake } from '../../../Mock/Gateway/Fake/GatewayFake';
 
 describe('UseCase - SearchTransaction', () => {
     let service: SearchTransaction;
@@ -16,7 +16,7 @@ describe('UseCase - SearchTransaction', () => {
     let searchTransactionDTO: SearchTransactionDTOType;
 
     beforeEach(() => {
-        const gateway = new GatewayMock();
+        const gateway = new GatewayFake();
         repositoryTransaction = new TransactionRepositoryMock();
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();

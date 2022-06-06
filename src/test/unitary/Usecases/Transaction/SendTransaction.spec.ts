@@ -5,11 +5,11 @@ import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
-import { configMock } from '../../../Mock/Gateway/configMock';
 import { SendTransaction } from '../../../../Usecases/Transaction/SendTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
+import { GatewayFake } from '../../../Mock/Gateway/Fake/GatewayFake';
+import { configFake } from '../../../Mock/Gateway/Fake/configFake';
 
 describe('UseCase - SendTransaction', () => {
     let service: SendTransaction;
@@ -19,11 +19,11 @@ describe('UseCase - SendTransaction', () => {
     let mail: IMail;
 
     beforeEach(() => {
-        const gateway = new GatewayMock();
+        const gateway = new GatewayFake();
         repositoryTransaction = new TransactionRepositoryMock();
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();
-        service = new SendTransaction(gateway, configMock(), repositoryTransaction, repositoryLog, mail);
+        service = new SendTransaction(gateway, configFake(), repositoryTransaction, repositoryLog, mail);
 
         transactionDTO = {
             numberRequest: 'pedido123',

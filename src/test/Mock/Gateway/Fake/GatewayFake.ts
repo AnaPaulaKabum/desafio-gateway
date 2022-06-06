@@ -1,16 +1,16 @@
-import { CancelTransactionDTOType } from '../../../Shared/DTO/CancelTransactionDTOType';
-import { CaptureTransactionDTOType } from '../../../Shared/DTO/CaptureTransactionDTOType';
-import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
-import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
-import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
-import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { SearchTransactionDTOType } from '../../../Shared/DTO/SearchTransactionDTOType';
-import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
-import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
-import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
+import { CancelTransactionDTOType } from '../../../../Shared/DTO/CancelTransactionDTOType';
+import { CaptureTransactionDTOType } from '../../../../Shared/DTO/CaptureTransactionDTOType';
+import { CancelOrderDTOType } from '../../../../Shared/DTO/Order/CancelOrderDTOType';
+import { CaptureOrderDTOType } from '../../../../Shared/DTO/Order/CaptureOrderDTOType';
+import { SearchTransactionOrderDTOType } from '../../../../Shared/DTO/Order/SearchTransactionOrderType';
+import { TransactionOrderDTOType } from '../../../../Shared/DTO/Order/TransactionOrderDTOType';
+import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
+import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
+import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { IGateways } from '../../../../Shared/Interfaces/Gateway/IGateways';
 
-export class GatewayMock implements IGateways {
+export class GatewayFake implements IGateways {
     sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType> {
         return new Promise(function (resolve) {
             resolve({

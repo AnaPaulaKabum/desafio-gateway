@@ -4,10 +4,10 @@ import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
 import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
 import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
 import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { GatewayMock } from '../../../Mock/Gateway/GatewayMock';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { CaptureTransaction } from '../../../../Usecases/Transaction/CaptureTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
+import { GatewayFake } from '../../../Mock/Gateway/Fake/GatewayFake';
 
 describe('UseCase - CaptureTransaction', () => {
     let service: CaptureTransaction;
@@ -18,7 +18,7 @@ describe('UseCase - CaptureTransaction', () => {
     let captureDTO: CaptureTransactionDTOType;
 
     beforeEach(() => {
-        gateway = new GatewayMock();
+        gateway = new GatewayFake();
         repositoryTransaction = new TransactionRepositoryMock();
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();
