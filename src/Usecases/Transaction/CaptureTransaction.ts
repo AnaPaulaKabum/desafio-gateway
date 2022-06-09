@@ -36,8 +36,8 @@ export class CaptureTransaction {
         }
     }
 
-    private async isValidToCapture(numberRequest: string): Promise<boolean> {
-        const status = await this.repositoryTransaction.searchStatus(numberRequest);
+    private async isValidToCapture(tid: string): Promise<boolean> {
+        const status = await this.repositoryTransaction.searchStatus(tid);
         return status === StatusTransaction.NO_CAPTURE;
     }
 }
