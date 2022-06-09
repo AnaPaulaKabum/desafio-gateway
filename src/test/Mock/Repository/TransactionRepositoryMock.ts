@@ -1,10 +1,10 @@
 import { CancelOrder } from '../../../Domain/Common/Transaction/CancelOrder';
 import { CaptureOrder } from '../../../Domain/Common/Transaction/CaptureOrder';
 import { TransactionOrder } from '../../../Domain/Common/Transaction/TransactionOrder';
-import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
-import { ITransactionRepository } from '../../../Shared/Interfaces/Repository/ITransitionRepository';
+import { TransactionOrderDTOType } from '../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
+import { StatusTransaction } from '../../../Domain/Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../Domain/Shared/Enum/TypeTransaction.enum';
+import { ITransactionRepository } from '../../../Domain/Shared/Interfaces/Repository/ITransitionRepository';
 
 export class TransactionRepositoryMock implements ITransactionRepository {
     searchStatus(numberRequest: string): Promise<StatusTransaction> {

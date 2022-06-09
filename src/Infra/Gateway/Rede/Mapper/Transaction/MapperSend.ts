@@ -1,8 +1,8 @@
 import { plainToInstance } from 'class-transformer';
-import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { StatusTransaction } from '../../../../../Domain/Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../../Domain/Shared/Enum/TypeTransaction.enum';
 import { SendTransitionResponse } from '../../Response/SendTransitionResponse';
-import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
+import { TransactionOrderDTOType } from '../../../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
 
 export class MapperSend {
     static toTransaction(Json: any, typeTransaction: TypeTransaction): TransactionOrderDTOType {

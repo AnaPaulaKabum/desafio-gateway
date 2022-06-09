@@ -1,15 +1,15 @@
-import { IGateways } from '../../Shared/Interfaces/Gateway/IGateways';
-import { IMail } from '../../Shared/Interfaces/Mail/IMail';
-import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
-import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITransitionRepository';
+import { IGateways } from '../../Domain/Shared/Interfaces/Gateway/IGateways';
+import { IMail } from '../../Domain/Shared/Interfaces/Mail/IMail';
+import { ILogRepository } from '../../Domain/Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../Domain/Shared/Interfaces/Repository/ITransitionRepository';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { TransactionOrder } from '../../Domain/Common/Transaction/TransactionOrder';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
-import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
-import { ParamValidateType } from '../../Shared/Interfaces/Gateway/ParamValidateType';
+import { TransactionDTOType } from '../../Domain/Shared/DTO/TransactionDTOType';
+import { ParamValidateType } from '../../Domain/Shared/Interfaces/Gateway/ParamValidateType';
 import { ValidateParam } from './Validate/ValidateParam';
-import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
+import { StatusTransaction } from '../../Domain/Shared/Enum/StatusTransaction';
 
 export class SendTransaction {
     constructor(

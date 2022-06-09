@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { CancelOrderDTOType } from '../../../../../Shared/DTO/Order/CancelOrderDTOType';
+import { CancelOrderDTOType } from '../../../../../Domain/Shared/DTO/Order/CancelOrderDTOType';
 import { ResponseAPICieloToReversal } from '../../Response/ReversalCieloTransactionResponse';
 
 export class MapperCancel {

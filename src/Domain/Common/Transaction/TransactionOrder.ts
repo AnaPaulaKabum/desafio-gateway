@@ -1,6 +1,6 @@
-import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
+import { TransactionOrderDTOType } from '../../Shared/DTO/Order/TransactionOrderDTOType';
+import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../Shared/Enum/TypeTransaction.enum';
 
 export class TransactionOrder {
     public id?: string;

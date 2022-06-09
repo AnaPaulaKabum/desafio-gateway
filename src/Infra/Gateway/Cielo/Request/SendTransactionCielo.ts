@@ -1,4 +1,4 @@
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { TypeTransaction } from '../../../../Domain/Shared/Enum/TypeTransaction.enum';
 import { BrandCard } from '../../../../Domain/Enum/BrandCard';
 import { Card } from '../../../../Domain/Entity/Transaction/Card';
 

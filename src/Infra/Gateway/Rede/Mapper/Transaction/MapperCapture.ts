@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { CaptureOrderDTOType } from '../../../../../Shared/DTO/Order/CaptureOrderDTOType';
+import { CaptureOrderDTOType } from '../../../../../Domain/Shared/DTO/Order/CaptureOrderDTOType';
 import { CaptureTransactionResponse } from '../../Response/CaptureTransactionResponse';
 
 export class MapperCapture {

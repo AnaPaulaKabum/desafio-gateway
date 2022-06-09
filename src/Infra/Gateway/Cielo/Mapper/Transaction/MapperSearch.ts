@@ -1,9 +1,9 @@
 import { plainToInstance } from 'class-transformer';
 import { SearchCieloTransactionResponse } from '../../Response/SearchCieloTransactionResponse';
-import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
-import { SearchTransactionOrderDTOType } from '../../../../../Shared/DTO/Order/SearchTransactionOrderType';
-import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { StatusTransaction } from '../../../../../Domain/Shared/Enum/StatusTransaction';
+import { SearchTransactionOrderDTOType } from '../../../../../Domain/Shared/DTO/Order/SearchTransactionOrderType';
+import { TransactionOrderDTOType } from '../../../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
+import { TypeTransaction } from '../../../../../Domain/Shared/Enum/TypeTransaction.enum';
 
 export class MapperSearch {
     private constructor() {}

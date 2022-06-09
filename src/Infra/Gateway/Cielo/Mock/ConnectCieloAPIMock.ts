@@ -1,8 +1,8 @@
-import { CancelTransactionDTOType } from '../../../../Shared/DTO/CancelTransactionDTOType';
-import { CaptureTransactionDTOType } from '../../../../Shared/DTO/CaptureTransactionDTOType';
-import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
-import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
+import { CancelTransactionDTOType } from '../../../../Domain/Shared/DTO/CancelTransactionDTOType';
+import { CaptureTransactionDTOType } from '../../../../Domain/Shared/DTO/CaptureTransactionDTOType';
+import { SearchTransactionDTOType } from '../../../../Domain/Shared/DTO/SearchTransactionDTOType';
+import { TransactionDTOType } from '../../../../Domain/Shared/DTO/TransactionDTOType';
+import { TypeTransaction } from '../../../../Domain/Shared/Enum/TypeTransaction.enum';
 import { IConnectCieloAPI } from '../Interface/IConnectCieloAPI';
 import { MapperCaptureTrasaction } from '../Mapper/Transaction/MapperCaptureTrasaction';
 import { MapperTransactionCielo } from '../Mapper/Transaction/MapperTransactionCielo';

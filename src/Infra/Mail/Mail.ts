@@ -1,4 +1,4 @@
-import { IMail } from '../../Shared/Interfaces/Mail/IMail';
+import { IMail } from '../../Domain/Shared/Interfaces/Mail/IMail';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 
 export class Mail implements IMail {

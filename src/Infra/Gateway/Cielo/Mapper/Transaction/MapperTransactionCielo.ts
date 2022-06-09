@@ -1,6 +1,6 @@
 import { Card } from '../../../../../Domain/Entity/Transaction/Card';
-import { TransactionDTOType } from '../../../../../Shared/DTO/TransactionDTOType';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { TransactionDTOType } from '../../../../../Domain/Shared/DTO/TransactionDTOType';
+import { TypeTransaction } from '../../../../../Domain/Shared/Enum/TypeTransaction.enum';
 import { SendTransactionCielo } from '../../Request/SendTransactionCielo';
 
 export class MapperTransactionCielo {

@@ -9,8 +9,8 @@ import { Transaction1654287924093 } from '../../../Infra/ConnectBD/TypeORM/Migra
 import { Capture1654513784257 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654513784257-Capture';
 import { Cancel1654518812859 } from '../../../Infra/ConnectBD/TypeORM/Migrate/1654518812859-Cancel';
 import { TransactionRepository } from '../../../Infra/ConnectBD/TypeORM/Repository/Transaction/TransactionRepository';
-import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';
+import { StatusTransaction } from '../../../Domain/Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../Domain/Shared/Enum/TypeTransaction.enum';
 
 let connect: ConnectDBTypeORM;
 let transctionRepository: TransactionRepository;

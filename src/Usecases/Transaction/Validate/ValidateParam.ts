@@ -1,5 +1,5 @@
-import { ParamValidateType } from '../../../Shared/Interfaces/Gateway/ParamValidateType';
-import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
+import { ParamValidateType } from '../../../Domain/Shared/Interfaces/Gateway/ParamValidateType';
+import { TransactionDTOType } from '../../../Domain/Shared/DTO/TransactionDTOType';
 
 export class ValidateParam {
     private constructor() {}

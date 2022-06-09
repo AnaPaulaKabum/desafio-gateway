@@ -1,9 +1,9 @@
 import { Mail } from '../../../../Infra/Mail/Mail';
-import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
-import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
-import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
-import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
+import { StatusTransaction } from '../../../../Domain/Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../Domain/Shared/Enum/TypeTransaction.enum';
+import { IMail } from '../../../../Domain/Shared/Interfaces/Mail/IMail';
+import { ILogRepository } from '../../../../Domain/Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../../../Domain/Shared/Interfaces/Repository/ITransitionRepository';
 import { CancelTransaction } from '../../../../Usecases/Transaction/CancelTransaction';
 import { GatewayFake } from '../../../Mock/Gateway/Fake/GatewayFake';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';

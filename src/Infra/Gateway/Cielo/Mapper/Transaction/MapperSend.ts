@@ -1,9 +1,9 @@
 import { plainToInstance } from 'class-transformer';
-import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
+import { TypeTransaction } from '../../../../../Domain/Shared/Enum/TypeTransaction.enum';
 import { SendCreditCieloTransitionResponse } from '../../Response/SendCreditCieloTransitionResponse';
 import { SendDebitTransitionResponse } from '../../Response/SendDebitTransitionResponse';
-import { TransactionOrderDTOType } from '../../../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
+import { TransactionOrderDTOType } from '../../../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
+import { StatusTransaction } from '../../../../../Domain/Shared/Enum/StatusTransaction';
 
 export class MapperSend {
     private constructor() {}

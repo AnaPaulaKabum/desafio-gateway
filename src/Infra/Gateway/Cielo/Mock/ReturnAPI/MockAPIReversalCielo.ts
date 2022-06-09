@@ -1,4 +1,4 @@
-import { CancelTransactionDTOType } from '../../../../../Shared/DTO/CancelTransactionDTOType';
+import { CancelTransactionDTOType } from '../../../../../Domain/Shared/DTO/CancelTransactionDTOType';
 
 export class MockAPIReversalCielo {
     private constructor() {}

@@ -1,7 +1,7 @@
-import { CancelTransactionDTOType } from '../../Shared/DTO/CancelTransactionDTOType';
-import { CaptureTransactionDTOType } from '../../Shared/DTO/CaptureTransactionDTOType';
-import { SearchTransactionDTOType } from '../../Shared/DTO/SearchTransactionDTOType';
-import { TransactionDTOType } from '../../Shared/DTO/TransactionDTOType';
+import { CancelTransactionDTOType } from '../../Domain/Shared/DTO/CancelTransactionDTOType';
+import { CaptureTransactionDTOType } from '../../Domain/Shared/DTO/CaptureTransactionDTOType';
+import { SearchTransactionDTOType } from '../../Domain/Shared/DTO/SearchTransactionDTOType';
+import { TransactionDTOType } from '../../Domain/Shared/DTO/TransactionDTOType';
 import { CancelRequest } from '../Request/CancelRequest';
 import { CaptureRequest } from '../Request/CaptureRequest';
 import { SearchRequest } from '../Request/SearchRequest';

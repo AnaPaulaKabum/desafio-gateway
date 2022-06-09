@@ -2,7 +2,7 @@ import { CancelRequest } from './Application/Request/CancelRequest';
 import { CaptureRequest } from './Application/Request/CaptureRequest';
 import { SearchRequest } from './Application/Request/SearchRequest';
 import { TransactionRequest } from './Application/Request/TransactionRequest';
-import { TypeTransaction } from './Shared/Enum/TypeTransaction.enum';
+import { TypeTransaction } from './Domain/Shared/Enum/TypeTransaction.enum';
 
 export class FakeTransaction {
     static createTransactionRequest() {

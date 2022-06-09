@@ -1,14 +1,14 @@
-import { CancelTransactionDTOType } from '../../../../Shared/DTO/CancelTransactionDTOType';
-import { CaptureTransactionDTOType } from '../../../../Shared/DTO/CaptureTransactionDTOType';
-import { CancelOrderDTOType } from '../../../../Shared/DTO/Order/CancelOrderDTOType';
-import { CaptureOrderDTOType } from '../../../../Shared/DTO/Order/CaptureOrderDTOType';
-import { SearchTransactionOrderDTOType } from '../../../../Shared/DTO/Order/SearchTransactionOrderType';
-import { TransactionOrderDTOType } from '../../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
-import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
-import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
-import { IGateways } from '../../../../Shared/Interfaces/Gateway/IGateways';
+import { CancelTransactionDTOType } from '../../../../Domain/Shared/DTO/CancelTransactionDTOType';
+import { CaptureTransactionDTOType } from '../../../../Domain/Shared/DTO/CaptureTransactionDTOType';
+import { CancelOrderDTOType } from '../../../../Domain/Shared/DTO/Order/CancelOrderDTOType';
+import { CaptureOrderDTOType } from '../../../../Domain/Shared/DTO/Order/CaptureOrderDTOType';
+import { SearchTransactionOrderDTOType } from '../../../../Domain/Shared/DTO/Order/SearchTransactionOrderType';
+import { TransactionOrderDTOType } from '../../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
+import { SearchTransactionDTOType } from '../../../../Domain/Shared/DTO/SearchTransactionDTOType';
+import { TransactionDTOType } from '../../../../Domain/Shared/DTO/TransactionDTOType';
+import { StatusTransaction } from '../../../../Domain/Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../Domain/Shared/Enum/TypeTransaction.enum';
+import { IGateways } from '../../../../Domain/Shared/Interfaces/Gateway/IGateways';
 
 export class GatewayFake implements IGateways {
     sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType> {

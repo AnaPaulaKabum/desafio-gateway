@@ -1,7 +1,7 @@
 import { CancelRequest } from '../../../../Application/Request/CancelRequest';
-import { CaptureTransactionDTOType } from '../../../../Shared/DTO/CaptureTransactionDTOType';
-import { SearchTransactionDTOType } from '../../../../Shared/DTO/SearchTransactionDTOType';
-import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
+import { CaptureTransactionDTOType } from '../../../../Domain/Shared/DTO/CaptureTransactionDTOType';
+import { SearchTransactionDTOType } from '../../../../Domain/Shared/DTO/SearchTransactionDTOType';
+import { TransactionDTOType } from '../../../../Domain/Shared/DTO/TransactionDTOType';
 
 export interface IConnectCieloAPI {
     sendTransaction(transaction: TransactionDTOType): Promise<any>;

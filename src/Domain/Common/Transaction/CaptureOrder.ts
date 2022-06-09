@@ -1,4 +1,4 @@
-import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
+import { CaptureOrderDTOType } from '../../Shared/DTO/Order/CaptureOrderDTOType';
 
 export class CaptureOrder {
     public id;

@@ -1,4 +1,4 @@
-import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
+import { CancelOrderDTOType } from '../../Shared/DTO/Order/CancelOrderDTOType';
 
 export class CancelOrder {
     public id;

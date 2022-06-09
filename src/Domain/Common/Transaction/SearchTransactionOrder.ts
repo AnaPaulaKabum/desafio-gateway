@@ -1,5 +1,5 @@
 import { TransactionOrder } from './TransactionOrder';
-import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
+import { SearchTransactionOrderDTOType } from '../../Shared/DTO/Order/SearchTransactionOrderType';
 
 export class SearchTransactionOrder {
     private _captureAmount: number;

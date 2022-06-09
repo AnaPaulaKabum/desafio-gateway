@@ -1,5 +1,5 @@
 import { Log } from './Log';
-import { StatusLog } from '../../../Shared/Enum/StatusLog';
+import { StatusLog } from '../../Shared/Enum/StatusLog';
 
 export class LogFactory {
     private constructor() {}

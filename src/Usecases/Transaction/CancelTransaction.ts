@@ -1,14 +1,14 @@
-import { IGateways } from '../../Shared/Interfaces/Gateway/IGateways';
-import { IMail } from '../../Shared/Interfaces/Mail/IMail';
-import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
-import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
-import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITransitionRepository';
+import { IGateways } from '../../Domain/Shared/Interfaces/Gateway/IGateways';
+import { IMail } from '../../Domain/Shared/Interfaces/Mail/IMail';
+import { StatusTransaction } from '../../Domain/Shared/Enum/StatusTransaction';
+import { ILogRepository } from '../../Domain/Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../Domain/Shared/Interfaces/Repository/ITransitionRepository';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CancelOrder } from '../../Domain/Common/Transaction/CancelOrder';
-import { CancelTransactionDTOType } from '../../Shared/DTO/CancelTransactionDTOType';
-import { TransactionOrderDTOType } from '../../Shared/DTO/Order/TransactionOrderDTOType';
+import { CancelTransactionDTOType } from '../../Domain/Shared/DTO/CancelTransactionDTOType';
+import { TransactionOrderDTOType } from '../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
 
 export class CancelTransaction {
     constructor(

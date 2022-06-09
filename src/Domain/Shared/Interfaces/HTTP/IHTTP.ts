@@ -1,4 +1,4 @@
-import { ResponseAPI } from '../../../Infra/HTTP/AXIOS/ResponseAPI';
+import { ResponseAPI } from '../../../../Infra/HTTP/AXIOS/ResponseAPI';
 
 export interface IHTTP {
     setBaseUrl(baseUrl: string);

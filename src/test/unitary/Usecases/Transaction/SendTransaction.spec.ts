@@ -1,10 +1,10 @@
 import { Mail } from '../../../../Infra/Mail/Mail';
-import { TransactionDTOType } from '../../../../Shared/DTO/TransactionDTOType';
-import { StatusTransaction } from '../../../../Shared/Enum/StatusTransaction';
-import { TypeTransaction } from '../../../../Shared/Enum/TypeTransaction.enum';
-import { IMail } from '../../../../Shared/Interfaces/Mail/IMail';
-import { ILogRepository } from '../../../../Shared/Interfaces/Repository/ILogRepository';
-import { ITransactionRepository } from '../../../../Shared/Interfaces/Repository/ITransitionRepository';
+import { TransactionDTOType } from '../../../../Domain/Shared/DTO/TransactionDTOType';
+import { StatusTransaction } from '../../../../Domain/Shared/Enum/StatusTransaction';
+import { TypeTransaction } from '../../../../Domain/Shared/Enum/TypeTransaction.enum';
+import { IMail } from '../../../../Domain/Shared/Interfaces/Mail/IMail';
+import { ILogRepository } from '../../../../Domain/Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../../../Domain/Shared/Interfaces/Repository/ITransitionRepository';
 import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { SendTransaction } from '../../../../Usecases/Transaction/SendTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';

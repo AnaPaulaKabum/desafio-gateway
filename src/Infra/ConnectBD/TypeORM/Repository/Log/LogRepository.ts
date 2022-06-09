@@ -1,4 +1,4 @@
-import { ILogRepository } from '../../../../../Shared/Interfaces/Repository/ILogRepository';
+import { ILogRepository } from '../../../../../Domain/Shared/Interfaces/Repository/ILogRepository';
 import { Log } from '../../../../../Domain/Entity/Log/Log';
 import { Repository } from 'typeorm';
 import { LogEntity } from '../../Entity/LogEntity';

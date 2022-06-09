@@ -1,17 +1,17 @@
-import { IGateways } from '../../../Shared/Interfaces/Gateway/IGateways';
+import { IGateways } from '../../../Domain/Shared/Interfaces/Gateway/IGateways';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
-import { TransactionDTOType } from '../../../Shared/DTO/TransactionDTOType';
+import { TransactionDTOType } from '../../../Domain/Shared/DTO/TransactionDTOType';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
-import { CaptureTransactionDTOType } from '../../../Shared/DTO/CaptureTransactionDTOType';
-import { SearchTransactionDTOType } from '../../../Shared/DTO/SearchTransactionDTOType';
-import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
-import { CaptureOrderDTOType } from '../../../Shared/DTO/Order/CaptureOrderDTOType';
-import { CancelOrderDTOType } from '../../../Shared/DTO/Order/CancelOrderDTOType';
-import { SearchTransactionOrderDTOType } from '../../../Shared/DTO/Order/SearchTransactionOrderType';
-import { CancelTransactionDTOType } from '../../../Shared/DTO/CancelTransactionDTOType';
-import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
+import { CaptureTransactionDTOType } from '../../../Domain/Shared/DTO/CaptureTransactionDTOType';
+import { SearchTransactionDTOType } from '../../../Domain/Shared/DTO/SearchTransactionDTOType';
+import { TransactionOrderDTOType } from '../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
+import { CaptureOrderDTOType } from '../../../Domain/Shared/DTO/Order/CaptureOrderDTOType';
+import { CancelOrderDTOType } from '../../../Domain/Shared/DTO/Order/CancelOrderDTOType';
+import { SearchTransactionOrderDTOType } from '../../../Domain/Shared/DTO/Order/SearchTransactionOrderType';
+import { CancelTransactionDTOType } from '../../../Domain/Shared/DTO/CancelTransactionDTOType';
+import { IHTTP } from '../../../Domain/Shared/Interfaces/HTTP/IHTTP';
 import { translateErrorCodeAPI } from './RedeStatusCodeLibrary';
 
 export class GatewayRedeAdapter implements IGateways {

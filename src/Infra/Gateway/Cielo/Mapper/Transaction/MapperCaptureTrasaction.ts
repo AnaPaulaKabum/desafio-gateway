@@ -1,4 +1,4 @@
-import { CaptureTransactionDTOType } from '../../../../../Shared/DTO/CaptureTransactionDTOType';
+import { CaptureTransactionDTOType } from '../../../../../Domain/Shared/DTO/CaptureTransactionDTOType';
 import { TransactionCieloCaptureRequest } from '../../Request/TransactionCieloCaptureRequest';
 
 export class MapperCaptureTrasaction {

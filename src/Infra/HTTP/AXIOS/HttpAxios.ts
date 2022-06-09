@@ -1,4 +1,4 @@
-import { IHTTP } from '../../../Shared/Interfaces/HTTP/IHTTP';
+import { IHTTP } from '../../../Domain/Shared/Interfaces/HTTP/IHTTP';
 import axios from 'axios';
 import { ResponseAPI } from './ResponseAPI';
 

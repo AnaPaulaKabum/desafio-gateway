@@ -1,13 +1,13 @@
-import { IGateways } from '../../Shared/Interfaces/Gateway/IGateways';
-import { IMail } from '../../Shared/Interfaces/Mail/IMail';
-import { StatusTransaction } from '../../Shared/Enum/StatusTransaction';
-import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
-import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITransitionRepository';
+import { IGateways } from '../../Domain/Shared/Interfaces/Gateway/IGateways';
+import { IMail } from '../../Domain/Shared/Interfaces/Mail/IMail';
+import { StatusTransaction } from '../../Domain/Shared/Enum/StatusTransaction';
+import { ILogRepository } from '../../Domain/Shared/Interfaces/Repository/ILogRepository';
+import { ITransactionRepository } from '../../Domain/Shared/Interfaces/Repository/ITransitionRepository';
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { CaptureOrder } from '../../Domain/Common/Transaction/CaptureOrder';
-import { CaptureTransactionDTOType } from '../../Shared/DTO/CaptureTransactionDTOType';
+import { CaptureTransactionDTOType } from '../../Domain/Shared/DTO/CaptureTransactionDTOType';
 
 export class CaptureTransaction {
     constructor(

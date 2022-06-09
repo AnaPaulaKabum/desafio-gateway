@@ -1,4 +1,4 @@
-import { TypeTransaction } from '../../Shared/Enum/TypeTransaction.enum';
+import { TypeTransaction } from '../../Domain/Shared/Enum/TypeTransaction.enum';
 
 export class TransactionRequest {
     constructor(
