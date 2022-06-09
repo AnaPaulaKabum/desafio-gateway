@@ -1,8 +1,8 @@
 import { PaymentGatewaysController } from "../../../Application/Controller/PaymentGatewaysController";
-import { CancelOrder } from "../../../Domain/Entity/Transaction/CancelOrder";
-import { CaptureOrder } from "../../../Domain/Entity/Transaction/CaptureOrder";
-import { SearchTransactionOrder } from "../../../Domain/Entity/Transaction/SearchTransactionOrder";
-import { TransactionOrder } from "../../../Domain/Entity/Transaction/TransactionOrder";
+import { CancelOrder } from "../../../Domain/Common/Transaction/CancelOrder";
+import { CaptureOrder } from "../../../Domain/Common/Transaction/CaptureOrder";
+import { SearchTransactionOrder } from "../../../Domain/Common/Transaction/SearchTransactionOrder";
+import { TransactionOrder } from "../../../Domain/Common/Transaction/TransactionOrder";
 import { FakeTransaction } from "../../../FakeTransaction";
 import { ConnectDBTypeORM } from "../../../Infra/ConnectBD/TypeORM/ConnectDBTypeORM";
 import { CancelOrderEntity } from "../../../Infra/ConnectBD/TypeORM/Entity/CancelOrderEntity";

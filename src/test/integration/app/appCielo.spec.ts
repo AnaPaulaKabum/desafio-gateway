@@ -1,8 +1,8 @@
 import { APP } from '../../../app';
-import { SearchTransactionOrder } from '../../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
-import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
+import { SearchTransactionOrder } from '../../../Domain/Common/Transaction/SearchTransactionOrder';
+import { TransactionOrder } from '../../../Domain/Common/Transaction/TransactionOrder';
+import { CancelOrder } from '../../../Domain/Common/Transaction/CancelOrder';
+import { CaptureOrder } from '../../../Domain/Common/Transaction/CaptureOrder';
 
 const gatewayUses = 2; //1-Rede 2- Cielo
 

@@ -1,4 +1,4 @@
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { CaptureOrder } from '../../../../../Domain/Common/Transaction/CaptureOrder';
 
 type SutTypes = {
     numberRequest: string;

@@ -6,7 +6,7 @@ import { ITransactionRepository } from '../../Shared/Interfaces/Repository/ITran
 import { FieldMail } from '../../Domain/Entity/Mail/FieldMail';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
-import { CancelOrder } from '../../Domain/Entity/Transaction/CancelOrder';
+import { CancelOrder } from '../../Domain/Common/Transaction/CancelOrder';
 import { CancelTransactionDTOType } from '../../Shared/DTO/CancelTransactionDTOType';
 import { TransactionOrderDTOType } from '../../Shared/DTO/Order/TransactionOrderDTOType';
 

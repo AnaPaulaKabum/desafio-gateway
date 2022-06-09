@@ -1,10 +1,10 @@
 import { EntityManager } from 'typeorm';
 import { StatusTransaction } from '../../../../../Shared/Enum/StatusTransaction';
 import { ITransactionRepository } from '../../../../../Shared/Interfaces/Repository/ITransitionRepository';
-import { TransactionOrder } from '../../../../../Domain/Entity/Transaction/TransactionOrder';
+import { TransactionOrder } from '../../../../../Domain/Common/Transaction/TransactionOrder';
 import { TypeTransaction } from '../../../../../Shared/Enum/TypeTransaction.enum';
-import { CancelOrder } from '../../../../../Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from '../../../../../Domain/Entity/Transaction/CaptureOrder';
+import { CancelOrder } from '../../../../../Domain/Common/Transaction/CancelOrder';
+import { CaptureOrder } from '../../../../../Domain/Common/Transaction/CaptureOrder';
 import { TransactionOrderEntity } from '../../Entity/TransactionOrderEntity';
 import { CaptureOrderEntity } from '../../Entity/CaptureOrderEntity';
 import { CancelOrderRepository } from './Order/CancelOrderRepository';

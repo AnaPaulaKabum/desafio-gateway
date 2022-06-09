@@ -1,6 +1,6 @@
-import { CancelOrder } from '../../../Domain/Entity/Transaction/CancelOrder';
-import { CaptureOrder } from '../../../Domain/Entity/Transaction/CaptureOrder';
-import { TransactionOrder } from '../../../Domain/Entity/Transaction/TransactionOrder';
+import { CancelOrder } from '../../../Domain/Common/Transaction/CancelOrder';
+import { CaptureOrder } from '../../../Domain/Common/Transaction/CaptureOrder';
+import { TransactionOrder } from '../../../Domain/Common/Transaction/TransactionOrder';
 import { TransactionOrderDTOType } from '../../../Shared/DTO/Order/TransactionOrderDTOType';
 import { StatusTransaction } from '../../../Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../Shared/Enum/TypeTransaction.enum';

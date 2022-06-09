@@ -2,7 +2,7 @@ import { IGateways } from '../../Shared/Interfaces/Gateway/IGateways';
 import { ILogRepository } from '../../Shared/Interfaces/Repository/ILogRepository';
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
-import { SearchTransactionOrder } from '../../Domain/Entity/Transaction/SearchTransactionOrder';
+import { SearchTransactionOrder } from '../../Domain/Common/Transaction/SearchTransactionOrder';
 import { SearchTransactionDTOType } from '../../Shared/DTO/SearchTransactionDTOType';
 
 export class SearchTransaction {

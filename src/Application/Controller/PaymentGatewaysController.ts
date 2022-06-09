@@ -2,10 +2,10 @@ import { CancelTransaction } from '../../Usecases/Transaction/CancelTransaction'
 import { CaptureTransaction } from '../../Usecases/Transaction/CaptureTransaction';
 import { SearchTransaction } from '../../Usecases/Transaction/SearchTransaction';
 import { SendTransaction } from '../../Usecases/Transaction/SendTransaction';
-import { TransactionOrder } from '../../Domain/Entity/Transaction/TransactionOrder';
-import { SearchTransactionOrder } from '../../Domain/Entity/Transaction/SearchTransactionOrder';
-import { CaptureOrder } from '../../Domain/Entity/Transaction/CaptureOrder';
-import { CancelOrder } from '../../Domain/Entity/Transaction/CancelOrder';
+import { TransactionOrder } from '../../Domain/Common/Transaction/TransactionOrder';
+import { SearchTransactionOrder } from '../../Domain/Common/Transaction/SearchTransactionOrder';
+import { CaptureOrder } from '../../Domain/Common/Transaction/CaptureOrder';
+import { CancelOrder } from '../../Domain/Common/Transaction/CancelOrder';
 import { TransactionRequest } from '../Request/TransactionRequest';
 import { FactoryDTO } from '../Factory/FactoryDTO';
 import { SearchRequest } from '../Request/SearchRequest';
