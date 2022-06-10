@@ -1,4 +1,4 @@
-import { HolderNameCard } from '../../../../../Domain/Entity/Transaction/ValueObject/Card/HolderNameCard';
+import { HolderNameCard } from '../../../../../Domain/ValueObject/Card/HolderNameCard';
 
 describe('HolderNameCard', () => {
     test('Should return error if cardHolderName invalid', () => {

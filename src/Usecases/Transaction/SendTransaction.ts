@@ -7,13 +7,12 @@ import { TransactionOrder } from '../../Domain/Common/Transaction/TransactionOrd
 import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { TransactionDTOType } from '../../Domain/Shared/DTO/TransactionDTOType';
-import { ParamValidateType } from '../../Domain/Shared/Interfaces/Gateway/ParamValidateType';
 import { StatusTransaction } from '../../Domain/Shared/Enum/StatusTransaction';
 import { Transaction } from '../../Domain/Entity/Transaction/Transaction';
-import { NumberRequest } from '../../Domain/Entity/Transaction/ValueObject/Transaction/NumberRequest';
-import { Installments } from '../../Domain/Entity/Transaction/ValueObject/Transaction/Installments';
-import { Amount } from '../../Domain/Entity/Transaction/ValueObject/Transaction/Amount';
-import { SoftDescriptor } from '../../Domain/Entity/Transaction/ValueObject/Transaction/SoftDescriptor';
+import { NumberRequest } from '../../Domain/ValueObject/Transaction/NumberRequest';
+import { Installments } from '../../Domain/ValueObject/Transaction/Installments';
+import { Amount } from '../../Domain/ValueObject/Transaction/Amount';
+import { SoftDescriptor } from '../../Domain/ValueObject/Transaction/SoftDescriptor';
 
 export class SendTransaction {
     constructor(

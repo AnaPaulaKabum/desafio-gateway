@@ -1,4 +1,4 @@
-import { NumberRequest } from '../../../../../Domain/Entity/Transaction/ValueObject/Transaction/NumberRequest';
+import { NumberRequest } from '../../../../../Domain/ValueObject/Transaction/NumberRequest';
 
 describe('NumberRequest- isValidSend', () => {
     test('Should return error if numberRequest > max_length', () => {

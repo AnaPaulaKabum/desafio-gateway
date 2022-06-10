@@ -1,4 +1,4 @@
-import { Installments } from '../../../../../Domain/Entity/Transaction/ValueObject/Transaction/Installments';
+import { Installments } from '../../../../../Domain/ValueObject/Transaction/Installments';
 
 describe('Installments', () => {
     test('Should return error if installments in < 0', () => {

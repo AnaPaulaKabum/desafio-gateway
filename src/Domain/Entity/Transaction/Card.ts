@@ -1,9 +1,9 @@
 import { BrandCard } from '../../Enum/BrandCard';
-import { ExpirationMonthCard } from './ValueObject/Card/ExpirationMonthCard';
-import { ExpirationYearCard } from './ValueObject/Card/ExpirationYearCard';
-import { NameCard } from './ValueObject/Card/NameCard';
-import { NumberCard } from './ValueObject/Card/NumberCard';
-import { SecurityCode } from './ValueObject/Card/SecurityCode';
+import { ExpirationMonthCard } from '../../ValueObject/Card/ExpirationMonthCard';
+import { ExpirationYearCard } from '../../ValueObject/Card/ExpirationYearCard';
+import { NameCard } from '../../ValueObject/Card/NameCard';
+import { NumberCard } from '../../ValueObject/Card/NumberCard';
+import { SecurityCode } from '../../ValueObject/Card/SecurityCode';
 
 export class Card {
     private readonly _number: NumberCard;

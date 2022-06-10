@@ -1,4 +1,4 @@
-import { SoftDescriptor } from '../../../../../Domain/Entity/Transaction/ValueObject/Transaction/SoftDescriptor';
+import { SoftDescriptor } from '../../../../../Domain/ValueObject/Transaction/SoftDescriptor';
 
 describe('SoftDescriptor', () => {
     test('Should return error if softDescriptor invalid', () => {

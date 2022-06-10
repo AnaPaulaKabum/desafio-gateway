@@ -1,4 +1,4 @@
-import { Amount } from '../../../../../Domain/Entity/Transaction/ValueObject/Transaction/Amount';
+import { Amount } from '../../../../../Domain/ValueObject/Transaction/Amount';
 
 describe('Amount', () => {
     test('Should return error if amount invalid', () => {
