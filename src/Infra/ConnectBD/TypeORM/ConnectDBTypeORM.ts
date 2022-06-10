@@ -57,7 +57,7 @@ export class ConnectDBTypeORM {
         await this.appDataSource.initialize();
     }
 
-    async getRepository(name: string) {
+    getRepository(name: string) {
         const repository = this.appDataSource.getRepository(name);
         return repository;
     }
@@ -67,8 +67,18 @@ export class ConnectDBTypeORM {
     }
 
     async clearTable(tableName: string) {
-        const repository = await this.getRepository(tableName);
-        await repository.query(`DELETE FROM ${tableName}`);
+        if (this.appDataSource.isInitialized) {
+            const repository = this.getRepository(tableName);
+            await repository.query(`DELETE FROM ${tableName}`);
+        }
+    }
+
+    async clearTableAll() {
+        const entities = this.appDataSource.entityMetadatas;
+
+        entities.forEach(async (entity) => {
+            await this.clearTable(entity.tableName);
+        });
     }
 }
 
