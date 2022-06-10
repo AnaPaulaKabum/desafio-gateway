@@ -7,4 +7,8 @@ export class Amount {
             throw new Error('Amount deverá ter menos ' + this.amount_MAX + ' caracteres');
         }
     }
+
+    get value(): string {
+        return this._value;
+    }
 }
