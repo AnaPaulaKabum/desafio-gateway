@@ -13,6 +13,7 @@ import { NumberRequest } from '../../Domain/ValueObject/Transaction/NumberReques
 import { Installments } from '../../Domain/ValueObject/Transaction/Installments';
 import { Amount } from '../../Domain/ValueObject/Transaction/Amount';
 import { SoftDescriptor } from '../../Domain/ValueObject/Transaction/SoftDescriptor';
+import { Card } from '../../Domain/Entity/Transaction/Card';
 
 export class SendTransaction {
     constructor(
@@ -29,6 +30,14 @@ export class SendTransaction {
                 new Installments(transactionDto.installments),
                 new Amount(transactionDto.amount),
                 new SoftDescriptor(transactionDto.softDescriptor),
+                transactionDto.kind,
+                new Card(
+                    transactionDto.cardNumber,
+                    transactionDto.cardHolderName,
+                    transactionDto.expirationMonth,
+                    transactionDto.expirationYear,
+                    transactionDto.cardSecurityCode,
+                ),
             );
 
             if (await this.isValidToSend(transaction.numberRequest.value)) {
