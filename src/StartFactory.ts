@@ -15,7 +15,6 @@ import { CancelTransaction } from './Usecases/Transaction/CancelTransaction';
 
 export class StartFactory {
     static async transactionServices(gatewayUses: number, testAPI: boolean) {
-        console.log('dir: ' + __dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js');
         const connect = new ConnectDBTypeORM(
             __dirname + '/Infra/ConnectBD/TypeORM/Entity/*.js',
             __dirname + '/Infra/ConnectBD/TypeORM/Migrate/*.js',
@@ -40,7 +39,7 @@ export class StartFactory {
                 if (!password) throw new Error('Favor password o campo API do .env');
                 http.setAuth(username, password);
                 gateway = new GatewayRedeAdapter(http);
-            } // else conectAPIRede = new ConnectRedeAPIMock();
+            }
         } else {
             const conectAPICielo = new ConnectCieloAPIMock();
             gateway = new GatewayCieloAdapter(conectAPICielo);

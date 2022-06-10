@@ -2,7 +2,6 @@ import { IGateways } from '../../../Domain/Shared/Interfaces/Gateway/IGateways';
 import { MapperSend } from './Mapper/Transaction/MapperSend';
 import { MapperSearch } from './Mapper/Transaction/MapperSearch';
 import { MapperCapture } from './Mapper/Transaction/MapperCapture';
-import { TransactionDTOType } from '../../../Domain/Shared/DTO/TransactionDTOType';
 import { MapperCancel } from './Mapper/Transaction/MapperCancel';
 import { CaptureTransactionDTOType } from '../../../Domain/Shared/DTO/CaptureTransactionDTOType';
 import { SearchTransactionDTOType } from '../../../Domain/Shared/DTO/SearchTransactionDTOType';
@@ -13,29 +12,30 @@ import { SearchTransactionOrderDTOType } from '../../../Domain/Shared/DTO/Order/
 import { CancelTransactionDTOType } from '../../../Domain/Shared/DTO/CancelTransactionDTOType';
 import { IHTTP } from '../../../Domain/Shared/Interfaces/HTTP/IHTTP';
 import { translateErrorCodeAPI } from './RedeStatusCodeLibrary';
+import { Transaction } from '../../../Domain/Entity/Transaction/Transaction';
 
 export class GatewayRedeAdapter implements IGateways {
     constructor(private readonly http: IHTTP) {}
 
-    async sendTransaction(transactionDTO: TransactionDTOType): Promise<TransactionOrderDTOType> {
+    async sendTransaction(transaction: Transaction): Promise<TransactionOrderDTOType> {
         const endpoint = '/v1/transactions/';
         const data = {
-            kind: transactionDTO.kind,
-            reference: transactionDTO.numberRequest,
-            amount: transactionDTO.amount,
-            installments: transactionDTO.installments,
-            cardholderName: transactionDTO.cardHolderName,
-            cardNumber: transactionDTO.cardNumber,
-            expirationMonth: transactionDTO.expirationMonth,
-            expirationYear: transactionDTO.expirationYear,
-            securityCode: transactionDTO.cardSecurityCode,
-            softDescriptor: transactionDTO.softDescriptor,
+            kind: transaction.kind,
+            reference: transaction.numberRequest.value,
+            amount: transaction.amount.value,
+            installments: transaction.installments.value,
+            cardholderName: transaction.card.name,
+            cardNumber: transaction.card.number,
+            expirationMonth: transaction.card.expirationMonth,
+            expirationYear: transaction.card.expirationYear,
+            securityCode: transaction.card.securityCode,
+            softDescriptor: transaction.softDescriptor.value,
         };
         const returnAPI = await this.http.post(endpoint, data);
 
         if (returnAPI.isSuccess)
             return new Promise(function (resolve) {
-                resolve(MapperSend.toTransaction(returnAPI.getValue(), transactionDTO.kind));
+                resolve(MapperSend.toTransaction(returnAPI.getValue(), transaction.kind));
             });
 
         throw new Error(translateErrorCodeAPI(returnAPI.error.returnCode));

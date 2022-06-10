@@ -7,7 +7,7 @@ import { TypeTransaction } from './Domain/Shared/Enum/TypeTransaction.enum';
 export class FakeTransaction {
     static createTransactionRequest() {
         let transactionDTO = new TransactionRequest(
-            'pedido130',
+            'pedido131',
             TypeTransaction.CREDIT,
             '2099',
             2,

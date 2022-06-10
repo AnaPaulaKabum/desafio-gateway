@@ -15,26 +15,27 @@ import { MockAPICancelRede } from './ReturnAPI/MockAPICancelRede';
 import { MockAPICaptureRede } from './ReturnAPI/MockAPICaptureRede';
 import { MockAPISearchRede } from './ReturnAPI/MockAPISearchRede';
 import { MockAPISendRede } from './ReturnAPI/MockAPISendRede';
+import { Transaction } from '../../../../Domain/Entity/Transaction/Transaction';
 
 export class GatewayRedeMock implements IGateways {
-    async sendTransaction(transactionDTO: TransactionDTOType): Promise<TransactionOrderDTOType> {
+    async sendTransaction(transaction: Transaction): Promise<TransactionOrderDTOType> {
         const data = {
-            kind: transactionDTO.kind,
-            reference: transactionDTO.numberRequest,
-            amount: transactionDTO.amount,
-            installments: transactionDTO.installments,
-            cardholderName: transactionDTO.cardHolderName,
-            cardNumber: transactionDTO.cardNumber,
-            expirationMonth: transactionDTO.expirationMonth,
-            expirationYear: transactionDTO.expirationYear,
-            securityCode: transactionDTO.cardSecurityCode,
-            softDescriptor: transactionDTO.softDescriptor,
+            kind: transaction.kind,
+            reference: transaction.numberRequest.value,
+            amount: transaction.amount.value,
+            installments: transaction.installments.value,
+            cardholderName: transaction.card.name,
+            cardNumber: transaction.card.number,
+            expirationMonth: transaction.card.expirationMonth,
+            expirationYear: transaction.card.expirationYear,
+            securityCode: transaction.card.securityCode,
+            softDescriptor: transaction.softDescriptor.value,
         };
 
         const returnAPI = await MockAPISendRede.send(data);
 
         return new Promise(function (resolve) {
-            resolve(MapperSend.toTransaction(returnAPI, transactionDTO.kind));
+            resolve(MapperSend.toTransaction(returnAPI, transaction.kind));
         });
     }
     async searchTransaction(searchRequest: SearchTransactionDTOType): Promise<SearchTransactionOrderDTOType> {

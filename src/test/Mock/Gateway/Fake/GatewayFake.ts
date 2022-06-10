@@ -1,3 +1,4 @@
+import { Transaction } from '../../../../Domain/Entity/Transaction/Transaction';
 import { CancelTransactionDTOType } from '../../../../Domain/Shared/DTO/CancelTransactionDTOType';
 import { CaptureTransactionDTOType } from '../../../../Domain/Shared/DTO/CaptureTransactionDTOType';
 import { CancelOrderDTOType } from '../../../../Domain/Shared/DTO/Order/CancelOrderDTOType';
@@ -5,13 +6,12 @@ import { CaptureOrderDTOType } from '../../../../Domain/Shared/DTO/Order/Capture
 import { SearchTransactionOrderDTOType } from '../../../../Domain/Shared/DTO/Order/SearchTransactionOrderType';
 import { TransactionOrderDTOType } from '../../../../Domain/Shared/DTO/Order/TransactionOrderDTOType';
 import { SearchTransactionDTOType } from '../../../../Domain/Shared/DTO/SearchTransactionDTOType';
-import { TransactionDTOType } from '../../../../Domain/Shared/DTO/TransactionDTOType';
 import { StatusTransaction } from '../../../../Domain/Shared/Enum/StatusTransaction';
 import { TypeTransaction } from '../../../../Domain/Shared/Enum/TypeTransaction.enum';
 import { IGateways } from '../../../../Domain/Shared/Interfaces/Gateway/IGateways';
 
 export class GatewayFake implements IGateways {
-    sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType> {
+    sendTransaction(transaction: Transaction): Promise<TransactionOrderDTOType> {
         return new Promise(function (resolve) {
             resolve({
                 numberRequest: '100',

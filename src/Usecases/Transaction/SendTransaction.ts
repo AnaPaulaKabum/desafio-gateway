@@ -41,7 +41,7 @@ export class SendTransaction {
             );
 
             if (await this.isValidToSend(transaction.numberRequest.value)) {
-                const transactionDTO = await this.gateway.sendTransaction(transactionDto);
+                const transactionDTO = await this.gateway.sendTransaction(transaction);
 
                 const transactionOrder = TransactionOrder.createForDTO(transactionDTO);
                 await this.repositoryTransaction.saveTransaction(transactionOrder);

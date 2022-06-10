@@ -9,7 +9,6 @@ import { LogRepositoryMock } from '../../../Mock/Repository/LogRepositoryMock';
 import { SendTransaction } from '../../../../Usecases/Transaction/SendTransaction';
 import { TransactionRepositoryMock } from '../../../Mock/Repository/TransactionRepositoryMock';
 import { GatewayFake } from '../../../Mock/Gateway/Fake/GatewayFake';
-import { configFake } from '../../../Mock/Gateway/Fake/configFake';
 
 describe('UseCase - SendTransaction', () => {
     let service: SendTransaction;
