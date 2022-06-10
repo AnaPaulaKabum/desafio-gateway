@@ -3,6 +3,8 @@ import { CancelOrder } from "../../../Domain/Common/Transaction/CancelOrder";
 import { CaptureOrder } from "../../../Domain/Common/Transaction/CaptureOrder";
 import { SearchTransactionOrder } from "../../../Domain/Common/Transaction/SearchTransactionOrder";
 import { TransactionOrder } from "../../../Domain/Common/Transaction/TransactionOrder";
+import { StatusTransaction } from "../../../Domain/Shared/Enum/StatusTransaction";
+import { TypeTransaction } from "../../../Domain/Shared/Enum/TypeTransaction.enum";
 import { FakeTransaction } from "../../../FakeTransaction";
 import { ConnectDBTypeORM } from "../../../Infra/ConnectBD/TypeORM/ConnectDBTypeORM";
 import { CancelOrderEntity } from "../../../Infra/ConnectBD/TypeORM/Entity/CancelOrderEntity";
@@ -22,7 +24,7 @@ import { CaptureTransaction } from "../../../Usecases/Transaction/CaptureTransac
 import { SearchTransaction } from "../../../Usecases/Transaction/SearchTransaction";
 import { SendTransaction } from "../../../Usecases/Transaction/SendTransaction";
 import { GatewayRedeMock } from "../../Mock/Gateway/Rede/GatewayRede";
-
+import { TransactionSeed } from "../../Seed/TransactionSeed";
 
 let paymentGatewaysController : PaymentGatewaysController;
 let connect: ConnectDBTypeORM;
@@ -34,24 +36,21 @@ beforeAll(async () => {
         [Transaction1654287924093, Capture1654513784257, Cancel1654518812859,Log1654290129463],
     );
     await connect.start();
+    await connect.clearTableAll();
 
     const repositoryTransaction = new TransactionRepository(connect.appDataSource.manager);
     const repositoryLog = new LogRepository(LogEntity, connect.appDataSource.manager);
     const mail = new Mail();
     const gateway = new GatewayRedeMock();
 
-    let validateGateway = configRede();
-
-    const sendTransaction =  new SendTransaction(gateway, validateGateway, repositoryTransaction, repositoryLog, mail);
-    const searchTransaction =  new SearchTransaction(gateway, repositoryLog);
-    const captureTransaction =  new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail);
-    const cancelTransaction =  new CancelTransaction(gateway, repositoryTransaction, repositoryLog, mail);
+    const transactionSeed = new TransactionSeed(repositoryTransaction);
+    await transactionSeed.generateTransactionFix(createTransactionFake());
 
     paymentGatewaysController = new PaymentGatewaysController(
-        sendTransaction,
-        searchTransaction,
-        captureTransaction,
-        cancelTransaction,
+        new SendTransaction(gateway, configRede(), repositoryTransaction, repositoryLog, mail),
+        new SearchTransaction(gateway, repositoryLog),
+        new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
+        new CancelTransaction(gateway, repositoryTransaction, repositoryLog, mail),
     );
   });
 
@@ -80,7 +79,7 @@ describe('SearchTransaction', () => {
 });
 
 describe('CaptureTransaction', () => {
-    test.skip('Should return not error if to send CaptureTransaction', async () => {
+    test('Should return not error if to send CaptureTransaction', async () => {
 
         const returnCaptureTransaction = await paymentGatewaysController.captureTransactions(FakeTransaction.captureTransactionRequest())
 
@@ -90,10 +89,40 @@ describe('CaptureTransaction', () => {
 });
 
 describe('CancelTransaction', () => {
-    test.skip('Should return not error if to send CancelTransaction', async () => {
+    test('Should return not error if to send CancelTransaction', async () => {
         const returnCancelTransaction = await paymentGatewaysController.cancelReversalTransactions(FakeTransaction.cancelTransactionRequest())
 
         expect(returnCancelTransaction).toBeTruthy();
         expect(returnCancelTransaction).toBeInstanceOf(CancelOrder);
     });
 });
+
+const createTransactionFake = (): TransactionOrder[] => {
+
+   const transactionOne = new TransactionOrder(
+    '100',
+    '430075',
+    TypeTransaction.CREDIT,
+    StatusTransaction.NO_CAPTURE,
+    100,
+    'Teste',
+    '100',
+    '100',
+    2
+    );
+
+    const transactionTwo = new TransactionOrder(
+        '100',
+        '10012205051406212774',
+        TypeTransaction.CREDIT,
+        StatusTransaction.NO_CAPTURE,
+        100,
+        'Teste',
+        '100',
+        '100',
+        2
+        );
+
+    return [transactionOne,transactionTwo]
+}
+
