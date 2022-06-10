@@ -9,4 +9,8 @@ export class Installments {
             );
         }
     }
+
+    get value(): number {
+        return this._value;
+    }
 }
