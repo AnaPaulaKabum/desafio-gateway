@@ -1,4 +1,4 @@
-import { BrandCard } from '../../Enum/BrandCard';
+import { BrandCard } from '../../Shared/Enum/BrandCard';
 import { ExpirationMonthCard } from '../../ValueObject/Card/ExpirationMonthCard';
 import { ExpirationYearCard } from '../../ValueObject/Card/ExpirationYearCard';
 import { NameCard } from '../../ValueObject/Card/NameCard';
