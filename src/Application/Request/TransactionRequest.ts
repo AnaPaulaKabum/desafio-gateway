@@ -4,7 +4,7 @@ export class TransactionRequest {
     constructor(
         public numberRequest: string,
         public kind: TypeTransaction,
-        public amount: number,
+        public amount: string,
         public installments: number,
         public cardHolderName: string,
         public cardNumber: string,

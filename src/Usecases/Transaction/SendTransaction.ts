@@ -8,24 +8,32 @@ import { Action } from '../../Domain/Entity/Log/Action';
 import { LogFactory } from '../../Domain/Entity/Log/LogFactory';
 import { TransactionDTOType } from '../../Domain/Shared/DTO/TransactionDTOType';
 import { ParamValidateType } from '../../Domain/Shared/Interfaces/Gateway/ParamValidateType';
-import { ValidateParam } from './Validate/ValidateParam';
 import { StatusTransaction } from '../../Domain/Shared/Enum/StatusTransaction';
+import { Transaction } from '../../Domain/Entity/Transaction/Transaction';
+import { NumberRequest } from '../../Domain/Entity/Transaction/ValueObject/Transaction/NumberRequest';
+import { Installments } from '../../Domain/Entity/Transaction/ValueObject/Transaction/Installments';
+import { Amount } from '../../Domain/Entity/Transaction/ValueObject/Transaction/Amount';
+import { SoftDescriptor } from '../../Domain/Entity/Transaction/ValueObject/Transaction/SoftDescriptor';
 
 export class SendTransaction {
     constructor(
         private readonly gateway: IGateways,
-        private readonly configGateway: ParamValidateType,
         private readonly repositoryTransaction: ITransactionRepository,
         private readonly repositoryLog: ILogRepository,
         private readonly mail: IMail,
     ) {}
 
-    async execute(transaction: TransactionDTOType): Promise<TransactionOrder> {
+    async execute(transactionDto: TransactionDTOType): Promise<TransactionOrder> {
         try {
-            ValidateParam.isValidSend(this.configGateway, transaction);
+            const transaction = new Transaction(
+                new NumberRequest(transactionDto.numberRequest),
+                new Installments(transactionDto.installments),
+                new Amount(transactionDto.amount),
+                new SoftDescriptor(transactionDto.softDescriptor),
+            );
 
-            if (await this.isValidToSend(transaction.numberRequest)) {
-                const transactionDTO = await this.gateway.sendTransaction(transaction);
+            if (await this.isValidToSend(transaction.numberRequest.value)) {
+                const transactionDTO = await this.gateway.sendTransaction(transactionDto);
 
                 const transactionOrder = TransactionOrder.createForDTO(transactionDTO);
                 await this.repositoryTransaction.saveTransaction(transactionOrder);

@@ -17,7 +17,6 @@ import { Capture1654513784257 } from "../../../Infra/ConnectBD/TypeORM/Migrate/1
 import { Cancel1654518812859 } from "../../../Infra/ConnectBD/TypeORM/Migrate/1654518812859-Cancel";
 import { LogRepository } from "../../../Infra/ConnectBD/TypeORM/Repository/Log/LogRepository";
 import { TransactionRepository } from "../../../Infra/ConnectBD/TypeORM/Repository/Transaction/TransactionRepository";
-import { configRede } from "../../../Infra/Gateway/Rede/configRede";
 import { Mail } from "../../../Infra/Mail/Mail";
 import { CancelTransaction } from "../../../Usecases/Transaction/CancelTransaction";
 import { CaptureTransaction } from "../../../Usecases/Transaction/CaptureTransaction";
@@ -47,7 +46,7 @@ beforeAll(async () => {
     await transactionSeed.generateTransactionFix(createTransactionFake());
 
     paymentGatewaysController = new PaymentGatewaysController(
-        new SendTransaction(gateway, configRede(), repositoryTransaction, repositoryLog, mail),
+        new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail),
         new SearchTransaction(gateway, repositoryLog),
         new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
         new CancelTransaction(gateway, repositoryTransaction, repositoryLog, mail),

@@ -8,7 +8,6 @@ import * as dotenv from 'dotenv';
 import { GatewayRedeAdapter } from './Infra/Gateway/Rede/GatewayRedeAdapter';
 import { ConnectCieloAPIMock } from './Infra/Gateway/Cielo/Mock/ConnectCieloAPIMock';
 import { GatewayCieloAdapter } from './Infra/Gateway/Cielo/GatewayCieloAdapter';
-import { configRede } from './Infra/Gateway/Rede/configRede';
 import { SendTransaction } from './Usecases/Transaction/SendTransaction';
 import { SearchTransaction } from './Usecases/Transaction/SearchTransaction';
 import { CaptureTransaction } from './Usecases/Transaction/CaptureTransaction';
@@ -47,10 +46,8 @@ export class StartFactory {
             gateway = new GatewayCieloAdapter(conectAPICielo);
         }
 
-        let validateGateway = configRede();
-
         return {
-            sendTransaction: new SendTransaction(gateway, validateGateway, repositoryTransaction, repositoryLog, mail),
+            sendTransaction: new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail),
             searchTransaction: new SearchTransaction(gateway, repositoryLog),
             captureTransaction: new CaptureTransaction(gateway, repositoryTransaction, repositoryLog, mail),
             cancelTransaction: new CancelTransaction(gateway, repositoryTransaction, repositoryLog, mail),

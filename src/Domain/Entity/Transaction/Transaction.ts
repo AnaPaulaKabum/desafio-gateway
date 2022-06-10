@@ -5,9 +5,9 @@ import { SoftDescriptor } from './ValueObject/Transaction/SoftDescriptor';
 
 export class Transaction {
     constructor(
-        numberRequest: NumberRequest,
-        installments: Installments,
-        amount: Amount,
-        softDescriptor: SoftDescriptor,
+        public numberRequest: NumberRequest,
+        public installments: Installments,
+        public amount: Amount,
+        public softDescriptor: SoftDescriptor,
     ) {}
 }

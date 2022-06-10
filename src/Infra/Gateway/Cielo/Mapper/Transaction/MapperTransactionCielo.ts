@@ -13,7 +13,7 @@ export class MapperTransactionCielo {
         );
 
         transactionCredit.merchantOrderId = transaction.numberRequest;
-        transactionCredit.payment.amount = transaction.amount;
+        //transactionCredit.payment.amount = transaction.amount;
         transactionCredit.payment.installments = transaction.installments;
         transactionCredit.payment.softDescriptor = transaction.softDescriptor;
 
@@ -27,7 +27,7 @@ export class MapperTransactionCielo {
         );
 
         transactionDebit.merchantOrderId = transaction.numberRequest;
-        transactionDebit.payment.amount = transaction.amount;
+        //transactionDebit.payment.amount = transaction.amount;
         transactionDebit.payment.returnUrl = 'www.teste.com.br';
 
         transactionDebit.isValid();

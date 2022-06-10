@@ -23,12 +23,12 @@ describe('UseCase - SendTransaction', () => {
         repositoryTransaction = new TransactionRepositoryMock();
         repositoryLog = new LogRepositoryMock();
         mail = new Mail();
-        service = new SendTransaction(gateway, configFake(), repositoryTransaction, repositoryLog, mail);
+        service = new SendTransaction(gateway, repositoryTransaction, repositoryLog, mail);
 
         transactionDTO = {
             numberRequest: 'pedido123',
             kind: TypeTransaction.CREDIT,
-            amount: 2099,
+            amount: '2099',
             installments: 2,
             cardHolderName: 'John Snow',
             cardNumber: '5448280000000007',
