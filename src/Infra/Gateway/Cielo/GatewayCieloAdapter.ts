@@ -12,11 +12,24 @@ import { CancelOrderDTOType } from '../../../Domain/Shared/DTO/Order/CancelOrder
 import { SearchTransactionOrderDTOType } from '../../../Domain/Shared/DTO/Order/SearchTransactionOrderType';
 import { CancelTransactionDTOType } from '../../../Domain/Shared/DTO/CancelTransactionDTOType';
 import { CaptureOrderDTOType } from '../../../Domain/Shared/DTO/Order/CaptureOrderDTOType';
+import { Transaction } from '../../../Domain/Entity/Transaction/Transaction';
 
 export class GatewayCieloAdapter implements IGateways {
     constructor(private readonly connectAPI: IConnectCieloAPI) {}
+    sendTransaction(transaction: Transaction): Promise<TransactionOrderDTOType> {
+        throw new Error('Method not implemented.');
+    }
+    searchTransaction(searchRequest: SearchTransactionDTOType): Promise<SearchTransactionOrderDTOType> {
+        throw new Error('Method not implemented.');
+    }
+    captureTransaction(captureTransactionDTO: CaptureTransactionDTOType): Promise<CaptureOrderDTOType> {
+        throw new Error('Method not implemented.');
+    }
+    cancelTransaction(cancelTransactionDTO: CancelTransactionDTOType): Promise<CancelOrderDTOType> {
+        throw new Error('Method not implemented.');
+    }
 
-    async sendTransaction(transaction: TransactionDTOType): Promise<TransactionOrderDTOType> {
+    /*async sendTransaction(transaction: Transaction): Promise<TransactionOrderDTOType> {
         const returnAPI = await this.connectAPI.sendTransaction(transaction);
 
         return new Promise(function (resolve) {
@@ -46,5 +59,5 @@ export class GatewayCieloAdapter implements IGateways {
         return new Promise(function (resolve) {
             resolve(MapperCancel.toCancelTransaction(returnAPI));
         });
-    }
+    }*/
 }
